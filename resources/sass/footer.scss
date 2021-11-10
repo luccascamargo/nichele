@@ -1,0 +1,151 @@
+.container__footer {
+    width: 100%;
+    height: 55.18rem;
+
+    background: url("../../public/assets/images/banner-footer.png");
+}
+
+.content {
+    width: 100%;
+    max-width: 1248px;
+    padding: 2.6rem 2rem 0 2rem;
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    gap: 4.37rem;
+
+    .line {
+        width: 100%;
+        border: 1px solid rgba(255, 255, 255, 0.4);
+    }
+
+    .one {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .logo__sociais {
+            display: flex;
+            gap: 3.8rem;
+
+            .sociais {
+                display: flex;
+                gap: 0.61rem;
+            }
+        }
+
+        .buttons {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+    }
+
+    .two {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+
+        .infos {
+            display: flex;
+            gap: 7.8rem;
+
+            .phone {
+                > p {
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+
+                    > a {
+                        font-size: 1.1rem;
+                        color: #fff;
+                        font-weight: bold;
+                        line-height: 21px;
+
+                        > span {
+                            font-size: 0.8rem;
+                            padding-right: 0.25rem;
+                        }
+                    }
+                }
+            }
+            .location {
+                max-width: 16.1rem;
+
+                aside {
+                    display: flex;
+                    gap: 1rem;
+
+                    span {
+                        font-size: 0.8rem;
+                        line-height: 21px;
+                        color: #fff;
+
+                        > p {
+                            font-size: 0.813rem;
+                        }
+                    }
+                }
+            }
+        }
+
+        .nav {
+            width: 22.8rem;
+            display: flex;
+            justify-content: space-between;
+
+            dl {
+                display: flex;
+                flex-direction: column;
+
+                margin: 0;
+
+                dt {
+                    margin-bottom: 1.12rem;
+                    color: #7dafeb;
+                    font-weight: bold;
+                    font-size: 0.8rem;
+                }
+
+                dd {
+                    margin: 0;
+                    padding-bottom: 0.625rem;
+                    color: #fff;
+                    font-size: 0.8rem;
+                }
+            }
+        }
+        .other {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.8rem;
+            width: 7.8rem;
+
+            > span {
+                color: #fff;
+                font-size: 1.1rem;
+            }
+
+            table {
+                color: #fff;
+
+                tbody tr:nth-child(1) {
+                    font-size: 0.8rem;
+                    line-height: 21px;
+                }
+
+                tbody tr:nth-child(2) {
+                    font-size: 1.1rem;
+                    line-height: 21px;
+                }
+            }
+        }
+    }
+
+    .macaw {
+        margin: 7.8rem auto 0 auto;
+    }
+}

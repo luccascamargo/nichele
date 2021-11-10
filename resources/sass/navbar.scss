@@ -1,0 +1,47 @@
+.container__navbar {
+    position: absolute;
+    width: 100%;
+    height: 110px;
+    display: flex;
+    align-items: center;
+
+    z-index: 1;
+
+    .navbar {
+        width: 100%;
+        max-width: 1248px;
+        padding: 0 2rem 0 2rem;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .navbar__items {
+            ul {
+                list-style: none;
+                display: flex;
+                gap: 2.375rem;
+
+                a {
+                    font-size: 0.87rem;
+                    color: #fff;
+                    line-height: 21px;
+                    font-weight: 400;
+                    transition: color 0.3s;
+
+                    &:hover {
+                        color: #7dafeb;
+                    }
+
+                    &.active {
+                        color: #7dafeb;
+                    }
+                }
+            }
+        }
+        .buttons {
+            display: flex;
+            gap: 1rem;
+        }
+    }
+}
