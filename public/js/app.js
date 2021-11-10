@@ -3907,9 +3907,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _sass_contato_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../sass/contato.scss */ "./resources/sass/contato.scss");
 /* harmony import */ var _components_Navbar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/Navbar */ "./resources/js/components/Navbar.jsx");
 /* harmony import */ var _components_Footer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/Footer */ "./resources/js/components/Footer.jsx");
-/* harmony import */ var _public_assets_svg_contato_phone_svg__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../public/assets/svg/contato/phone.svg */ "./public/assets/svg/contato/phone.svg");
+/* harmony import */ var _public_assets_svg_contato_phone_contato_svg__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../public/assets/svg/contato/phone-contato.svg */ "./public/assets/svg/contato/phone-contato.svg");
 /* harmony import */ var _public_assets_svg_contato_mail_svg__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../public/assets/svg/contato/mail.svg */ "./public/assets/svg/contato/mail.svg");
-/* harmony import */ var _public_assets_svg_contato_whats_svg__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../public/assets/svg/contato/whats.svg */ "./public/assets/svg/contato/whats.svg");
+/* harmony import */ var _public_assets_svg_contato_whats_contato_svg__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../public/assets/svg/contato/whats-contato.svg */ "./public/assets/svg/contato/whats-contato.svg");
 /* harmony import */ var _components_Form__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/Form */ "./resources/js/components/Form.jsx");
 /* harmony import */ var _components_Button__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/Button */ "./resources/js/components/Button.jsx");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
@@ -3946,7 +3946,7 @@ function Contato() {
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
               className: "phone__contato",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("img", {
-                src: _public_assets_svg_contato_phone_svg__WEBPACK_IMPORTED_MODULE_4__["default"],
+                src: _public_assets_svg_contato_phone_contato_svg__WEBPACK_IMPORTED_MODULE_4__["default"],
                 alt: "Telefone de contato"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("span", {
                 children: "(54) 3289.2900"
@@ -3965,7 +3965,7 @@ function Contato() {
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
                 className: "w1",
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("img", {
-                  src: _public_assets_svg_contato_whats_svg__WEBPACK_IMPORTED_MODULE_6__["default"],
+                  src: _public_assets_svg_contato_whats_contato_svg__WEBPACK_IMPORTED_MODULE_6__["default"],
                   alt: "Whatsapp Nichele"
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
                   className: "w1__info__contato",
@@ -3979,7 +3979,7 @@ function Contato() {
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
                 className: "w1",
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("img", {
-                  src: _public_assets_svg_contato_whats_svg__WEBPACK_IMPORTED_MODULE_6__["default"],
+                  src: _public_assets_svg_contato_whats_contato_svg__WEBPACK_IMPORTED_MODULE_6__["default"],
                   alt: "Whatsapp Nichele"
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
                   className: "w1__info__contato",
@@ -4319,6 +4319,33 @@ if (document.getElementById("home")) {
 
 /***/ }),
 
+/***/ "./resources/js/Sobre.js":
+/*!*******************************!*\
+  !*** ./resources/js/Sobre.js ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Sobre)
+/* harmony export */ });
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+function Sobre() {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h1", {
+    children: "sobre"
+  });
+}
+
+if (document.getElementById("sobre")) {
+  react_dom__WEBPACK_IMPORTED_MODULE_0__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(Sobre, {}), document.getElementById("sobre"));
+}
+
+/***/ }),
+
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
@@ -4341,6 +4368,8 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 __webpack_require__(/*! ./Home */ "./resources/js/Home.js");
 
 __webpack_require__(/*! ./Contato */ "./resources/js/Contato.js");
+
+__webpack_require__(/*! ./Sobre */ "./resources/js/Sobre.js");
 
 /***/ }),
 
@@ -5181,7 +5210,7 @@ var Navbar = function Navbar() {
             href: "/",
             children: "Im\xF3veis"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
-            href: "/",
+            href: "/sobre",
             children: "Sobre"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
             href: "/",
@@ -9983,10 +10012,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./public/assets/svg/contato/phone.svg":
-/*!*********************************************!*\
-  !*** ./public/assets/svg/contato/phone.svg ***!
-  \*********************************************/
+/***/ "./public/assets/svg/contato/phone-contato.svg":
+/*!*****************************************************!*\
+  !*** ./public/assets/svg/contato/phone-contato.svg ***!
+  \*****************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -9994,14 +10023,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/phone.svg?b70310ccb0911d6d1c7c860a48a616f7");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/phone-contato.svg?b70310ccb0911d6d1c7c860a48a616f7");
 
 /***/ }),
 
-/***/ "./public/assets/svg/contato/whats.svg":
-/*!*********************************************!*\
-  !*** ./public/assets/svg/contato/whats.svg ***!
-  \*********************************************/
+/***/ "./public/assets/svg/contato/whats-contato.svg":
+/*!*****************************************************!*\
+  !*** ./public/assets/svg/contato/whats-contato.svg ***!
+  \*****************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -10009,7 +10038,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/whats.svg?ce6d70ad8d2bde755e3609d99dd970d3");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/whats-contato.svg?ce6d70ad8d2bde755e3609d99dd970d3");
 
 /***/ }),
 

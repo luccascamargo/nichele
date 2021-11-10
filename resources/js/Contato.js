@@ -7,9 +7,9 @@ import "../sass/contato.scss";
 import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
 
-import iconPhone from "../../public/assets/svg/contato/phone.svg";
+import iconPhone from "../../public/assets/svg/contato/phone-contato.svg";
 import iconEmail from "../../public/assets/svg/contato/mail.svg";
-import iconWhats from "../../public/assets/svg/contato/whats.svg";
+import iconWhats from "../../public/assets/svg/contato/whats-contato.svg";
 import { Form } from "./components/Form";
 import { Button } from "./components/Button";
 

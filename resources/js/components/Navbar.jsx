@@ -18,7 +18,7 @@ export const Navbar = () => {
                     <ul>
                         <a href="/">Home</a>
                         <a href="/">Imóveis</a>
-                        <a href="/">Sobre</a>
+                        <a href="/sobre">Sobre</a>
                         <a href="/">Blog</a>
                         <a href="/">Dúvidas</a>
                         <a href="/contato">Contato</a>
