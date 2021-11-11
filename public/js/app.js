@@ -3931,6 +3931,7 @@ __webpack_require__.r(__webpack_exports__);
 function Contato() {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("header", {
+      className: "header__contato",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_components_Navbar__WEBPACK_IMPORTED_MODULE_2__.Navbar, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
         className: "content__contato",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
@@ -4331,17 +4332,143 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ Sobre)
 /* harmony export */ });
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react_multi_carousel__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-multi-carousel */ "./node_modules/react-multi-carousel/index.js");
+/* harmony import */ var react_multi_carousel_lib_styles_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-multi-carousel/lib/styles.css */ "./node_modules/react-multi-carousel/lib/styles.css");
+/* harmony import */ var _components_Navbar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/Navbar */ "./resources/js/components/Navbar.jsx");
+/* harmony import */ var _components_Footer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/Footer */ "./resources/js/components/Footer.jsx");
+/* harmony import */ var _sass_sobre_scss__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../sass/sobre.scss */ "./resources/sass/sobre.scss");
+/* harmony import */ var _public_assets_images_banner_info_png__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../public/assets/images/banner-info.png */ "./public/assets/images/banner-info.png");
+/* harmony import */ var _public_assets_images_image_carousel_png__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../public/assets/images/image-carousel.png */ "./public/assets/images/image-carousel.png");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* eslint-disable no-irregular-whitespace */
+
+/* eslint-disable import/no-unresolved */
 
 
+
+
+
+
+
+
+
+
+
+var responsive = {
+  desktop: {
+    breakpoint: {
+      max: 3000,
+      min: 961
+    },
+    items: 1 // partialVisibilityGutter: 40,
+
+  },
+  tablet: {
+    breakpoint: {
+      max: 961,
+      min: 641
+    },
+    items: 1
+  },
+  mobile: {
+    breakpoint: {
+      max: 641,
+      min: 0
+    },
+    items: 1
+  }
+};
 function Sobre() {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h1", {
-    children: "sobre"
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("header", {
+      className: "header__sobre",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_components_Navbar__WEBPACK_IMPORTED_MODULE_3__.Navbar, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+        className: "content__sobre",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("span", {
+          children: "Sobre n\xF3s"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("h1", {
+          children: "A mais de 50 anos no mercado, oferecendo solu\xE7\xF5es imobili\xE1rias"
+        })]
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+      className: "content__infos",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+        className: "info",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("p", {
+          children: "A mais de 50 anos no mercado, oferecendo solu\xE7\xF5es imobili\xE1rias na Administra\xE7\xE3o de Alugu\xE9is e na Venda de Im\xF3veis."
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("p", {
+          children: "Somos uma empresa moderna, com vis\xE3o de futuro. Buscamos permanentemente a qualifica\xE7\xE3o dos servi\xE7os prestados, comprometidos com a satisfa\xE7\xE3o, lucratividade e a qualidade de vida dos nossos clientes, parceiros e colaboradores."
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("p", {
+          children: "Dispomos de uma equipe de profissionais especializados, tecnologia e diversos canais de atendimento, que proporcionam aos nossos clientes solu\xE7\xF5es inteligentes com excel\xEAncia de qualidade e confian\xE7a.Com sede pr\xF3pria, localizada no centro da cidade, nossa estrutura oferece comodidade e agilidade."
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
+        className: "img",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("img", {
+          src: _public_assets_images_banner_info_png__WEBPACK_IMPORTED_MODULE_6__["default"],
+          alt: "Imagem 50 anos"
+        })
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+      className: "content__carousel",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
+        className: "carousel",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(react_multi_carousel__WEBPACK_IMPORTED_MODULE_1__["default"], {
+          partialVisible: true,
+          additionalTransfrom: 0,
+          arrows: false,
+          autoPlaySpeed: 3000,
+          centerMode: false,
+          containerClass: "content__carousel__sobre",
+          dotListClass: "content__carousel__sobre__dotList",
+          draggable: true,
+          focusOnSelect: false,
+          infinite: false,
+          itemClass: "content__carousel__sobre__item",
+          keyBoardControl: true,
+          minimumTouchDrag: 80,
+          renderButtonGroupOutside: true,
+          renderDotsOutside: false,
+          responsive: responsive,
+          showDots: true,
+          sliderClass: "",
+          slidesToSlide: 1,
+          customTransition: "transform 800ms ease-in-out",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
+            className: "box__carousel",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("img", {
+              src: _public_assets_images_image_carousel_png__WEBPACK_IMPORTED_MODULE_7__["default"],
+              alt: "Carousel"
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
+            className: "box__carousel",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("img", {
+              src: _public_assets_images_image_carousel_png__WEBPACK_IMPORTED_MODULE_7__["default"],
+              alt: "Carousel"
+            })
+          })]
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+        className: "infos__carousel",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("h2", {
+          children: "Somos conhecidos no mercado imobili\xE1rio pelo profissionalismo e pela \xE9tica com que conduzimos os neg\xF3cios"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("p", {
+          children: "A Imobili\xE1ria Nichele foi fundada em 1969, em Caxias do Sul, pelo seu atual Diretor Ivor Emilio Nichele.\xA0Em 1987, ampliamos as atividades, ingressando na constru\xE7\xE3o civil de im\xF3veis residenciais e comerciais. Somos respons\xE1veis pela constru\xE7\xE3o de milhares de metros quadrados em apartamentos, sobrados, lojas e salas comerciais."
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("p", {
+          children: "A confian\xE7a e a credibilidade adquirida nesses anos de atua\xE7\xE3o, s\xE3o os motivos que nos levam ao sucesso na administra\xE7\xE3o, nas vendas e na constru\xE7\xE3o de im\xF3veis, contribuindo assim para o desenvolvimento da regi\xE3o e do setor imobili\xE1rio\xA0com o respeito e a confian\xE7a que a cidade merece."
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("p", {
+          children: "A dire\xE7\xE3o da Imobili\xE1ria Nichele \xE9 exercida pelo s\xF3cio fundador Ivor Emilio Nichele e seu\xA0filho\xA0Ricardo Antonio Nichele."
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("p", {
+          children: "Somos conhecidos no mercado imobili\xE1rio pelo profissionalismo e pela \xE9tica com que conduzimos os neg\xF3cios, proporcionando seguran\xE7a e tranquilidade na gest\xE3o de im\xF3veis."
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("p", {
+          children: "A realiza\xE7\xE3o do seu sonho est\xE1 aqui, descomplique com a Nichele."
+        })]
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_components_Footer__WEBPACK_IMPORTED_MODULE_4__.Footer, {})]
   });
 }
 
 if (document.getElementById("sobre")) {
-  react_dom__WEBPACK_IMPORTED_MODULE_0__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(Sobre, {}), document.getElementById("sobre"));
+  react_dom__WEBPACK_IMPORTED_MODULE_0__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(Sobre, {}), document.getElementById("sobre"));
 }
 
 /***/ }),
@@ -9717,7 +9844,7 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 var ___CSS_LOADER_URL_REPLACEMENT_0___ = _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_1___default()(_public_assets_images_banner_contato_png__WEBPACK_IMPORTED_MODULE_2__["default"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "header {\n  width: 100%;\n  height: 47.37rem;\n  background: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + "), #2969ae;\n  background-repeat: no-repeat;\n}\nheader .content__contato {\n  width: 100%;\n  max-width: 1248px;\n  padding: 18rem 2rem 0 2rem;\n  margin: 0 auto;\n  display: flex;\n  justify-content: space-between;\n  position: relative;\n}\nheader .content__contato .infos__contato {\n  width: 100%;\n  max-width: 31.25rem;\n}\nheader .content__contato .infos__contato .title__contato span {\n  font-family: \"Nunito\";\n  font-style: normal;\n  font-weight: bold;\n  font-size: 1.1rem;\n  line-height: 21px;\n  letter-spacing: -0.01em;\n  color: #ffdb21;\n}\nheader .content__contato .infos__contato .title__contato h1 {\n  font-family: \"Nunito\";\n  font-style: normal;\n  font-weight: bold;\n  font-size: 2.5rem;\n  line-height: 46px;\n  letter-spacing: -0.01em;\n  color: #ffffff;\n}\nheader .content__contato .infos__contato section {\n  padding-top: 3rem;\n  display: flex;\n  flex-direction: column;\n  gap: 3rem;\n}\nheader .content__contato .infos__contato section .phone__contato {\n  display: flex;\n  gap: 1rem;\n}\nheader .content__contato .infos__contato section .phone__contato span {\n  font-family: \"Nunito\";\n  font-weight: bold;\n  font-size: 1.5rem;\n  line-height: 28px;\n  letter-spacing: -0.01em;\n  color: #ffffff;\n}\nheader .content__contato .infos__contato section .email__contato {\n  display: flex;\n  gap: 1rem;\n}\nheader .content__contato .infos__contato section .email__contato a {\n  font-family: \"Nunito\";\n  font-weight: bold;\n  font-size: 1rem;\n  line-height: 18px;\n  letter-spacing: -0.01em;\n  color: #ffffff;\n}\nheader .content__contato .infos__contato section .content__whats__contato {\n  display: flex;\n  gap: 5.4rem;\n}\nheader .content__contato .infos__contato section .content__whats__contato .w1 {\n  display: flex;\n  gap: 1rem;\n}\nheader .content__contato .infos__contato section .content__whats__contato .w1 .w1__info__contato {\n  display: flex;\n  flex-direction: column;\n  gap: 2px;\n}\nheader .content__contato .infos__contato section .content__whats__contato .w1 .w1__info__contato span {\n  font-family: \"Nunito\";\n  font-weight: bold;\n  font-size: 0.75rem;\n  line-height: 14px;\n  letter-spacing: -0.01em;\n  color: #ffffff;\n}\nheader .content__contato .infos__contato section .content__whats__contato .w1 .w1__info__contato a {\n  font-family: \"Roboto\";\n  font-weight: normal;\n  font-size: 0.8rem;\n  line-height: 21px;\n  color: #ffffff;\n  opacity: 0.7;\n}\n\n.anuncio {\n  width: 100%;\n  height: 26.43rem;\n  background: #2969ae;\n  display: flex;\n  align-items: center;\n}\n.anuncio .content__anuncio {\n  width: 52rem;\n  padding-left: 22.68rem;\n  display: flex;\n  flex-direction: column;\n}\n.anuncio .content__anuncio h2 {\n  font-family: \"Nunito\";\n  font-weight: bold;\n  font-size: 2rem;\n  line-height: 37px;\n  letter-spacing: -0.01em;\n  color: #ffffff;\n}\n.anuncio .content__anuncio p {\n  font-family: \"Roboto\";\n  font-weight: normal;\n  font-size: 1.1rem;\n  line-height: 23px;\n  letter-spacing: -0.01em;\n  color: #dad7d7;\n  opacity: 0.8;\n  padding: 13px 0 22px 0;\n}\n\n.iframe__contato {\n  width: 100%;\n  height: 44.375rem;\n}\n.iframe__contato iframe {\n  width: 100%;\n  height: 100%;\n  border: none;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".header__contato {\n  width: 100%;\n  height: 47.37rem;\n  background: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + "), #2969ae;\n  background-repeat: no-repeat;\n}\n.header__contato .content__contato {\n  width: 100%;\n  max-width: 1248px;\n  padding: 18rem 2rem 0 2rem;\n  margin: 0 auto;\n  display: flex;\n  justify-content: space-between;\n  position: relative;\n}\n.header__contato .content__contato .infos__contato {\n  width: 100%;\n  max-width: 31.25rem;\n}\n.header__contato .content__contato .infos__contato .title__contato span {\n  font-family: \"Nunito\";\n  font-style: normal;\n  font-weight: bold;\n  font-size: 1.1rem;\n  line-height: 21px;\n  letter-spacing: -0.01em;\n  color: #ffdb21;\n}\n.header__contato .content__contato .infos__contato .title__contato h1 {\n  font-family: \"Nunito\";\n  font-style: normal;\n  font-weight: bold;\n  font-size: 2.5rem;\n  line-height: 46px;\n  letter-spacing: -0.01em;\n  color: #ffffff;\n}\n.header__contato .content__contato .infos__contato section {\n  padding-top: 3rem;\n  display: flex;\n  flex-direction: column;\n  gap: 3rem;\n}\n.header__contato .content__contato .infos__contato section .phone__contato {\n  display: flex;\n  gap: 1rem;\n}\n.header__contato .content__contato .infos__contato section .phone__contato span {\n  font-family: \"Nunito\";\n  font-weight: bold;\n  font-size: 1.5rem;\n  line-height: 28px;\n  letter-spacing: -0.01em;\n  color: #ffffff;\n}\n.header__contato .content__contato .infos__contato section .email__contato {\n  display: flex;\n  gap: 1rem;\n}\n.header__contato .content__contato .infos__contato section .email__contato a {\n  font-family: \"Nunito\";\n  font-weight: bold;\n  font-size: 1rem;\n  line-height: 18px;\n  letter-spacing: -0.01em;\n  color: #ffffff;\n}\n.header__contato .content__contato .infos__contato section .content__whats__contato {\n  display: flex;\n  gap: 5.4rem;\n}\n.header__contato .content__contato .infos__contato section .content__whats__contato .w1 {\n  display: flex;\n  gap: 1rem;\n}\n.header__contato .content__contato .infos__contato section .content__whats__contato .w1 .w1__info__contato {\n  display: flex;\n  flex-direction: column;\n  gap: 2px;\n}\n.header__contato .content__contato .infos__contato section .content__whats__contato .w1 .w1__info__contato span {\n  font-family: \"Nunito\";\n  font-weight: bold;\n  font-size: 0.75rem;\n  line-height: 14px;\n  letter-spacing: -0.01em;\n  color: #ffffff;\n}\n.header__contato .content__contato .infos__contato section .content__whats__contato .w1 .w1__info__contato a {\n  font-family: \"Roboto\";\n  font-weight: normal;\n  font-size: 0.8rem;\n  line-height: 21px;\n  color: #ffffff;\n  opacity: 0.7;\n}\n\n.anuncio {\n  width: 100%;\n  height: 26.43rem;\n  background: #2969ae;\n  display: flex;\n  align-items: center;\n}\n.anuncio .content__anuncio {\n  width: 52rem;\n  padding-left: 22.68rem;\n  display: flex;\n  flex-direction: column;\n}\n.anuncio .content__anuncio h2 {\n  font-family: \"Nunito\";\n  font-weight: bold;\n  font-size: 2rem;\n  line-height: 37px;\n  letter-spacing: -0.01em;\n  color: #ffffff;\n}\n.anuncio .content__anuncio p {\n  font-family: \"Roboto\";\n  font-weight: normal;\n  font-size: 1.1rem;\n  line-height: 23px;\n  letter-spacing: -0.01em;\n  color: #dad7d7;\n  opacity: 0.8;\n  padding: 13px 0 22px 0;\n}\n\n.iframe__contato {\n  width: 100%;\n  height: 44.375rem;\n}\n.iframe__contato iframe {\n  width: 100%;\n  height: 100%;\n  border: none;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -9796,6 +9923,36 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, ".container__navbar {\n  position: absolute;\n  width: 100%;\n  height: 110px;\n  display: flex;\n  align-items: center;\n  z-index: 1;\n}\n.container__navbar .navbar {\n  width: 100%;\n  max-width: 1248px;\n  padding: 0 2rem 0 2rem;\n  margin: 0 auto;\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n}\n.container__navbar .navbar .navbar__items ul {\n  list-style: none;\n  display: flex;\n  gap: 2.375rem;\n}\n.container__navbar .navbar .navbar__items ul a {\n  font-size: 0.87rem;\n  color: #fff;\n  line-height: 21px;\n  font-weight: 400;\n  transition: color 0.3s;\n}\n.container__navbar .navbar .navbar__items ul a:hover {\n  color: #7dafeb;\n}\n.container__navbar .navbar .navbar__items ul a.active {\n  color: #7dafeb;\n}\n.container__navbar .navbar .buttons {\n  display: flex;\n  gap: 1rem;\n}", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/sass/sobre.scss":
+/*!*************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/sass/sobre.scss ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/getUrl.js */ "./node_modules/css-loader/dist/runtime/getUrl.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _public_assets_images_banner_sobre_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../public/assets/images/banner-sobre.png */ "./public/assets/images/banner-sobre.png");
+// Imports
+
+
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+var ___CSS_LOADER_URL_REPLACEMENT_0___ = _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_1___default()(_public_assets_images_banner_sobre_png__WEBPACK_IMPORTED_MODULE_2__["default"]);
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, ".header__sobre {\n  width: 100%;\n  height: 44.125rem;\n  background-image: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\n}\n.header__sobre .content__sobre {\n  display: flex;\n  flex-direction: column;\n  gap: 1.37rem;\n  width: 39rem;\n  padding: 18.063rem 2rem 0 2rem;\n  margin-left: 22rem;\n}\n.header__sobre .content__sobre span {\n  font-family: \"Nunito\";\n  font-weight: bold;\n  font-size: 1.1rem;\n  line-height: 21px;\n  letter-spacing: -0.01em;\n  color: #ffdb21;\n}\n.header__sobre .content__sobre h1 {\n  font-family: \"Nunito\";\n  font-weight: bold;\n  font-size: 40px;\n  line-height: 46px;\n  letter-spacing: -0.01em;\n  color: #ffffff;\n}\n\n.content__infos {\n  display: flex;\n  width: 100%;\n  height: 29.87rem;\n}\n.content__infos .info {\n  width: 50%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  gap: 1rem;\n  padding-left: 22rem;\n}\n.content__infos .info p {\n  font-family: \"Roboto\";\n  font-weight: normal;\n  font-size: 16px;\n  line-height: 24px;\n  letter-spacing: -0.01em;\n  color: #7d8596;\n  max-width: 30.5rem;\n}\n.content__infos .img {\n  height: 100%;\n}\n\n.content__carousel {\n  width: 100%;\n  max-width: 1248px;\n  margin: 0 auto;\n  height: 42rem;\n  display: flex;\n  padding-top: 8.81rem;\n  margin-bottom: 6.25rem;\n}\n.content__carousel .carousel {\n  width: 50%;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.content__carousel .carousel .box__carousel {\n  width: 30rem;\n  height: 36rem;\n  background: #c4c4c4;\n  border-radius: 40px 0px;\n}\n.content__carousel .carousel .box__carousel img {\n  width: 100%;\n  height: 100%;\n  border-radius: 40px 0px;\n}\n.content__carousel .infos__carousel {\n  width: 50%;\n  display: flex;\n  flex-direction: column;\n  align-items: flex-start;\n  justify-content: center;\n  gap: 1rem;\n}\n.content__carousel .infos__carousel h2 {\n  font-family: \"Nunito\";\n  font-weight: bold;\n  font-size: 2rem;\n  line-height: 42px;\n  letter-spacing: -0.01em;\n  color: #124480;\n  padding-bottom: 1rem;\n  max-width: 30.5rem;\n}\n.content__carousel .infos__carousel p {\n  font-family: \"Roboto\";\n  font-weight: normal;\n  font-size: 1rem;\n  line-height: 24px;\n  letter-spacing: -0.01em;\n  color: #7d8596;\n  max-width: 36.87rem;\n}\n.content__carousel .infos__carousel p:nth-child(6) {\n  color: #7dafeb;\n  font-weight: bold;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -9949,6 +10106,51 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/banner-footer.png?d53c409591be9f85b18101eeade197dc");
+
+/***/ }),
+
+/***/ "./public/assets/images/banner-info.png":
+/*!**********************************************!*\
+  !*** ./public/assets/images/banner-info.png ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/banner-info.png?530b676a11fd73861ba793d8af8d7c77");
+
+/***/ }),
+
+/***/ "./public/assets/images/banner-sobre.png":
+/*!***********************************************!*\
+  !*** ./public/assets/images/banner-sobre.png ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/banner-sobre.png?1e9d09d39ab7cbfa44202e848cbdf747");
+
+/***/ }),
+
+/***/ "./public/assets/images/image-carousel.png":
+/*!*************************************************!*\
+  !*** ./public/assets/images/image-carousel.png ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/image-carousel.png?112981d8cf384b12068d1ace2ecab72b");
 
 /***/ }),
 
@@ -86868,6 +87070,36 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_navbar_scss__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+
+/***/ }),
+
+/***/ "./resources/sass/sobre.scss":
+/*!***********************************!*\
+  !*** ./resources/sass/sobre.scss ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_sobre_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!../../node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./sobre.scss */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/sass/sobre.scss");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_sobre_scss__WEBPACK_IMPORTED_MODULE_1__["default"], options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_sobre_scss__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
 
 /***/ }),
 

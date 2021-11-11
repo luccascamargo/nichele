@@ -16,7 +16,7 @@ import { Button } from "./components/Button";
 export default function Contato() {
     return (
         <>
-            <header>
+            <header className="header__contato">
                 <Navbar />
                 <div className="content__contato">
                     <div className="infos__contato">
