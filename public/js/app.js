@@ -5181,11 +5181,113 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "DuvidaDoc": () => (/* binding */ DuvidaDoc)
 /* harmony export */ });
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _sass_duvidaDoc_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../sass/duvidaDoc.scss */ "./resources/sass/duvidaDoc.scss");
+/* harmony import */ var _components_DuvidaItems__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/DuvidaItems */ "./resources/js/components/DuvidaItems.jsx");
+/* harmony import */ var _lib_listDuvidas__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../lib/listDuvidas */ "./resources/js/lib/listDuvidas.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* eslint-disable import/no-unresolved */
+
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+
+
+
+
 
 var DuvidaDoc = function DuvidaDoc() {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h1", {
-    children: "duvida Doc"
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+      className: "container__duvidas__doc",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("ul", {
+        className: "list_container",
+        children: _lib_listDuvidas__WEBPACK_IMPORTED_MODULE_2__.list.map(function (item, index) {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("li", {
+              className: "list__item",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_DuvidaItems__WEBPACK_IMPORTED_MODULE_1__.DuvidaItems, {
+                title: item.title,
+                description: item.description
+              })
+            }, index)
+          }, index);
+        })
+      })
+    })
+  });
+};
+
+/***/ }),
+
+/***/ "./resources/js/components/DuvidaItems.jsx":
+/*!*************************************************!*\
+  !*** ./resources/js/components/DuvidaItems.jsx ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "DuvidaItems": () => (/* binding */ DuvidaItems)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _sass_duvidaDoc_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../sass/duvidaDoc.scss */ "./resources/sass/duvidaDoc.scss");
+/* harmony import */ var _public_assets_svg_icon_list_svg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../public/assets/svg/icon-list.svg */ "./public/assets/svg/icon-list.svg");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+
+
+
+
+
+
+var DuvidaItems = function DuvidaItems(_ref) {
+  var props = _extends({}, _ref);
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      listItem = _useState2[0],
+      setListItem = _useState2[1];
+
+  var handleItem = function handleItem() {
+    return setListItem(!listItem);
+  };
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+      className: "header__duvida__item",
+      onClick: handleItem,
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+        children: props.title
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+        className: listItem ? "rotate__img" : "img",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("img", {
+          src: _public_assets_svg_icon_list_svg__WEBPACK_IMPORTED_MODULE_2__["default"],
+          alt: "Icone lista"
+        })
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+      className: listItem ? "content__duvida__item active__item" : "content__duvida__item",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+        children: props.description
+      })
+    })]
   });
 };
 
@@ -5594,6 +5696,36 @@ var Navbar = function Navbar() {
     })
   });
 };
+
+/***/ }),
+
+/***/ "./resources/js/lib/listDuvidas.js":
+/*!*****************************************!*\
+  !*** ./resources/js/lib/listDuvidas.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "list": () => (/* binding */ list)
+/* harmony export */ });
+var list = [{
+  title: "Titulo1",
+  description: "Description1"
+}, {
+  title: "Titulo2",
+  description: "Description2"
+}, {
+  title: "Titulo3",
+  description: "Description3"
+}, {
+  title: "Titulo4",
+  description: "Description4"
+}, {
+  title: "Titulo5",
+  description: "Description5"
+}];
 
 /***/ }),
 
@@ -10084,6 +10216,30 @@ ___CSS_LOADER_EXPORT___.push([module.id, ".header__contato {\n  width: 100%;\n  
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/sass/duvidaDoc.scss":
+/*!*****************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/sass/duvidaDoc.scss ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, ".container__duvidas__doc {\n  width: 100%;\n  padding-top: 5rem;\n}\n.container__duvidas__doc .list_container {\n  width: 100%;\n  display: flex;\n  flex-direction: column;\n  gap: 3.5rem;\n}\n.container__duvidas__doc .list_container .list__item {\n  width: 100%;\n  height: auto;\n  padding: 1rem 0 1rem 0;\n  display: flex;\n  flex-direction: column;\n  gap: 2rem;\n  cursor: pointer;\n  border-bottom: 1px solid #a3a8b3;\n}\n.container__duvidas__doc .list_container .list__item .header__duvida__item {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n}\n.container__duvidas__doc .list_container .list__item .header__duvida__item span {\n  font-family: \"Roboto\";\n  font-weight: bold;\n  font-size: 1.1rem;\n  line-height: 27px;\n  letter-spacing: -0.01em;\n  color: #7d8596;\n}\n.container__duvidas__doc .list_container .list__item .header__duvida__item .img {\n  transform: rotate(180deg);\n  transition: transform 0.3s;\n}\n.container__duvidas__doc .list_container .list__item .header__duvida__item .rotate__img {\n  transform: rotate(0deg);\n  transition: transform 0.3s;\n}\n.container__duvidas__doc .list_container .list__item .content__duvida__item {\n  display: none;\n}\n.container__duvidas__doc .list_container .list__item .active__item {\n  display: block;\n}\n.container__duvidas__doc .list_container .list__drop {\n  height: auto;\n  padding-bottom: 2rem;\n}", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/sass/duvidas.scss":
 /*!***************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/sass/duvidas.scss ***!
@@ -10107,7 +10263,7 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 var ___CSS_LOADER_URL_REPLACEMENT_0___ = _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_1___default()(_public_assets_images_banner_duvidas_png__WEBPACK_IMPORTED_MODULE_2__["default"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".header__duvidas {\n  width: 100%;\n  height: 21.62rem;\n  background: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.header__duvidas h1 {\n  font-family: \"Nunito\";\n  font-weight: bold;\n  font-size: 3rem;\n  line-height: 55px;\n  text-align: center;\n  letter-spacing: -0.01em;\n  color: #ffffff;\n  padding-top: 3rem;\n}\n\n.search__duvida {\n  width: 100%;\n  max-width: 1248px;\n  padding: 5rem 2rem 0 2rem;\n  margin: 0 auto;\n  display: flex;\n  justify-content: space-between;\n}\n.search__duvida span {\n  max-width: 30.5rem;\n  font-family: \"Roboto\";\n  font-weight: normal;\n  font-size: 1.1rem;\n  line-height: 27px;\n  color: #7d8585;\n}\n.search__duvida .content__search {\n  width: 37.06rem;\n  display: flex;\n  justify-content: space-between;\n  border: 1px solid #d0d6d6;\n  border-radius: 10px;\n  padding: 0.5rem;\n}\n.search__duvida .content__search input {\n  border: none;\n  height: 100%;\n  outline: none;\n}\n.search__duvida .content__search button {\n  background: none;\n}\n\n.container__buttons {\n  width: 100%;\n  max-width: 1216px;\n  height: 5rem;\n  margin: 5.5rem auto 0 auto;\n  border-bottom: 1px solid rgba(208, 214, 214, 0.6);\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n}\n.container__buttons button {\n  width: -webkit-fit-content;\n  width: -moz-fit-content;\n  width: fit-content;\n  height: 100%;\n  position: relative;\n  display: flex;\n  gap: 2rem;\n  align-items: center;\n  padding: 2rem;\n  background: none;\n  transition: all 0.3s;\n  border-bottom: 2px solid transparent;\n}\n.container__buttons .active {\n  border-bottom: 2px solid blue;\n}\n\n.container__conteudo {\n  width: 100%;\n  max-width: 1248px;\n  margin: 0 auto;\n  padding: 0 2rem 17.37rem 2rem;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".header__duvidas {\n  width: 100%;\n  height: 21.62rem;\n  background: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.header__duvidas h1 {\n  font-family: \"Nunito\";\n  font-weight: bold;\n  font-size: 3rem;\n  line-height: 55px;\n  text-align: center;\n  letter-spacing: -0.01em;\n  color: #ffffff;\n  padding-top: 3rem;\n}\n\n.search__duvida {\n  width: 100%;\n  max-width: 1248px;\n  padding: 5rem 2rem 0 2rem;\n  margin: 0 auto;\n  display: flex;\n  justify-content: space-between;\n}\n.search__duvida span {\n  max-width: 30.5rem;\n  font-family: \"Roboto\";\n  font-weight: normal;\n  font-size: 1.1rem;\n  line-height: 27px;\n  color: #7d8585;\n}\n.search__duvida .content__search {\n  width: 37.06rem;\n  display: flex;\n  justify-content: space-between;\n  border: 1px solid #d0d6d6;\n  border-radius: 10px;\n  padding: 0.5rem;\n}\n.search__duvida .content__search input {\n  width: 90%;\n  border: none;\n  height: 100%;\n  outline: none;\n}\n.search__duvida .content__search button {\n  background: none;\n}\n\n.container__buttons {\n  width: 100%;\n  max-width: 1216px;\n  height: 5rem;\n  margin: 5.5rem auto 0 auto;\n  border-bottom: 1px solid rgba(208, 214, 214, 0.6);\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n}\n.container__buttons button {\n  width: -webkit-fit-content;\n  width: -moz-fit-content;\n  width: fit-content;\n  height: 100%;\n  position: relative;\n  display: flex;\n  gap: 2rem;\n  align-items: center;\n  padding: 2rem;\n  background: none;\n  transition: all 0.3s;\n  border-bottom: 2px solid transparent;\n}\n.container__buttons .active {\n  border-bottom: 2px solid blue;\n}\n\n.container__conteudo {\n  width: 100%;\n  max-width: 1248px;\n  margin: 0 auto;\n  padding: 0 2rem 17.37rem 2rem;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -10609,6 +10765,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/icon-doc.svg?0edb9a0586b231d09bb1f16fce3eaaab");
+
+/***/ }),
+
+/***/ "./public/assets/svg/icon-list.svg":
+/*!*****************************************!*\
+  !*** ./public/assets/svg/icon-list.svg ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/icon-list.svg?ef2ca5ac216dd3b407e36a0dc646879e");
 
 /***/ }),
 
@@ -87288,6 +87459,36 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_contato_scss__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+
+/***/ }),
+
+/***/ "./resources/sass/duvidaDoc.scss":
+/*!***************************************!*\
+  !*** ./resources/sass/duvidaDoc.scss ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_duvidaDoc_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!../../node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./duvidaDoc.scss */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/sass/duvidaDoc.scss");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_duvidaDoc_scss__WEBPACK_IMPORTED_MODULE_1__["default"], options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_duvidaDoc_scss__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
 
 /***/ }),
 
