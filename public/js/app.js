@@ -4023,6 +4023,153 @@ if (document.getElementById("contato")) {
 
 /***/ }),
 
+/***/ "./resources/js/Duvidas.js":
+/*!*********************************!*\
+  !*** ./resources/js/Duvidas.js ***!
+  \*********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Duvidas)
+/* harmony export */ });
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _components_Navbar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/Navbar */ "./resources/js/components/Navbar.jsx");
+/* harmony import */ var _components_DuvidaAluguel_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/DuvidaAluguel.jsx */ "./resources/js/components/DuvidaAluguel.jsx");
+/* harmony import */ var _components_DuvidaAnuncios_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/DuvidaAnuncios.jsx */ "./resources/js/components/DuvidaAnuncios.jsx");
+/* harmony import */ var _components_DuvidaDoc_jsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/DuvidaDoc.jsx */ "./resources/js/components/DuvidaDoc.jsx");
+/* harmony import */ var _components_DuvidaVendas_jsx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/DuvidaVendas.jsx */ "./resources/js/components/DuvidaVendas.jsx");
+/* harmony import */ var _components_Footer_jsx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/Footer.jsx */ "./resources/js/components/Footer.jsx");
+/* harmony import */ var _sass_duvidas_scss__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../sass/duvidas.scss */ "./resources/sass/duvidas.scss");
+/* harmony import */ var _public_assets_svg_icon_search_svg__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../public/assets/svg/icon-search.svg */ "./public/assets/svg/icon-search.svg");
+/* harmony import */ var _public_assets_svg_icon_doc_svg__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../public/assets/svg/icon-doc.svg */ "./public/assets/svg/icon-doc.svg");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+/* eslint-disable import/no-unresolved */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function Duvidas() {
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)("doc"),
+      _useState2 = _slicedToArray(_useState, 2),
+      changeContent = _useState2[0],
+      setChangeContent = _useState2[1];
+
+  var handleContent = function handleContent(event) {
+    setChangeContent(event);
+  };
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("header", {
+      className: "header__duvidas",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_components_Navbar__WEBPACK_IMPORTED_MODULE_2__.Navbar, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("h1", {
+        children: "D\xFAvidas"
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("div", {
+      className: "search__duvida",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("span", {
+        children: "Selecione abaixo uma categoria ou procure no campo de busca ao lado"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("div", {
+        className: "content__search",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("input", {
+          type: "text",
+          placeholder: "Digite sua d\xFAvida ou termo"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("button", {
+          type: "submit",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("img", {
+            src: _public_assets_svg_icon_search_svg__WEBPACK_IMPORTED_MODULE_9__["default"],
+            alt: "Search"
+          })
+        })]
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("div", {
+      className: "container__buttons",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("button", {
+        type: "button",
+        className: changeContent === "doc" ? "active" : "",
+        onClick: function onClick() {
+          return handleContent("doc");
+        },
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("img", {
+          src: _public_assets_svg_icon_doc_svg__WEBPACK_IMPORTED_MODULE_10__["default"],
+          alt: "Doc"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("span", {
+          children: "Documentacao"
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("button", {
+        type: "button",
+        className: changeContent === "rent" ? "active" : "",
+        onClick: function onClick() {
+          return handleContent("rent");
+        },
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("img", {
+          src: _public_assets_svg_icon_doc_svg__WEBPACK_IMPORTED_MODULE_10__["default"],
+          alt: "Doc"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("span", {
+          children: "Aluguel"
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("button", {
+        type: "button",
+        className: changeContent === "sale" ? "active" : "",
+        onClick: function onClick() {
+          return handleContent("sale");
+        },
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("img", {
+          src: _public_assets_svg_icon_doc_svg__WEBPACK_IMPORTED_MODULE_10__["default"],
+          alt: "Doc"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("span", {
+          children: "Venda"
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("button", {
+        type: "button",
+        className: changeContent === "announcement" ? "active" : "",
+        onClick: function onClick() {
+          return handleContent("announcement");
+        },
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("img", {
+          src: _public_assets_svg_icon_doc_svg__WEBPACK_IMPORTED_MODULE_10__["default"],
+          alt: "Doc"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("span", {
+          children: "Anuncio"
+        })]
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("div", {
+      className: "container__conteudo",
+      children: [changeContent === "doc" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_components_DuvidaDoc_jsx__WEBPACK_IMPORTED_MODULE_5__.DuvidaDoc, {}), changeContent === "rent" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_components_DuvidaAluguel_jsx__WEBPACK_IMPORTED_MODULE_3__.DuvidaAluguel, {}), changeContent === "sale" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_components_DuvidaVendas_jsx__WEBPACK_IMPORTED_MODULE_6__.DuvidaVendas, {}), changeContent === "announcement" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_components_DuvidaAnuncios_jsx__WEBPACK_IMPORTED_MODULE_4__.DuvidaAnuncios, {})]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_components_Footer_jsx__WEBPACK_IMPORTED_MODULE_7__.Footer, {})]
+  });
+}
+
+if (document.getElementById("duvidas")) {
+  react_dom__WEBPACK_IMPORTED_MODULE_0__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(Duvidas, {}), document.getElementById("duvidas"));
+}
+
+/***/ }),
+
 /***/ "./resources/js/Home.js":
 /*!******************************!*\
   !*** ./resources/js/Home.js ***!
@@ -4497,6 +4644,8 @@ __webpack_require__(/*! ./Home */ "./resources/js/Home.js");
 __webpack_require__(/*! ./Contato */ "./resources/js/Contato.js");
 
 __webpack_require__(/*! ./Sobre */ "./resources/js/Sobre.js");
+
+__webpack_require__(/*! ./Duvidas */ "./resources/js/Duvidas.js");
 
 /***/ }),
 
@@ -4979,6 +5128,90 @@ var CarouselMoveis = function CarouselMoveis(_ref2) {
 
 /***/ }),
 
+/***/ "./resources/js/components/DuvidaAluguel.jsx":
+/*!***************************************************!*\
+  !*** ./resources/js/components/DuvidaAluguel.jsx ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "DuvidaAluguel": () => (/* binding */ DuvidaAluguel)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+var DuvidaAluguel = function DuvidaAluguel() {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h1", {
+    children: "duvida Aluguel"
+  });
+};
+
+/***/ }),
+
+/***/ "./resources/js/components/DuvidaAnuncios.jsx":
+/*!****************************************************!*\
+  !*** ./resources/js/components/DuvidaAnuncios.jsx ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "DuvidaAnuncios": () => (/* binding */ DuvidaAnuncios)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+var DuvidaAnuncios = function DuvidaAnuncios() {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h1", {
+    children: "duvida Anuncios"
+  });
+};
+
+/***/ }),
+
+/***/ "./resources/js/components/DuvidaDoc.jsx":
+/*!***********************************************!*\
+  !*** ./resources/js/components/DuvidaDoc.jsx ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "DuvidaDoc": () => (/* binding */ DuvidaDoc)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+var DuvidaDoc = function DuvidaDoc() {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h1", {
+    children: "duvida Doc"
+  });
+};
+
+/***/ }),
+
+/***/ "./resources/js/components/DuvidaVendas.jsx":
+/*!**************************************************!*\
+  !*** ./resources/js/components/DuvidaVendas.jsx ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "DuvidaVendas": () => (/* binding */ DuvidaVendas)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+var DuvidaVendas = function DuvidaVendas() {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h1", {
+    children: "duvida vendas"
+  });
+};
+
+/***/ }),
+
 /***/ "./resources/js/components/Footer.jsx":
 /*!********************************************!*\
   !*** ./resources/js/components/Footer.jsx ***!
@@ -5343,7 +5576,7 @@ var Navbar = function Navbar() {
             href: "/",
             children: "Blog"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
-            href: "/",
+            href: "/duvidas",
             children: "D\xFAvidas"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
             href: "/contato",
@@ -9851,6 +10084,36 @@ ___CSS_LOADER_EXPORT___.push([module.id, ".header__contato {\n  width: 100%;\n  
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/sass/duvidas.scss":
+/*!***************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/sass/duvidas.scss ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/getUrl.js */ "./node_modules/css-loader/dist/runtime/getUrl.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _public_assets_images_banner_duvidas_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../public/assets/images/banner-duvidas.png */ "./public/assets/images/banner-duvidas.png");
+// Imports
+
+
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+var ___CSS_LOADER_URL_REPLACEMENT_0___ = _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_1___default()(_public_assets_images_banner_duvidas_png__WEBPACK_IMPORTED_MODULE_2__["default"]);
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, ".header__duvidas {\n  width: 100%;\n  height: 21.62rem;\n  background: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.header__duvidas h1 {\n  font-family: \"Nunito\";\n  font-weight: bold;\n  font-size: 3rem;\n  line-height: 55px;\n  text-align: center;\n  letter-spacing: -0.01em;\n  color: #ffffff;\n  padding-top: 3rem;\n}\n\n.search__duvida {\n  width: 100%;\n  max-width: 1248px;\n  padding: 5rem 2rem 0 2rem;\n  margin: 0 auto;\n  display: flex;\n  justify-content: space-between;\n}\n.search__duvida span {\n  max-width: 30.5rem;\n  font-family: \"Roboto\";\n  font-weight: normal;\n  font-size: 1.1rem;\n  line-height: 27px;\n  color: #7d8585;\n}\n.search__duvida .content__search {\n  width: 37.06rem;\n  display: flex;\n  justify-content: space-between;\n  border: 1px solid #d0d6d6;\n  border-radius: 10px;\n  padding: 0.5rem;\n}\n.search__duvida .content__search input {\n  border: none;\n  height: 100%;\n  outline: none;\n}\n.search__duvida .content__search button {\n  background: none;\n}\n\n.container__buttons {\n  width: 100%;\n  max-width: 1216px;\n  height: 5rem;\n  margin: 5.5rem auto 0 auto;\n  border-bottom: 1px solid rgba(208, 214, 214, 0.6);\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n}\n.container__buttons button {\n  width: -webkit-fit-content;\n  width: -moz-fit-content;\n  width: fit-content;\n  height: 100%;\n  position: relative;\n  display: flex;\n  gap: 2rem;\n  align-items: center;\n  padding: 2rem;\n  background: none;\n  transition: all 0.3s;\n  border-bottom: 2px solid transparent;\n}\n.container__buttons .active {\n  border-bottom: 2px solid blue;\n}\n\n.container__conteudo {\n  width: 100%;\n  max-width: 1248px;\n  margin: 0 auto;\n  padding: 0 2rem 17.37rem 2rem;\n}", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/sass/footer.scss":
 /*!**************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/sass/footer.scss ***!
@@ -9922,7 +10185,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".container__navbar {\n  position: absolute;\n  width: 100%;\n  height: 110px;\n  display: flex;\n  align-items: center;\n  z-index: 1;\n}\n.container__navbar .navbar {\n  width: 100%;\n  max-width: 1248px;\n  padding: 0 2rem 0 2rem;\n  margin: 0 auto;\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n}\n.container__navbar .navbar .navbar__items ul {\n  list-style: none;\n  display: flex;\n  gap: 2.375rem;\n}\n.container__navbar .navbar .navbar__items ul a {\n  font-size: 0.87rem;\n  color: #fff;\n  line-height: 21px;\n  font-weight: 400;\n  transition: color 0.3s;\n}\n.container__navbar .navbar .navbar__items ul a:hover {\n  color: #7dafeb;\n}\n.container__navbar .navbar .navbar__items ul a.active {\n  color: #7dafeb;\n}\n.container__navbar .navbar .buttons {\n  display: flex;\n  gap: 1rem;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".container__navbar {\n  position: absolute;\n  width: 100%;\n  height: 110px;\n  display: flex;\n  align-items: center;\n  top: 0;\n  z-index: 1;\n}\n.container__navbar .navbar {\n  width: 100%;\n  max-width: 1248px;\n  padding: 0 2rem 0 2rem;\n  margin: 0 auto;\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n}\n.container__navbar .navbar .navbar__items ul {\n  list-style: none;\n  display: flex;\n  gap: 2.375rem;\n}\n.container__navbar .navbar .navbar__items ul a {\n  font-size: 0.87rem;\n  color: #fff;\n  line-height: 21px;\n  font-weight: 400;\n  transition: color 0.3s;\n}\n.container__navbar .navbar .navbar__items ul a:hover {\n  color: #7dafeb;\n}\n.container__navbar .navbar .navbar__items ul a.active {\n  color: #7dafeb;\n}\n.container__navbar .navbar .buttons {\n  display: flex;\n  gap: 1rem;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -10091,6 +10354,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/banner-contato.png?02d959bf37d569b337df7ff2cda30b21");
+
+/***/ }),
+
+/***/ "./public/assets/images/banner-duvidas.png":
+/*!*************************************************!*\
+  !*** ./public/assets/images/banner-duvidas.png ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/banner-duvidas.png?4f2c7611554e09c397f47eac18c2f171");
 
 /***/ }),
 
@@ -10316,6 +10594,36 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/icon-button-client.svg?2521bea8f06108fdfe65422beed0eb65");
+
+/***/ }),
+
+/***/ "./public/assets/svg/icon-doc.svg":
+/*!****************************************!*\
+  !*** ./public/assets/svg/icon-doc.svg ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/icon-doc.svg?0edb9a0586b231d09bb1f16fce3eaaab");
+
+/***/ }),
+
+/***/ "./public/assets/svg/icon-search.svg":
+/*!*******************************************!*\
+  !*** ./public/assets/svg/icon-search.svg ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/icon-search.svg?f0b0d55da72f36d93921a8adad3a400b");
 
 /***/ }),
 
@@ -86980,6 +87288,36 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_contato_scss__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+
+/***/ }),
+
+/***/ "./resources/sass/duvidas.scss":
+/*!*************************************!*\
+  !*** ./resources/sass/duvidas.scss ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_duvidas_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!../../node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./duvidas.scss */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/sass/duvidas.scss");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_duvidas_scss__WEBPACK_IMPORTED_MODULE_1__["default"], options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_duvidas_scss__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
 
 /***/ }),
 

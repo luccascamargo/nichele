@@ -15,3 +15,4 @@ require("./bootstrap");
 require("./Home");
 require("./Contato");
 require("./Sobre");
+require("./Duvidas");

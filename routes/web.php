@@ -24,3 +24,7 @@ Route::get('/contato', function () {
 Route::get('/sobre', function () {
     return view('sobre');
 });
+
+Route::get('/duvidas', function () {
+    return view('duvidas');
+});
