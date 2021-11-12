@@ -70,15 +70,17 @@ export default function Contato() {
                 </div>
             </header>
             <div className="anuncio">
-                <div className="content__anuncio">
-                    <h2>Anuncie seu imóvel</h2>
-                    <p>
-                        Anunciar seu imóvel na Nichele é fácil e seguro. Tenha
-                        mais visibilidade na venda ou locação, além da
-                        possibilidade de fechar negócios em menos tempo e mais
-                        confiáveis.{" "}
-                    </p>
-                    <Button>Clique aqui</Button>
+                <div className="wrapper__anuncio">
+                    <div className="content__anuncio">
+                        <h2>Anuncie seu imóvel</h2>
+                        <p>
+                            Anunciar seu imóvel na Nichele é fácil e seguro.
+                            Tenha mais visibilidade na venda ou locação, além da
+                            possibilidade de fechar negócios em menos tempo e
+                            mais confiáveis.{" "}
+                        </p>
+                        <Button>Clique aqui</Button>
+                    </div>
                 </div>
             </div>
             <div className="iframe__contato">

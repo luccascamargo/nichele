@@ -601,14 +601,26 @@ button {
   background: url(/images/banner-contato.png?02d959bf37d569b337df7ff2cda30b21), #2969ae;
   background-repeat: no-repeat;
 }
+@media (max-width: 1250px) {
+  .header__contato {
+    height: auto;
+  }
+}
 .header__contato .content__contato {
   width: 100%;
   max-width: 1248px;
-  padding: 18rem 2rem 0 2rem;
+  padding: 18rem 2rem 2rem 2rem;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 30px;
   position: relative;
+}
+@media (max-width: 641px) {
+  .header__contato .content__contato {
+    padding-top: 10rem;
+  }
 }
 .header__contato .content__contato .infos__contato {
   width: 100%;
@@ -666,6 +678,11 @@ button {
   display: flex;
   gap: 5.4rem;
 }
+@media (max-width: 641px) {
+  .header__contato .content__contato .infos__contato section .content__whats__contato {
+    gap: 1rem;
+  }
+}
 .header__contato .content__contato .infos__contato section .content__whats__contato .w1 {
   display: flex;
   gap: 1rem;
@@ -693,17 +710,23 @@ button {
 }
 
 .anuncio {
+  background: #2969ae;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.anuncio .wrapper__anuncio {
   width: 100%;
   height: 26.43rem;
-  background: #2969ae;
+  max-width: 1248px;
   display: flex;
   align-items: center;
+  justify-content: flex-start;
+  margin: 0 auto;
 }
 .anuncio .content__anuncio {
-  width: 52rem;
-  padding-left: 22.68rem;
   display: flex;
   flex-direction: column;
+  max-width: 32.625rem;
 }
 .anuncio .content__anuncio h2 {
   font-family: "Nunito";
@@ -714,6 +737,7 @@ button {
   color: #ffffff;
 }
 .anuncio .content__anuncio p {
+  max-width: 52rem;
   font-family: "Roboto";
   font-weight: normal;
   font-size: 1.1rem;
