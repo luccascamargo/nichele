@@ -1,0 +1,64 @@
+.container__duvidas__doc {
+    width: 100%;
+
+    padding-top: 5rem;
+
+    .list_container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 3.5rem;
+
+        .list__item {
+            width: 100%;
+            height: auto;
+
+            padding: 1rem 0 1rem 0;
+
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+
+            cursor: pointer;
+
+            border-bottom: 1px solid #a3a8b3;
+
+            .header__duvida__item {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                span {
+                    font-family: "Roboto";
+                    font-weight: bold;
+                    font-size: 1.1rem;
+                    line-height: 27px;
+                    letter-spacing: -0.01em;
+                    color: #7d8596;
+                }
+
+                .img {
+                    transform: rotate(180deg);
+                    transition: transform 0.3s;
+                }
+
+                .rotate__img {
+                    transform: rotate(0deg);
+                    transition: transform 0.3s;
+                }
+            }
+
+            .content__duvida__item {
+                display: none;
+            }
+            .active__item {
+                display: block;
+            }
+        }
+
+        .list__drop {
+            height: auto;
+            padding-bottom: 2rem;
+        }
+    }
+}
