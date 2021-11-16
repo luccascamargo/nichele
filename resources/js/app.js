@@ -16,3 +16,6 @@ require("./Home");
 require("./Contato");
 require("./Sobre");
 require("./Duvidas");
+require("./Blog");
+require("./BlogInterna");
+require("./Anuncie");

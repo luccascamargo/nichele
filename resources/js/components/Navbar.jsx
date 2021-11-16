@@ -19,7 +19,7 @@ export const Navbar = () => {
                         <a href="/">Home</a>
                         <a href="/">Imóveis</a>
                         <a href="/sobre">Sobre</a>
-                        <a href="/">Blog</a>
+                        <a href="/blog">Blog</a>
                         <a href="/duvidas">Dúvidas</a>
                         <a href="/contato">Contato</a>
                     </ul>

@@ -28,3 +28,15 @@ Route::get('/sobre', function () {
 Route::get('/duvidas', function () {
     return view('duvidas');
 });
+
+Route::get('/blog', function () {
+    return view('blog');
+});
+
+Route::get('/blog/interna', function () {
+    return view('bloginterna');
+});
+
+Route::get('/anuncie', function () {
+    return view('anuncie');
+});
