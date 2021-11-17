@@ -19,6 +19,10 @@ import imgEmail from "../../public/assets/svg/email-icon.svg";
 import imgFace from "../../public/assets/svg/face-icon.svg";
 import imgInsta from "../../public/assets/svg/insta-icon.svg";
 import imgLinke from "../../public/assets/svg/linke-icon.svg";
+import { CarouselBanner } from "./components/CarouselBanner";
+import { SectionAbout } from "./components/SectionAbout";
+import { BannerAnuncie } from "./components/BannerAnuncie";
+import { DuvidasHome } from "./components/DuvidasHome";
 
 function Home() {
     const [range, setRange] = useState({
@@ -227,6 +231,14 @@ function Home() {
             <section>
                 <CarouselMoveis />
             </section>
+
+            <CarouselBanner />
+
+            <SectionAbout />
+
+            <BannerAnuncie />
+
+            <DuvidasHome />
 
             <Footer />
         </div>

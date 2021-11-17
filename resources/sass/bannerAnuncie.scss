@@ -1,0 +1,58 @@
+.container__anuncie {
+    width: 100%;
+    max-width: 1248px;
+    padding: 5.5rem 2rem 0 2rem;
+    margin: 0 auto;
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 6.87rem;
+
+    position: relative;
+
+    .anuncie__infos {
+        padding-bottom: 5rem;
+        h3 {
+            font-family: "Nunito";
+            font-weight: bold;
+            font-size: 2rem;
+            line-height: 37px;
+            letter-spacing: -0.01em;
+            color: #ffffff;
+
+            margin-bottom: 1.81rem;
+        }
+
+        p {
+            font-family: "Roboto";
+            font-weight: normal;
+            font-size: 1.1rem;
+            line-height: 23px;
+            letter-spacing: -0.01em;
+            color: #dad7d7;
+            opacity: 0.8;
+
+            max-width: 29rem;
+
+            margin-bottom: 1rem;
+        }
+    }
+
+    .bg {
+        width: 100%;
+        height: 23.37rem;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+
+        background: url("../../public/assets/images/bg-anuncie.png"),
+            linear-gradient(270deg, #3d689b 0%, #1e324f 101.6%);
+        background-repeat: no-repeat;
+        background-size: cover;
+
+        border-radius: 40px;
+
+        z-index: -1;
+    }
+}

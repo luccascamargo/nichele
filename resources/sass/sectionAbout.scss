@@ -1,0 +1,53 @@
+.container__sobre {
+    width: 100%;
+    height: 57.18rem;
+
+    background: rgba(236, 236, 236, 0.5);
+
+    display: flex;
+    align-items: flex-end;
+
+    .content__sobre {
+        width: 100%;
+        max-width: 1248px;
+        padding: 0 2rem 0 2rem;
+        margin: 0 auto;
+
+        display: flex;
+        align-items: flex-end;
+        gap: 2rem;
+
+        .esq {
+            padding-bottom: 10rem;
+
+            h2 {
+                font-family: "Nunito";
+                font-weight: bold;
+                font-size: 2.5rem;
+                line-height: 46px;
+                letter-spacing: -0.01em;
+                color: #124480;
+
+                max-width: 35.31rem;
+
+                margin-bottom: 3.68rem;
+            }
+
+            p {
+                font-family: "Roboto";
+                font-weight: normal;
+                font-size: 1rem;
+                line-height: 24px;
+                letter-spacing: -0.01em;
+                color: #7d8596;
+                margin-bottom: 2.25rem;
+
+                max-width: 30.3rem;
+            }
+        }
+
+        .dir {
+            margin-bottom: -10rem;
+        }
+    }
+}

@@ -26,7 +26,9 @@ export const Navbar = () => {
                 </nav>
                 <div className="buttons">
                     <ButtonClient text="Área do cliente" />
-                    <ButtonMenu text="Anuncie seu imóvel" />
+                    <a href="/anuncie">
+                        <ButtonMenu text="Anuncie seu imóvel" />
+                    </a>
                 </div>
             </div>
         </div>

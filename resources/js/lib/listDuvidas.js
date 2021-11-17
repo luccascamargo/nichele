@@ -15,8 +15,4 @@ export const list = [
         title: "Titulo4",
         description: "Description4",
     },
-    {
-        title: "Titulo5",
-        description: "Description5",
-    },
 ];
