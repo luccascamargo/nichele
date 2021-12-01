@@ -35,7 +35,7 @@ const ButtonGroup = ({ next, previous }) => {
     return (
         <div className="carouselButtonGroup">
             <div className="carouselHeader">
-                <h2>Imóveis em destaque</h2>
+                <h2>Imóveis comerciais</h2>
                 <div>
                     <button onClick={previous} aria-label="Previous">
                         <IoIosArrowRoundBack />
@@ -52,7 +52,7 @@ const ButtonGroup = ({ next, previous }) => {
     );
 };
 
-const CarouselMoveis = ({ deviceType, items = [] }) => {
+const CarouselMoveisComerciais = ({ deviceType, items = [] }) => {
     return (
         <div className="moveis">
             <Carousel
@@ -301,4 +301,4 @@ const CarouselMoveis = ({ deviceType, items = [] }) => {
     );
 };
 
-export default CarouselMoveis;
+export default CarouselMoveisComerciais;

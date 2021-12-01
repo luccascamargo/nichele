@@ -13,6 +13,7 @@ import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
 
 import CarouselMoveis from "../js/components/CarouselMoveis";
+import CarouselMoveisComerciais from "../js/components/CarouselMoveisComerciais";
 
 import imgDropdown from "../../public/assets/svg/dropdown-icon.svg";
 import arrowTop from "../../public/assets/svg/arrow-top.svg";
@@ -204,7 +205,7 @@ function Home() {
                                             />
                                         </div>
 
-                                        <div className="div">
+                                        <div className="div value">
                                             <label htmlFor="valor">
                                                 Valor{" "}
                                             </label>
@@ -213,6 +214,8 @@ function Home() {
                                                     style={{
                                                         display: "flex",
                                                         alignItems: "center",
+                                                        justifyContent:
+                                                            "space-between",
                                                         gap: "1rem",
                                                         fontWeight: 500,
                                                         color: "#5C6476",
@@ -2230,6 +2233,10 @@ function Home() {
 
             <section>
                 <CarouselMoveis />
+            </section>
+
+            <section>
+                <CarouselMoveisComerciais />
             </section>
 
             <CarouselBanner />

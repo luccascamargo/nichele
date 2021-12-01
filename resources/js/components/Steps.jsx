@@ -350,31 +350,40 @@ export function Steps() {
                             paddingTop: "3.5rem",
                         }}
                     >
-                        <TextField
-                            id="standard-basic"
-                            label="Nome"
-                            variant="outlined"
-                            sx={{
-                                width: "30.5rem",
-                                height: "2.87rem",
+                        <input
+                            type="text"
+                            placeholder="Nome"
+                            style={{
+                                width: "100%",
+                                height: "3.5rem",
+                                background: "#F2F2F2",
+                                borderRadius: "10px",
+                                border: "none",
+                                paddingLeft: "1rem",
                             }}
                         />
-                        <TextField
-                            id="standard-basic"
-                            label="E-mail"
-                            variant="outlined"
-                            sx={{
-                                width: "30.5rem",
-                                height: "2.87rem",
+                        <input
+                            type="text"
+                            placeholder="E-mail"
+                            style={{
+                                width: "100%",
+                                height: "3.5rem",
+                                background: "#F2F2F2",
+                                borderRadius: "10px",
+                                border: "none",
+                                paddingLeft: "1rem",
                             }}
                         />
-                        <TextField
-                            id="standard-basic"
-                            label="Telefone"
-                            variant="outlined"
-                            sx={{
-                                width: "30.5rem",
-                                height: "2.87rem",
+                        <input
+                            type="text"
+                            placeholder="Telefone"
+                            style={{
+                                width: "100%",
+                                height: "3.5rem",
+                                background: "#F2F2F2",
+                                borderRadius: "10px",
+                                border: "none",
+                                paddingLeft: "1rem",
                             }}
                         />
                         <Typography>
@@ -390,7 +399,7 @@ export function Steps() {
                                 id="demo-simple-select-filled"
                                 value={age}
                                 onChange={handleChange}
-                                sx={{ width: "30.5rem" }}
+                                sx={{ width: "100%" }}
                             >
                                 <MenuItem value="Ap">Apartamento</MenuItem>
                             </Select>
@@ -461,13 +470,16 @@ export function Steps() {
                             textAlign: "center",
                         }}
                     >
-                        <TextField
-                            id="standard-basic"
-                            label="CEP"
-                            variant="outlined"
-                            sx={{
+                        <input
+                            type="text"
+                            placeholder="CEP"
+                            style={{
                                 width: "28rem",
-                                height: "2.87rem",
+                                height: "3.5rem",
+                                background: "#F2F2F2",
+                                borderRadius: "10px",
+                                border: "none",
+                                paddingLeft: "1rem",
                             }}
                         />
 
@@ -492,34 +504,43 @@ export function Steps() {
                                     <MenuItem value="rs">RS</MenuItem>
                                 </Select>
                             </FormControl>
-                            <TextField
-                                id="standard-basic"
-                                label="Cidade"
-                                variant="outlined"
-                                sx={{
+                            <input
+                                type="text"
+                                placeholder="Cidade"
+                                style={{
                                     width: "90%",
-                                    height: "2.87rem",
+                                    height: "3.5rem",
+                                    background: "#F2F2F2",
+                                    borderRadius: "10px",
+                                    border: "none",
+                                    paddingLeft: "1rem",
                                 }}
                             />
                         </Box>
 
-                        <TextField
-                            id="standard-basic"
-                            label="Bairro"
-                            variant="outlined"
-                            sx={{
+                        <input
+                            type="text"
+                            placeholder="Bairro"
+                            style={{
                                 width: "28rem",
-                                height: "2.87rem",
+                                height: "3.5rem",
+                                background: "#F2F2F2",
+                                borderRadius: "10px",
+                                border: "none",
+                                paddingLeft: "1rem",
                             }}
                         />
 
-                        <TextField
-                            id="standard-basic"
-                            label="Endereço"
-                            variant="outlined"
-                            sx={{
+                        <input
+                            type="text"
+                            placeholder="Bairro"
+                            style={{
                                 width: "28rem",
-                                height: "2.87rem",
+                                height: "3.5rem",
+                                background: "#F2F2F2",
+                                borderRadius: "10px",
+                                border: "none",
+                                paddingLeft: "1rem",
                             }}
                         />
 
@@ -531,23 +552,28 @@ export function Steps() {
                                 width: "100%",
                             }}
                         >
-                            <TextField
-                                id="standard-basic"
-                                label="Número"
-                                variant="outlined"
-                                sx={{
+                            <input
+                                type="text"
+                                placeholder="Número"
+                                style={{
                                     width: "40%",
-                                    height: "2.87rem",
+                                    height: "3.5rem",
+                                    background: "#F2F2F2",
+                                    borderRadius: "10px",
+                                    border: "none",
+                                    paddingLeft: "1rem",
                                 }}
                             />
-                            <TextField
-                                required
-                                id="standard-basic"
-                                label="Complemento"
-                                variant="outlined"
-                                sx={{
+                            <input
+                                type="text"
+                                placeholder="Complemento"
+                                style={{
                                     width: "60%",
-                                    height: "2.87rem",
+                                    height: "3.5rem",
+                                    background: "#F2F2F2",
+                                    borderRadius: "10px",
+                                    border: "none",
+                                    paddingLeft: "1rem",
                                 }}
                             />
                         </Box>
@@ -1226,14 +1252,17 @@ export function Steps() {
                             </Box>
                         </Box>
 
-                        <TextField
-                            id="standard-basic"
-                            label="Mensagem"
-                            variant="outlined"
-                            multiline
-                            rows={8}
-                            sx={{
+                        <textarea
+                            placeholder="Mensagem"
+                            style={{
                                 width: "100%",
+                                height: "10rem",
+                                background: "#F2F2F2",
+                                borderRadius: "10px",
+                                border: "none",
+                                paddingLeft: "1rem",
+                                paddingTop: "1rem",
+                                resize: "none",
                             }}
                         />
 

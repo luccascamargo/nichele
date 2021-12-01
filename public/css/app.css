@@ -720,6 +720,9 @@ button {
   position: relative;
   width: 100%;
 }
+.main .containerTab .simple__search .value {
+  width: 9.68rem;
+}
 .main .containerTab label {
   font-family: "Roboto", sans-serif;
   font-style: normal;
