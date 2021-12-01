@@ -1,6 +1,6 @@
 import iconClient from "../../../public/assets/svg/icon-button-client.svg";
 
-export function Button({ ...props }) {
+export function ButtonPrimary({ ...props }) {
     return <button className="button" {...props} />;
 }
 

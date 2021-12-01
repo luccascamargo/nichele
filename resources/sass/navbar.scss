@@ -17,7 +17,18 @@
         align-items: center;
         justify-content: space-between;
 
+        .logo {
+            width: 15.62rem;
+
+            img {
+                width: 100%;
+            }
+        }
+
         .navbar__items {
+            @media (max-width: 1024px) {
+                display: none;
+            }
             ul {
                 list-style: none;
                 display: flex;
@@ -43,6 +54,10 @@
         .buttons {
             display: flex;
             gap: 1rem;
+
+            @media (max-width: 1024px) {
+                display: none;
+            }
         }
     }
 }

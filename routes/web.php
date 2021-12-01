@@ -40,3 +40,7 @@ Route::get('/blog/interna', function () {
 Route::get('/anuncie', function () {
     return view('anuncie');
 });
+
+Route::get('/imoveis', function () {
+    return view('imoveis');
+});

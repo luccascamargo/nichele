@@ -11,7 +11,7 @@ import iconPhone from "../../public/assets/svg/contato/phone-contato.svg";
 import iconEmail from "../../public/assets/svg/contato/mail.svg";
 import iconWhats from "../../public/assets/svg/contato/whats-contato.svg";
 import { Form } from "./components/Form";
-import { Button } from "./components/Button";
+import { ButtonPrimary } from "./components/Button";
 
 export default function Contato() {
     return (
@@ -79,7 +79,7 @@ export default function Contato() {
                             possibilidade de fechar negócios em menos tempo e
                             mais confiáveis.{" "}
                         </p>
-                        <Button>Clique aqui</Button>
+                        <ButtonPrimary>Clique aqui</ButtonPrimary>
                     </div>
                 </div>
             </div>

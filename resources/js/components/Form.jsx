@@ -2,7 +2,7 @@
 import "../../sass/form.scss";
 import { useForm, Controller } from "react-hook-form";
 import Select from "react-select";
-import { Button } from "./Button";
+import { ButtonPrimary } from "./Button";
 
 export const Form = () => {
     const {
@@ -43,6 +43,7 @@ export const Form = () => {
                             <Select
                                 {...field}
                                 placeholder="teste"
+                                className="select__input"
                                 options={[
                                     { value: "chocolate", label: "Chocolate" },
                                     {
@@ -80,7 +81,7 @@ export const Form = () => {
                         </span>
                     </div>
 
-                    <Button type="submit">Enviar mensagem</Button>
+                    <ButtonPrimary type="submit">Enviar mensagem</ButtonPrimary>
                 </form>
             </div>
         </>

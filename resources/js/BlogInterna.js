@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/img-redundant-alt */
 /* eslint-disable no-irregular-whitespace */
 /* eslint-disable import/no-unresolved */
 import ReactDOM from "react-dom";

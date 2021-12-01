@@ -1,23 +1,12 @@
 /* eslint-disable no-irregular-whitespace */
 /* eslint-disable import/no-unresolved */
 import ReactDOM from "react-dom";
-import MultiStep from "react-multistep";
 
 import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
-import { StepOne } from "./components/StepOne";
-import { StepTwo } from "./components/StepTwo";
+import { Steps } from "./components/Steps";
 
 import "../sass/anuncie.scss";
-
-const steps = [
-    { name: "Step One", component: <StepOne /> },
-    { name: "Step Two", component: <StepTwo /> },
-];
-
-// custom styles
-const prevStyle = { background: "#33c3f0" };
-const nextStyle = { background: "#33c3f0" };
 
 export default function Anuncie() {
     return (
@@ -37,13 +26,7 @@ export default function Anuncie() {
                 </div>
             </header>
 
-            <div className="step">
-                <MultiStep
-                    steps={steps}
-                    prevStyle={prevStyle}
-                    nextStyle={nextStyle}
-                />
-            </div>
+            <Steps />
 
             <Footer />
         </>

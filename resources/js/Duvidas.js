@@ -13,6 +13,9 @@ import "../sass/duvidas.scss";
 
 import iconSearch from "../../public/assets/svg/icon-search.svg";
 import iconDoc from "../../public/assets/svg/icon-doc.svg";
+import iconAnuncio from "../../public/assets/svg/icon-anuncio.svg";
+import iconAluguel from "../../public/assets/svg/icon-aluguel.svg";
+import iconVenda from "../../public/assets/svg/icon-venda.svg";
 
 export default function Duvidas() {
     const [changeContent, setChangeContent] = useState("doc");
@@ -59,7 +62,7 @@ export default function Duvidas() {
                     className={changeContent === "rent" ? "active" : ""}
                     onClick={() => handleContent("rent")}
                 >
-                    <img src={iconDoc} alt="Doc" />
+                    <img src={iconAluguel} alt="Doc" />
                     <span>Aluguel</span>
                 </button>
                 <button
@@ -67,7 +70,7 @@ export default function Duvidas() {
                     className={changeContent === "sale" ? "active" : ""}
                     onClick={() => handleContent("sale")}
                 >
-                    <img src={iconDoc} alt="Doc" />
+                    <img src={iconVenda} alt="Doc" />
                     <span>Venda</span>
                 </button>
                 <button
@@ -75,7 +78,7 @@ export default function Duvidas() {
                     className={changeContent === "announcement" ? "active" : ""}
                     onClick={() => handleContent("announcement")}
                 >
-                    <img src={iconDoc} alt="Doc" />
+                    <img src={iconAnuncio} alt="Doc" />
                     <span>Anuncio</span>
                 </button>
             </div>

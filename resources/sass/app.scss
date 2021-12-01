@@ -21,9 +21,24 @@
     -webkit-user-drag: none;
 }
 
+// html {
+//     line-height: 1.15; /* 1 */
+//     -webkit-text-size-adjust: 100%; /* 2 */
+// }
+
 html {
-    line-height: 1.15; /* 1 */
-    -webkit-text-size-adjust: 100%; /* 2 */
+    @media (max-width: 1080px) {
+        font-size: 93.75%;
+    }
+    @media (max-width: 720px) {
+        font-size: 87.5%;
+    }
+    @media (max-width: 600px) {
+        font-size: 81.25%;
+    }
+    @media (max-width: 320px) {
+        font-size: 75%;
+    }
 }
 
 /* Sections
@@ -377,7 +392,8 @@ button {
 // Tabs
 .react-tabs {
     width: 100%;
-    max-width: 1216px;
+    max-width: 1248px;
+    padding: 0 2rem 0 2rem;
 }
 .react-tabs__tab-list {
     display: flex;
@@ -414,15 +430,6 @@ button {
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
-}
-
-// range
-.input-range__track--active {
-    background: #7dafeb !important;
-}
-.input-range__slider {
-    background: #ffffff !important;
-    border: 1px solid #7dafeb !important;
 }
 
 // react-carousel-sobre

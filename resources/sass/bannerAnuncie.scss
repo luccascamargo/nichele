@@ -11,8 +11,24 @@
 
     position: relative;
 
+    @media screen and (max-width: 1024px) {
+        padding: 10rem 2rem 0 2rem;
+
+        > img {
+            display: none;
+        }
+    }
+
     .anuncie__infos {
         padding-bottom: 5rem;
+
+        @media screen and (max-width: 1024px) {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
         h3 {
             font-family: "Nunito";
             font-weight: bold;
@@ -54,5 +70,11 @@
         border-radius: 40px;
 
         z-index: -1;
+
+        @media screen and (max-width: 1024px) {
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+        }
     }
 }

@@ -32,7 +32,7 @@ export const CarouselBanner = () => {
                     autoPlaySpeed={8000}
                     centerMode={false}
                     containerClass="carousel__banner"
-                    draggable
+                    draggable={false}
                     focusOnSelect={false}
                     infinite={true}
                     itemClass="item"

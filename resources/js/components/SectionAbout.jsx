@@ -1,5 +1,5 @@
 /* eslint-disable import/no-unresolved */
-import { Button } from "./Button";
+import { ButtonPrimary } from "./Button";
 
 import "../../sass/sectionAbout.scss";
 
@@ -23,7 +23,7 @@ export const SectionAbout = () => {
                             clientes, parceiros e colaboradores.
                         </p>
                         <a href="/sobre">
-                            <Button>Conheça a Nichele</Button>
+                            <ButtonPrimary>Conheça a Nichele</ButtonPrimary>
                         </a>
                     </div>
                     <div className="dir">

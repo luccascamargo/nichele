@@ -10,7 +10,7 @@ import iconPhone from "../../../public/assets/svg/phone.svg";
 import iconLocation from "../../../public/assets/svg/location.svg";
 import logoMacaw from "../../../public/assets/svg/macaw.svg";
 
-import { Button, ButtonClient } from "./Button";
+import { ButtonPrimary, ButtonClient } from "./Button";
 
 export const Footer = () => {
     return (
@@ -48,14 +48,14 @@ export const Footer = () => {
                         </div>
                     </div>
                     <div className="buttons">
-                        <Button>
+                        <ButtonPrimary>
                             <img src={logoWhats} alt="Whats Nichele" />
                             Whats vendas
-                        </Button>
-                        <Button>
+                        </ButtonPrimary>
+                        <ButtonPrimary>
                             <img src={logoWhats} alt="Whats Nichele" />
                             Whats locação
-                        </Button>
+                        </ButtonPrimary>
                         <ButtonClient text="Área do cliente" footer />
                     </div>
                 </div>

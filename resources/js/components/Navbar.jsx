@@ -3,6 +3,7 @@ import "../../sass/navbar.scss";
 
 import logoNichele from "../../../public/assets/svg/nichele-logo.svg";
 import { ButtonClient, ButtonMenu } from "./Button";
+import { MobileMenu } from "./MobileMenu";
 
 export const Navbar = () => {
     return (
@@ -17,7 +18,7 @@ export const Navbar = () => {
                 <nav className="navbar__items">
                     <ul>
                         <a href="/">Home</a>
-                        <a href="/">Imóveis</a>
+                        <a href="/imoveis">Imóveis</a>
                         <a href="/sobre">Sobre</a>
                         <a href="/blog">Blog</a>
                         <a href="/duvidas">Dúvidas</a>
@@ -30,6 +31,7 @@ export const Navbar = () => {
                         <ButtonMenu text="Anuncie seu imóvel" />
                     </a>
                 </div>
+                <MobileMenu />
             </div>
         </div>
     );

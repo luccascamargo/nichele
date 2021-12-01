@@ -10,17 +10,24 @@ import imgSize from "../../../public/assets/svg/size-icon.svg";
 
 const responsive = {
     desktop: {
-        breakpoint: { max: 3000, min: 961 },
+        breakpoint: { max: 3000, min: 1024 },
         items: 3,
         partialVisibilityGutter: 40,
     },
-    tablet: {
-        breakpoint: { max: 961, min: 641 },
+    desktopSmall: {
+        breakpoint: { max: 1024, min: 600 },
         items: 2,
+        partialVisibilityGutter: 100,
+    },
+    mobileLargue: {
+        breakpoint: { max: 600, min: 415 },
+        items: 1,
+        partialVisibilityGutter: 100,
     },
     mobile: {
-        breakpoint: { max: 641, min: 0 },
+        breakpoint: { max: 415, min: 0 },
         items: 1,
+        partialVisibilityGutter: 20,
     },
 };
 

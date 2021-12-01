@@ -7,13 +7,15 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import Select from "react-select";
 import InputRange from "react-input-range";
 
-import { Button } from "./components/Button";
+import { ButtonPrimary } from "./components/Button";
+import Button from "@mui/material/Button";
 import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
 
 import CarouselMoveis from "../js/components/CarouselMoveis";
 
 import imgDropdown from "../../public/assets/svg/dropdown-icon.svg";
+import arrowTop from "../../public/assets/svg/arrow-top.svg";
 import imgWhats from "../../public/assets/svg/whats-icon.svg";
 import imgEmail from "../../public/assets/svg/email-icon.svg";
 import imgFace from "../../public/assets/svg/face-icon.svg";
@@ -23,14 +25,54 @@ import { CarouselBanner } from "./components/CarouselBanner";
 import { SectionAbout } from "./components/SectionAbout";
 import { BannerAnuncie } from "./components/BannerAnuncie";
 import { DuvidasHome } from "./components/DuvidasHome";
+import { Box } from "@mui/system";
+import {
+    Checkbox,
+    FormControlLabel,
+    FormGroup,
+    Typography,
+} from "@mui/material";
+
+const customStyles = {
+    option: (provided, state) => ({
+        ...provided,
+        color: state.isSelected ? "#7dafeb" : "#000000",
+        padding: 20,
+    }),
+    control: () => ({
+        // none of react-select's styles are passed to <Control />
+        border: "none",
+        display: "flex",
+    }),
+    singleValue: (provided, state) => {
+        const opacity = state.isDisabled ? 0.5 : 1;
+        const transition = "opacity 300ms";
+
+        return { ...provided, opacity, transition };
+    },
+};
 
 function Home() {
-    const [range, setRange] = useState({
-        value4: {
-            min: 500,
-            max: 1200,
-        },
-    });
+    const [val, setVal] = useState({ min: 0, max: 10000 });
+    const [area, setArea] = useState({ min: 0, max: 10000 });
+    const [advanced, setAdvanced] = useState(false);
+    const [codeSearch, setCodeSearch] = useState(false);
+
+    const [dorms, setDorms] = useState("1");
+    const [suites, setSuites] = useState("1");
+    const [bathroom, setBathroom] = useState("1");
+    const [vacancies, setVacancies] = useState("1");
+
+    const handleDorms = (event) => setDorms(event);
+    const handleSuites = (event) => setSuites(event);
+    const handleBathroom = (event) => setBathroom(event);
+    const handleVacancies = (event) => setVacancies(event);
+
+    const handleAdvanced = () => setAdvanced(!advanced);
+    const handleCode = () => setCodeSearch(!codeSearch);
+
+    const maxValue = 10000;
+
     const options = [
         { value: "chocolate", label: "Chocolate" },
         { value: "strawberry", label: "Strawberry" },
@@ -40,117 +82,2075 @@ function Home() {
     return (
         <div className="container">
             <Navbar />
-            <main className="main">
+            <main className={advanced ? "main addHeight" : "main"}>
                 <h1>A realização do seu sonho está aqui!</h1>
 
-                <Tabs>
-                    <TabList>
-                        <Tab>Alugar</Tab>
-                        <Tab>Comprar</Tab>
-                    </TabList>
+                {codeSearch ? (
+                    <>
+                        <Tabs>
+                            <TabList>
+                                <Tab>Alugar</Tab>
+                                <Tab>Comprar</Tab>
+                            </TabList>
 
-                    <TabPanel>
-                        <div className="containerTab">
-                            <div className="div">
-                                <label htmlFor="tipoMovel">
-                                    Tipo de Imóvel{" "}
-                                    <img
-                                        src={imgDropdown}
-                                        width={imgDropdown.width}
-                                        height={imgDropdown.height}
-                                        alt="Selecione"
-                                    />
-                                </label>
-                                <Select
-                                    id="tipoMovel"
-                                    className="select"
-                                    options={options}
-                                    isSearchable
-                                    autoFocus
-                                    isClearable
-                                    placeholder="Selecione..."
-                                />
-                            </div>
-
-                            <div className="div">
-                                <label htmlFor="cidade">
-                                    Cidade{" "}
-                                    <img
-                                        src={imgDropdown}
-                                        width={imgDropdown.width}
-                                        height={imgDropdown.height}
-                                        alt="Selecione"
-                                    />
-                                </label>
-                                <Select
-                                    id="cidade"
-                                    className="select"
-                                    options={options}
-                                    isSearchable
-                                    autoFocus
-                                    isClearable
-                                    placeholder="Selecione..."
-                                />
-                            </div>
-
-                            <div className="div">
-                                <label htmlFor="bairro">
-                                    Bairro{" "}
-                                    <img
-                                        src={imgDropdown}
-                                        width={imgDropdown.width}
-                                        height={imgDropdown.height}
-                                        alt="Selecione"
-                                    />
-                                </label>
-                                <Select
-                                    id="bairro"
-                                    className="select"
-                                    options={options}
-                                    isSearchable
-                                    autoFocus
-                                    isClearable
-                                    placeholder="Selecione..."
-                                />
-                            </div>
-
-                            <div className="div">
-                                <label htmlFor="valor">
-                                    Valor{" "}
-                                    <img
-                                        src={imgDropdown}
-                                        width={imgDropdown.width}
-                                        height={imgDropdown.height}
-                                        alt="Selecione"
-                                    />
-                                </label>
-                                {/* <span className="range">
-                                    R$ ${range.value4.min} - R$ $
-                                    {range.value4.max}
-                                </span> */}
-                                <InputRange
-                                    draggableTrack
-                                    maxValue={10000}
-                                    minValue={500}
-                                    step={500}
-                                    formatLabel={() => ``}
-                                    value={range.value4}
-                                    onChange={(value) =>
-                                        setRange({ value4: value })
-                                    }
-                                    onChangeComplete={(value) =>
-                                        console.log(value)
-                                    }
-                                />
-                            </div>
-
-                            <Button>Encontre seu imóvel</Button>
+                            <TabPanel>
+                                <div className="containerTab">
+                                    <div className="div__code">
+                                        <input
+                                            type="text"
+                                            id="input__code"
+                                            placeholder="Digite aqui o código do imóvel"
+                                        />
+                                        <ButtonPrimary>
+                                            Encontre seu imóvel
+                                        </ButtonPrimary>
+                                    </div>
+                                </div>
+                            </TabPanel>
+                            <TabPanel>
+                                <div className="containerTab">
+                                    <div className="div__code">
+                                        <input
+                                            type="text"
+                                            id="input__code"
+                                            placeholder="Digite aqui o código do imóvel"
+                                        />
+                                        <ButtonPrimary>
+                                            Encontre seu imóvel
+                                        </ButtonPrimary>
+                                    </div>
+                                </div>
+                            </TabPanel>
+                        </Tabs>
+                        <div className="buttons__advanced">
+                            <button type="button" onClick={handleCode}>
+                                {codeSearch
+                                    ? "< Voltar para a busca"
+                                    : "Busca por codigo"}
+                            </button>
                         </div>
-                    </TabPanel>
-                    <TabPanel>
-                        <h2>Any content 2</h2>
-                    </TabPanel>
-                </Tabs>
+                    </>
+                ) : (
+                    <>
+                        <Tabs>
+                            <TabList>
+                                <Tab>Alugar</Tab>
+                                <Tab>Comprar</Tab>
+                            </TabList>
+
+                            <TabPanel>
+                                <div className="containerTab">
+                                    <div className="simple__search">
+                                        <div className="div">
+                                            <label htmlFor="tipoMovel">
+                                                Tipo de Imóvel{" "}
+                                                <img
+                                                    src={imgDropdown}
+                                                    width={imgDropdown.width}
+                                                    height={imgDropdown.height}
+                                                    alt="Selecione"
+                                                />
+                                            </label>
+                                            <Select
+                                                id="tipoMovel"
+                                                className="select"
+                                                options={options}
+                                                styles={customStyles}
+                                                isSearchable
+                                                isClearable
+                                                placeholder="Selecione..."
+                                            />
+                                        </div>
+
+                                        <div className="div">
+                                            <label htmlFor="cidade">
+                                                Cidade{" "}
+                                                <img
+                                                    src={imgDropdown}
+                                                    width={imgDropdown.width}
+                                                    height={imgDropdown.height}
+                                                    alt="Selecione"
+                                                />
+                                            </label>
+                                            <Select
+                                                id="cidade"
+                                                className="select"
+                                                options={options}
+                                                styles={customStyles}
+                                                isSearchable
+                                                isClearable
+                                                placeholder="Selecione..."
+                                            />
+                                        </div>
+
+                                        <div className="div">
+                                            <label htmlFor="bairro">
+                                                Bairro{" "}
+                                                <img
+                                                    src={imgDropdown}
+                                                    width={imgDropdown.width}
+                                                    height={imgDropdown.height}
+                                                    alt="Selecione"
+                                                />
+                                            </label>
+                                            <Select
+                                                id="bairro"
+                                                className="select"
+                                                options={options}
+                                                styles={customStyles}
+                                                isSearchable
+                                                isClearable
+                                                placeholder="Selecione..."
+                                            />
+                                        </div>
+
+                                        <div className="div">
+                                            <label htmlFor="valor">
+                                                Valor{" "}
+                                            </label>
+                                            <div className="div__range">
+                                                <div
+                                                    style={{
+                                                        display: "flex",
+                                                        alignItems: "center",
+                                                        gap: "1rem",
+                                                        fontWeight: 500,
+                                                        color: "#5C6476",
+                                                    }}
+                                                >
+                                                    <div>{`R$${val.min}`}</div>
+                                                    <div>-</div>
+                                                    <div>{`R$${val.max}`}</div>
+                                                </div>
+                                                <div className="div__input__range">
+                                                    <InputRange
+                                                        step={5}
+                                                        formatLabel={(value) =>
+                                                            null
+                                                        }
+                                                        draggableTrack={false}
+                                                        allowSameValues={false}
+                                                        maxValue={maxValue}
+                                                        minValue={0}
+                                                        value={val}
+                                                        onChange={setVal}
+                                                        onChangeComplete={(
+                                                            args
+                                                        ) => console.log(args)}
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <ButtonPrimary>
+                                            Encontre seu imóvel
+                                        </ButtonPrimary>
+                                    </div>
+                                    <div
+                                        className={
+                                            advanced
+                                                ? "advanced__search active"
+                                                : "advanced__search"
+                                        }
+                                    >
+                                        <div className="content__advanced">
+                                            <Box
+                                                sx={{
+                                                    display: "flex",
+                                                    flexDirection: "column",
+                                                    gap: "0.5rem",
+                                                    alignItems: "flex-start",
+                                                }}
+                                            >
+                                                <Typography
+                                                    sx={{
+                                                        fontSize: "0.87rem",
+                                                        color: "##45565B",
+                                                        fontWeight: "bold",
+                                                        fontFamily: "Roboto",
+                                                        lineHeight: "21px",
+                                                    }}
+                                                >
+                                                    Dormitórios
+                                                </Typography>
+                                                <Box
+                                                    sx={{
+                                                        display: "flex",
+                                                        flexDirection: "row",
+                                                        gap: "0.5rem",
+                                                    }}
+                                                >
+                                                    <Button
+                                                        onClick={() =>
+                                                            handleDorms("1")
+                                                        }
+                                                        sx={
+                                                            dorms === "1"
+                                                                ? {
+                                                                      minWidth:
+                                                                          "2rem",
+                                                                      height: "2rem",
+                                                                      borderRadius:
+                                                                          "10px",
+                                                                      color: "#ffffff",
+                                                                      backgroundColor:
+                                                                          "#205CA4",
+                                                                      "&:hover":
+                                                                          {
+                                                                              backgroundColor:
+                                                                                  "#205CA4",
+                                                                              color: "#ffffff",
+                                                                          },
+                                                                  }
+                                                                : {
+                                                                      minWidth:
+                                                                          "2rem",
+                                                                      height: "2rem",
+                                                                      borderRadius:
+                                                                          "10px",
+                                                                      backgroundColor:
+                                                                          "#f2f3f3",
+                                                                      "&:hover":
+                                                                          {
+                                                                              backgroundColor:
+                                                                                  "#f2f3f3",
+                                                                              color: "#205CA4",
+                                                                          },
+                                                                  }
+                                                        }
+                                                    >
+                                                        1
+                                                    </Button>
+                                                    <Button
+                                                        onClick={() =>
+                                                            handleDorms("2")
+                                                        }
+                                                        sx={
+                                                            dorms === "2"
+                                                                ? {
+                                                                      minWidth:
+                                                                          "2rem",
+                                                                      height: "2rem",
+                                                                      borderRadius:
+                                                                          "10px",
+                                                                      color: "#ffffff",
+                                                                      backgroundColor:
+                                                                          "#205CA4",
+                                                                      "&:hover":
+                                                                          {
+                                                                              backgroundColor:
+                                                                                  "#205CA4",
+                                                                              color: "#ffffff",
+                                                                          },
+                                                                  }
+                                                                : {
+                                                                      minWidth:
+                                                                          "2rem",
+                                                                      height: "2rem",
+                                                                      borderRadius:
+                                                                          "10px",
+                                                                      backgroundColor:
+                                                                          "#f2f3f3",
+                                                                      "&:hover":
+                                                                          {
+                                                                              backgroundColor:
+                                                                                  "#f2f3f3",
+                                                                              color: "#205CA4",
+                                                                          },
+                                                                  }
+                                                        }
+                                                    >
+                                                        2
+                                                    </Button>
+                                                    <Button
+                                                        onClick={() =>
+                                                            handleDorms("3")
+                                                        }
+                                                        sx={
+                                                            dorms === "3"
+                                                                ? {
+                                                                      minWidth:
+                                                                          "2rem",
+                                                                      height: "2rem",
+                                                                      borderRadius:
+                                                                          "10px",
+                                                                      color: "#ffffff",
+                                                                      backgroundColor:
+                                                                          "#205CA4",
+                                                                      "&:hover":
+                                                                          {
+                                                                              backgroundColor:
+                                                                                  "#205CA4",
+                                                                              color: "#ffffff",
+                                                                          },
+                                                                  }
+                                                                : {
+                                                                      minWidth:
+                                                                          "2rem",
+                                                                      height: "2rem",
+                                                                      borderRadius:
+                                                                          "10px",
+                                                                      backgroundColor:
+                                                                          "#f2f3f3",
+                                                                      "&:hover":
+                                                                          {
+                                                                              backgroundColor:
+                                                                                  "#f2f3f3",
+                                                                              color: "#205CA4",
+                                                                          },
+                                                                  }
+                                                        }
+                                                    >
+                                                        3
+                                                    </Button>
+                                                    <Button
+                                                        onClick={() =>
+                                                            handleDorms("4")
+                                                        }
+                                                        sx={
+                                                            dorms === "4"
+                                                                ? {
+                                                                      minWidth:
+                                                                          "2rem",
+                                                                      height: "2rem",
+                                                                      borderRadius:
+                                                                          "10px",
+                                                                      color: "#ffffff",
+                                                                      backgroundColor:
+                                                                          "#205CA4",
+                                                                      "&:hover":
+                                                                          {
+                                                                              backgroundColor:
+                                                                                  "#205CA4",
+                                                                              color: "#ffffff",
+                                                                          },
+                                                                  }
+                                                                : {
+                                                                      minWidth:
+                                                                          "2rem",
+                                                                      height: "2rem",
+                                                                      borderRadius:
+                                                                          "10px",
+                                                                      backgroundColor:
+                                                                          "#f2f3f3",
+                                                                      "&:hover":
+                                                                          {
+                                                                              backgroundColor:
+                                                                                  "#f2f3f3",
+                                                                              color: "#205CA4",
+                                                                          },
+                                                                  }
+                                                        }
+                                                    >
+                                                        4+
+                                                    </Button>
+                                                </Box>
+                                            </Box>
+
+                                            <Box
+                                                sx={{
+                                                    display: "flex",
+                                                    flexDirection: "column",
+                                                    gap: "0.5rem",
+                                                    alignItems: "flex-start",
+                                                }}
+                                            >
+                                                <Typography
+                                                    sx={{
+                                                        fontSize: "0.87rem",
+                                                        color: "##45565B",
+                                                        fontWeight: "bold",
+                                                        fontFamily: "Roboto",
+                                                        lineHeight: "21px",
+                                                    }}
+                                                >
+                                                    Suítes
+                                                </Typography>
+                                                <Box
+                                                    sx={{
+                                                        display: "flex",
+                                                        flexDirection: "row",
+                                                        gap: "0.5rem",
+                                                    }}
+                                                >
+                                                    <Button
+                                                        onClick={() =>
+                                                            handleSuites("1")
+                                                        }
+                                                        sx={
+                                                            suites === "1"
+                                                                ? {
+                                                                      minWidth:
+                                                                          "2rem",
+                                                                      height: "2rem",
+                                                                      borderRadius:
+                                                                          "10px",
+                                                                      color: "#ffffff",
+                                                                      backgroundColor:
+                                                                          "#205CA4",
+                                                                      "&:hover":
+                                                                          {
+                                                                              backgroundColor:
+                                                                                  "#205CA4",
+                                                                              color: "#ffffff",
+                                                                          },
+                                                                  }
+                                                                : {
+                                                                      minWidth:
+                                                                          "2rem",
+                                                                      height: "2rem",
+                                                                      borderRadius:
+                                                                          "10px",
+                                                                      backgroundColor:
+                                                                          "#f2f3f3",
+                                                                      "&:hover":
+                                                                          {
+                                                                              backgroundColor:
+                                                                                  "#f2f3f3",
+                                                                              color: "#205CA4",
+                                                                          },
+                                                                  }
+                                                        }
+                                                    >
+                                                        1
+                                                    </Button>
+                                                    <Button
+                                                        onClick={() =>
+                                                            handleSuites("2")
+                                                        }
+                                                        sx={
+                                                            suites === "2"
+                                                                ? {
+                                                                      minWidth:
+                                                                          "2rem",
+                                                                      height: "2rem",
+                                                                      borderRadius:
+                                                                          "10px",
+                                                                      color: "#ffffff",
+                                                                      backgroundColor:
+                                                                          "#205CA4",
+                                                                      "&:hover":
+                                                                          {
+                                                                              backgroundColor:
+                                                                                  "#205CA4",
+                                                                              color: "#ffffff",
+                                                                          },
+                                                                  }
+                                                                : {
+                                                                      minWidth:
+                                                                          "2rem",
+                                                                      height: "2rem",
+                                                                      borderRadius:
+                                                                          "10px",
+                                                                      backgroundColor:
+                                                                          "#f2f3f3",
+                                                                      "&:hover":
+                                                                          {
+                                                                              backgroundColor:
+                                                                                  "#f2f3f3",
+                                                                              color: "#205CA4",
+                                                                          },
+                                                                  }
+                                                        }
+                                                    >
+                                                        2
+                                                    </Button>
+                                                    <Button
+                                                        onClick={() =>
+                                                            handleSuites("3")
+                                                        }
+                                                        sx={
+                                                            suites === "3"
+                                                                ? {
+                                                                      minWidth:
+                                                                          "2rem",
+                                                                      height: "2rem",
+                                                                      borderRadius:
+                                                                          "10px",
+                                                                      color: "#ffffff",
+                                                                      backgroundColor:
+                                                                          "#205CA4",
+                                                                      "&:hover":
+                                                                          {
+                                                                              backgroundColor:
+                                                                                  "#205CA4",
+                                                                              color: "#ffffff",
+                                                                          },
+                                                                  }
+                                                                : {
+                                                                      minWidth:
+                                                                          "2rem",
+                                                                      height: "2rem",
+                                                                      borderRadius:
+                                                                          "10px",
+                                                                      backgroundColor:
+                                                                          "#f2f3f3",
+                                                                      "&:hover":
+                                                                          {
+                                                                              backgroundColor:
+                                                                                  "#f2f3f3",
+                                                                              color: "#205CA4",
+                                                                          },
+                                                                  }
+                                                        }
+                                                    >
+                                                        3
+                                                    </Button>
+                                                    <Button
+                                                        onClick={() =>
+                                                            handleSuites("4")
+                                                        }
+                                                        sx={
+                                                            suites === "4"
+                                                                ? {
+                                                                      minWidth:
+                                                                          "2rem",
+                                                                      height: "2rem",
+                                                                      borderRadius:
+                                                                          "10px",
+                                                                      color: "#ffffff",
+                                                                      backgroundColor:
+                                                                          "#205CA4",
+                                                                      "&:hover":
+                                                                          {
+                                                                              backgroundColor:
+                                                                                  "#205CA4",
+                                                                              color: "#ffffff",
+                                                                          },
+                                                                  }
+                                                                : {
+                                                                      minWidth:
+                                                                          "2rem",
+                                                                      height: "2rem",
+                                                                      borderRadius:
+                                                                          "10px",
+                                                                      backgroundColor:
+                                                                          "#f2f3f3",
+                                                                      "&:hover":
+                                                                          {
+                                                                              backgroundColor:
+                                                                                  "#f2f3f3",
+                                                                              color: "#205CA4",
+                                                                          },
+                                                                  }
+                                                        }
+                                                    >
+                                                        4+
+                                                    </Button>
+                                                </Box>
+                                            </Box>
+                                            <Box
+                                                sx={{
+                                                    display: "flex",
+                                                    flexDirection: "column",
+                                                    gap: "0.5rem",
+                                                    alignItems: "flex-start",
+                                                }}
+                                            >
+                                                <Typography
+                                                    sx={{
+                                                        fontSize: "0.87rem",
+                                                        color: "##45565B",
+                                                        fontWeight: "bold",
+                                                        fontFamily: "Roboto",
+                                                        lineHeight: "21px",
+                                                    }}
+                                                >
+                                                    Suítes
+                                                </Typography>
+                                                <Box
+                                                    sx={{
+                                                        display: "flex",
+                                                        flexDirection: "row",
+                                                        gap: "0.5rem",
+                                                    }}
+                                                >
+                                                    <Button
+                                                        onClick={() =>
+                                                            handleSuites("1")
+                                                        }
+                                                        sx={
+                                                            suites === "1"
+                                                                ? {
+                                                                      minWidth:
+                                                                          "2rem",
+                                                                      height: "2rem",
+                                                                      borderRadius:
+                                                                          "10px",
+                                                                      color: "#ffffff",
+                                                                      backgroundColor:
+                                                                          "#205CA4",
+                                                                      "&:hover":
+                                                                          {
+                                                                              backgroundColor:
+                                                                                  "#205CA4",
+                                                                              color: "#ffffff",
+                                                                          },
+                                                                  }
+                                                                : {
+                                                                      minWidth:
+                                                                          "2rem",
+                                                                      height: "2rem",
+                                                                      borderRadius:
+                                                                          "10px",
+                                                                      backgroundColor:
+                                                                          "#f2f3f3",
+                                                                      "&:hover":
+                                                                          {
+                                                                              backgroundColor:
+                                                                                  "#f2f3f3",
+                                                                              color: "#205CA4",
+                                                                          },
+                                                                  }
+                                                        }
+                                                    >
+                                                        1
+                                                    </Button>
+                                                    <Button
+                                                        onClick={() =>
+                                                            handleSuites("2")
+                                                        }
+                                                        sx={
+                                                            suites === "2"
+                                                                ? {
+                                                                      minWidth:
+                                                                          "2rem",
+                                                                      height: "2rem",
+                                                                      borderRadius:
+                                                                          "10px",
+                                                                      color: "#ffffff",
+                                                                      backgroundColor:
+                                                                          "#205CA4",
+                                                                      "&:hover":
+                                                                          {
+                                                                              backgroundColor:
+                                                                                  "#205CA4",
+                                                                              color: "#ffffff",
+                                                                          },
+                                                                  }
+                                                                : {
+                                                                      minWidth:
+                                                                          "2rem",
+                                                                      height: "2rem",
+                                                                      borderRadius:
+                                                                          "10px",
+                                                                      backgroundColor:
+                                                                          "#f2f3f3",
+                                                                      "&:hover":
+                                                                          {
+                                                                              backgroundColor:
+                                                                                  "#f2f3f3",
+                                                                              color: "#205CA4",
+                                                                          },
+                                                                  }
+                                                        }
+                                                    >
+                                                        2
+                                                    </Button>
+                                                    <Button
+                                                        onClick={() =>
+                                                            handleSuites("3")
+                                                        }
+                                                        sx={
+                                                            suites === "3"
+                                                                ? {
+                                                                      minWidth:
+                                                                          "2rem",
+                                                                      height: "2rem",
+                                                                      borderRadius:
+                                                                          "10px",
+                                                                      color: "#ffffff",
+                                                                      backgroundColor:
+                                                                          "#205CA4",
+                                                                      "&:hover":
+                                                                          {
+                                                                              backgroundColor:
+                                                                                  "#205CA4",
+                                                                              color: "#ffffff",
+                                                                          },
+                                                                  }
+                                                                : {
+                                                                      minWidth:
+                                                                          "2rem",
+                                                                      height: "2rem",
+                                                                      borderRadius:
+                                                                          "10px",
+                                                                      backgroundColor:
+                                                                          "#f2f3f3",
+                                                                      "&:hover":
+                                                                          {
+                                                                              backgroundColor:
+                                                                                  "#f2f3f3",
+                                                                              color: "#205CA4",
+                                                                          },
+                                                                  }
+                                                        }
+                                                    >
+                                                        3
+                                                    </Button>
+                                                    <Button
+                                                        onClick={() =>
+                                                            handleSuites("4")
+                                                        }
+                                                        sx={
+                                                            suites === "4"
+                                                                ? {
+                                                                      minWidth:
+                                                                          "2rem",
+                                                                      height: "2rem",
+                                                                      borderRadius:
+                                                                          "10px",
+                                                                      color: "#ffffff",
+                                                                      backgroundColor:
+                                                                          "#205CA4",
+                                                                      "&:hover":
+                                                                          {
+                                                                              backgroundColor:
+                                                                                  "#205CA4",
+                                                                              color: "#ffffff",
+                                                                          },
+                                                                  }
+                                                                : {
+                                                                      minWidth:
+                                                                          "2rem",
+                                                                      height: "2rem",
+                                                                      borderRadius:
+                                                                          "10px",
+                                                                      backgroundColor:
+                                                                          "#f2f3f3",
+                                                                      "&:hover":
+                                                                          {
+                                                                              backgroundColor:
+                                                                                  "#f2f3f3",
+                                                                              color: "#205CA4",
+                                                                          },
+                                                                  }
+                                                        }
+                                                    >
+                                                        4+
+                                                    </Button>
+                                                </Box>
+                                            </Box>
+                                            <Box
+                                                sx={{
+                                                    display: "flex",
+                                                    flexDirection: "column",
+                                                    gap: "0.5rem",
+                                                    alignItems: "flex-start",
+                                                }}
+                                            >
+                                                <Typography
+                                                    sx={{
+                                                        fontSize: "0.87rem",
+                                                        color: "##45565B",
+                                                        fontWeight: "bold",
+                                                        fontFamily: "Roboto",
+                                                        lineHeight: "21px",
+                                                    }}
+                                                >
+                                                    Suítes
+                                                </Typography>
+                                                <Box
+                                                    sx={{
+                                                        display: "flex",
+                                                        flexDirection: "row",
+                                                        gap: "0.5rem",
+                                                    }}
+                                                >
+                                                    <Button
+                                                        onClick={() =>
+                                                            handleSuites("1")
+                                                        }
+                                                        sx={
+                                                            suites === "1"
+                                                                ? {
+                                                                      minWidth:
+                                                                          "2rem",
+                                                                      height: "2rem",
+                                                                      borderRadius:
+                                                                          "10px",
+                                                                      color: "#ffffff",
+                                                                      backgroundColor:
+                                                                          "#205CA4",
+                                                                      "&:hover":
+                                                                          {
+                                                                              backgroundColor:
+                                                                                  "#205CA4",
+                                                                              color: "#ffffff",
+                                                                          },
+                                                                  }
+                                                                : {
+                                                                      minWidth:
+                                                                          "2rem",
+                                                                      height: "2rem",
+                                                                      borderRadius:
+                                                                          "10px",
+                                                                      backgroundColor:
+                                                                          "#f2f3f3",
+                                                                      "&:hover":
+                                                                          {
+                                                                              backgroundColor:
+                                                                                  "#f2f3f3",
+                                                                              color: "#205CA4",
+                                                                          },
+                                                                  }
+                                                        }
+                                                    >
+                                                        1
+                                                    </Button>
+                                                    <Button
+                                                        onClick={() =>
+                                                            handleSuites("2")
+                                                        }
+                                                        sx={
+                                                            suites === "2"
+                                                                ? {
+                                                                      minWidth:
+                                                                          "2rem",
+                                                                      height: "2rem",
+                                                                      borderRadius:
+                                                                          "10px",
+                                                                      color: "#ffffff",
+                                                                      backgroundColor:
+                                                                          "#205CA4",
+                                                                      "&:hover":
+                                                                          {
+                                                                              backgroundColor:
+                                                                                  "#205CA4",
+                                                                              color: "#ffffff",
+                                                                          },
+                                                                  }
+                                                                : {
+                                                                      minWidth:
+                                                                          "2rem",
+                                                                      height: "2rem",
+                                                                      borderRadius:
+                                                                          "10px",
+                                                                      backgroundColor:
+                                                                          "#f2f3f3",
+                                                                      "&:hover":
+                                                                          {
+                                                                              backgroundColor:
+                                                                                  "#f2f3f3",
+                                                                              color: "#205CA4",
+                                                                          },
+                                                                  }
+                                                        }
+                                                    >
+                                                        2
+                                                    </Button>
+                                                    <Button
+                                                        onClick={() =>
+                                                            handleSuites("3")
+                                                        }
+                                                        sx={
+                                                            suites === "3"
+                                                                ? {
+                                                                      minWidth:
+                                                                          "2rem",
+                                                                      height: "2rem",
+                                                                      borderRadius:
+                                                                          "10px",
+                                                                      color: "#ffffff",
+                                                                      backgroundColor:
+                                                                          "#205CA4",
+                                                                      "&:hover":
+                                                                          {
+                                                                              backgroundColor:
+                                                                                  "#205CA4",
+                                                                              color: "#ffffff",
+                                                                          },
+                                                                  }
+                                                                : {
+                                                                      minWidth:
+                                                                          "2rem",
+                                                                      height: "2rem",
+                                                                      borderRadius:
+                                                                          "10px",
+                                                                      backgroundColor:
+                                                                          "#f2f3f3",
+                                                                      "&:hover":
+                                                                          {
+                                                                              backgroundColor:
+                                                                                  "#f2f3f3",
+                                                                              color: "#205CA4",
+                                                                          },
+                                                                  }
+                                                        }
+                                                    >
+                                                        3
+                                                    </Button>
+                                                    <Button
+                                                        onClick={() =>
+                                                            handleSuites("4")
+                                                        }
+                                                        sx={
+                                                            suites === "4"
+                                                                ? {
+                                                                      minWidth:
+                                                                          "2rem",
+                                                                      height: "2rem",
+                                                                      borderRadius:
+                                                                          "10px",
+                                                                      color: "#ffffff",
+                                                                      backgroundColor:
+                                                                          "#205CA4",
+                                                                      "&:hover":
+                                                                          {
+                                                                              backgroundColor:
+                                                                                  "#205CA4",
+                                                                              color: "#ffffff",
+                                                                          },
+                                                                  }
+                                                                : {
+                                                                      minWidth:
+                                                                          "2rem",
+                                                                      height: "2rem",
+                                                                      borderRadius:
+                                                                          "10px",
+                                                                      backgroundColor:
+                                                                          "#f2f3f3",
+                                                                      "&:hover":
+                                                                          {
+                                                                              backgroundColor:
+                                                                                  "#f2f3f3",
+                                                                              color: "#205CA4",
+                                                                          },
+                                                                  }
+                                                        }
+                                                    >
+                                                        4+
+                                                    </Button>
+                                                </Box>
+                                            </Box>
+                                            <div className="div">
+                                                <label htmlFor="area">
+                                                    Área{" "}
+                                                </label>
+                                                <div className="div__range">
+                                                    <div
+                                                        style={{
+                                                            display: "flex",
+                                                            alignItems:
+                                                                "center",
+                                                            gap: "1rem",
+                                                            fontWeight: 500,
+                                                            color: "#5C6476",
+                                                        }}
+                                                    >
+                                                        <div>{`${area.min}m²`}</div>
+                                                        <div>-</div>
+                                                        <div>{`${area.max}m²`}</div>
+                                                    </div>
+                                                    <div>
+                                                        <InputRange
+                                                            step={5}
+                                                            formatLabel={(
+                                                                value
+                                                            ) => null}
+                                                            draggableTrack={
+                                                                false
+                                                            }
+                                                            allowSameValues={
+                                                                false
+                                                            }
+                                                            maxValue={maxValue}
+                                                            minValue={0}
+                                                            value={area}
+                                                            onChange={setArea}
+                                                            onChangeComplete={(
+                                                                args
+                                                            ) =>
+                                                                console.log(
+                                                                    args
+                                                                )
+                                                            }
+                                                        />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <FormGroup
+                                                sx={{
+                                                    display: "flex",
+                                                    flexDirection: "row",
+                                                    gap: "1rem",
+                                                }}
+                                            >
+                                                <FormControlLabel
+                                                    sx={{
+                                                        fontFamily: "Roboto",
+                                                        fontWeight: "normal",
+                                                        fontSize: "14px",
+                                                        lineHeight: "21px",
+                                                        color: "#8C9193",
+                                                    }}
+                                                    control={
+                                                        <Checkbox
+                                                            onChange={() =>
+                                                                console.log(
+                                                                    "imoveis na planta"
+                                                                )
+                                                            }
+                                                            sx={{
+                                                                "&.Mui-checked":
+                                                                    {
+                                                                        color: "#205CA4",
+                                                                    },
+                                                            }}
+                                                        />
+                                                    }
+                                                    label="Imóveis na planta"
+                                                />
+                                                <FormControlLabel
+                                                    sx={{
+                                                        fontFamily: "Roboto",
+                                                        fontWeight: "normal",
+                                                        fontSize: "14px",
+                                                        lineHeight: "21px",
+                                                        color: "#8C9193",
+                                                    }}
+                                                    control={
+                                                        <Checkbox
+                                                            onChange={() =>
+                                                                console.log(
+                                                                    "ofertas"
+                                                                )
+                                                            }
+                                                            sx={{
+                                                                "&.Mui-checked":
+                                                                    {
+                                                                        color: "#205CA4",
+                                                                    },
+                                                            }}
+                                                        />
+                                                    }
+                                                    label="Ofertas"
+                                                />
+                                            </FormGroup>
+                                        </div>
+                                    </div>
+                                </div>
+                            </TabPanel>
+                            <TabPanel>
+                                <div className="containerTab">
+                                    <div className="simple__search">
+                                        <div className="div">
+                                            <label htmlFor="tipoMovel">
+                                                Tipo de Imóvel{" "}
+                                                <img
+                                                    src={imgDropdown}
+                                                    width={imgDropdown.width}
+                                                    height={imgDropdown.height}
+                                                    alt="Selecione"
+                                                />
+                                            </label>
+                                            <Select
+                                                id="tipoMovel"
+                                                className="select"
+                                                options={options}
+                                                styles={customStyles}
+                                                isSearchable
+                                                isClearable
+                                                placeholder="Selecione..."
+                                            />
+                                        </div>
+
+                                        <div className="div">
+                                            <label htmlFor="cidade">
+                                                Cidade{" "}
+                                                <img
+                                                    src={imgDropdown}
+                                                    width={imgDropdown.width}
+                                                    height={imgDropdown.height}
+                                                    alt="Selecione"
+                                                />
+                                            </label>
+                                            <Select
+                                                id="cidade"
+                                                className="select"
+                                                options={options}
+                                                styles={customStyles}
+                                                isSearchable
+                                                isClearable
+                                                placeholder="Selecione..."
+                                            />
+                                        </div>
+
+                                        <div className="div">
+                                            <label htmlFor="bairro">
+                                                Bairro{" "}
+                                                <img
+                                                    src={imgDropdown}
+                                                    width={imgDropdown.width}
+                                                    height={imgDropdown.height}
+                                                    alt="Selecione"
+                                                />
+                                            </label>
+                                            <Select
+                                                id="bairro"
+                                                className="select"
+                                                options={options}
+                                                styles={customStyles}
+                                                isSearchable
+                                                isClearable
+                                                placeholder="Selecione..."
+                                            />
+                                        </div>
+
+                                        <div className="div">
+                                            <label htmlFor="valor">
+                                                Valor{" "}
+                                            </label>
+                                            <div className="div__range">
+                                                <div
+                                                    style={{
+                                                        display: "flex",
+                                                        alignItems: "center",
+                                                        gap: "1rem",
+                                                        fontWeight: 500,
+                                                        color: "#5C6476",
+                                                    }}
+                                                >
+                                                    <div>{`R$${val.min}`}</div>
+                                                    <div>-</div>
+                                                    <div>{`R$${val.max}`}</div>
+                                                </div>
+                                                <div>
+                                                    <InputRange
+                                                        step={5}
+                                                        formatLabel={(value) =>
+                                                            null
+                                                        }
+                                                        draggableTrack={false}
+                                                        allowSameValues={false}
+                                                        maxValue={maxValue}
+                                                        minValue={0}
+                                                        value={val}
+                                                        onChange={setVal}
+                                                        onChangeComplete={(
+                                                            args
+                                                        ) => console.log(args)}
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <ButtonPrimary>
+                                            Encontre seu imóvel
+                                        </ButtonPrimary>
+                                    </div>
+                                    <div
+                                        className={
+                                            advanced
+                                                ? "advanced__search active"
+                                                : "advanced__search"
+                                        }
+                                    >
+                                        <div className="content__advanced">
+                                            <Box
+                                                sx={{
+                                                    display: "flex",
+                                                    flexDirection: "column",
+                                                    gap: "0.5rem",
+                                                    alignItems: "flex-start",
+                                                }}
+                                            >
+                                                <Typography
+                                                    sx={{
+                                                        fontSize: "0.87rem",
+                                                        color: "##45565B",
+                                                        fontWeight: "bold",
+                                                        fontFamily: "Roboto",
+                                                        lineHeight: "21px",
+                                                    }}
+                                                >
+                                                    Dormitórios
+                                                </Typography>
+                                                <Box
+                                                    sx={{
+                                                        display: "flex",
+                                                        flexDirection: "row",
+                                                        gap: "0.5rem",
+                                                    }}
+                                                >
+                                                    <Button
+                                                        onClick={() =>
+                                                            handleDorms("1")
+                                                        }
+                                                        sx={
+                                                            dorms === "1"
+                                                                ? {
+                                                                      minWidth:
+                                                                          "2rem",
+                                                                      height: "2rem",
+                                                                      borderRadius:
+                                                                          "10px",
+                                                                      color: "#ffffff",
+                                                                      backgroundColor:
+                                                                          "#205CA4",
+                                                                      "&:hover":
+                                                                          {
+                                                                              backgroundColor:
+                                                                                  "#205CA4",
+                                                                              color: "#ffffff",
+                                                                          },
+                                                                  }
+                                                                : {
+                                                                      minWidth:
+                                                                          "2rem",
+                                                                      height: "2rem",
+                                                                      borderRadius:
+                                                                          "10px",
+                                                                      backgroundColor:
+                                                                          "#f2f3f3",
+                                                                      "&:hover":
+                                                                          {
+                                                                              backgroundColor:
+                                                                                  "#f2f3f3",
+                                                                              color: "#205CA4",
+                                                                          },
+                                                                  }
+                                                        }
+                                                    >
+                                                        1
+                                                    </Button>
+                                                    <Button
+                                                        onClick={() =>
+                                                            handleDorms("2")
+                                                        }
+                                                        sx={
+                                                            dorms === "2"
+                                                                ? {
+                                                                      minWidth:
+                                                                          "2rem",
+                                                                      height: "2rem",
+                                                                      borderRadius:
+                                                                          "10px",
+                                                                      color: "#ffffff",
+                                                                      backgroundColor:
+                                                                          "#205CA4",
+                                                                      "&:hover":
+                                                                          {
+                                                                              backgroundColor:
+                                                                                  "#205CA4",
+                                                                              color: "#ffffff",
+                                                                          },
+                                                                  }
+                                                                : {
+                                                                      minWidth:
+                                                                          "2rem",
+                                                                      height: "2rem",
+                                                                      borderRadius:
+                                                                          "10px",
+                                                                      backgroundColor:
+                                                                          "#f2f3f3",
+                                                                      "&:hover":
+                                                                          {
+                                                                              backgroundColor:
+                                                                                  "#f2f3f3",
+                                                                              color: "#205CA4",
+                                                                          },
+                                                                  }
+                                                        }
+                                                    >
+                                                        2
+                                                    </Button>
+                                                    <Button
+                                                        onClick={() =>
+                                                            handleDorms("3")
+                                                        }
+                                                        sx={
+                                                            dorms === "3"
+                                                                ? {
+                                                                      minWidth:
+                                                                          "2rem",
+                                                                      height: "2rem",
+                                                                      borderRadius:
+                                                                          "10px",
+                                                                      color: "#ffffff",
+                                                                      backgroundColor:
+                                                                          "#205CA4",
+                                                                      "&:hover":
+                                                                          {
+                                                                              backgroundColor:
+                                                                                  "#205CA4",
+                                                                              color: "#ffffff",
+                                                                          },
+                                                                  }
+                                                                : {
+                                                                      minWidth:
+                                                                          "2rem",
+                                                                      height: "2rem",
+                                                                      borderRadius:
+                                                                          "10px",
+                                                                      backgroundColor:
+                                                                          "#f2f3f3",
+                                                                      "&:hover":
+                                                                          {
+                                                                              backgroundColor:
+                                                                                  "#f2f3f3",
+                                                                              color: "#205CA4",
+                                                                          },
+                                                                  }
+                                                        }
+                                                    >
+                                                        3
+                                                    </Button>
+                                                    <Button
+                                                        onClick={() =>
+                                                            handleDorms("4")
+                                                        }
+                                                        sx={
+                                                            dorms === "4"
+                                                                ? {
+                                                                      minWidth:
+                                                                          "2rem",
+                                                                      height: "2rem",
+                                                                      borderRadius:
+                                                                          "10px",
+                                                                      color: "#ffffff",
+                                                                      backgroundColor:
+                                                                          "#205CA4",
+                                                                      "&:hover":
+                                                                          {
+                                                                              backgroundColor:
+                                                                                  "#205CA4",
+                                                                              color: "#ffffff",
+                                                                          },
+                                                                  }
+                                                                : {
+                                                                      minWidth:
+                                                                          "2rem",
+                                                                      height: "2rem",
+                                                                      borderRadius:
+                                                                          "10px",
+                                                                      backgroundColor:
+                                                                          "#f2f3f3",
+                                                                      "&:hover":
+                                                                          {
+                                                                              backgroundColor:
+                                                                                  "#f2f3f3",
+                                                                              color: "#205CA4",
+                                                                          },
+                                                                  }
+                                                        }
+                                                    >
+                                                        4+
+                                                    </Button>
+                                                </Box>
+                                            </Box>
+
+                                            <Box
+                                                sx={{
+                                                    display: "flex",
+                                                    flexDirection: "column",
+                                                    gap: "0.5rem",
+                                                    alignItems: "flex-start",
+                                                }}
+                                            >
+                                                <Typography
+                                                    sx={{
+                                                        fontSize: "0.87rem",
+                                                        color: "##45565B",
+                                                        fontWeight: "bold",
+                                                        fontFamily: "Roboto",
+                                                        lineHeight: "21px",
+                                                    }}
+                                                >
+                                                    Suítes
+                                                </Typography>
+                                                <Box
+                                                    sx={{
+                                                        display: "flex",
+                                                        flexDirection: "row",
+                                                        gap: "0.5rem",
+                                                    }}
+                                                >
+                                                    <Button
+                                                        onClick={() =>
+                                                            handleSuites("1")
+                                                        }
+                                                        sx={
+                                                            suites === "1"
+                                                                ? {
+                                                                      minWidth:
+                                                                          "2rem",
+                                                                      height: "2rem",
+                                                                      borderRadius:
+                                                                          "10px",
+                                                                      color: "#ffffff",
+                                                                      backgroundColor:
+                                                                          "#205CA4",
+                                                                      "&:hover":
+                                                                          {
+                                                                              backgroundColor:
+                                                                                  "#205CA4",
+                                                                              color: "#ffffff",
+                                                                          },
+                                                                  }
+                                                                : {
+                                                                      minWidth:
+                                                                          "2rem",
+                                                                      height: "2rem",
+                                                                      borderRadius:
+                                                                          "10px",
+                                                                      backgroundColor:
+                                                                          "#f2f3f3",
+                                                                      "&:hover":
+                                                                          {
+                                                                              backgroundColor:
+                                                                                  "#f2f3f3",
+                                                                              color: "#205CA4",
+                                                                          },
+                                                                  }
+                                                        }
+                                                    >
+                                                        1
+                                                    </Button>
+                                                    <Button
+                                                        onClick={() =>
+                                                            handleSuites("2")
+                                                        }
+                                                        sx={
+                                                            suites === "2"
+                                                                ? {
+                                                                      minWidth:
+                                                                          "2rem",
+                                                                      height: "2rem",
+                                                                      borderRadius:
+                                                                          "10px",
+                                                                      color: "#ffffff",
+                                                                      backgroundColor:
+                                                                          "#205CA4",
+                                                                      "&:hover":
+                                                                          {
+                                                                              backgroundColor:
+                                                                                  "#205CA4",
+                                                                              color: "#ffffff",
+                                                                          },
+                                                                  }
+                                                                : {
+                                                                      minWidth:
+                                                                          "2rem",
+                                                                      height: "2rem",
+                                                                      borderRadius:
+                                                                          "10px",
+                                                                      backgroundColor:
+                                                                          "#f2f3f3",
+                                                                      "&:hover":
+                                                                          {
+                                                                              backgroundColor:
+                                                                                  "#f2f3f3",
+                                                                              color: "#205CA4",
+                                                                          },
+                                                                  }
+                                                        }
+                                                    >
+                                                        2
+                                                    </Button>
+                                                    <Button
+                                                        onClick={() =>
+                                                            handleSuites("3")
+                                                        }
+                                                        sx={
+                                                            suites === "3"
+                                                                ? {
+                                                                      minWidth:
+                                                                          "2rem",
+                                                                      height: "2rem",
+                                                                      borderRadius:
+                                                                          "10px",
+                                                                      color: "#ffffff",
+                                                                      backgroundColor:
+                                                                          "#205CA4",
+                                                                      "&:hover":
+                                                                          {
+                                                                              backgroundColor:
+                                                                                  "#205CA4",
+                                                                              color: "#ffffff",
+                                                                          },
+                                                                  }
+                                                                : {
+                                                                      minWidth:
+                                                                          "2rem",
+                                                                      height: "2rem",
+                                                                      borderRadius:
+                                                                          "10px",
+                                                                      backgroundColor:
+                                                                          "#f2f3f3",
+                                                                      "&:hover":
+                                                                          {
+                                                                              backgroundColor:
+                                                                                  "#f2f3f3",
+                                                                              color: "#205CA4",
+                                                                          },
+                                                                  }
+                                                        }
+                                                    >
+                                                        3
+                                                    </Button>
+                                                    <Button
+                                                        onClick={() =>
+                                                            handleSuites("4")
+                                                        }
+                                                        sx={
+                                                            suites === "4"
+                                                                ? {
+                                                                      minWidth:
+                                                                          "2rem",
+                                                                      height: "2rem",
+                                                                      borderRadius:
+                                                                          "10px",
+                                                                      color: "#ffffff",
+                                                                      backgroundColor:
+                                                                          "#205CA4",
+                                                                      "&:hover":
+                                                                          {
+                                                                              backgroundColor:
+                                                                                  "#205CA4",
+                                                                              color: "#ffffff",
+                                                                          },
+                                                                  }
+                                                                : {
+                                                                      minWidth:
+                                                                          "2rem",
+                                                                      height: "2rem",
+                                                                      borderRadius:
+                                                                          "10px",
+                                                                      backgroundColor:
+                                                                          "#f2f3f3",
+                                                                      "&:hover":
+                                                                          {
+                                                                              backgroundColor:
+                                                                                  "#f2f3f3",
+                                                                              color: "#205CA4",
+                                                                          },
+                                                                  }
+                                                        }
+                                                    >
+                                                        4+
+                                                    </Button>
+                                                </Box>
+                                            </Box>
+                                            <Box
+                                                sx={{
+                                                    display: "flex",
+                                                    flexDirection: "column",
+                                                    gap: "0.5rem",
+                                                    alignItems: "flex-start",
+                                                }}
+                                            >
+                                                <Typography
+                                                    sx={{
+                                                        fontSize: "0.87rem",
+                                                        color: "##45565B",
+                                                        fontWeight: "bold",
+                                                        fontFamily: "Roboto",
+                                                        lineHeight: "21px",
+                                                    }}
+                                                >
+                                                    Suítes
+                                                </Typography>
+                                                <Box
+                                                    sx={{
+                                                        display: "flex",
+                                                        flexDirection: "row",
+                                                        gap: "0.5rem",
+                                                    }}
+                                                >
+                                                    <Button
+                                                        onClick={() =>
+                                                            handleSuites("1")
+                                                        }
+                                                        sx={
+                                                            suites === "1"
+                                                                ? {
+                                                                      minWidth:
+                                                                          "2rem",
+                                                                      height: "2rem",
+                                                                      borderRadius:
+                                                                          "10px",
+                                                                      color: "#ffffff",
+                                                                      backgroundColor:
+                                                                          "#205CA4",
+                                                                      "&:hover":
+                                                                          {
+                                                                              backgroundColor:
+                                                                                  "#205CA4",
+                                                                              color: "#ffffff",
+                                                                          },
+                                                                  }
+                                                                : {
+                                                                      minWidth:
+                                                                          "2rem",
+                                                                      height: "2rem",
+                                                                      borderRadius:
+                                                                          "10px",
+                                                                      backgroundColor:
+                                                                          "#f2f3f3",
+                                                                      "&:hover":
+                                                                          {
+                                                                              backgroundColor:
+                                                                                  "#f2f3f3",
+                                                                              color: "#205CA4",
+                                                                          },
+                                                                  }
+                                                        }
+                                                    >
+                                                        1
+                                                    </Button>
+                                                    <Button
+                                                        onClick={() =>
+                                                            handleSuites("2")
+                                                        }
+                                                        sx={
+                                                            suites === "2"
+                                                                ? {
+                                                                      minWidth:
+                                                                          "2rem",
+                                                                      height: "2rem",
+                                                                      borderRadius:
+                                                                          "10px",
+                                                                      color: "#ffffff",
+                                                                      backgroundColor:
+                                                                          "#205CA4",
+                                                                      "&:hover":
+                                                                          {
+                                                                              backgroundColor:
+                                                                                  "#205CA4",
+                                                                              color: "#ffffff",
+                                                                          },
+                                                                  }
+                                                                : {
+                                                                      minWidth:
+                                                                          "2rem",
+                                                                      height: "2rem",
+                                                                      borderRadius:
+                                                                          "10px",
+                                                                      backgroundColor:
+                                                                          "#f2f3f3",
+                                                                      "&:hover":
+                                                                          {
+                                                                              backgroundColor:
+                                                                                  "#f2f3f3",
+                                                                              color: "#205CA4",
+                                                                          },
+                                                                  }
+                                                        }
+                                                    >
+                                                        2
+                                                    </Button>
+                                                    <Button
+                                                        onClick={() =>
+                                                            handleSuites("3")
+                                                        }
+                                                        sx={
+                                                            suites === "3"
+                                                                ? {
+                                                                      minWidth:
+                                                                          "2rem",
+                                                                      height: "2rem",
+                                                                      borderRadius:
+                                                                          "10px",
+                                                                      color: "#ffffff",
+                                                                      backgroundColor:
+                                                                          "#205CA4",
+                                                                      "&:hover":
+                                                                          {
+                                                                              backgroundColor:
+                                                                                  "#205CA4",
+                                                                              color: "#ffffff",
+                                                                          },
+                                                                  }
+                                                                : {
+                                                                      minWidth:
+                                                                          "2rem",
+                                                                      height: "2rem",
+                                                                      borderRadius:
+                                                                          "10px",
+                                                                      backgroundColor:
+                                                                          "#f2f3f3",
+                                                                      "&:hover":
+                                                                          {
+                                                                              backgroundColor:
+                                                                                  "#f2f3f3",
+                                                                              color: "#205CA4",
+                                                                          },
+                                                                  }
+                                                        }
+                                                    >
+                                                        3
+                                                    </Button>
+                                                    <Button
+                                                        onClick={() =>
+                                                            handleSuites("4")
+                                                        }
+                                                        sx={
+                                                            suites === "4"
+                                                                ? {
+                                                                      minWidth:
+                                                                          "2rem",
+                                                                      height: "2rem",
+                                                                      borderRadius:
+                                                                          "10px",
+                                                                      color: "#ffffff",
+                                                                      backgroundColor:
+                                                                          "#205CA4",
+                                                                      "&:hover":
+                                                                          {
+                                                                              backgroundColor:
+                                                                                  "#205CA4",
+                                                                              color: "#ffffff",
+                                                                          },
+                                                                  }
+                                                                : {
+                                                                      minWidth:
+                                                                          "2rem",
+                                                                      height: "2rem",
+                                                                      borderRadius:
+                                                                          "10px",
+                                                                      backgroundColor:
+                                                                          "#f2f3f3",
+                                                                      "&:hover":
+                                                                          {
+                                                                              backgroundColor:
+                                                                                  "#f2f3f3",
+                                                                              color: "#205CA4",
+                                                                          },
+                                                                  }
+                                                        }
+                                                    >
+                                                        4+
+                                                    </Button>
+                                                </Box>
+                                            </Box>
+                                            <Box
+                                                sx={{
+                                                    display: "flex",
+                                                    flexDirection: "column",
+                                                    gap: "0.5rem",
+                                                    alignItems: "flex-start",
+                                                }}
+                                            >
+                                                <Typography
+                                                    sx={{
+                                                        fontSize: "0.87rem",
+                                                        color: "##45565B",
+                                                        fontWeight: "bold",
+                                                        fontFamily: "Roboto",
+                                                        lineHeight: "21px",
+                                                    }}
+                                                >
+                                                    Suítes
+                                                </Typography>
+                                                <Box
+                                                    sx={{
+                                                        display: "flex",
+                                                        flexDirection: "row",
+                                                        gap: "0.5rem",
+                                                    }}
+                                                >
+                                                    <Button
+                                                        onClick={() =>
+                                                            handleSuites("1")
+                                                        }
+                                                        sx={
+                                                            suites === "1"
+                                                                ? {
+                                                                      minWidth:
+                                                                          "2rem",
+                                                                      height: "2rem",
+                                                                      borderRadius:
+                                                                          "10px",
+                                                                      color: "#ffffff",
+                                                                      backgroundColor:
+                                                                          "#205CA4",
+                                                                      "&:hover":
+                                                                          {
+                                                                              backgroundColor:
+                                                                                  "#205CA4",
+                                                                              color: "#ffffff",
+                                                                          },
+                                                                  }
+                                                                : {
+                                                                      minWidth:
+                                                                          "2rem",
+                                                                      height: "2rem",
+                                                                      borderRadius:
+                                                                          "10px",
+                                                                      backgroundColor:
+                                                                          "#f2f3f3",
+                                                                      "&:hover":
+                                                                          {
+                                                                              backgroundColor:
+                                                                                  "#f2f3f3",
+                                                                              color: "#205CA4",
+                                                                          },
+                                                                  }
+                                                        }
+                                                    >
+                                                        1
+                                                    </Button>
+                                                    <Button
+                                                        onClick={() =>
+                                                            handleSuites("2")
+                                                        }
+                                                        sx={
+                                                            suites === "2"
+                                                                ? {
+                                                                      minWidth:
+                                                                          "2rem",
+                                                                      height: "2rem",
+                                                                      borderRadius:
+                                                                          "10px",
+                                                                      color: "#ffffff",
+                                                                      backgroundColor:
+                                                                          "#205CA4",
+                                                                      "&:hover":
+                                                                          {
+                                                                              backgroundColor:
+                                                                                  "#205CA4",
+                                                                              color: "#ffffff",
+                                                                          },
+                                                                  }
+                                                                : {
+                                                                      minWidth:
+                                                                          "2rem",
+                                                                      height: "2rem",
+                                                                      borderRadius:
+                                                                          "10px",
+                                                                      backgroundColor:
+                                                                          "#f2f3f3",
+                                                                      "&:hover":
+                                                                          {
+                                                                              backgroundColor:
+                                                                                  "#f2f3f3",
+                                                                              color: "#205CA4",
+                                                                          },
+                                                                  }
+                                                        }
+                                                    >
+                                                        2
+                                                    </Button>
+                                                    <Button
+                                                        onClick={() =>
+                                                            handleSuites("3")
+                                                        }
+                                                        sx={
+                                                            suites === "3"
+                                                                ? {
+                                                                      minWidth:
+                                                                          "2rem",
+                                                                      height: "2rem",
+                                                                      borderRadius:
+                                                                          "10px",
+                                                                      color: "#ffffff",
+                                                                      backgroundColor:
+                                                                          "#205CA4",
+                                                                      "&:hover":
+                                                                          {
+                                                                              backgroundColor:
+                                                                                  "#205CA4",
+                                                                              color: "#ffffff",
+                                                                          },
+                                                                  }
+                                                                : {
+                                                                      minWidth:
+                                                                          "2rem",
+                                                                      height: "2rem",
+                                                                      borderRadius:
+                                                                          "10px",
+                                                                      backgroundColor:
+                                                                          "#f2f3f3",
+                                                                      "&:hover":
+                                                                          {
+                                                                              backgroundColor:
+                                                                                  "#f2f3f3",
+                                                                              color: "#205CA4",
+                                                                          },
+                                                                  }
+                                                        }
+                                                    >
+                                                        3
+                                                    </Button>
+                                                    <Button
+                                                        onClick={() =>
+                                                            handleSuites("4")
+                                                        }
+                                                        sx={
+                                                            suites === "4"
+                                                                ? {
+                                                                      minWidth:
+                                                                          "2rem",
+                                                                      height: "2rem",
+                                                                      borderRadius:
+                                                                          "10px",
+                                                                      color: "#ffffff",
+                                                                      backgroundColor:
+                                                                          "#205CA4",
+                                                                      "&:hover":
+                                                                          {
+                                                                              backgroundColor:
+                                                                                  "#205CA4",
+                                                                              color: "#ffffff",
+                                                                          },
+                                                                  }
+                                                                : {
+                                                                      minWidth:
+                                                                          "2rem",
+                                                                      height: "2rem",
+                                                                      borderRadius:
+                                                                          "10px",
+                                                                      backgroundColor:
+                                                                          "#f2f3f3",
+                                                                      "&:hover":
+                                                                          {
+                                                                              backgroundColor:
+                                                                                  "#f2f3f3",
+                                                                              color: "#205CA4",
+                                                                          },
+                                                                  }
+                                                        }
+                                                    >
+                                                        4+
+                                                    </Button>
+                                                </Box>
+                                            </Box>
+                                            <div className="div">
+                                                <label htmlFor="area">
+                                                    Área{" "}
+                                                </label>
+                                                <div className="div__range">
+                                                    <div
+                                                        style={{
+                                                            display: "flex",
+                                                            alignItems:
+                                                                "center",
+                                                            gap: "1rem",
+                                                            fontWeight: 500,
+                                                            color: "#5C6476",
+                                                        }}
+                                                    >
+                                                        <div>{`${area.min}m²`}</div>
+                                                        <div>-</div>
+                                                        <div>{`${area.max}m²`}</div>
+                                                    </div>
+                                                    <div>
+                                                        <InputRange
+                                                            step={5}
+                                                            formatLabel={(
+                                                                value
+                                                            ) => null}
+                                                            draggableTrack={
+                                                                false
+                                                            }
+                                                            allowSameValues={
+                                                                false
+                                                            }
+                                                            maxValue={maxValue}
+                                                            minValue={0}
+                                                            value={area}
+                                                            onChange={setArea}
+                                                            onChangeComplete={(
+                                                                args
+                                                            ) =>
+                                                                console.log(
+                                                                    args
+                                                                )
+                                                            }
+                                                        />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <FormGroup
+                                                sx={{
+                                                    display: "flex",
+                                                    flexDirection: "row",
+                                                    gap: "1rem",
+                                                }}
+                                            >
+                                                <FormControlLabel
+                                                    sx={{
+                                                        fontFamily: "Roboto",
+                                                        fontWeight: "normal",
+                                                        fontSize: "14px",
+                                                        lineHeight: "21px",
+                                                        color: "#8C9193",
+                                                    }}
+                                                    control={
+                                                        <Checkbox
+                                                            onChange={() =>
+                                                                console.log(
+                                                                    "imoveis na planta"
+                                                                )
+                                                            }
+                                                            sx={{
+                                                                "&.Mui-checked":
+                                                                    {
+                                                                        color: "#205CA4",
+                                                                    },
+                                                            }}
+                                                        />
+                                                    }
+                                                    label="Imóveis na planta"
+                                                />
+                                                <FormControlLabel
+                                                    sx={{
+                                                        fontFamily: "Roboto",
+                                                        fontWeight: "normal",
+                                                        fontSize: "14px",
+                                                        lineHeight: "21px",
+                                                        color: "#8C9193",
+                                                    }}
+                                                    control={
+                                                        <Checkbox
+                                                            onChange={() =>
+                                                                console.log(
+                                                                    "ofertas"
+                                                                )
+                                                            }
+                                                            sx={{
+                                                                "&.Mui-checked":
+                                                                    {
+                                                                        color: "#205CA4",
+                                                                    },
+                                                            }}
+                                                        />
+                                                    }
+                                                    label="Ofertas"
+                                                />
+                                            </FormGroup>
+                                        </div>
+                                    </div>
+                                </div>
+                            </TabPanel>
+                        </Tabs>
+                        <div className="buttons__advanced">
+                            {codeSearch ? (
+                                ""
+                            ) : (
+                                <>
+                                    <button
+                                        type="button"
+                                        onClick={handleAdvanced}
+                                    >
+                                        {advanced ? (
+                                            <>
+                                                <span>Busca simples</span>
+                                                <img src={arrowTop} alt="" />
+                                            </>
+                                        ) : (
+                                            "Busca avançada +"
+                                        )}
+                                    </button>
+                                </>
+                            )}
+                            <button type="button" onClick={handleCode}>
+                                Busca por código
+                            </button>
+                        </div>
+                    </>
+                )}
             </main>
 
             <section className="redes">

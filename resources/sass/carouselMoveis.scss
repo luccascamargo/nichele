@@ -5,7 +5,7 @@
     margin-bottom: 93px;
 
     .box {
-        max-width: 384px;
+        max-width: 24rem;
         margin-right: 32px;
         height: 528px;
         border-radius: 40px;
@@ -50,6 +50,7 @@
             border-top-right-radius: 40px;
 
             object-fit: cover;
+            width: 100%;
         }
 
         .content {
@@ -58,7 +59,7 @@
             p {
                 font-style: normal;
                 font-weight: normal;
-                font-size: 14px;
+                font-size: 0.8rem;
                 line-height: 115%;
                 letter-spacing: -0.01em;
                 color: #5c6476;
@@ -109,9 +110,10 @@
     }
 
     .carouselButtonGroup {
-        max-width: 1216px;
+        max-width: 1248px;
         margin-left: auto;
         margin-right: auto;
+        padding: 0 2rem 0 2rem;
         left: 0;
         right: 0;
         text-align: center;
@@ -125,7 +127,7 @@
 
         .carouselHeader {
             display: flex;
-            gap: 45px;
+            gap: 2.813rem;
             justify-content: center;
             align-items: center;
 
@@ -133,7 +135,7 @@
                 font-family: "Nunito";
                 font-style: normal;
                 font-weight: bold;
-                font-size: 32px;
+                font-size: 2rem;
                 line-height: 115%;
                 letter-spacing: -0.01em;
                 color: #454b5b;
@@ -144,7 +146,7 @@
             font-family: "Nunito";
             font-style: normal;
             font-weight: bold;
-            font-size: 16px;
+            font-size: 1rem;
             line-height: 115%;
             letter-spacing: -0.01em;
             color: #205ca4;
@@ -153,7 +155,7 @@
         button {
             background-color: transparent;
             border: 0px solid;
-            font-size: 30px;
+            font-size: 1.87rem;
             cursor: pointer;
             padding-left: 2px;
             padding-right: 2px;

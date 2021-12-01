@@ -13,11 +13,25 @@
   -webkit-user-drag: none;
 }
 
-html {
-  line-height: 1.15;
-  /* 1 */
-  -webkit-text-size-adjust: 100%;
-  /* 2 */
+@media (max-width: 1080px) {
+  html {
+    font-size: 93.75%;
+  }
+}
+@media (max-width: 720px) {
+  html {
+    font-size: 87.5%;
+  }
+}
+@media (max-width: 600px) {
+  html {
+    font-size: 81.25%;
+  }
+}
+@media (max-width: 320px) {
+  html {
+    font-size: 75%;
+  }
 }
 
 /* Sections
@@ -357,7 +371,8 @@ button {
 
 .react-tabs {
   width: 100%;
-  max-width: 1216px;
+  max-width: 1248px;
+  padding: 0 2rem 0 2rem;
 }
 
 .react-tabs__tab-list {
@@ -402,15 +417,6 @@ button {
   align-items: center !important;
 }
 
-.input-range__track--active {
-  background: #7dafeb !important;
-}
-
-.input-range__slider {
-  background: #ffffff !important;
-  border: 1px solid #7dafeb !important;
-}
-
 .content__carousel__sobre {
   width: 35rem;
 }
@@ -443,6 +449,12 @@ button {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
+  transition: height 0.4s;
+}
+@media (max-width: 600px) {
+  .main {
+    height: 85rem;
+  }
 }
 .main h1 {
   font-family: "Nunito", sans-serif;
@@ -453,39 +465,260 @@ button {
   color: #ffffff;
   max-width: 35.063rem;
   margin-bottom: 4.875rem;
+  padding: 0 2rem 0 2rem;
 }
 .main .containerTab {
-  max-width: 1216px;
   width: 100%;
-  min-height: 140px;
   background: #ffffff;
   border-radius: 40px;
   margin-top: 40px;
   padding: 30px 72px 28px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 30px;
-  flex: 1;
   flex-wrap: wrap;
 }
-@media (max-width: 641px) {
+@media (max-width: 600px) {
   .main .containerTab {
+    padding: 30px 0 28px;
+  }
+}
+.main .containerTab .div__code {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.main .containerTab .div__code #input__code {
+  width: 75%;
+  height: 5rem;
+  border: none;
+}
+.main .containerTab .advanced__search {
+  display: none;
+  width: 100%;
+}
+.main .containerTab .advanced__search .content__advanced {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.main .containerTab .advanced__search .content__advanced .div {
+  position: relative;
+  /* input-range-slider */
+  /* input-range-track */
+  /* _input-range-slider.scss */
+  /* _input-range-label.scss */
+  /* not imported */
+  /* _input-range-label-container.scss */
+  /* _input-range-track.scss */
+  /* input-range */
+}
+.main .containerTab .advanced__search .content__advanced .div .input-range__slider {
+  border-radius: 100%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2rem;
+  width: 2rem;
+  margin-left: -1rem;
+  margin-top: -1rem;
+  outline: none;
+  position: absolute;
+  top: -1px;
+  transition: left 200ms ease-out;
+  will-change: left;
+}
+.main .containerTab .advanced__search .content__advanced .div .input-range__slider::before {
+  background: #ffffff;
+  border-radius: 100%;
+  display: block;
+  content: "";
+  height: 1rem;
+  width: 1rem;
+  transition: transform 200ms ease-out, box-shadow 200ms ease-out;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.09);
+  will-change: transform, box-shadow;
+  border: 2px solid #7dafeb;
+}
+.main .containerTab .advanced__search .content__advanced .div .input-range__slider:active::before {
+  transform: scale(1.15);
+}
+.main .containerTab .advanced__search .content__advanced .div .input-range__slider:focus::before {
+  box-shadow: 0 0 0 5px rgba(125, 175, 235, 0.2);
+}
+.input-range--disabled .main .containerTab .advanced__search .content__advanced .div .input-range__slider::before {
+  background: #cccccc;
+  border: 1px solid #cccccc;
+  box-shadow: none;
+  transform: none;
+}
+.main .containerTab .advanced__search .content__advanced .div .input-range__label-container {
+  display: none;
+}
+.main .containerTab .advanced__search .content__advanced .div .input-range__label-container .input-range__label--min,
+.main .containerTab .advanced__search .content__advanced .div .input-range__label-container .input-range__label--max {
+  display: none;
+}
+.main .containerTab .advanced__search .content__advanced .div .input-range__track {
+  background: #e6e9ea;
+  border-radius: 3px;
+  cursor: pointer;
+  display: block;
+  height: 3px;
+  position: relative;
+  transition: left 200ms ease-out, width 200ms ease-out;
+  will-change: left, width;
+}
+.input-range--disabled .main .containerTab .advanced__search .content__advanced .div .input-range__track {
+  background: #e6e9ea;
+}
+.main .containerTab .advanced__search .content__advanced .div .input-range__track--background {
+  margin-top: -1.5px;
+  top: 50%;
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+.main .containerTab .advanced__search .content__advanced .div .input-range__track--active {
+  background: #7dafeb;
+}
+.main .containerTab .advanced__search .content__advanced .div .input-range {
+  height: 1rem;
+  position: relative;
+  width: 100%;
+}
+.main .containerTab .active {
+  display: block;
+}
+.main .containerTab .simple__search {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+@media (max-width: 600px) {
+  .main .containerTab .simple__search {
     padding: 30px 20px 28px;
   }
 }
-.main .containerTab .div {
-  flex: 1 auto;
+.main .containerTab .simple__search .div {
+  position: relative;
+  height: 5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* input-range-slider */
+  /* input-range-track */
+  /* _input-range-slider.scss */
+  /* _input-range-label.scss */
+  /* not imported */
+  /* _input-range-label-container.scss */
+  /* _input-range-track.scss */
+  /* input-range */
 }
-.main .containerTab .div span.range {
-  font-family: "Roboto", sans-serif;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 16px;
-  line-height: 150%;
-  color: #5c6476;
-  opacity: 0.7;
-  margin-top: 33px;
+@media (max-width: 600px) {
+  .main .containerTab .simple__search .div {
+    align-items: center;
+    width: 100%;
+  }
+  .main .containerTab .simple__search .div .select {
+    width: 100%;
+    border: 1px solid #cccccc;
+    border-radius: 10px;
+  }
+}
+@media (max-width: 600px) {
+  .main .containerTab .simple__search .div .div__range {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .main .containerTab .simple__search .div .div__range .div__input__range {
+    width: 100%;
+  }
+}
+.main .containerTab .simple__search .div .input-range__slider {
+  border-radius: 100%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2rem;
+  width: 2rem;
+  margin-left: -1rem;
+  margin-top: -1rem;
+  outline: none;
+  position: absolute;
+  top: -1px;
+  transition: left 200ms ease-out;
+  will-change: left;
+}
+.main .containerTab .simple__search .div .input-range__slider::before {
+  background: #ffffff;
+  border-radius: 100%;
+  display: block;
+  content: "";
+  height: 1rem;
+  width: 1rem;
+  transition: transform 200ms ease-out, box-shadow 200ms ease-out;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.09);
+  will-change: transform, box-shadow;
+  border: 2px solid #7dafeb;
+}
+.main .containerTab .simple__search .div .input-range__slider:active::before {
+  transform: scale(1.15);
+}
+.main .containerTab .simple__search .div .input-range__slider:focus::before {
+  box-shadow: 0 0 0 5px rgba(125, 175, 235, 0.2);
+}
+.input-range--disabled .main .containerTab .simple__search .div .input-range__slider::before {
+  background: #cccccc;
+  border: 1px solid #cccccc;
+  box-shadow: none;
+  transform: none;
+}
+.main .containerTab .simple__search .div .input-range__label-container {
+  display: none;
+}
+.main .containerTab .simple__search .div .input-range__label-container .input-range__label--min,
+.main .containerTab .simple__search .div .input-range__label-container .input-range__label--max {
+  display: none;
+}
+.main .containerTab .simple__search .div .input-range__track {
+  background: #e6e9ea;
+  border-radius: 3px;
+  cursor: pointer;
+  display: block;
+  height: 3px;
+  position: relative;
+  transition: left 200ms ease-out, width 200ms ease-out;
+  will-change: left, width;
+}
+.input-range--disabled .main .containerTab .simple__search .div .input-range__track {
+  background: #e6e9ea;
+}
+.main .containerTab .simple__search .div .input-range__track--background {
+  margin-top: -1.5px;
+  top: 50%;
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+.main .containerTab .simple__search .div .input-range__track--active {
+  background: #7dafeb;
+}
+.main .containerTab .simple__search .div .input-range {
+  height: 1rem;
+  position: relative;
+  width: 100%;
 }
 .main .containerTab label {
   font-family: "Roboto", sans-serif;
@@ -496,7 +729,36 @@ button {
   color: #45565b;
   display: flex;
   gap: 23px;
-  margin-bottom: 33px;
+}
+.main .buttons__advanced {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  height: 3rem;
+}
+.main .buttons__advanced button {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-family: "Nunito";
+  font-weight: bold;
+  font-size: 1.1rem;
+  line-height: 21px;
+  letter-spacing: -0.01em;
+  color: rgba(255, 255, 255, 0.8);
+  border: none;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+@media (max-width: 600px) {
+  .addHeight {
+    height: 135rem;
+    justify-content: flex-start;
+    padding-top: 10rem;
+  }
 }
 
 .redes {
@@ -518,7 +780,7 @@ button {
   justify-content: center;
   align-items: center;
   gap: 20px;
-  width: 280px;
+  width: 270px;
   height: 88px;
   background: #ffffff;
   box-shadow: 0px 4px 50px rgba(45, 67, 95, 0.1);
@@ -626,6 +888,14 @@ button {
   width: 100%;
   max-width: 31.25rem;
 }
+@media (max-width: 600px) {
+  .header__contato .content__contato .infos__contato .title__contato {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+}
 .header__contato .content__contato .infos__contato .title__contato span {
   font-family: "Nunito";
   font-style: normal;
@@ -649,6 +919,11 @@ button {
   display: flex;
   flex-direction: column;
   gap: 3rem;
+}
+@media (max-width: 600px) {
+  .header__contato .content__contato .infos__contato section {
+    align-items: center;
+  }
 }
 .header__contato .content__contato .infos__contato section .phone__contato {
   display: flex;
@@ -776,6 +1051,17 @@ button {
   align-items: center;
   justify-content: space-between;
 }
+.container__navbar .navbar .logo {
+  width: 15.62rem;
+}
+.container__navbar .navbar .logo img {
+  width: 100%;
+}
+@media (max-width: 1024px) {
+  .container__navbar .navbar .navbar__items {
+    display: none;
+  }
+}
 .container__navbar .navbar .navbar__items ul {
   list-style: none;
   display: flex;
@@ -798,6 +1084,11 @@ button {
   display: flex;
   gap: 1rem;
 }
+@media (max-width: 1024px) {
+  .container__navbar .navbar .buttons {
+    display: none;
+  }
+}
 
 .moveis {
   position: relative;
@@ -806,7 +1097,7 @@ button {
   margin-bottom: 93px;
 }
 .moveis .box {
-  max-width: 384px;
+  max-width: 24rem;
   margin-right: 32px;
   height: 528px;
   border-radius: 40px;
@@ -846,6 +1137,7 @@ button {
   border-top-right-radius: 40px;
   -o-object-fit: cover;
      object-fit: cover;
+  width: 100%;
 }
 .moveis .box .content {
   padding: 28px;
@@ -853,7 +1145,7 @@ button {
 .moveis .box .content p {
   font-style: normal;
   font-weight: normal;
-  font-size: 14px;
+  font-size: 0.8rem;
   line-height: 115%;
   letter-spacing: -0.01em;
   color: #5c6476;
@@ -895,9 +1187,10 @@ button {
   gap: 9px;
 }
 .moveis .carouselButtonGroup {
-  max-width: 1216px;
+  max-width: 1248px;
   margin-left: auto;
   margin-right: auto;
+  padding: 0 2rem 0 2rem;
   left: 0;
   right: 0;
   text-align: center;
@@ -910,7 +1203,7 @@ button {
 }
 .moveis .carouselButtonGroup .carouselHeader {
   display: flex;
-  gap: 45px;
+  gap: 2.813rem;
   justify-content: center;
   align-items: center;
 }
@@ -918,7 +1211,7 @@ button {
   font-family: "Nunito";
   font-style: normal;
   font-weight: bold;
-  font-size: 32px;
+  font-size: 2rem;
   line-height: 115%;
   letter-spacing: -0.01em;
   color: #454b5b;
@@ -927,7 +1220,7 @@ button {
   font-family: "Nunito";
   font-style: normal;
   font-weight: bold;
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 115%;
   letter-spacing: -0.01em;
   color: #205ca4;
@@ -935,7 +1228,7 @@ button {
 .moveis .carouselButtonGroup button {
   background-color: transparent;
   border: 0px solid;
-  font-size: 30px;
+  font-size: 1.87rem;
   cursor: pointer;
   padding-left: 2px;
   padding-right: 2px;

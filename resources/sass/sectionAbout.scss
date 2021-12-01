@@ -7,6 +7,11 @@
     display: flex;
     align-items: flex-end;
 
+    @media screen and (max-width: 1024px) {
+        height: auto;
+        padding-top: 5rem;
+    }
+
     .content__sobre {
         width: 100%;
         max-width: 1248px;
@@ -17,8 +22,22 @@
         align-items: flex-end;
         gap: 2rem;
 
+        @media (max-width: 1024px) {
+            flex-direction: column;
+            align-items: center;
+            height: auto;
+        }
+
         .esq {
             padding-bottom: 10rem;
+
+            @media (max-width: 1024px) {
+                padding-bottom: 0;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
 
             h2 {
                 font-family: "Nunito";
@@ -48,6 +67,14 @@
 
         .dir {
             margin-bottom: -10rem;
+
+            img {
+                width: 100%;
+            }
+
+            @media screen and (max-width: 1024px) {
+                margin-bottom: 0;
+            }
         }
     }
 }

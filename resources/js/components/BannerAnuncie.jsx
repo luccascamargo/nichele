@@ -1,7 +1,7 @@
 /* eslint-disable import/no-unresolved */
 import "../../sass/bannerAnuncie.scss";
 
-import { Button } from "./Button";
+import { ButtonPrimary } from "./Button";
 
 import woman from "../../../public/assets/images/image-woman.png";
 
@@ -19,7 +19,7 @@ export const BannerAnuncie = () => {
                         confiáveis.
                     </p>
                     <a href="/anuncie">
-                        <Button>Clique aqui</Button>
+                        <ButtonPrimary>Clique aqui</ButtonPrimary>
                     </a>
                     <div className="bg" />
                 </div>
