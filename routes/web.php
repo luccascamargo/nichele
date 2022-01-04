@@ -44,3 +44,7 @@ Route::get('/anuncie', function () {
 Route::get('/imoveis', function () {
     return view('imoveis');
 });
+
+Route::get('/imovel', function () {
+    return view('imovel');
+});
