@@ -68,7 +68,7 @@ header {
     }
 }
 
-aside {
+.container__aside {
     width: 100%;
     background: #F3F7FF;
     padding: 2rem 0;
@@ -277,6 +277,13 @@ main {
             }
 
             .body__main {
+                @media (max-width: 1024px) {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 2rem;
+                    margin-top: 2rem
+                }
                 > span {
                     font-family: 'Roboto';
                     font-size: 18px;
@@ -484,132 +491,131 @@ main {
 }
 
 .carousel__relacionais {
+    width: 100%;
+    height: auto;
     padding: 2rem;
-    .carousel-items-relacionais{
-        .react-multi-carousel-track{
-            .item-relacionais {
-                .box__imoveis {
-                    width: 20rem;
-                    padding-bottom: 2rem;
+
+    margin-top: 5rem;
+
+    .box__imoveis {
+        width: 20rem;
+        padding-bottom: 2rem;
+        display: flex;
+        flex-direction: column;
+
+        background: #ffffff;
+        box-shadow: 0px 4px 60px rgba(32, 92, 164, 0.12);
+        border-radius: 40px;
+
+        position: relative;
+
+        @media (max-width: 1024px) {
+            height: auto;
+            padding: 0 0 1rem 0;
+        }
+
+        .sticker {
+            position: absolute;
+            top: 31px;
+            left: 21px;
+            width: 96px;
+            height: 37px;
+            background: #205ca4;
+            border-radius: 10px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            > span {
+                font-family: "Nunito";
+                font-style: normal;
+                font-weight: bold;
+                font-size: 1.1rem;
+                line-height: 21px;
+                letter-spacing: -0.01em;
+                color: #ffffff;
+            }
+        }
+
+        .infos {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+
+            padding: 1.5rem 1rem 1rem 1rem;
+
+            .top {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                .title__box {
                     display: flex;
                     flex-direction: column;
+                    gap: 0.3rem;
 
-                    background: #ffffff;
-                    box-shadow: 0px 4px 60px rgba(32, 92, 164, 0.12);
-                    border-radius: 40px;
-
-                    position: relative;
-
-                    @media (max-width: 1024px) {
-                        height: auto;
-                        padding: 0 0 1rem 0;
+                    > span {
+                        font-family: "Roboto";
+                        font-weight: bold;
+                        font-size: 1.1rem;
+                        line-height: 21px;
+                        letter-spacing: -0.01em;
+                        color: #454b5b;
                     }
 
-                    .sticker {
-                        position: absolute;
-                        top: 31px;
-                        left: 21px;
-                        width: 96px;
-                        height: 37px;
-                        background: #205ca4;
-                        border-radius: 10px;
+                    > p {
+                        font-family: "Roboto";
+                        font-weight: normal;
+                        font-size: 0.87rem;
+                        line-height: 16px;
+                        letter-spacing: -0.01em;
+                        color: #5c6476;
+                    }
+                }
 
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
+                .value__box {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-end;
+                    gap: 0.5rem;
 
-                        > span {
-                            font-family: "Nunito";
-                            font-style: normal;
-                            font-weight: bold;
-                            font-size: 1.1rem;
-                            line-height: 21px;
-                            letter-spacing: -0.01em;
-                            color: #ffffff;
-                        }
+                    > span {
+                        font-family: "Roboto";
+                        font-weight: 900;
+                        font-size: 1rem;
+                        line-height: 18px;
+                        letter-spacing: -0.01em;
+                        color: #205ca4;
                     }
 
-                    .infos {
-                        display: flex;
-                        flex-direction: column;
-                        gap: 1.2rem;
+                    > p {
+                        font-family: "Roboto";
+                        font-weight: normal;
+                        font-size: 0.87rem;
+                        line-height: 16px;
+                        letter-spacing: -0.01em;
+                        color: #8991a4;
+                    }
+                }
+            }
 
-                        padding: 1.5rem 1rem 1rem 1rem;
+            .bottom {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
 
-                        .top {
-                            display: flex;
-                            justify-content: space-between;
-                            align-items: center;
+                .desc {
+                    display: flex;
+                    gap: 9px;
 
-                            .title__box {
-                                display: flex;
-                                flex-direction: column;
-                                gap: 0.3rem;
-
-                                > span {
-                                    font-family: "Roboto";
-                                    font-weight: bold;
-                                    font-size: 1.1rem;
-                                    line-height: 21px;
-                                    letter-spacing: -0.01em;
-                                    color: #454b5b;
-                                }
-
-                                > p {
-                                    font-family: "Roboto";
-                                    font-weight: normal;
-                                    font-size: 0.87rem;
-                                    line-height: 16px;
-                                    letter-spacing: -0.01em;
-                                    color: #5c6476;
-                                }
-                            }
-
-                            .value__box {
-                                display: flex;
-                                flex-direction: column;
-                                align-items: flex-end;
-                                gap: 0.5rem;
-
-                                > span {
-                                    font-family: "Roboto";
-                                    font-weight: 900;
-                                    font-size: 1rem;
-                                    line-height: 18px;
-                                    letter-spacing: -0.01em;
-                                    color: #205ca4;
-                                }
-
-                                > p {
-                                    font-family: "Roboto";
-                                    font-weight: normal;
-                                    font-size: 0.87rem;
-                                    line-height: 16px;
-                                    letter-spacing: -0.01em;
-                                    color: #8991a4;
-                                }
-                            }
-                        }
-
-                        .bottom {
-                            display: flex;
-                            align-items: center;
-                            justify-content: space-between;
-
-                            .desc {
-                                display: flex;
-                                gap: 9px;
-
-                                > p {
-                                    font-family: "Roboto";
-                                    font-weight: normal;
-                                    font-size: 0.87rem;
-                                    line-height: 16px;
-                                    letter-spacing: -0.01em;
-                                    color: #5c6476;
-                                }
-                            }
-                        }
+                    > p {
+                        font-family: "Roboto";
+                        font-weight: normal;
+                        font-size: 0.87rem;
+                        line-height: 16px;
+                        letter-spacing: -0.01em;
+                        color: #5c6476;
                     }
                 }
             }
