@@ -20,3 +20,4 @@ require("./Blog");
 require("./BlogInterna");
 require("./Anuncie");
 require("./Imoveis");
+require("./Imovel");
