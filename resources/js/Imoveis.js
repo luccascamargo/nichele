@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/iframe-has-title */
 /* eslint-disable import/no-unresolved */
+import { useEffect } from 'react';
 import ReactDOM from "react-dom";
 
 import "../sass/imoveis.scss";
@@ -26,35 +27,299 @@ import {
 } from "@mui/material";
 import { Box } from "@mui/system";
 import InputRange from "react-input-range";
+import { api } from './plugins/api';
 
 export default function Imoveis() {
-    const [age, setAge] = useState("");
-    const [city, setCity] = useState("");
-    const [activeButton, setActiveButton] = useState("buy");
-    const [val, setVal] = useState({ min: 0, max: 10000 });
-    const [area, setArea] = useState({ min: 0, max: 100 });
+    const [buildings, setBuildings] = useState([]);
 
-    const [dorms, setDorms] = useState("1");
-    const [suites, setSuites] = useState("1");
-    const [bathroom, setBathroom] = useState("1");
-    const [vacancies, setVacancies] = useState("1");
+    const [cities, setCities] = useState([]);
+    const [districts, setDistricts] = useState([]);
+    const [types, setTypes] = useState([]);
+    const [code, setCode] = useState([]);
+    const [plant, setPlant] = useState(false);
+    const [offer, setOffer] = useState(false);
+
+    const [area, setArea] = useState({ min: 0, max: 10000 });
+    const [buildingType, setBuildingType] = useState('');
+    const [city, setCity] = useState('');
+    const [district, setDistrict] = useState('');
+    const [price, setPrice] = useState({ min: 0, max: 10000 });
+
+    const [activeButton, setActiveButton] = useState('1');
+
+    const [room, setRoom] = useState('');
+    const [suites, setSuites] = useState('');
+    const [toilet, setToilet] = useState('');
+    const [garage, setGarage] = useState('');
 
     const maxValue = 10000;
 
-    const handleActiveButton = (e) => setActiveButton(e);
+    const handleActiveButton = (e) => {
+        const url = (new URL(window.location.href)).searchParams;
 
-    const handleDorms = (event) => setDorms(event);
-    const handleSuites = (event) => setSuites(event);
-    const handleBathroom = (event) => setBathroom(event);
-    const handleVacancies = (event) => setVacancies(event);
+        if(!url.has('type')) {
+            url.append('type', e);
+            window.history.pushState(null, null, `/imoveis?${url.toString()}`);
+        } else {
+            url.set('type', e);
+            window.history.pushState(null, null, `/imoveis?${url.toString()}`);
+        }
 
-    const handleChange = (event) => {
-        setAge(event.target.value);
+        setActiveButton(e);
     };
+
+    const handleDorms = (event) => {
+        const url = (new URL(window.location.href)).searchParams;
+
+        if(!url.has('room')) {
+            url.append('room', event)
+            window.history.pushState(null, null, `/imoveis?${url.toString()}`)
+        } else {
+            url.set('room',event)
+            window.history.pushState(null, null, `/imoveis?${url.toString()}`)
+        }
+
+        setRoom(event);
+    };
+
+    const handleSuites = (event) => {
+        const url = (new URL(window.location.href)).searchParams;
+
+        if(!url.has('suites')) {
+            url.append('suites', event);
+            window.history.pushState(null, null, `/imoveis?${url.toString()}`);
+        } else {
+            url.set('suites',event);
+            window.history.pushState(null, null, `/imoveis?${url.toString()}`);
+        }
+
+        setSuites(event);
+    };
+
+    const handleBathroom = (event) => {
+        const url = (new URL(window.location.href)).searchParams;
+
+        if(!url.has('toilet')) {
+            url.append('toilet', event);
+            window.history.pushState(null, null, `/imoveis?${url.toString()}`);
+        } else {
+            url.set('toilet',event);
+            window.history.pushState(null, null, `/imoveis?${url.toString()}`);
+        }
+
+        setToilet(event);
+    };
+
+    const handleVacancies = (event) => {
+        const url = (new URL(window.location.href)).searchParams;
+
+        if(!url.has('garage')) {
+            url.append('garage', event);
+            window.history.pushState(null, null, `/imoveis?${url.toString()}`);
+        } else {
+            url.set('garage',event);
+            window.history.pushState(null, null, `/imoveis?${url.toString()}`);
+        }
+
+        setGarage(event);
+    };
+
+    const handleCode = (event) => {
+        const url = (new URL(window.location.href)).searchParams;
+
+        if(!url.has('code')) {
+            url.append('code', event);
+            window.history.pushState(null, null, `/imoveis?${url.toString()}`);
+        } else {
+            url.set('code',event);
+            window.history.pushState(null, null, `/imoveis?${url.toString()}`);
+        }
+
+        if(!event) {
+            url.delete('code');
+            window.history.pushState(null, null, `/imoveis?${url.toString()}`);
+        }
+
+        setCode(event);
+    }
+
+    const handleBuildingType = (event) => {
+        const url = (new URL(window.location.href)).searchParams;
+
+        if(!url.has('building_type')) {
+            url.append('building_type', event);
+            window.history.pushState(null, null, `/imoveis?${url.toString()}`);
+        } else {
+            url.set('building_type',event);
+            window.history.pushState(null, null, `/imoveis?${url.toString()}`);
+        }
+        setBuildingType(event);
+    }
 
     const handleCity = (event) => {
-        setCity(event.target.value);
-    };
+        const url = (new URL(window.location.href)).searchParams;
+
+        if(!url.has('city')) {
+            url.append('city', event);
+            window.history.pushState(null, null, `/imoveis?${url.toString()}`);
+        } else {
+            url.set('city',event);
+            window.history.pushState(null, null, `/imoveis?${url.toString()}`);
+        }
+
+        setCity(event);
+    }
+
+    const handleDistrict = (event) => {
+        const url = (new URL(window.location.href)).searchParams;
+
+        if(!url.has('district')) {
+            url.append('district', event);
+            window.history.pushState(null, null, `/imoveis?${url.toString()}`);
+        } else {
+            url.set('district', event);
+            window.history.pushState(null, null, `/imoveis?${url.toString()}`);
+        }
+
+        setDistrict(event);
+    }
+
+    const handlePrice = (event) => {
+        const url = (new URL(window.location.href)).searchParams;
+
+        if(!url.has('price')) {
+            url.append('price', event);
+            window.history.pushState(null, null, `/imoveis?${url.toString()}`);
+        } else {
+            url.set('price', event);
+            window.history.pushState(null, null, `/imoveis?${url.toString()}`);
+        }
+
+        setPrice(event);
+    }
+
+    const handleArea = (event) => {
+        const url = (new URL(window.location.href)).searchParams;
+
+        if(!url.has('area')) {
+            url.append('area', event);
+            window.history.pushState(null, null, `/imoveis?${url.toString()}`);
+        } else {
+            url.set('area', event);
+            window.history.pushState(null, null, `/imoveis?${url.toString()}`);
+        }
+
+        setArea(event);
+    }
+
+    const handlePlant = (event) => {
+        const url = (new URL(window.location.href)).searchParams;
+
+        if(!url.has('plant')) {
+            url.append('plant', event);
+            window.history.pushState(null, null, `/imoveis?${url.toString()}`);
+        } else {
+            url.set('plant', event);
+            window.history.pushState(null, null, `/imoveis?${url.toString()}`);
+        }
+
+        setPlant(event);
+    }
+
+    const handleOffer = (event) => {
+        const url = (new URL(window.location.href)).searchParams;
+
+        if(!url.has('plant')) {
+            url.append('plant', event);
+            window.history.pushState(null, null, `/imoveis?${url.toString()}`);
+        } else {
+            url.set('plant', event);
+            window.history.pushState(null, null, `/imoveis?${url.toString()}`);
+        }
+        setOffer(event);
+    }
+
+    function compareParamAndSet(param, state) {
+        const url = (new URL(window.location.href)).searchParams;
+
+        if(url.has(param)) {
+            if(url.get(param).indexOf('{') > -1) {
+                state(JSON.parse(url.get(param)));
+                return;
+            }
+
+            if(url.get(param) === 'true') {
+                state(Boolean(url.get(param)));
+                return;
+            }
+        }
+    }
+
+    useEffect(async () => {
+
+        compareParamAndSet('price', setPrice)
+
+        compareParamAndSet('area', setArea)
+
+        compareParamAndSet('room', setRoom)
+
+        compareParamAndSet('building_type', setBuildingType)
+
+        compareParamAndSet('district', setDistrict)
+
+        compareParamAndSet('suites', setSuites)
+
+        compareParamAndSet('toilet', setToilet)
+
+        compareParamAndSet('garage', setGarage)
+
+        compareParamAndSet('type', setActiveButton)
+
+        compareParamAndSet('city', setCity)
+
+        compareParamAndSet('code', setCode)
+
+        compareParamAndSet('plant', setPlant)
+
+        compareParamAndSet('offer', setOffer)
+
+        const city = async () => {
+            const {data} = await api.get('api/cities');
+            return data;
+        }
+
+        setCities(await city());
+
+        const neigh = async () => {
+            const {data} = await api.get('api/districts');
+
+            return data;
+        }
+
+        setDistricts(await neigh());
+
+        const types = async () => {
+            const {data} = await api.get('api/types');
+
+            return data;
+        }
+
+        setTypes(await types());
+
+        const buildings = async () => {
+            const url = (new URL(window.location.href)).searchParams;
+            let params = '';
+            if(url.toString() !== '') {
+                params = `?${url.toString()}`;
+            }
+
+            const {data} = await api.get(`api/buildings${params}`);
+            return data;
+        }
+
+        setBuildings(await buildings());
+    }, []);
+
 
     return (
         <div className="container__imoveis">
@@ -66,9 +331,9 @@ export default function Imoveis() {
                 <section className="section__filter">
                     <div className="buttons__content">
                         <Button
-                            onClick={() => handleActiveButton("buy")}
+                            onClick={() => handleActiveButton("1")}
                             sx={
-                                activeButton === "buy"
+                                activeButton === "1"
                                     ? {
                                           borderRadius: "10px",
                                           backgroundColor: "#FFDB21",
@@ -104,9 +369,9 @@ export default function Imoveis() {
                             Comprar
                         </Button>
                         <Button
-                            onClick={() => handleActiveButton("rent")}
+                            onClick={() => handleActiveButton("0")}
                             sx={
-                                activeButton === "rent"
+                                activeButton === "0"
                                     ? {
                                           borderRadius: "10px",
                                           backgroundColor: "#FFDB21",
@@ -146,6 +411,8 @@ export default function Imoveis() {
                     <TextField
                         id="standard-basic"
                         label="Código"
+                        value={code}
+                        onChange={(event) => handleCode(event?.target.value)}
                         variant="outlined"
                         sx={{
                             width: "22rem",
@@ -166,13 +433,15 @@ export default function Imoveis() {
                         <Select
                             labelId="demo-simple-select-filled-label"
                             id="demo-simple-select-filled"
-                            value={age}
-                            onChange={handleChange}
+                            value={buildingType}
+                            onChange={(event) => handleBuildingType(event?.target.value)}
                             sx={{
                                 width: "100%",
                             }}
                         >
-                            <MenuItem value="Ap">Apartamento</MenuItem>
+                            {types.map(({value,label}, index) => (
+                                <MenuItem key={index} value={value}>{label}</MenuItem>
+                            ))}
                         </Select>
                     </FormControl>
 
@@ -186,13 +455,16 @@ export default function Imoveis() {
                         <Select
                             labelId="cidade-label"
                             id="cidade"
+                            options={cities}
                             value={city}
-                            onChange={handleCity}
+                            onChange={(event) => handleCity(event?.target.value)}
                             sx={{
                                 width: "100%",
                             }}
                         >
-                            <MenuItem value="city">Caxias</MenuItem>
+                            {cities.map(({value, label}, index) => (
+                                <MenuItem key={index} value={value}>{label}</MenuItem>
+                            ) )}
                         </Select>
                     </FormControl>
 
@@ -206,13 +478,16 @@ export default function Imoveis() {
                         <Select
                             labelId="bairro-label"
                             id="bairro"
-                            value={city}
-                            onChange={handleCity}
+                            options={districts}
+                            value={district}
+                            onChange={(event) => handleDistrict(event?.target.value)}
                             sx={{
                                 width: "100%",
                             }}
                         >
-                            <MenuItem value="bairro">Jardim Eldorado</MenuItem>
+                            {districts.map(({value, label}, index) => (
+                                <MenuItem key={index} value={value}>{label}</MenuItem>
+                            ))}
                         </Select>
                     </FormControl>
 
@@ -229,7 +504,7 @@ export default function Imoveis() {
                             labelId="caracteristica-label"
                             id="caracteristica"
                             value={city}
-                            onChange={handleCity}
+                            onChange={(event) => setCity(event?.target.value)}
                             sx={{
                                 width: "100%",
                             }}
@@ -274,7 +549,7 @@ export default function Imoveis() {
                                 <Button
                                     onClick={() => handleDorms("1")}
                                     sx={
-                                        dorms === "1"
+                                        room === "1"
                                             ? {
                                                   minWidth: "2rem",
                                                   height: "2rem",
@@ -305,7 +580,7 @@ export default function Imoveis() {
                                 <Button
                                     onClick={() => handleDorms("2")}
                                     sx={
-                                        dorms === "2"
+                                        room === "2"
                                             ? {
                                                   minWidth: "2rem",
                                                   height: "2rem",
@@ -336,7 +611,7 @@ export default function Imoveis() {
                                 <Button
                                     onClick={() => handleDorms("3")}
                                     sx={
-                                        dorms === "3"
+                                        room === "3"
                                             ? {
                                                   minWidth: "2rem",
                                                   height: "2rem",
@@ -367,7 +642,7 @@ export default function Imoveis() {
                                 <Button
                                     onClick={() => handleDorms("4")}
                                     sx={
-                                        dorms === "4"
+                                        room === "4"
                                             ? {
                                                   minWidth: "2rem",
                                                   height: "2rem",
@@ -589,7 +864,7 @@ export default function Imoveis() {
                                 <Button
                                     onClick={() => handleBathroom("1")}
                                     sx={
-                                        bathroom === "1"
+                                        toilet === "1"
                                             ? {
                                                   minWidth: "2rem",
                                                   height: "2rem",
@@ -620,7 +895,7 @@ export default function Imoveis() {
                                 <Button
                                     onClick={() => handleBathroom("2")}
                                     sx={
-                                        bathroom === "2"
+                                        toilet === "2"
                                             ? {
                                                   minWidth: "2rem",
                                                   height: "2rem",
@@ -651,7 +926,7 @@ export default function Imoveis() {
                                 <Button
                                     onClick={() => handleBathroom("3")}
                                     sx={
-                                        bathroom === "3"
+                                        toilet === "3"
                                             ? {
                                                   minWidth: "2rem",
                                                   height: "2rem",
@@ -682,7 +957,7 @@ export default function Imoveis() {
                                 <Button
                                     onClick={() => handleBathroom("4")}
                                     sx={
-                                        bathroom === "4"
+                                        toilet === "4"
                                             ? {
                                                   minWidth: "2rem",
                                                   height: "2rem",
@@ -742,7 +1017,7 @@ export default function Imoveis() {
                                 <Button
                                     onClick={() => handleVacancies("1")}
                                     sx={
-                                        vacancies === "1"
+                                        garage === "1"
                                             ? {
                                                   minWidth: "2rem",
                                                   height: "2rem",
@@ -773,7 +1048,7 @@ export default function Imoveis() {
                                 <Button
                                     onClick={() => handleVacancies("2")}
                                     sx={
-                                        vacancies === "2"
+                                        garage === "2"
                                             ? {
                                                   minWidth: "2rem",
                                                   height: "2rem",
@@ -804,7 +1079,7 @@ export default function Imoveis() {
                                 <Button
                                     onClick={() => handleVacancies("3")}
                                     sx={
-                                        vacancies === "3"
+                                        garage === "3"
                                             ? {
                                                   minWidth: "2rem",
                                                   height: "2rem",
@@ -835,7 +1110,7 @@ export default function Imoveis() {
                                 <Button
                                     onClick={() => handleVacancies("4")}
                                     sx={
-                                        vacancies === "4"
+                                        garage === "4"
                                             ? {
                                                   minWidth: "2rem",
                                                   height: "2rem",
@@ -879,23 +1154,19 @@ export default function Imoveis() {
                                     color: "#5C6476",
                                 }}
                             >
-                                <div>{`R$${val.min}`}</div>
+                                <div>{`R$${price.min}`}</div>
                                 <div>-</div>
-                                <div>{`R$${val.max}`}</div>
+                                <div>{`R$${price.max}`}</div>
                             </div>
                             <div>
                                 <InputRange
                                     step={5}
-                                    formatLabel={(value) => null}
                                     draggableTrack={false}
                                     allowSameValues={false}
                                     maxValue={maxValue}
                                     minValue={0}
-                                    value={val}
-                                    onChange={setVal}
-                                    onChangeComplete={(args) =>
-                                        console.log(args)
-                                    }
+                                    value={price}
+                                    onChange={(event) => handlePrice(event)}
                                 />
                             </div>
                         </div>
@@ -920,16 +1191,12 @@ export default function Imoveis() {
                             <div>
                                 <InputRange
                                     step={5}
-                                    formatLabel={(value) => null}
                                     draggableTrack={false}
                                     allowSameValues={false}
-                                    maxValue={100}
+                                    maxValue={maxValue}
                                     minValue={0}
                                     value={area}
-                                    onChange={setArea}
-                                    onChangeComplete={(args) =>
-                                        console.log(args)
-                                    }
+                                    onChange={(event) => handleArea(event)}
                                 />
                             </div>
                         </div>
@@ -952,9 +1219,8 @@ export default function Imoveis() {
                             }}
                             control={
                                 <Checkbox
-                                    onChange={() =>
-                                        console.log("imoveis na planta")
-                                    }
+                                    onChange={(event) => handlePlant(event?.target.value)}
+                                    checked={plant}
                                     sx={{
                                         "&.Mui-checked": {
                                             color: "#205CA4",
@@ -974,7 +1240,8 @@ export default function Imoveis() {
                             }}
                             control={
                                 <Checkbox
-                                    onChange={() => console.log("ofertas")}
+                                    onChange={(event) => handleOffer(event?.target.value)}
+                                    checked={offer}
                                     sx={{
                                         "&.Mui-checked": {
                                             color: "#205CA4",
@@ -1066,134 +1333,40 @@ export default function Imoveis() {
                     </div>
                 </section>
                 <section className="section__imoveis">
-                    <div className="box__imoveis">
-                        <div className="sticker">
-                            <span>Venda</span>
-                        </div>
-                        <img src={imageBox} alt="Imagem imovel" />
-                        <div className="infos">
-                            <div className="top">
-                                <div className="title__box">
-                                    <span>Casa</span>
-                                    <p>Centro - Caxias do sul</p>
-                                </div>
-                                <div className="value__box">
-                                    <span>R$1.000,00</span>
-                                    <p>Cód:1934</p>
-                                </div>
+                {buildings?.data?.map((item) => (
+                        <div key={item.id} className="box__imoveis">
+                            <div className="sticker">
+                                <span>{item.type}</span>
                             </div>
-                            <div className="bottom">
-                                <div className="desc">
-                                    <img src={iconQuarto} alt="" />
-                                    <p>2 quartos</p>
+                            <img src={imageBox} alt="Imagem imovel" />
+                            <div className="infos">
+                                <div className="top">
+                                    <div className="title__box">
+                                        <span>{item.building_type.name}</span>
+                                        <p>Centro - Caxias do sul</p>
+                                    </div>
+                                    <div className="value__box">
+                                        <span>R$ 1.000,00</span>
+                                        <p>Cód: {item.code}</p>
+                                    </div>
                                 </div>
-                                <div className="desc">
-                                    <img src={iconCar} alt="" />
-                                    <p>1 vaga</p>
-                                </div>
-                                <div className="desc">
-                                    <img src={iconRegua} alt="" />
-                                    <p>98 m²</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="box__imoveis">
-                        <div className="sticker">
-                            <span>Venda</span>
-                        </div>
-                        <img src={imageBox} alt="Imagem imovel" />
-                        <div className="infos">
-                            <div className="top">
-                                <div className="title__box">
-                                    <span>Casa</span>
-                                    <p>Centro - Caxias do sul</p>
-                                </div>
-                                <div className="value__box">
-                                    <span>R$1.000,00</span>
-                                    <p>Cód:1934</p>
-                                </div>
-                            </div>
-                            <div className="bottom">
-                                <div className="desc">
-                                    <img src={iconQuarto} alt="" />
-                                    <p>2 quartos</p>
-                                </div>
-                                <div className="desc">
-                                    <img src={iconCar} alt="" />
-                                    <p>1 vaga</p>
-                                </div>
-                                <div className="desc">
-                                    <img src={iconRegua} alt="" />
-                                    <p>98 m²</p>
+                                <div className="bottom">
+                                    <div className="desc">
+                                        <img src={iconQuarto} alt="" />
+                                        <p>{item.rooms} quartos</p>
+                                    </div>
+                                    <div className="desc">
+                                        <img src={iconCar} alt="" />
+                                        <p>{item.garage} vaga</p>
+                                    </div>
+                                    <div className="desc">
+                                        <img src={iconRegua} alt="" />
+                                        <p>{item.private_area} m²</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div className="box__imoveis">
-                        <div className="sticker">
-                            <span>Venda</span>
-                        </div>
-                        <img src={imageBox} alt="Imagem imovel" />
-                        <div className="infos">
-                            <div className="top">
-                                <div className="title__box">
-                                    <span>Casa</span>
-                                    <p>Centro - Caxias do sul</p>
-                                </div>
-                                <div className="value__box">
-                                    <span>R$1.000,00</span>
-                                    <p>Cód:1934</p>
-                                </div>
-                            </div>
-                            <div className="bottom">
-                                <div className="desc">
-                                    <img src={iconQuarto} alt="" />
-                                    <p>2 quartos</p>
-                                </div>
-                                <div className="desc">
-                                    <img src={iconCar} alt="" />
-                                    <p>1 vaga</p>
-                                </div>
-                                <div className="desc">
-                                    <img src={iconRegua} alt="" />
-                                    <p>98 m²</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="box__imoveis">
-                        <div className="sticker">
-                            <span>Venda</span>
-                        </div>
-                        <img src={imageBox} alt="Imagem imovel" />
-                        <div className="infos">
-                            <div className="top">
-                                <div className="title__box">
-                                    <span>Casa</span>
-                                    <p>Centro - Caxias do sul</p>
-                                </div>
-                                <div className="value__box">
-                                    <span>R$1.000,00</span>
-                                    <p>Cód:1934</p>
-                                </div>
-                            </div>
-                            <div className="bottom">
-                                <div className="desc">
-                                    <img src={iconQuarto} alt="" />
-                                    <p>2 quartos</p>
-                                </div>
-                                <div className="desc">
-                                    <img src={iconCar} alt="" />
-                                    <p>1 vaga</p>
-                                </div>
-                                <div className="desc">
-                                    <img src={iconRegua} alt="" />
-                                    <p>98 m²</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    ))}
                 </section>
             </main>
             <Footer />
