@@ -5,6 +5,17 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { useForm } from "react-hook-form";
 
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css";
+
+
+// import Swiper core and required modules
+import SwiperCore from "swiper";
+
+// install Swiper modules
+
 
 import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
@@ -118,7 +129,7 @@ export const Imovel = () => {
                     <img src={image} alt="image" />
                 </div>
             </Carousel>
-            <aside>
+            <div className="container__aside">
                 <div className="content__aside">
                     <div className="top">
                         <div className="top__esq">
@@ -169,7 +180,7 @@ export const Imovel = () => {
                         </div>
                     </div>
                 </div>
-            </aside>
+            </div>
 
             <main>
                 <div className="content__main">
@@ -300,27 +311,39 @@ export const Imovel = () => {
                 </div>
             </main>
             <div className="carousel__relacionais">
-            <Carousel
-                partialVisible={true}
-                additionalTransfrom={0}
-                arrows={false}
-                autoPlaySpeed={8000}
-                centerMode={false}
-                containerClass="carousel-items-relacionais"
-                draggable
-                focusOnSelect={false}
-                infinite
-                itemClass="item-relacionais"
-                keyBoardControl
-                minimumTouchDrag={80}
-                renderDotsOutside={false}
-                responsive={responsive}
-                showDots={false}
-                sliderClass=""
-                slidesToSlide={2}
-                customTransition={"transform 800ms ease-in-out"}
+            <Swiper
+                slidesPerView={3}
+                spaceBetween={30}
+                className="mySwiper"
+                breakpoints={{
+                    "320": {
+                        slidesPerView: 1,
+                        spaceBetween: 10
+                      },
+                    "425": {
+                      slidesPerView: 1,
+                      spaceBetween: 10
+                    },
+                    "768": {
+                        slidesPerView: 2,
+                        spaceBetween: 20
+                      },
+                    "1024": {
+                      slidesPerView: 3,
+                      spaceBetween: 30
+                    },
+                    "1440": {
+                      slidesPerView: 4,
+                      spaceBetween: 40
+                    },
+                    "1920": {
+                        slidesPerView: 5,
+                        spaceBetween: 60
+                      }
+                  }}
             >
-                <div className="box__imoveis">
+                <SwiperSlide>
+                    <div className="box__imoveis">
                     <div className="sticker">
                         <span>Venda</span>
                     </div>
@@ -352,7 +375,9 @@ export const Imovel = () => {
                         </div>
                     </div>
                 </div>
-                <div className="box__imoveis">
+                </SwiperSlide>
+                <SwiperSlide>
+                    <div className="box__imoveis">
                     <div className="sticker">
                         <span>Venda</span>
                     </div>
@@ -384,7 +409,9 @@ export const Imovel = () => {
                         </div>
                     </div>
                 </div>
-                <div className="box__imoveis">
+                </SwiperSlide>
+                <SwiperSlide>
+                    <div className="box__imoveis">
                     <div className="sticker">
                         <span>Venda</span>
                     </div>
@@ -416,7 +443,9 @@ export const Imovel = () => {
                         </div>
                     </div>
                 </div>
-                <div className="box__imoveis">
+                </SwiperSlide>
+                <SwiperSlide>
+                    <div className="box__imoveis">
                     <div className="sticker">
                         <span>Venda</span>
                     </div>
@@ -448,7 +477,76 @@ export const Imovel = () => {
                         </div>
                     </div>
                 </div>
-            </Carousel>
+                </SwiperSlide>
+                <SwiperSlide>
+                    <div className="box__imoveis">
+                    <div className="sticker">
+                        <span>Venda</span>
+                    </div>
+                    <img src={imageBox} alt="Imagem imovel" />
+                    <div className="infos">
+                        <div className="top">
+                            <div className="title__box">
+                                <span>Casa</span>
+                                <p>Centro - Caxias do sul</p>
+                            </div>
+                            <div className="value__box">
+                                <span>R$1.000,00</span>
+                                <p>Cód:1934</p>
+                            </div>
+                        </div>
+                        <div className="bottom">
+                            <div className="desc">
+                                <img src={iconCama} alt="" />
+                                <p>2 quartos</p>
+                            </div>
+                            <div className="desc">
+                                <img src={iconCar} alt="" />
+                                <p>1 vaga</p>
+                            </div>
+                            <div className="desc">
+                                <img src={iconRegua} alt="" />
+                                <p>98 m²</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </SwiperSlide>
+                <SwiperSlide>
+                    <div className="box__imoveis">
+                    <div className="sticker">
+                        <span>Venda</span>
+                    </div>
+                    <img src={imageBox} alt="Imagem imovel" />
+                    <div className="infos">
+                        <div className="top">
+                            <div className="title__box">
+                                <span>Casa</span>
+                                <p>Centro - Caxias do sul</p>
+                            </div>
+                            <div className="value__box">
+                                <span>R$1.000,00</span>
+                                <p>Cód:1934</p>
+                            </div>
+                        </div>
+                        <div className="bottom">
+                            <div className="desc">
+                                <img src={iconCama} alt="" />
+                                <p>2 quartos</p>
+                            </div>
+                            <div className="desc">
+                                <img src={iconCar} alt="" />
+                                <p>1 vaga</p>
+                            </div>
+                            <div className="desc">
+                                <img src={iconRegua} alt="" />
+                                <p>98 m²</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </SwiperSlide>
+            </Swiper>
             </div>
             <Footer />
         </>
@@ -458,5 +556,7 @@ export const Imovel = () => {
 if (document.getElementById("imovel")) {
     ReactDOM.render(<Imovel />, document.getElementById("imovel"));
 }
+
+
 
 

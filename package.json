@@ -48,6 +48,7 @@
         "react-select": "^5.2.0",
         "react-sweet-wizard": "^1.0.3",
         "react-tabs": "^3.2.3",
+        "swiper": "^7.4.1",
         "yup": "^0.32.11"
     }
 }
