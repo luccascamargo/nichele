@@ -20,3 +20,5 @@ Route::apiResource('contacts', ContactController::class)->only('store');
 Route::get('cities', [BuildingController::class, 'city']);
 Route::get('districts', [BuildingController::class, 'district']);
 Route::get('types', [BuildingController::class, 'type']);
+Route::get('emphasis', [BuildingController::class, 'emphasis']);
+Route::get('commercials', [BuildingController::class, 'commercial']);

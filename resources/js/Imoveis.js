@@ -35,7 +35,7 @@ export default function Imoveis() {
     const [cities, setCities] = useState([]);
     const [districts, setDistricts] = useState([]);
     const [types, setTypes] = useState([]);
-    const [code, setCode] = useState([]);
+    const [code, setCode] = useState('');
     const [plant, setPlant] = useState(false);
     const [offer, setOffer] = useState(false);
 
@@ -59,10 +59,10 @@ export default function Imoveis() {
 
         if(!url.has('type')) {
             url.append('type', e);
-            window.history.pushState(null, null, `/imoveis?${url.toString()}`);
+
         } else {
             url.set('type', e);
-            window.history.pushState(null, null, `/imoveis?${url.toString()}`);
+
         }
 
         setActiveButton(e);
@@ -73,10 +73,8 @@ export default function Imoveis() {
 
         if(!url.has('room')) {
             url.append('room', event)
-            window.history.pushState(null, null, `/imoveis?${url.toString()}`)
         } else {
             url.set('room',event)
-            window.history.pushState(null, null, `/imoveis?${url.toString()}`)
         }
 
         setRoom(event);
@@ -87,10 +85,10 @@ export default function Imoveis() {
 
         if(!url.has('suites')) {
             url.append('suites', event);
-            window.history.pushState(null, null, `/imoveis?${url.toString()}`);
+
         } else {
             url.set('suites',event);
-            window.history.pushState(null, null, `/imoveis?${url.toString()}`);
+
         }
 
         setSuites(event);
@@ -101,10 +99,10 @@ export default function Imoveis() {
 
         if(!url.has('toilet')) {
             url.append('toilet', event);
-            window.history.pushState(null, null, `/imoveis?${url.toString()}`);
+
         } else {
             url.set('toilet',event);
-            window.history.pushState(null, null, `/imoveis?${url.toString()}`);
+
         }
 
         setToilet(event);
@@ -115,10 +113,10 @@ export default function Imoveis() {
 
         if(!url.has('garage')) {
             url.append('garage', event);
-            window.history.pushState(null, null, `/imoveis?${url.toString()}`);
+
         } else {
             url.set('garage',event);
-            window.history.pushState(null, null, `/imoveis?${url.toString()}`);
+
         }
 
         setGarage(event);
@@ -129,15 +127,15 @@ export default function Imoveis() {
 
         if(!url.has('code')) {
             url.append('code', event);
-            window.history.pushState(null, null, `/imoveis?${url.toString()}`);
+
         } else {
             url.set('code',event);
-            window.history.pushState(null, null, `/imoveis?${url.toString()}`);
+
         }
 
         if(!event) {
             url.delete('code');
-            window.history.pushState(null, null, `/imoveis?${url.toString()}`);
+
         }
 
         setCode(event);
@@ -148,10 +146,10 @@ export default function Imoveis() {
 
         if(!url.has('building_type')) {
             url.append('building_type', event);
-            window.history.pushState(null, null, `/imoveis?${url.toString()}`);
+
         } else {
             url.set('building_type',event);
-            window.history.pushState(null, null, `/imoveis?${url.toString()}`);
+
         }
         setBuildingType(event);
     }
@@ -161,10 +159,10 @@ export default function Imoveis() {
 
         if(!url.has('city')) {
             url.append('city', event);
-            window.history.pushState(null, null, `/imoveis?${url.toString()}`);
+
         } else {
             url.set('city',event);
-            window.history.pushState(null, null, `/imoveis?${url.toString()}`);
+
         }
 
         setCity(event);
@@ -175,10 +173,10 @@ export default function Imoveis() {
 
         if(!url.has('district')) {
             url.append('district', event);
-            window.history.pushState(null, null, `/imoveis?${url.toString()}`);
+
         } else {
             url.set('district', event);
-            window.history.pushState(null, null, `/imoveis?${url.toString()}`);
+
         }
 
         setDistrict(event);
@@ -189,10 +187,10 @@ export default function Imoveis() {
 
         if(!url.has('price')) {
             url.append('price', event);
-            window.history.pushState(null, null, `/imoveis?${url.toString()}`);
+
         } else {
             url.set('price', event);
-            window.history.pushState(null, null, `/imoveis?${url.toString()}`);
+
         }
 
         setPrice(event);
@@ -203,10 +201,10 @@ export default function Imoveis() {
 
         if(!url.has('area')) {
             url.append('area', event);
-            window.history.pushState(null, null, `/imoveis?${url.toString()}`);
+
         } else {
             url.set('area', event);
-            window.history.pushState(null, null, `/imoveis?${url.toString()}`);
+
         }
 
         setArea(event);
@@ -217,10 +215,10 @@ export default function Imoveis() {
 
         if(!url.has('plant')) {
             url.append('plant', event);
-            window.history.pushState(null, null, `/imoveis?${url.toString()}`);
+
         } else {
             url.set('plant', event);
-            window.history.pushState(null, null, `/imoveis?${url.toString()}`);
+
         }
 
         setPlant(event);
@@ -231,10 +229,10 @@ export default function Imoveis() {
 
         if(!url.has('plant')) {
             url.append('plant', event);
-            window.history.pushState(null, null, `/imoveis?${url.toString()}`);
+
         } else {
             url.set('plant', event);
-            window.history.pushState(null, null, `/imoveis?${url.toString()}`);
+
         }
         setOffer(event);
     }
@@ -253,6 +251,60 @@ export default function Imoveis() {
                 return;
             }
         }
+    }
+
+    const handleSubmitSearch = async () => {
+        const params = new URLSearchParams();
+
+        if(buildingType) {
+            params.append('building_type', buildingType);
+        }
+
+        if(city) {
+           params.append('city',city);
+        }
+
+        if(district) {
+            params.append('district',district);
+        }
+
+        if(price) {
+            params.append('price',JSON.stringify(price));
+        }
+
+        if(room) {
+            params.append('room', room);
+        }
+
+        if(suites) {
+            params.append('suites',suites);
+        }
+
+        if(toilet) {
+            params.append('toilet', toilet);
+        }
+
+        if(garage) {
+            params.append('garage', garage);
+        }
+
+        if(area) {
+            params.append('area', JSON.stringify(area));
+        }
+
+        if(code) {
+            params.append('code', code);
+        }
+
+        if(plant) {
+            params.append('plant', plant);
+        }
+
+        if(offer) {
+            params.append('offer', offer);
+        }
+        
+        setBuildings((await api.get(`api/buildings?${params.toString()}`)).data);
     }
 
     useEffect(async () => {
@@ -319,6 +371,23 @@ export default function Imoveis() {
 
         setBuildings(await buildings());
     }, []);
+
+    const handleSubmitReset = async () => {
+        setBuildingType('');
+        setCity('');
+        setDistrict('');
+        setPrice({min: 0, max: 10000});
+        setRoom(0);
+        setSuites(0);
+        setToilet(0);
+        setGarage(0);
+        setArea({min: 0, max: 10000});
+        setCode('');
+        setPlant(false);
+        setOffer(false);
+
+        setBuildings(await api.get(`api/buildings`));
+    }
 
 
     return (
@@ -1255,7 +1324,7 @@ export default function Imoveis() {
 
                     <div className="buttons__content">
                         <Button
-                            onClick={() => handleActiveButton("clear")}
+                            onClick={() => handleSubmitReset()}
                             sx={
                                 activeButton === "clear"
                                     ? {
@@ -1293,7 +1362,7 @@ export default function Imoveis() {
                             Limpar
                         </Button>
                         <Button
-                            onClick={() => handleActiveButton("buscar")}
+                            onClick={() => handleSubmitSearch()}
                             sx={
                                 activeButton === "buscar"
                                     ? {
@@ -1334,39 +1403,39 @@ export default function Imoveis() {
                 </section>
                 <section className="section__imoveis">
                 {buildings?.data?.map((item) => (
-                        <div key={item.id} className="box__imoveis">
-                            <div className="sticker">
-                                <span>{item.type}</span>
-                            </div>
-                            <img src={imageBox} alt="Imagem imovel" />
-                            <div className="infos">
-                                <div className="top">
-                                    <div className="title__box">
-                                        <span>{item.building_type.name}</span>
-                                        <p>Centro - Caxias do sul</p>
-                                    </div>
-                                    <div className="value__box">
-                                        <span>R$ 1.000,00</span>
-                                        <p>Cód: {item.code}</p>
-                                    </div>
+                    <div key={item.id} className="box__imoveis">
+                        <div className="sticker">
+                            <span>{item.type}</span>
+                        </div>
+                        <img src={imageBox} alt="Imagem imovel" />
+                        <div className="infos">
+                            <div className="top">
+                                <div className="title__box">
+                                    <span>{item.building_type.name}</span>
+                                    <p>{item.address.place}</p>
                                 </div>
-                                <div className="bottom">
-                                    <div className="desc">
-                                        <img src={iconQuarto} alt="" />
-                                        <p>{item.rooms} quartos</p>
-                                    </div>
-                                    <div className="desc">
-                                        <img src={iconCar} alt="" />
-                                        <p>{item.garage} vaga</p>
-                                    </div>
-                                    <div className="desc">
-                                        <img src={iconRegua} alt="" />
-                                        <p>{item.private_area} m²</p>
-                                    </div>
+                                <div className="value__box">
+                                    <span>{item.price}</span>
+                                    <p>Cód: {item.code}</p>
+                                </div>
+                            </div>
+                            <div className="bottom">
+                                <div className="desc">
+                                    <img src={iconQuarto} alt="" />
+                                    <p>{item.rooms} quartos</p>
+                                </div>
+                                <div className="desc">
+                                    <img src={iconCar} alt="" />
+                                    <p>{item.garage} vaga</p>
+                                </div>
+                                <div className="desc">
+                                    <img src={iconRegua} alt="" />
+                                    <p>{item.private_area} m²</p>
                                 </div>
                             </div>
                         </div>
-                    ))}
+                    </div>
+                ))}
                 </section>
             </main>
             <Footer />

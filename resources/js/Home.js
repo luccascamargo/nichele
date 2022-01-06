@@ -132,7 +132,7 @@ function Home() {
 
         if(plant) {
             params.append('plant', plant);
-        } 
+        }
 
         if(offer) {
             params.append('offer', offer);
@@ -143,7 +143,7 @@ function Home() {
 
         window.location.href = `/imoveis?${params.toString()}`;
     }
-    
+
     useEffect(async function() {
         const city = async () => {
             const {data} = await api.get('api/cities');
@@ -151,7 +151,7 @@ function Home() {
         }
 
         setCities(await city());
-        
+
         const neigh = async () => {
             const {data} = await api.get('api/districts');
 
@@ -165,9 +165,8 @@ function Home() {
 
             return data;
         }
-    
-        setTypes(await types());
 
+        setTypes(await types());
     },[])
 
     return (

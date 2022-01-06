@@ -19,7 +19,7 @@ class CreateBuildingsTable extends Migration
             $table->foreignIdFor(\App\Models\Type::class)->constrained('types')->cascadeOnDelete();
             $table->char('code');
             $table->string('description');
-            $table->enum('type', ['sell','rent', 'both'])->default('sell');
+            $table->enum('type', ['sell','rent'])->default('sell');
             $table->char('total_area');
             $table->char('private_area');
             $table->integer('toilets');
@@ -29,6 +29,8 @@ class CreateBuildingsTable extends Migration
             $table->boolean('exclusive')->default(false);
             $table->boolean('plant')->default(false);
             $table->boolean('offer')->default(false);
+            $table->boolean('emphasis')->default(false);
+            $table->boolean('commercial')->default(false);
             $table->enum('status',['pending','sold','rented', 'cancelled'])->default('pending');
             $table->timestamps();
         });

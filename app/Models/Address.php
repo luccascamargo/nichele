@@ -11,6 +11,8 @@ class Address extends Model
 
     protected $fillable = ['zipcode','address','neighborhood','complement','city','state','number','long','lat'];
 
+    protected $appends = ['place'];
+
     public function building()
     {
         return $this->hasOne(Building::class);
@@ -19,5 +21,10 @@ class Address extends Model
     public function contact()
     {
         return $this->hasOne(Contact::class);
+    }
+
+    public function getPlaceAttribute()
+    {
+        return "{$this->attributes['neighborhood']}, {$this->attributes['city']} - {$this->attributes['state']}";
     }
 }

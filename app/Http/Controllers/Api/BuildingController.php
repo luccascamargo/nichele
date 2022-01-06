@@ -85,4 +85,13 @@ class BuildingController extends Controller
         return $building->load('address','type','characteristics');
     }
 
+    public function emphasis()
+    {
+        return Building::where('emphasis',1)->isPending()->get();
+    }
+
+    public function commercial()
+    {
+        return Building::where('commercial',1)->isPending()->get();
+    }
 }

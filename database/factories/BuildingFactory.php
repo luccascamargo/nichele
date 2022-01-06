@@ -16,18 +16,23 @@ class BuildingFactory extends Factory
     public function definition()
     {
         $total = $this->faker->randomFloat(2);
+        $emphasis = $this->faker->numberBetween(0,1);
         return [
             'address_id' => Address::factory(),
             'type_id' => Type::factory(),
             'code' => $this->faker->numberBetween(100,15000),
             'description' => $this->faker->sentence,
-            'type' => $this->faker->randomElement(['sell','rent','both']),
+            'type' => $this->faker->randomElement(['sell','rent']),
             'total_area' => $total,
             'private_area' => $this->faker->randomFloat(2,1000,$total),
             'toilets' => $this->faker->numberBetween(1, 10),
             'rooms' => $this->faker->numberBetween(1, 10),
             'suite' => $this->faker->numberBetween(1, 10),
             'garage' => $this->faker->numberBetween(1, 10),
+            'plant' => $this->faker->numberBetween(0,1),
+            'offer' => $this->faker->numberBetween(0,1),
+            'emphasis' => $this->faker->numberBetween(0,1),
+            'commercial' => $emphasis ? 0 : 1,
             'status' => $this->faker->randomElement(['pending','sold','rented','cancelled'])
         ];
     }

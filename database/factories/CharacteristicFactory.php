@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Building;
+use App\Models\Type;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class CharacteristicFactory extends Factory

@@ -9,7 +9,7 @@ class Building extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['address_id','code', 'type_id', 'description', 'type', 'total_area', 'private_area', 'toilets', 'rooms', 'suites', 'garage', 'exclusive', 'status'];
+    protected $fillable = ['address_id','code', 'type_id', 'description', 'type', 'total_area', 'private_area', 'toilets', 'rooms', 'suites', 'garage', 'exclusive', 'plant', 'offer', 'emphasis', 'commercial', 'status'];
 
     protected $casts = [
         'total_area' => 'float',
@@ -18,8 +18,16 @@ class Building extends Model
         'rooms' => 'integer',
         'suites' => 'integer',
         'garage' => 'integer',
-        'exclusive' => 'boolean'
+        'exclusive' => 'boolean',
+        'plant' => 'boolean',
+        'offer' => 'boolean',
+        'emphasis' => 'boolean',
+        'commercial' => 'boolean'
     ];
+
+    protected $appends = ['price'];
+
+    protected $with = ['address', 'buildingType'];
 
     public function address()
     {
@@ -72,12 +80,14 @@ class Building extends Model
 
     public function scopeWhenWherePrice($query, $bool, $price)
     {
+        $price = json_decode($price, true);
+
         $query->when($bool, function ($query) use ($price) {
             $query->whereHas('characteristics', function ($query) use ($price) {
                 $query->where(function ($query) use ($price) {
-                    $query->where('name', 'Alugar')->where('price', $price);
+                    $query->where('description', 'Alugar')->whereBetween('price', [$price['min'], $price['max']]);
                 })->orWhere(function ($query) use ($price) {
-                    $query->where('name', 'Venda')->where('price', $price);
+                    $query->where('description', 'Venda')->whereBetween('price', [$price['min'], $price['max']]);
                 });
             });
         });
@@ -129,8 +139,10 @@ class Building extends Model
 
     public function scopeWhenWhereArea($query, $bool, $area)
     {
+        $area = json_decode($area, true);
+
         $query->when($bool, function ($query) use ($area) {
-            $query->where('private_area', 'like', "%{$area}%");
+            $query->whereBetween('private_area',[$area['min'], $area['max']]);
         });
     }
 
@@ -163,5 +175,12 @@ class Building extends Model
     public function getTypeAttribute()
     {
         return $this->attributes['type'] == 'rent' ? "Alugar" : 'Venda';
+    }
+
+    public function getPriceAttribute()
+    {
+        $fmt = numfmt_create('pt-br',\NumberFormatter::CURRENCY);
+
+        return numfmt_format_currency($fmt, $this->characteristics->whereIn('description', ['Venda','Alugar'])->first()->price, 'BRL');
     }
 }

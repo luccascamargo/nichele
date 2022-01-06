@@ -1,7 +1,10 @@
 /* eslint-disable no-unused-vars */
+import {useState, useEffect} from 'react';
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { IoIosArrowRoundBack, IoIosArrowRoundForward } from "react-icons/io";
+
+import {api} from '../plugins/api';
 
 import imgMovel from "../../../public/assets/images/movel.png";
 import imgBed from "../../../public/assets/svg/bed-icon.svg";
@@ -46,13 +49,24 @@ const ButtonGroup = ({ next, previous }) => {
                 </div>
             </div>
             <div>
-                <a href="/">encontre mais imóveis</a>
+                <a href="/imoveis">encontre mais imóveis</a>
             </div>
         </div>
     );
 };
 
-const CarouselMoveis = ({ deviceType, items = [] }) => {
+const CarouselMoveis = () => {
+    const [emphasis, setEmphasis] = useState([]);
+
+    useEffect(async () => {
+        const emphasi = async () => {
+            const {data} = await api.get('api/emphasis');
+
+            return data;
+        }
+
+        setEmphasis(await emphasi());
+    }, [])
     return (
         <div className="moveis">
             <Carousel
@@ -79,223 +93,63 @@ const CarouselMoveis = ({ deviceType, items = [] }) => {
                 slidesToSlide={1}
                 customTransition={"transform 800ms ease-in-out"}
             >
-                <div className="box">
-                    <a href="/">
-                        <span className="tipo">Aluguel</span>
-                        <img
-                            className="image"
-                            src={imgMovel}
-                            width={"384px"}
-                            height={"384px"}
-                            alt="teste"
-                        />
-                        <div className="content">
-                            <div className="info">
-                                <div>
-                                    <p className="title">Apartamento</p>
-                                    <p className="local">
-                                        Universitário - Caxias do Sul
-                                    </p>
+                {emphasis?.map(item => (
+                    <div key={item.id} className="box">
+                        <a href="/">
+                            <span className="tipo">{item.type}</span>
+                            <img
+                                className="image"
+                                src={imgMovel}
+                                width={"384px"}
+                                height={"384px"}
+                                alt="teste"
+                            />
+                            <div className="content">
+                                <div className="info">
+                                    <div>
+                                        <p className="title">{item.building_type.name}</p>
+                                        <p className="local">
+                                            {item.address.place}
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <p className="price">{item.price}</p>
+                                        <p className="code">Cód:{item.code}</p>
+                                    </div>
                                 </div>
-                                <div>
-                                    <p className="price">R$1.000,00</p>
-                                    <p className="code">Cód:1934</p>
-                                </div>
-                            </div>
-                            <div className="data">
-                                <div>
-                                    <img
-                                        src={imgBed}
-                                        width={imgBed.width}
-                                        height={imgBed.height}
-                                        alt="Quartos"
-                                    />
-                                    <p>2 quartos</p>
-                                </div>
-                                <div>
-                                    <img
-                                        src={imgCar}
-                                        width={imgCar.width}
-                                        height={imgCar.height}
-                                        alt="Vagas"
-                                    />
-                                    <p>1 vaga</p>
-                                </div>
-                                <div>
-                                    <img
-                                        src={imgSize}
-                                        width={imgSize.width}
-                                        height={imgSize.height}
-                                        alt="Metros"
-                                    />
-                                    <p>28 mª</p>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div className="box">
-                    <a href="/">
-                        <img
-                            className="image"
-                            src={imgMovel}
-                            width={"384px"}
-                            height={"384px"}
-                            alt="teste"
-                        />
-                        <div className="content">
-                            <div className="info">
-                                <div>
-                                    <p className="title">Apartamento</p>
-                                    <p className="local">
-                                        Universitário - Caxias do Sul
-                                    </p>
-                                </div>
-                                <div>
-                                    <p className="price">R$1.000,00</p>
-                                    <p className="code">Cód:1934</p>
+                                <div className="data">
+                                    <div>
+                                        <img
+                                            src={imgBed}
+                                            width={imgBed.width}
+                                            height={imgBed.height}
+                                            alt="Quartos"
+                                        />
+                                        <p>{item.rooms} quartos</p>
+                                    </div>
+                                    <div>
+                                        <img
+                                            src={imgCar}
+                                            width={imgCar.width}
+                                            height={imgCar.height}
+                                            alt="Vagas"
+                                        />
+                                        <p>{item.garage} vaga</p>
+                                    </div>
+                                    <div>
+                                        <img
+                                            src={imgSize}
+                                            width={imgSize.width}
+                                            height={imgSize.height}
+                                            alt="Metros"
+                                        />
+                                        <p>{item.private_area} mª</p>
+                                    </div>
                                 </div>
                             </div>
-                            <div className="data">
-                                <div>
-                                    <img
-                                        src={imgBed}
-                                        width={imgBed.width}
-                                        height={imgBed.height}
-                                        alt="Quartos"
-                                    />
-                                    <p>2 quartos</p>
-                                </div>
-                                <div>
-                                    <img
-                                        src={imgCar}
-                                        width={imgCar.width}
-                                        height={imgCar.height}
-                                        alt="Vagas"
-                                    />
-                                    <p>1 vaga</p>
-                                </div>
-                                <div>
-                                    <img
-                                        src={imgSize}
-                                        width={imgSize.width}
-                                        height={imgSize.height}
-                                        alt="Metros"
-                                    />
-                                    <p>28 mª</p>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div className="box">
-                    <a href="/">
-                        <img
-                            className="image"
-                            src={imgMovel}
-                            width={"384px"}
-                            height={"384px"}
-                            alt="teste"
-                        />
-                        <div className="content">
-                            <div className="info">
-                                <div>
-                                    <p className="title">Apartamento</p>
-                                    <p className="local">
-                                        Universitário - Caxias do Sul
-                                    </p>
-                                </div>
-                                <div>
-                                    <p className="price">R$1.000,00</p>
-                                    <p className="code">Cód:1934</p>
-                                </div>
-                            </div>
-                            <div className="data">
-                                <div>
-                                    <img
-                                        src={imgBed}
-                                        width={imgBed.width}
-                                        height={imgBed.height}
-                                        alt="Quartos"
-                                    />
-                                    <p>2 quartos</p>
-                                </div>
-                                <div>
-                                    <img
-                                        src={imgCar}
-                                        width={imgCar.width}
-                                        height={imgCar.height}
-                                        alt="Vagas"
-                                    />
-                                    <p>1 vaga</p>
-                                </div>
-                                <div>
-                                    <img
-                                        src={imgSize}
-                                        width={imgSize.width}
-                                        height={imgSize.height}
-                                        alt="Metros"
-                                    />
-                                    <p>28 mª</p>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div className="box">
-                    <a href="/">
-                        <img
-                            className="image"
-                            src={imgMovel}
-                            width={"384px"}
-                            height={"384px"}
-                            alt="teste"
-                        />
-                        <div className="content">
-                            <div className="info">
-                                <div>
-                                    <p className="title">Apartamento</p>
-                                    <p className="local">
-                                        Universitário - Caxias do Sul
-                                    </p>
-                                </div>
-                                <div>
-                                    <p className="price">R$1.000,00</p>
-                                    <p className="code">Cód:1934</p>
-                                </div>
-                            </div>
-                            <div className="data">
-                                <div>
-                                    <img
-                                        src={imgBed}
-                                        width={imgBed.width}
-                                        height={imgBed.height}
-                                        alt="Quartos"
-                                    />
-                                    <p>2 quartos</p>
-                                </div>
-                                <div>
-                                    <img
-                                        src={imgCar}
-                                        width={imgCar.width}
-                                        height={imgCar.height}
-                                        alt="Vagas"
-                                    />
-                                    <p>1 vaga</p>
-                                </div>
-                                <div>
-                                    <img
-                                        src={imgSize}
-                                        width={imgSize.width}
-                                        height={imgSize.height}
-                                        alt="Metros"
-                                    />
-                                    <p>28 mª</p>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
+                        </a>
+                    </div>
+                ))}
             </Carousel>
         </div>
     );
