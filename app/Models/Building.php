@@ -9,7 +9,7 @@ class Building extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['address_id','code', 'type_id', 'description', 'type', 'total_area', 'private_area', 'toilets', 'rooms', 'suites', 'garage', 'exclusive', 'plant', 'offer', 'emphasis', 'commercial', 'status'];
+    protected $fillable = ['address_id','code', 'type_id', 'description', 'type','price', 'total_area', 'private_area', 'toilets', 'rooms', 'suites', 'garage', 'exclusive', 'plant', 'offer', 'emphasis', 'commercial', 'status'];
 
     protected $casts = [
         'total_area' => 'float',
@@ -22,7 +22,8 @@ class Building extends Model
         'plant' => 'boolean',
         'offer' => 'boolean',
         'emphasis' => 'boolean',
-        'commercial' => 'boolean'
+        'commercial' => 'boolean',
+        'price' => 'float'
     ];
 
     protected $appends = ['price'];
@@ -41,7 +42,7 @@ class Building extends Model
 
     public function characteristics()
     {
-        return $this->hasMany(Characteristic::class);
+        return $this->belongsToMany(Characteristic::class);
     }
 
     public function scopeWhenWhereType($query, $bool, $type)

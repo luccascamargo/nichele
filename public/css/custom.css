@@ -1,0 +1,44 @@
+:root {
+    --primary-color: #315f98;
+    --primary-color-hover: #3d73b9;
+}
+
+textarea.form-control {
+    resize: none;
+}
+
+.btn.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn.btn-primary:hover, .btn.btn-primary:hover:not(.btn-active) {
+    background-color: var(--primary-color-hover) !important;
+    border-color: var(--primary-color-hover);
+}
+
+.aside {
+    background-color: var(--primary-color);
+}
+
+.aside .aside-menu .menu .menu-item.hover:not(.here)>.menu-link:not(.disabled):not(.active):not(.here) .menu-title,
+.aside .aside-menu .menu .menu-item:not(.here) .menu-link:hover:not(.disabled):not(.active):not(.here) .menu-title,
+.aside .aside-menu .menu .menu-item .menu-link .menu-title,
+.aside .aside-menu .menu .menu-item.here>.menu-link .menu-title{
+    color: white;
+}
+
+.aside .aside-menu .menu .menu-item .menu-link.active .menu-bullet .bullet {
+    background-color: white;
+}
+
+.aside .aside-menu .menu .menu-item .menu-link.active .menu-title,
+.aside .aside-menu .menu .menu-item.show>.menu-link .menu-title{
+    color: #dcdbdb;
+}
+
+@media (max-width: 991.98px) {
+    .header {
+        background-color: var(--primary-color);
+    }
+}

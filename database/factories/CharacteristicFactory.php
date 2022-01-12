@@ -16,10 +16,7 @@ class CharacteristicFactory extends Factory
     public function definition()
     {
         return [
-            'building_id' => Building::factory(),
-            'description' => $this->faker->randomElement(['Venda','Alugar']),
-            'price' => $this->faker->randomFloat(2,0, 1000000),
-            'confirmation' => $this->faker->numberBetween(0,1)
+            'description' => $this->faker->text(100),
         ];
     }
 }

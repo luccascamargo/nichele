@@ -23,6 +23,7 @@ class BuildingFactory extends Factory
             'code' => $this->faker->numberBetween(100,15000),
             'description' => $this->faker->sentence,
             'type' => $this->faker->randomElement(['sell','rent']),
+            'price' => $this->faker->randomFloat(2,1000,100000),
             'total_area' => $total,
             'private_area' => $this->faker->randomFloat(2,1000,$total),
             'toilets' => $this->faker->numberBetween(1, 10),

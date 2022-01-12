@@ -9,15 +9,15 @@ class Characteristic extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['building_id','description','price','confirmation'];
+    protected $fillable = ['description','price','confirmation'];
 
     protected $casts = [
         'confirmation' => 'boolean',
         'price' => 'double'
     ];
 
-    public function building()
+    public function buildings()
     {
-        return $this->belongsTo(Building::class);
+        return $this->belongsToMany(Building::class);
     }
 }

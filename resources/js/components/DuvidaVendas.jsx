@@ -5,19 +5,18 @@
 import "../../sass/duvidaDoc.scss";
 
 import { DuvidaItems } from "../components/DuvidaItems";
-import { list } from "../lib/listDuvidas";
 
-export const DuvidaVendas = () => {
+export const DuvidaVendas = ({datas}) => {
     return (
         <>
             <div className="container__duvidas__doc">
                 <ul className="list_container">
-                    {list.map((item, index) => (
+                    {datas.map((item, index) => (
                         <div key={index}>
                             <li key={index} className="list__item">
                                 <DuvidaItems
                                     title={item.title}
-                                    description={item.description}
+                                    description={item.content}
                                 />
                             </li>
                         </div>

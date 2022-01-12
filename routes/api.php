@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Api\BuildingController;
 use App\Http\Controllers\Api\ContactController;
+use App\Http\Controllers\Api\FaqController;
+use App\Http\Controllers\Api\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,3 +24,7 @@ Route::get('districts', [BuildingController::class, 'district']);
 Route::get('types', [BuildingController::class, 'type']);
 Route::get('emphasis', [BuildingController::class, 'emphasis']);
 Route::get('commercials', [BuildingController::class, 'commercial']);
+Route::get('faqs', [FaqController::class, 'index']);
+Route::apiResource('posts', PostController::class)->only('index','show')->scoped([
+    'post' => 'slug'
+]);

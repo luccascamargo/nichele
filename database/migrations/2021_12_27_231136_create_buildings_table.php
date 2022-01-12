@@ -20,6 +20,7 @@ class CreateBuildingsTable extends Migration
             $table->char('code');
             $table->string('description');
             $table->enum('type', ['sell','rent'])->default('sell');
+            $table->double('price', 10,2);
             $table->char('total_area');
             $table->char('private_area');
             $table->integer('toilets');

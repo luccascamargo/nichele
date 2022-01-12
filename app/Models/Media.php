@@ -9,15 +9,15 @@ class Media extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['building_id','name','path','order','default'];
+    protected $fillable = ['name','path','order','default'];
 
     protected $casts = [
         'order' => 'integer',
         'default' => 'boolean'
     ];
 
-    public function building()
+    public function owner()
     {
-        return $this->belongsTo(Building::class);
+        return $this->morphTo();
     }
 }

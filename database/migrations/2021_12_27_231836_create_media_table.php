@@ -15,10 +15,10 @@ class CreateMediaTable extends Migration
     {
         Schema::create('media', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(\App\Models\Building::class)->constrained('buildings')->cascadeOnDelete();
+            $table->morphs('owner');
             $table->string('name');
             $table->string('path');
-            $table->integer('order');
+            $table->integer('order')->nullable();
             $table->boolean('default')->default(false);
             $table->timestamps();
         });

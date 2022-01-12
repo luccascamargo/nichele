@@ -19,11 +19,11 @@ Route::get('/', function () {
 
 Route::get('/contato', function () {
     return view('contato');
-});
+})->name('contact');
 
 Route::get('/sobre', function () {
     return view('sobre');
-});
+})->name('about');
 
 Route::get('/duvidas', function () {
     return view('duvidas');
@@ -33,7 +33,7 @@ Route::get('/blog', function () {
     return view('blog');
 });
 
-Route::get('/blog/interna', function () {
+Route::get('/blog/{slug?}', function () {
     return view('bloginterna');
 });
 
@@ -43,8 +43,11 @@ Route::get('/anuncie', function () {
 
 Route::get('/imoveis', function () {
     return view('imoveis');
-});
+})->name('buildings');
 
 Route::get('/imovel', function () {
     return view('imovel');
 });
+
+require __DIR__ . '/auth.php';
+require __DIR__ . '/dashboard.php';

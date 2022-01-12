@@ -15,11 +15,15 @@ class CreateCharacteristicsTable extends Migration
     {
         Schema::create('characteristics', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(\App\Models\Building::class)->constrained('buildings')->cascadeOnDelete();
             $table->string('description');
-            $table->decimal('price', 10,2);
-            $table->boolean('confirmation')->default(true);
             $table->timestamps();
+        });
+
+        Schema::create('building_characteristic', function(Blueprint $table) {
+            $table->foreignIdFor(\App\Models\Building::class)->constrained('buildings')->cascadeOnDelete();
+            $table->foreignIdFor(\App\Models\Characteristic::class)->constrained('characteristics')->cascadeOnDelete();
+            $table->decimal('price', 10,2)->nullable();
+            $table->boolean('confirmation')->default(false);
         });
     }
 
@@ -30,6 +34,7 @@ class CreateCharacteristicsTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('building_characteristic');
         Schema::dropIfExists('characteristics');
     }
 }
