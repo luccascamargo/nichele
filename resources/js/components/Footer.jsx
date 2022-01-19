@@ -27,19 +27,19 @@ export const Footer = () => {
                             </a>
                         </div>
                         <div className="sociais">
-                            <a href="/">
+                        <a href="https://www.facebook.com/NicheleImoveis" target="_blank" rel="noreferrer">
                                 <img
                                     src={logoFacebook}
                                     alt="Instagram Nichele"
                                 />
                             </a>
-                            <a href="/">
+                            <a href="https://www.instagram.com/nicheleimoveis/" target="_blank" rel="noreferrer">
                                 <img
                                     src={logoInstagram}
                                     alt="Instagram Nichele"
                                 />
                             </a>
-                            <a href="/">
+                            <a href="https://www.linkedin.com/company/imobili%C3%A1ria-nichele/" target="_blank" rel="noreferrer">
                                 <img
                                     src={logoLinkedin}
                                     alt="Instagram Nichele"
@@ -48,14 +48,18 @@ export const Footer = () => {
                         </div>
                     </div>
                     <div className="buttons">
-                        <ButtonPrimary>
-                            <img src={logoWhats} alt="Whats Nichele" />
-                            Whats vendas
-                        </ButtonPrimary>
-                        <ButtonPrimary>
-                            <img src={logoWhats} alt="Whats Nichele" />
-                            Whats locação
-                        </ButtonPrimary>
+                    <a href="https://wa.me/54999678976" className="box" target="_blank" rel="noreferrer">
+                            <ButtonPrimary>
+                                <img src={logoWhats} alt="Whats Nichele" />
+                                Whats vendas
+                            </ButtonPrimary>
+                        </a>
+                        <a href="https://wa.me/54999678976" className="box" target="_blank" rel="noreferrer">
+                            <ButtonPrimary>
+                                <img src={logoWhats} alt="Whats Nichele" />
+                                Whats locação
+                            </ButtonPrimary>
+                        </a>
                         <ButtonClient text="Área do cliente" footer />
                     </div>
                 </div>

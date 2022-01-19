@@ -236,12 +236,6 @@ function Home() {
                                         <div className="div">
                                             <label htmlFor="tipoMovel">
                                                 Tipo de Imóvel{" "}
-                                                <img
-                                                    src={imgDropdown}
-                                                    width={imgDropdown.width}
-                                                    height={imgDropdown.height}
-                                                    alt="Selecione"
-                                                />
                                             </label>
                                             <Select
                                                 id="tipoMovel"
@@ -258,12 +252,6 @@ function Home() {
                                         <div className="div">
                                             <label htmlFor="cidade">
                                                 Cidade{" "}
-                                                <img
-                                                    src={imgDropdown}
-                                                    width={imgDropdown.width}
-                                                    height={imgDropdown.height}
-                                                    alt="Selecione"
-                                                />
                                             </label>
                                             <Select
                                                 id="cidade"
@@ -280,12 +268,7 @@ function Home() {
                                         <div className="div">
                                             <label htmlFor="bairro">
                                                 Bairro{" "}
-                                                <img
-                                                    src={imgDropdown}
-                                                    width={imgDropdown.width}
-                                                    height={imgDropdown.height}
-                                                    alt="Selecione"
-                                                />
+
                                             </label>
                                             <Select
                                                 id="bairro"
@@ -1212,12 +1195,6 @@ function Home() {
                                         <div className="div">
                                             <label htmlFor="tipoMovel">
                                                 Tipo de Imóvel{" "}
-                                                <img
-                                                    src={imgDropdown}
-                                                    width={imgDropdown.width}
-                                                    height={imgDropdown.height}
-                                                    alt="Selecione"
-                                                />
                                             </label>
                                             <Select
                                                 id="tipoMovel"
@@ -1234,12 +1211,6 @@ function Home() {
                                         <div className="div">
                                             <label htmlFor="cidade">
                                                 Cidade{" "}
-                                                <img
-                                                    src={imgDropdown}
-                                                    width={imgDropdown.width}
-                                                    height={imgDropdown.height}
-                                                    alt="Selecione"
-                                                />
                                             </label>
                                             <Select
                                                 id="cidade"
@@ -1256,12 +1227,6 @@ function Home() {
                                         <div className="div">
                                             <label htmlFor="bairro">
                                                 Bairro{" "}
-                                                <img
-                                                    src={imgDropdown}
-                                                    width={imgDropdown.width}
-                                                    height={imgDropdown.height}
-                                                    alt="Selecione"
-                                                />
                                             </label>
                                             <Select
                                                 id="bairro"
@@ -2217,7 +2182,7 @@ function Home() {
 
             <section className="redes">
                 <div className="wrap">
-                    <a href="/" className="box">
+                    <a href="https://wa.me/54999678976" className="box" target="_blank" rel="noreferrer">
                         <img
                             src={imgWhats}
                             width={imgWhats.width}
@@ -2230,7 +2195,7 @@ function Home() {
                         </div>
                     </a>
 
-                    <a href="/" className="box">
+                    <a href="https://wa.me/54999678976" className="box" target="_blank" rel="noreferrer">
                         <img
                             src={imgWhats}
                             width={imgWhats.width}
@@ -2243,7 +2208,7 @@ function Home() {
                         </div>
                     </a>
 
-                    <a href="/" className="box">
+                    <a href="mailto:nichele@nicheleimoveis.com.br" className="box">
                         <img
                             src={imgEmail}
                             width={imgEmail.width}
@@ -2260,7 +2225,7 @@ function Home() {
                         <div className="boxInner">
                             <span>nos siga nas redes</span>
                             <div className="social">
-                                <a href="/">
+                                <a href="https://www.facebook.com/NicheleImoveis" target="_blank" rel="noreferrer">
                                     <img
                                         src={imgFace}
                                         width={imgFace.width}
@@ -2268,7 +2233,7 @@ function Home() {
                                         alt="Facebook"
                                     />
                                 </a>
-                                <a href="/">
+                                <a href="https://www.instagram.com/nicheleimoveis/" target="_blank" rel="noreferrer">
                                     <img
                                         src={imgInsta}
                                         width={imgInsta.width}
@@ -2276,7 +2241,7 @@ function Home() {
                                         alt="Instagram"
                                     />
                                 </a>
-                                <a href="/">
+                                <a href="https://www.linkedin.com/company/imobili%C3%A1ria-nichele/" target="_blank" rel="noreferrer">
                                     <img
                                         src={imgLinke}
                                         width={imgLinke.width}
