@@ -4,6 +4,28 @@ import { useForm, Controller } from "react-hook-form";
 import Select from "react-select";
 import { ButtonPrimary } from "./Button";
 
+const customStyles = {
+    option: (provided, state) => ({
+        ...provided,
+        color: state.isSelected ? "#7dafeb" : "#000000",
+    }),
+    control: () => ({
+        // none of react-select's styles are passed to <Control />
+        display: "flex",
+        alignItems: "center",
+        border: "none",
+        borderRadius: '10px',
+        height: '3.5rem',
+        backgroundColor: '#f2f2f2'
+    }),
+    singleValue: (provided, state) => {
+        const opacity = state.isDisabled ? 0.5 : 1;
+        const transition = "opacity 300ms";
+
+        return { ...provided, opacity, transition };
+    },
+};
+
 export const Form = () => {
     const {
         register,
@@ -42,7 +64,8 @@ export const Form = () => {
                         render={({ field }) => (
                             <Select
                                 {...field}
-                                placeholder="teste"
+                                styles={customStyles}
+                                placeholder="Selecione"
                                 className="select__input"
                                 options={[
                                     { value: "chocolate", label: "Chocolate" },

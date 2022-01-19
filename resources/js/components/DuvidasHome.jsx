@@ -17,7 +17,7 @@ export const DuvidasHome = () => {
                     <p>Confira ao lado as dúvidas frequentes</p>
                     <span>
                         <img src={icon2} alt="icon" />
-                        <a href="/">Confira todas as dúvidas</a>
+                        <a href="/duvidas">Confira todas as dúvidas</a>
                     </span>
                 </div>
                 <div className="content__dir">

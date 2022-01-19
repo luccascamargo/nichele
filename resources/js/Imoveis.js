@@ -170,6 +170,10 @@ export default function Imoveis() {
                             onChange={handleChange}
                             sx={{
                                 width: "100%",
+                                borderRadius: "10px",
+                                '&:before': {
+                                    display: "none",
+                                }
                             }}
                         >
                             <MenuItem value="Ap">Apartamento</MenuItem>
@@ -190,6 +194,10 @@ export default function Imoveis() {
                             onChange={handleCity}
                             sx={{
                                 width: "100%",
+                                borderRadius: "10px",
+                                '&:before': {
+                                    display: "none",
+                                }
                             }}
                         >
                             <MenuItem value="city">Caxias</MenuItem>
@@ -210,6 +218,10 @@ export default function Imoveis() {
                             onChange={handleCity}
                             sx={{
                                 width: "100%",
+                                borderRadius: "10px",
+                                '&:before': {
+                                    display: "none",
+                                }
                             }}
                         >
                             <MenuItem value="bairro">Jardim Eldorado</MenuItem>
@@ -232,6 +244,10 @@ export default function Imoveis() {
                             onChange={handleCity}
                             sx={{
                                 width: "100%",
+                                borderRadius: "10px",
+                                '&:before': {
+                                    display: "none",
+                                }
                             }}
                         >
                             <MenuItem value="caracteristica">teste</MenuItem>
@@ -1028,37 +1044,19 @@ export default function Imoveis() {
                         <Button
                             onClick={() => handleActiveButton("buscar")}
                             sx={
-                                activeButton === "buscar"
-                                    ? {
-                                          borderRadius: "10px",
-                                          backgroundColor: "#FFDB21",
-                                          color: "#205CA4",
-                                          width: "13.5rem",
-                                          height: "3rem",
-                                          fontFamily: "Nunito",
-                                          fontWeight: "bold",
-                                          lineHeight: "18px",
-                                          letterSpacing: "-0.01em",
-                                          "&:hover": {
-                                              backgroundColor: "#FFDB21",
-                                              color: "#205CA4",
-                                          },
-                                      }
-                                    : {
-                                          borderRadius: "10px",
-                                          backgroundColor: "#F2F2F2",
-                                          color: "#B2B2B2",
-                                          width: "13.5rem",
-                                          height: "3rem",
-                                          fontFamily: "Nunito",
-                                          fontWeight: "bold",
-                                          lineHeight: "18px",
-                                          letterSpacing: "-0.01em",
-                                          "&:hover": {
-                                              backgroundColor: "#FFDB21",
-                                              color: "#205CA4",
-                                          },
-                                      }
+                                {borderRadius: "10px",
+                                backgroundColor: "#FFDB21",
+                                color: "#205CA4",
+                                width: "13.5rem",
+                                height: "3rem",
+                                fontFamily: "Nunito",
+                                fontWeight: "bold",
+                                lineHeight: "18px",
+                                letterSpacing: "-0.01em",
+                                "&:hover": {
+                                    backgroundColor: "#FFDB21",
+                                    color: "#205CA4",
+                                },}
                             }
                         >
                             Encontre seu imóvel

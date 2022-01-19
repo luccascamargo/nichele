@@ -158,22 +158,22 @@ export const Imovel = () => {
                             <img src={iconCar} alt="" />
                             <span>1 vaga</span>
                         </div>
-                        <div className="border"></div>
+                        <div className="border" />
                         <div className="item">
                             <img src={iconRegua} alt="" />
                             <span>98 m</span>
                         </div>
-                        <div className="border"></div>
+                        <div className="border" />
                         <div className="item">
                             <img src={iconCama} alt="" />
                             <span>2 quartos</span>
                         </div>
-                        <div className="border"></div>
+                        <div className="border" />
                         <div className="item">
                             <img src={iconChuveiro} alt="" />
                             <span>1 banheiro</span>
                         </div>
-                        <div className="border"></div>
+                        <div className="border" />
                         <div className="item">
                             <img src={iconSol} alt="" />
                             <span>Oeste</span>
@@ -182,7 +182,7 @@ export const Imovel = () => {
                 </div>
             </div>
 
-            <main>
+            <main id="main__imovel">
                 <div className="content__main">
                     <div className="esq">
                         <div className="header__main">
@@ -198,7 +198,7 @@ export const Imovel = () => {
                                 <span>R$1.000,00</span>
                             </div>
                         </div>
-                        <div className="line__esq"></div>
+                        <div className="line__esq" />
                         <div className="body__main">
                             <span>Principais características</span>
                             <div className="diferenciais">

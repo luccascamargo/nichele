@@ -399,7 +399,9 @@ export function Steps() {
                                 id="demo-simple-select-filled"
                                 value={age}
                                 onChange={handleChange}
-                                sx={{ width: "100%" }}
+                                sx={{ width: "100%", borderRadius: '10px','&:before': {
+                                    display: "none",
+                                }  }}
                             >
                                 <MenuItem value="Ap">Apartamento</MenuItem>
                             </Select>
@@ -500,6 +502,9 @@ export function Steps() {
                                     id="demo-simple-select-filled"
                                     value={uf}
                                     onChange={handleChange}
+                                    sx={{borderRadius: "10px",'&:before': {
+                                        display: "none",
+                                    }}}
                                 >
                                     <MenuItem value="rs">RS</MenuItem>
                                 </Select>
