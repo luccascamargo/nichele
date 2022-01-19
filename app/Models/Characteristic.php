@@ -7,14 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Characteristic extends Model
 {
+    protected $table = 'imb_imovelcaracteristica';
+
     use HasFactory;
 
-    protected $fillable = ['description','price','confirmation'];
-
-    protected $casts = [
-        'confirmation' => 'boolean',
-        'price' => 'double'
-    ];
+    protected $fillable = ['CODIGOIMOVEL', 'CODIGOCARACTERISTICA'];
 
     public function buildings()
     {

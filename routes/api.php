@@ -28,3 +28,5 @@ Route::get('faqs', [FaqController::class, 'index']);
 Route::apiResource('posts', PostController::class)->only('index','show')->scoped([
     'post' => 'slug'
 ]);
+Route::get('characteristics/{id}', [BuildingController::class, 'characteristic']);
+

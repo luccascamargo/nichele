@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/iframe-has-title */
 /* eslint-disable import/no-unresolved */
-import { useEffect } from 'react';
+import { useEffect } from "react";
 import ReactDOM from "react-dom";
 
 import "../sass/imoveis.scss";
@@ -27,7 +27,7 @@ import {
 } from "@mui/material";
 import { Box } from "@mui/system";
 import InputRange from "react-input-range";
-import { api } from './plugins/api';
+import { api } from "./plugins/api";
 
 export default function Imoveis() {
     const [buildings, setBuildings] = useState([]);
@@ -35,218 +35,193 @@ export default function Imoveis() {
     const [cities, setCities] = useState([]);
     const [districts, setDistricts] = useState([]);
     const [types, setTypes] = useState([]);
-    const [code, setCode] = useState('');
+    const [code, setCode] = useState("");
     const [plant, setPlant] = useState(false);
     const [offer, setOffer] = useState(false);
 
     const [area, setArea] = useState({ min: 0, max: 10000 });
-    const [buildingType, setBuildingType] = useState('');
-    const [city, setCity] = useState('');
-    const [district, setDistrict] = useState('');
+    const [buildingType, setBuildingType] = useState("");
+    const [city, setCity] = useState("");
+    const [district, setDistrict] = useState("");
     const [price, setPrice] = useState({ min: 0, max: 10000 });
 
-    const [activeButton, setActiveButton] = useState('1');
+    const [activeButton, setActiveButton] = useState("1");
 
-    const [room, setRoom] = useState('');
-    const [suites, setSuites] = useState('');
-    const [toilet, setToilet] = useState('');
-    const [garage, setGarage] = useState('');
+    const [room, setRoom] = useState("");
+    const [suites, setSuites] = useState("");
+    const [toilet, setToilet] = useState("");
+    const [garage, setGarage] = useState("");
 
     const maxValue = 10000;
 
     const handleActiveButton = (e) => {
-        const url = (new URL(window.location.href)).searchParams;
+        const url = new URL(window.location.href).searchParams;
 
-        if(!url.has('type')) {
-            url.append('type', e);
-
+        if (!url.has("type")) {
+            url.append("type", e);
         } else {
-            url.set('type', e);
-
+            url.set("type", e);
         }
 
         setActiveButton(e);
     };
 
     const handleDorms = (event) => {
-        const url = (new URL(window.location.href)).searchParams;
+        const url = new URL(window.location.href).searchParams;
 
-        if(!url.has('room')) {
-            url.append('room', event)
+        if (!url.has("room")) {
+            url.append("room", event);
         } else {
-            url.set('room',event)
+            url.set("room", event);
         }
 
         setRoom(event);
     };
 
     const handleSuites = (event) => {
-        const url = (new URL(window.location.href)).searchParams;
+        const url = new URL(window.location.href).searchParams;
 
-        if(!url.has('suites')) {
-            url.append('suites', event);
-
+        if (!url.has("suites")) {
+            url.append("suites", event);
         } else {
-            url.set('suites',event);
-
+            url.set("suites", event);
         }
 
         setSuites(event);
     };
 
     const handleBathroom = (event) => {
-        const url = (new URL(window.location.href)).searchParams;
+        const url = new URL(window.location.href).searchParams;
 
-        if(!url.has('toilet')) {
-            url.append('toilet', event);
-
+        if (!url.has("toilet")) {
+            url.append("toilet", event);
         } else {
-            url.set('toilet',event);
-
+            url.set("toilet", event);
         }
 
         setToilet(event);
     };
 
     const handleVacancies = (event) => {
-        const url = (new URL(window.location.href)).searchParams;
+        const url = new URL(window.location.href).searchParams;
 
-        if(!url.has('garage')) {
-            url.append('garage', event);
-
+        if (!url.has("garage")) {
+            url.append("garage", event);
         } else {
-            url.set('garage',event);
-
+            url.set("garage", event);
         }
 
         setGarage(event);
     };
 
     const handleCode = (event) => {
-        const url = (new URL(window.location.href)).searchParams;
+        const url = new URL(window.location.href).searchParams;
 
-        if(!url.has('code')) {
-            url.append('code', event);
-
+        if (!url.has("code")) {
+            url.append("code", event);
         } else {
-            url.set('code',event);
-
+            url.set("code", event);
         }
 
-        if(!event) {
-            url.delete('code');
-
+        if (!event) {
+            url.delete("code");
         }
 
         setCode(event);
-    }
+    };
 
     const handleBuildingType = (event) => {
-        const url = (new URL(window.location.href)).searchParams;
+        const url = new URL(window.location.href).searchParams;
 
-        if(!url.has('building_type')) {
-            url.append('building_type', event);
-
+        if (!url.has("building_type")) {
+            url.append("building_type", event);
         } else {
-            url.set('building_type',event);
-
+            url.set("building_type", event);
         }
         setBuildingType(event);
-    }
+    };
 
     const handleCity = (event) => {
-        const url = (new URL(window.location.href)).searchParams;
+        const url = new URL(window.location.href).searchParams;
 
-        if(!url.has('city')) {
-            url.append('city', event);
-
+        if (!url.has("city")) {
+            url.append("city", event);
         } else {
-            url.set('city',event);
-
+            url.set("city", event);
         }
 
         setCity(event);
-    }
+    };
 
     const handleDistrict = (event) => {
-        const url = (new URL(window.location.href)).searchParams;
+        const url = new URL(window.location.href).searchParams;
 
-        if(!url.has('district')) {
-            url.append('district', event);
-
+        if (!url.has("district")) {
+            url.append("district", event);
         } else {
-            url.set('district', event);
-
+            url.set("district", event);
         }
 
         setDistrict(event);
-    }
+    };
 
     const handlePrice = (event) => {
-        const url = (new URL(window.location.href)).searchParams;
+        const url = new URL(window.location.href).searchParams;
 
-        if(!url.has('price')) {
-            url.append('price', event);
-
+        if (!url.has("price")) {
+            url.append("price", event);
         } else {
-            url.set('price', event);
-
+            url.set("price", event);
         }
 
         setPrice(event);
-    }
+    };
 
     const handleArea = (event) => {
-        const url = (new URL(window.location.href)).searchParams;
+        const url = new URL(window.location.href).searchParams;
 
-        if(!url.has('area')) {
-            url.append('area', event);
-
+        if (!url.has("area")) {
+            url.append("area", event);
         } else {
-            url.set('area', event);
-
+            url.set("area", event);
         }
 
         setArea(event);
-    }
+    };
 
     const handlePlant = (event) => {
-        const url = (new URL(window.location.href)).searchParams;
+        const url = new URL(window.location.href).searchParams;
 
-        if(!url.has('plant')) {
-            url.append('plant', event);
-
+        if (!url.has("plant")) {
+            url.append("plant", event);
         } else {
-            url.set('plant', event);
-
+            url.set("plant", event);
         }
 
         setPlant(event);
-    }
+    };
 
     const handleOffer = (event) => {
-        const url = (new URL(window.location.href)).searchParams;
+        const url = new URL(window.location.href).searchParams;
 
-        if(!url.has('plant')) {
-            url.append('plant', event);
-
+        if (!url.has("plant")) {
+            url.append("plant", event);
         } else {
-            url.set('plant', event);
-
+            url.set("plant", event);
         }
         setOffer(event);
-    }
+    };
 
     function compareParamAndSet(param, state) {
-        const url = (new URL(window.location.href)).searchParams;
+        const url = new URL(window.location.href).searchParams;
 
-        if(url.has(param)) {
-            if(url.get(param).indexOf('{') > -1) {
+        if (url.has(param)) {
+            if (url.get(param).indexOf("{") > -1) {
                 state(JSON.parse(url.get(param)));
                 return;
             }
 
-            if(url.get(param) === 'true') {
+            if (url.get(param) === "true") {
                 state(Boolean(url.get(param)));
                 return;
             }
@@ -256,139 +231,139 @@ export default function Imoveis() {
     const handleSubmitSearch = async () => {
         const params = new URLSearchParams();
 
-        if(buildingType) {
-            params.append('building_type', buildingType);
+        if (buildingType) {
+            params.append("building_type", buildingType);
         }
 
-        if(city) {
-           params.append('city',city);
+        if (city) {
+            params.append("city", city);
         }
 
-        if(district) {
-            params.append('district',district);
+        if (district) {
+            params.append("district", district);
         }
 
-        if(price) {
-            params.append('price',JSON.stringify(price));
+        if (price) {
+            params.append("price", JSON.stringify(price));
         }
 
-        if(room) {
-            params.append('room', room);
+        if (room) {
+            params.append("room", room);
         }
 
-        if(suites) {
-            params.append('suites',suites);
+        if (suites) {
+            params.append("suites", suites);
         }
 
-        if(toilet) {
-            params.append('toilet', toilet);
+        if (toilet) {
+            params.append("toilet", toilet);
         }
 
-        if(garage) {
-            params.append('garage', garage);
+        if (garage) {
+            params.append("garage", garage);
         }
 
-        if(area) {
-            params.append('area', JSON.stringify(area));
+        if (area) {
+            params.append("area", JSON.stringify(area));
         }
 
-        if(code) {
-            params.append('code', code);
+        if (code) {
+            params.append("code", code);
         }
 
-        if(plant) {
-            params.append('plant', plant);
+        if (plant) {
+            params.append("plant", plant);
         }
 
-        if(offer) {
-            params.append('offer', offer);
+        if (offer) {
+            params.append("offer", offer);
         }
-        
-        setBuildings((await api.get(`api/buildings?${params.toString()}`)).data);
-    }
+
+        setBuildings(
+            (await api.get(`api/buildings?${params.toString()}`)).data
+        );
+    };
 
     useEffect(async () => {
+        // compareParamAndSet('price', setPrice)
 
-        compareParamAndSet('price', setPrice)
+        // compareParamAndSet('area', setArea)
 
-        compareParamAndSet('area', setArea)
+        // compareParamAndSet('room', setRoom)
 
-        compareParamAndSet('room', setRoom)
+        // compareParamAndSet('building_type', setBuildingType)
 
-        compareParamAndSet('building_type', setBuildingType)
+        // compareParamAndSet('district', setDistrict)
 
-        compareParamAndSet('district', setDistrict)
+        // compareParamAndSet('suites', setSuites)
 
-        compareParamAndSet('suites', setSuites)
+        // compareParamAndSet('toilet', setToilet)
 
-        compareParamAndSet('toilet', setToilet)
+        // compareParamAndSet('garage', setGarage)
 
-        compareParamAndSet('garage', setGarage)
+        // compareParamAndSet('type', setActiveButton)
 
-        compareParamAndSet('type', setActiveButton)
+        // compareParamAndSet('city', setCity)
 
-        compareParamAndSet('city', setCity)
+        // compareParamAndSet('code', setCode)
 
-        compareParamAndSet('code', setCode)
+        // compareParamAndSet('plant', setPlant)
 
-        compareParamAndSet('plant', setPlant)
+        // compareParamAndSet('offer', setOffer)
 
-        compareParamAndSet('offer', setOffer)
+        // const city = async () => {
+        //     const {data} = await api.get('api/cities');
+        //     return data;
+        // }
 
-        const city = async () => {
-            const {data} = await api.get('api/cities');
-            return data;
-        }
+        // setCities(await city());
 
-        setCities(await city());
+        // const neigh = async () => {
+        //     const {data} = await api.get('api/districts');
 
-        const neigh = async () => {
-            const {data} = await api.get('api/districts');
+        //     return data;
+        // }
 
-            return data;
-        }
+        // setDistricts(await neigh());
 
-        setDistricts(await neigh());
+        // const types = async () => {
+        //     const {data} = await api.get('api/types');
 
-        const types = async () => {
-            const {data} = await api.get('api/types');
+        //     return data;
+        // }
 
-            return data;
-        }
-
-        setTypes(await types());
+        // setTypes(await types());
 
         const buildings = async () => {
-            const url = (new URL(window.location.href)).searchParams;
-            let params = '';
-            if(url.toString() !== '') {
+            const url = new URL(window.location.href).searchParams;
+            let params = "";
+            if (url.toString() !== "") {
                 params = `?${url.toString()}`;
             }
 
-            const {data} = await api.get(`api/buildings${params}`);
+            const { data } = await api.get(`api/buildings${params}`);
             return data;
-        }
+        };
 
         setBuildings(await buildings());
     }, []);
 
     const handleSubmitReset = async () => {
-        setBuildingType('');
-        setCity('');
-        setDistrict('');
-        setPrice({min: 0, max: 10000});
+        setBuildingType("");
+        setCity("");
+        setDistrict("");
+        setPrice({ min: 0, max: 10000 });
         setRoom(0);
         setSuites(0);
         setToilet(0);
         setGarage(0);
-        setArea({min: 0, max: 10000});
-        setCode('');
+        setArea({ min: 0, max: 10000 });
+        setCode("");
         setPlant(false);
         setOffer(false);
 
         setBuildings(await api.get(`api/buildings`));
-    }
-
+    };
 
     return (
         <div className="container__imoveis">
@@ -503,13 +478,17 @@ export default function Imoveis() {
                             labelId="demo-simple-select-filled-label"
                             id="demo-simple-select-filled"
                             value={buildingType}
-                            onChange={(event) => handleBuildingType(event?.target.value)}
+                            onChange={(event) =>
+                                handleBuildingType(event?.target.value)
+                            }
                             sx={{
                                 width: "100%",
                             }}
                         >
-                            {types.map(({value,label}, index) => (
-                                <MenuItem key={index} value={value}>{label}</MenuItem>
+                            {types.map(({ value, label }, index) => (
+                                <MenuItem key={index} value={value}>
+                                    {label}
+                                </MenuItem>
                             ))}
                         </Select>
                     </FormControl>
@@ -526,14 +505,18 @@ export default function Imoveis() {
                             id="cidade"
                             options={cities}
                             value={city}
-                            onChange={(event) => handleCity(event?.target.value)}
+                            onChange={(event) =>
+                                handleCity(event?.target.value)
+                            }
                             sx={{
                                 width: "100%",
                             }}
                         >
-                            {cities.map(({value, label}, index) => (
-                                <MenuItem key={index} value={value}>{label}</MenuItem>
-                            ) )}
+                            {cities.map(({ value, label }, index) => (
+                                <MenuItem key={index} value={value}>
+                                    {label}
+                                </MenuItem>
+                            ))}
                         </Select>
                     </FormControl>
 
@@ -549,13 +532,17 @@ export default function Imoveis() {
                             id="bairro"
                             options={districts}
                             value={district}
-                            onChange={(event) => handleDistrict(event?.target.value)}
+                            onChange={(event) =>
+                                handleDistrict(event?.target.value)
+                            }
                             sx={{
                                 width: "100%",
                             }}
                         >
-                            {districts.map(({value, label}, index) => (
-                                <MenuItem key={index} value={value}>{label}</MenuItem>
+                            {districts.map(({ value, label }, index) => (
+                                <MenuItem key={index} value={value}>
+                                    {label}
+                                </MenuItem>
                             ))}
                         </Select>
                     </FormControl>
@@ -1288,7 +1275,9 @@ export default function Imoveis() {
                             }}
                             control={
                                 <Checkbox
-                                    onChange={(event) => handlePlant(event?.target.value)}
+                                    onChange={(event) =>
+                                        handlePlant(event?.target.value)
+                                    }
                                     checked={plant}
                                     sx={{
                                         "&.Mui-checked": {
@@ -1309,7 +1298,9 @@ export default function Imoveis() {
                             }}
                             control={
                                 <Checkbox
-                                    onChange={(event) => handleOffer(event?.target.value)}
+                                    onChange={(event) =>
+                                        handleOffer(event?.target.value)
+                                    }
                                     checked={offer}
                                     sx={{
                                         "&.Mui-checked": {
@@ -1402,40 +1393,40 @@ export default function Imoveis() {
                     </div>
                 </section>
                 <section className="section__imoveis">
-                {buildings?.data?.map((item) => (
-                    <div key={item.id} className="box__imoveis">
-                        <div className="sticker">
-                            <span>{item.type}</span>
-                        </div>
-                        <img src={imageBox} alt="Imagem imovel" />
-                        <div className="infos">
-                            <div className="top">
-                                <div className="title__box">
-                                    <span>{item.building_type.name}</span>
-                                    <p>{item.address.place}</p>
+                    {buildings?.data?.map((item) => (
+                        <div key={item.id} className="box__imoveis">
+                            <div className="sticker">
+                                <span>{item.type}</span>
+                            </div>
+                            <img src={imageBox} alt="Imagem imovel" />
+                            <div className="infos">
+                                <div className="top">
+                                    <div className="title__box">
+                                        <span>{item.building_type.name}</span>
+                                        <p>{item.address.place}</p>
+                                    </div>
+                                    <div className="value__box">
+                                        <span>{item.price}</span>
+                                        <p>Cód: {item.code}</p>
+                                    </div>
                                 </div>
-                                <div className="value__box">
-                                    <span>{item.price}</span>
-                                    <p>Cód: {item.code}</p>
+                                <div className="bottom">
+                                    <div className="desc">
+                                        <img src={iconQuarto} alt="" />
+                                        <p>{item.rooms} quartos</p>
+                                    </div>
+                                    <div className="desc">
+                                        <img src={iconCar} alt="" />
+                                        <p>{item.garage} vaga</p>
+                                    </div>
+                                    <div className="desc">
+                                        <img src={iconRegua} alt="" />
+                                        <p>{item.private_area} m²</p>
+                                    </div>
                                 </div>
                             </div>
-                            <div className="bottom">
-                                <div className="desc">
-                                    <img src={iconQuarto} alt="" />
-                                    <p>{item.rooms} quartos</p>
-                                </div>
-                                <div className="desc">
-                                    <img src={iconCar} alt="" />
-                                    <p>{item.garage} vaga</p>
-                                </div>
-                                <div className="desc">
-                                    <img src={iconRegua} alt="" />
-                                    <p>{item.private_area} m²</p>
-                                </div>
-                            </div>
                         </div>
-                    </div>
-                ))}
+                    ))}
                 </section>
             </main>
             <Footer />
