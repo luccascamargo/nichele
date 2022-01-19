@@ -18,6 +18,7 @@ import CarouselMoveisComerciais from "../js/components/CarouselMoveisComerciais"
 import imgDropdown from "../../public/assets/svg/dropdown-icon.svg";
 import arrowTop from "../../public/assets/svg/arrow-top.svg";
 import imgWhats from "../../public/assets/svg/whats-icon.svg";
+import imgWhatWhite from "../../public/assets/svg/whats-icon-white.svg";
 import imgEmail from "../../public/assets/svg/email-icon.svg";
 import imgFace from "../../public/assets/svg/face-icon.svg";
 import imgInsta from "../../public/assets/svg/insta-icon.svg";
@@ -169,8 +170,28 @@ function Home() {
         setTypes(await types());
     },[])
 
+    const [showBuy, setBuy] = useState(false);
+    const [showSell, setSell] = useState(false);
+
+    const handleBuy = () => setBuy(!showBuy)
+    const handleSell = () => setSell(!showSell)
+
     return (
         <div className="container">
+                <a href="https://wa.me/54996583631" target="_blank" rel="noopener noreferrer" className={showBuy ? 'social__float__buy showSocials' : 'social__float__buy'} onMouseLeave={handleBuy} onMouseEnter={handleBuy}>
+                    <img src={imgWhatWhite} alt="whats" />
+                    <div className="text__social">
+                        <span>Whats para locação</span>
+                        <p>(54) 99658-3631</p>
+                    </div>
+                </a>
+                <a href="https://wa.me/54981158489" target="_blank" rel="noopener noreferrer" className={showSell ? 'social__float__sell showSocials' : 'social__float__sell'} onMouseLeave={handleSell} onMouseEnter={handleSell}>
+                <img src={imgWhatWhite} alt="whats" />
+                    <div className="text__social">
+                        <span>Whats para venda</span>
+                        <p>(54) 98115-8489</p>
+                    </div>
+                </a>
             <Navbar />
             <main className={advanced ? "main addHeight" : "main"}>
                 <h1>A realização do seu sonho está aqui!</h1>
@@ -2182,7 +2203,7 @@ function Home() {
 
             <section className="redes">
                 <div className="wrap">
-                    <a href="https://wa.me/54999678976" className="box" target="_blank" rel="noreferrer">
+                    <a href="https://wa.me/54996583631" className="box" target="_blank" rel="noreferrer">
                         <img
                             src={imgWhats}
                             width={imgWhats.width}
@@ -2191,11 +2212,11 @@ function Home() {
                         />
                         <div className="boxInner">
                             <span>whats locação</span>
-                            <p>(54) 99967.8976</p>
+                            <p>(54) 9 9658.3631</p>
                         </div>
                     </a>
 
-                    <a href="https://wa.me/54999678976" className="box" target="_blank" rel="noreferrer">
+                    <a href="https://wa.me/54981158489" className="box" target="_blank" rel="noreferrer">
                         <img
                             src={imgWhats}
                             width={imgWhats.width}
@@ -2204,7 +2225,7 @@ function Home() {
                         />
                         <div className="boxInner">
                             <span>whats vendas</span>
-                            <p>(54) 99967.8976</p>
+                            <p>(54) 98115.8489</p>
                         </div>
                     </a>
 
