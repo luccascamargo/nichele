@@ -27,19 +27,19 @@ export const Footer = () => {
                             </a>
                         </div>
                         <div className="sociais">
-                            <a href="/">
+                            <a href="https://www.facebook.com/NicheleImoveis" target="_blank" rel="noreferrer">
                                 <img
                                     src={logoFacebook}
                                     alt="Instagram Nichele"
                                 />
                             </a>
-                            <a href="/">
+                            <a href="https://www.instagram.com/nicheleimoveis/" target="_blank" rel="noreferrer">
                                 <img
                                     src={logoInstagram}
                                     alt="Instagram Nichele"
                                 />
                             </a>
-                            <a href="/">
+                            <a href="https://www.linkedin.com/company/imobili%C3%A1ria-nichele/" target="_blank" rel="noreferrer">
                                 <img
                                     src={logoLinkedin}
                                     alt="Instagram Nichele"
@@ -48,14 +48,21 @@ export const Footer = () => {
                         </div>
                     </div>
                     <div className="buttons">
-                        <ButtonPrimary>
-                            <img src={logoWhats} alt="Whats Nichele" />
-                            Whats vendas
-                        </ButtonPrimary>
-                        <ButtonPrimary>
-                            <img src={logoWhats} alt="Whats Nichele" />
-                            Whats locação
-                        </ButtonPrimary>
+                        <a href="https://wa.me/54999678976" className="box" target="_blank" rel="noreferrer">
+                            <ButtonPrimary>
+                                <img src={logoWhats} alt="Whats Nichele" />
+                                Whats vendas
+                            </ButtonPrimary>
+                        </a>
+
+                        <a href="https://wa.me/54999678976" className="box" target="_blank" rel="noreferrer">
+                            <ButtonPrimary>
+                                <img src={logoWhats} alt="Whats Nichele" />
+                                Whats locação
+                            </ButtonPrimary>
+                        </a>
+
+
                         <ButtonClient text="Área do cliente" footer />
                     </div>
                 </div>
@@ -92,15 +99,39 @@ export const Footer = () => {
                     <div className="nav">
                         <dl>
                             <dt>Institucional</dt>
-                            <dd>Sobre</dd>
-                            <dd>Blog</dd>
-                            <dd>Contato</dd>
+                            <dd>
+                                <a href="/sobre">
+                                    Sobre
+                                </a>
+                            </dd>
+                            <dd>
+                                <a href="/blog">
+                                    Blog
+                                </a>
+                            </dd>
+                            <dd>
+                                <a href="/contato">
+                                    Contato
+                                </a>
+                            </dd>
                         </dl>
                         <dl>
                             <dt>Imóveis</dt>
-                            <dd>Alugar</dd>
-                            <dd>Comprar</dd>
-                            <dd>Imóveis comerciais</dd>
+                            <dd>
+                                <a href="/imveis#alugar">
+                                    Alugar
+                                </a>
+                            </dd>
+                            <dd>
+                                <a href="/imoveis#comprar">
+                                    Comprar
+                                </a>
+                            </dd>
+                            <dd>
+                                <a href="/imoveis#comerciais">
+                                    Imóveis comerciais
+                                </a>
+                            </dd>
                         </dl>
                     </div>
                     <div className="other">

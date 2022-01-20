@@ -222,12 +222,12 @@ export const Imovel = () => {
                                       "vaga(s)"}
                             </span>
                         </div>
-                        <div className="border"></div>
+                        <div className="border" />
                         <div className="item">
                             <img src={iconRegua} alt="" />
                             <span>{building?.value?.AREATOTAL} m</span>
                         </div>
-                        <div className="border"></div>
+                        <div className="border" />
                         <div className="item">
                             <img src={iconCama} alt="" />
                             <span>
@@ -235,7 +235,7 @@ export const Imovel = () => {
                                 quarto(s)
                             </span>
                         </div>
-                        <div className="border"></div>
+                        <div className="border" />
                         <div className="item">
                             <img src={iconChuveiro} alt="" />
                             <span>
@@ -243,7 +243,7 @@ export const Imovel = () => {
                                 banheiro(s)
                             </span>
                         </div>
-                        <div className="border"></div>
+                        <div className="border" />
                         <div className="item">
                             <img src={iconSol} alt="" />
                             <span>Oeste</span>
@@ -252,7 +252,7 @@ export const Imovel = () => {
                 </div>
             </div>
 
-            <main>
+            <main id="main__imovel">
                 <div className="content__main">
                     <div className="esq">
                         <div className="header__main">
@@ -289,7 +289,7 @@ export const Imovel = () => {
                                 </span>
                             </div>
                         </div>
-                        <div className="line__esq"></div>
+                        <div className="line__esq" />
                         <div className="body__main">
                             <span>Principais características</span>
                             <div className="diferenciais">

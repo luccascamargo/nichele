@@ -483,6 +483,10 @@ export default function Imoveis() {
                             }
                             sx={{
                                 width: "100%",
+                                borderRadius: "10px",
+                                '&:before': {
+                                    display: "none",
+                                }
                             }}
                         >
                             {types.map(({ value, label }, index) => (
@@ -510,6 +514,10 @@ export default function Imoveis() {
                             }
                             sx={{
                                 width: "100%",
+                                borderRadius: "10px",
+                                '&:before': {
+                                    display: "none",
+                                }
                             }}
                         >
                             {cities.map(({ value, label }, index) => (
@@ -537,6 +545,10 @@ export default function Imoveis() {
                             }
                             sx={{
                                 width: "100%",
+                                borderRadius: "10px",
+                                '&:before': {
+                                    display: "none",
+                                }
                             }}
                         >
                             {districts.map(({ value, label }, index) => (
@@ -563,6 +575,10 @@ export default function Imoveis() {
                             onChange={(event) => setCity(event?.target.value)}
                             sx={{
                                 width: "100%",
+                                borderRadius: "10px",
+                                '&:before': {
+                                    display: "none",
+                                }
                             }}
                         >
                             <MenuItem value="caracteristica">teste</MenuItem>
@@ -1355,37 +1371,19 @@ export default function Imoveis() {
                         <Button
                             onClick={() => handleSubmitSearch()}
                             sx={
-                                activeButton === "buscar"
-                                    ? {
-                                          borderRadius: "10px",
-                                          backgroundColor: "#FFDB21",
-                                          color: "#205CA4",
-                                          width: "13.5rem",
-                                          height: "3rem",
-                                          fontFamily: "Nunito",
-                                          fontWeight: "bold",
-                                          lineHeight: "18px",
-                                          letterSpacing: "-0.01em",
-                                          "&:hover": {
-                                              backgroundColor: "#FFDB21",
-                                              color: "#205CA4",
-                                          },
-                                      }
-                                    : {
-                                          borderRadius: "10px",
-                                          backgroundColor: "#F2F2F2",
-                                          color: "#B2B2B2",
-                                          width: "13.5rem",
-                                          height: "3rem",
-                                          fontFamily: "Nunito",
-                                          fontWeight: "bold",
-                                          lineHeight: "18px",
-                                          letterSpacing: "-0.01em",
-                                          "&:hover": {
-                                              backgroundColor: "#FFDB21",
-                                              color: "#205CA4",
-                                          },
-                                      }
+                                {borderRadius: "10px",
+                                backgroundColor: "#FFDB21",
+                                color: "#205CA4",
+                                width: "13.5rem",
+                                height: "3rem",
+                                fontFamily: "Nunito",
+                                fontWeight: "bold",
+                                lineHeight: "18px",
+                                letterSpacing: "-0.01em",
+                                "&:hover": {
+                                    backgroundColor: "#FFDB21",
+                                    color: "#205CA4",
+                                },}
                             }
                         >
                             Encontre seu imóvel
