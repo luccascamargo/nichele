@@ -120,4 +120,12 @@ class BuildingController extends Controller
             ->orderBy('imb_imovelfoto.ordem', 'asc')
             ->get();
     }
+
+    public function highligthRent()
+    {
+        return $data = DB::table('IMB_IMOVEL')
+            ->select('IMB_IMOVEL.*')
+            ->where('IMB_IMOVEL.DESTAQUEALUGUEL', 'S')
+            ->get();
+    }
 }

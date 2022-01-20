@@ -75,9 +75,7 @@ export default function Contato() {
                         <h2>Anuncie seu imóvel</h2>
                         <p>
                             Anunciar seu imóvel na Nichele é fácil e seguro.
-                            Tenha mais visibilidade na venda ou locação, além da
-                            possibilidade de fechar negócios em menos tempo e
-                            mais confiáveis.{" "}
+                            Tenha mais visibilidade na venda ou locação, além da possibilidade de fechar negócios mais confiáveis e em menos tempo.
                         </p>
                         <ButtonPrimary>Clique aqui</ButtonPrimary>
                     </div>

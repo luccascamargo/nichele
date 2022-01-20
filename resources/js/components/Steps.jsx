@@ -213,7 +213,7 @@ export function Steps() {
                             fontSize: "2rem",
                             color: "#124480",
                             fontWeight: "bold",
-                            fontFamily: "Nunito",
+                            fontFamily: "Roboto",
                             lineHeight: "42px",
                         }}
                     >
@@ -235,7 +235,7 @@ export function Steps() {
                                           color: "#205CA4",
                                           width: "10.5rem",
                                           height: "3rem",
-                                          fontFamily: "Nunito",
+                                          fontFamily: "Roboto",
                                           fontWeight: "bold",
                                           lineHeight: "18px",
                                           letterSpacing: "-0.01em",
@@ -250,7 +250,7 @@ export function Steps() {
                                           color: "#B2B2B2",
                                           width: "10.5rem",
                                           height: "3rem",
-                                          fontFamily: "Nunito",
+                                          fontFamily: "Roboto",
                                           fontWeight: "bold",
                                           lineHeight: "18px",
                                           letterSpacing: "-0.01em",
@@ -273,7 +273,7 @@ export function Steps() {
                                           color: "#205CA4",
                                           width: "10.5rem",
                                           height: "3rem",
-                                          fontFamily: "Nunito",
+                                          fontFamily: "Roboto",
                                           fontWeight: "bold",
                                           lineHeight: "18px",
                                           letterSpacing: "-0.01em",
@@ -288,7 +288,7 @@ export function Steps() {
                                           color: "#B2B2B2",
                                           width: "10.5rem",
                                           height: "3rem",
-                                          fontFamily: "Nunito",
+                                          fontFamily: "Roboto",
                                           fontWeight: "bold",
                                           lineHeight: "18px",
                                           letterSpacing: "-0.01em",
@@ -311,7 +311,7 @@ export function Steps() {
                                           color: "#205CA4",
                                           width: "10.5rem",
                                           height: "3rem",
-                                          fontFamily: "Nunito",
+                                          fontFamily: "Roboto",
                                           fontWeight: "bold",
                                           lineHeight: "18px",
                                           letterSpacing: "-0.01em",
@@ -326,7 +326,7 @@ export function Steps() {
                                           color: "#B2B2B2",
                                           width: "10.5rem",
                                           height: "3rem",
-                                          fontFamily: "Nunito",
+                                          fontFamily: "Roboto",
                                           fontWeight: "bold",
                                           lineHeight: "18px",
                                           letterSpacing: "-0.01em",
@@ -414,7 +414,7 @@ export function Steps() {
                                 color: "#205CA4",
                                 width: "13.5rem",
                                 height: "3rem",
-                                fontFamily: "Nunito",
+                                fontFamily: "Roboto",
                                 fontWeight: "bold",
                                 fontSize: "1rem",
                                 lineHeight: "18px",
@@ -502,9 +502,15 @@ export function Steps() {
                                     id="demo-simple-select-filled"
                                     value={uf}
                                     onChange={handleChange}
+<<<<<<< HEAD
+                                    sx={{ borderRadius: '10px','&:before': {
+                                        display: "none",
+                                    }  }}
+=======
                                     sx={{borderRadius: "10px",'&:before': {
                                         display: "none",
                                     }}}
+>>>>>>> eac65508f7c7f439bd176f077db3505a60821368
                                 >
                                     <MenuItem value="rs">RS</MenuItem>
                                 </Select>
@@ -588,7 +594,7 @@ export function Steps() {
                                 fontSize: "2rem",
                                 color: "#124480",
                                 fontWeight: "bold",
-                                fontFamily: "Nunito",
+                                fontFamily: "Roboto",
                                 lineHeight: "42px",
                             }}
                         >
@@ -1304,7 +1310,7 @@ export function Steps() {
                                 color: "#205CA4",
                                 width: "13.5rem",
                                 height: "3rem",
-                                fontFamily: "Nunito",
+                                fontFamily: "Roboto",
                                 fontWeight: "bold",
                                 fontSize: "1rem",
                                 lineHeight: "18px",
@@ -1355,7 +1361,7 @@ export function Steps() {
                                 fontSize: "2rem",
                                 color: "#124480",
                                 fontWeight: "bold",
-                                fontFamily: "Nunito",
+                                fontFamily: "Roboto",
                                 lineHeight: "42px",
                             }}
                         >
@@ -1386,7 +1392,7 @@ export function Steps() {
                                     color: "#205CA4",
                                     width: "19rem",
                                     height: "3rem",
-                                    fontFamily: "Nunito",
+                                    fontFamily: "Roboto",
                                     fontWeight: "bold",
                                     fontSize: "0.9rem",
                                     lineHeight: "18px",

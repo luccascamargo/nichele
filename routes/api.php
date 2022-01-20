@@ -29,6 +29,10 @@ Route::apiResource('posts', PostController::class)->only('index','show')->scoped
     'post' => 'slug'
 ]);
 Route::get('characteristics/{id}', [BuildingController::class, 'characteristic']);
+<<<<<<< HEAD
+Route::get('highlight', [BuildingController::class, 'highligthRent']);
+=======
 Route::get('photos/{id}', [BuildingController::class, 'album']);
+>>>>>>> eac65508f7c7f439bd176f077db3505a60821368
 
 Route::post('send/email', [ContactController::class, 'mail'])->name('email');

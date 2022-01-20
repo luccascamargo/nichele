@@ -11,7 +11,7 @@ export const DuvidaDoc = ({datas}) => {
         <>
             <div className="container__duvidas__doc">
                 <ul className="list_container">
-                    {datas.map((item, index) => (
+                    {datas?.map((item, index) => (
                         <div key={index}>
                             <li key={index} className="list__item">
                                 <DuvidaItems

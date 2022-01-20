@@ -118,7 +118,10 @@ export const Imovel = () => {
         fetchAlbumById();
     }, []);
 
+<<<<<<< HEAD
+=======
     console.log(album);
+>>>>>>> eac65508f7c7f439bd176f077db3505a60821368
 
     const {
         register,
@@ -127,6 +130,8 @@ export const Imovel = () => {
     } = useForm();
     const onSubmit = (data) => console.log(data);
 
+<<<<<<< HEAD
+=======
     const Image = ({ src, alt, fallback }) => {
         const [error, setError] = useState(false);
 
@@ -142,6 +147,7 @@ export const Imovel = () => {
             </div>
         );
     };
+>>>>>>> eac65508f7c7f439bd176f077db3505a60821368
 
     return (
         <>

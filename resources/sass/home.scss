@@ -1,3 +1,48 @@
+.social__float__buy{
+    position: fixed;
+    top: 30%;
+    right:-12%;
+    width: 15rem;
+    height: 3.5rem;
+    background: rgb(50, 212, 124);
+    border-radius:10px;
+    transition: all 0.5s ease-in-out;
+
+    display: flex;
+    align-items: center;
+    justify-content:space-around;
+
+    span, p {
+        font-size: 0.9rem;
+        color: #ffffff;
+    }
+}
+
+.social__float__sell{
+    position: fixed;
+    top: 39%;
+    right:-12%;
+    width: 15rem;
+    height: 3.5rem;
+    background: rgb(50, 212, 124);
+    border-radius:10px;
+    transition: all 0.5s ease-in-out;
+
+    display: flex;
+    align-items: center;
+    justify-content:space-around;
+
+    span, p {
+        font-size: 0.9rem;
+        color: #ffffff;
+    }
+}
+
+.showSocials{
+    right:0;
+
+}
+
 .main {
     display: flex;
     flex-direction: column;
@@ -397,7 +442,7 @@
             align-items: center;
             cursor: pointer;
 
-            font-family: "Nunito";
+            font-family: "Nunito", sans-serif;
             font-weight: bold;
             font-size: 1.1rem;
             line-height: 21px;
@@ -452,7 +497,7 @@
             text-decoration: none;
 
             span {
-                font-family: "Nunito";
+                font-family: "Nunito", sans-serif;
                 font-style: normal;
                 font-weight: bold;
                 font-size: 12px;
