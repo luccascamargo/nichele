@@ -68,12 +68,10 @@ export const Form = () => {
                                 styles={customStyles}
                                 className="select__input"
                                 options={[
-                                    { value: "chocolate", label: "Chocolate" },
-                                    {
-                                        value: "strawberry",
-                                        label: "Strawberry",
-                                    },
-                                    { value: "vanilla", label: "Vanilla" },
+                                    { value: "geral", label: "Geral"},
+                                        {value: "adm", label: "Administrativo"},
+                                        {value: "comercial", label: "Comercial"},
+                                    {value: "RH", label: "RH" },
                                 ]}
                             />
                         )}

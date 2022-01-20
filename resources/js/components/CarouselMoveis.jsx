@@ -55,18 +55,18 @@ const ButtonGroup = ({ next, previous }) => {
     );
 };
 
-const CarouselMoveis = () => {
+const CarouselMoveis = ({data}) => {
     const [emphasis, setEmphasis] = useState([]);
 
-    useEffect(async () => {
-        const emphasi = async () => {
-            const {data} = await api.get('api/emphasis');
+    // useEffect(async () => {
+    //     const emphasi = async () => {
+    //         const {data} = await api.get('api/emphasis');
 
-            return data;
-        }
+    //         return data;
+    //     }
 
-        setEmphasis(await emphasi());
-    }, [])
+    //     setEmphasis(await emphasi());
+    // }, [])
     return (
         <div className="moveis">
             <Carousel
@@ -93,7 +93,11 @@ const CarouselMoveis = () => {
                 slidesToSlide={1}
                 customTransition={"transform 800ms ease-in-out"}
             >
-                {emphasis?.map(item => (
+                <div />
+                {data.map(imovel => {
+                    console.log(imovel.ENDERECO)
+                })}
+                {/* {data?.map(item => (
                     <div key={item.id} className="box">
                         <a href="/">
                             <span className="tipo">{item.type}</span>
@@ -149,7 +153,7 @@ const CarouselMoveis = () => {
                             </div>
                         </a>
                     </div>
-                ))}
+                ))} */}
             </Carousel>
         </div>
     );

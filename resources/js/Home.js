@@ -15,6 +15,7 @@ import { Footer } from "./components/Footer";
 import CarouselMoveis from "../js/components/CarouselMoveis";
 import CarouselMoveisComerciais from "../js/components/CarouselMoveisComerciais";
 
+
 import imgDropdown from "../../public/assets/svg/dropdown-icon.svg";
 import arrowTop from "../../public/assets/svg/arrow-top.svg";
 import imgWhats from "../../public/assets/svg/whats-icon.svg";
@@ -55,6 +56,10 @@ const customStyles = {
         return { ...provided, opacity, transition };
     },
 };
+
+
+
+
 
 function Home() {
     const [tabSelect, setTabSelect] = useState(0);
@@ -175,6 +180,18 @@ function Home() {
 
     const handleBuy = () => setBuy(!showBuy)
     const handleSell = () => setSell(!showSell)
+
+    const [imoveisDestaque, setImovesDestaque] = useState([]);
+
+    useEffect(() => {
+        const fetchBuildingById = async () => {
+            let response = await api.get(`/api/highlight`);
+            setImovesDestaque(response.data)
+        };
+        fetchBuildingById()
+    }, [])
+
+
 
     return (
         <div className="container">
@@ -2277,7 +2294,7 @@ function Home() {
             </section>
 
             <section>
-                <CarouselMoveis />
+                <CarouselMoveis data={imoveisDestaque}/>
             </section>
 
             <section>
