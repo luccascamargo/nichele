@@ -261,7 +261,7 @@ export function Steps() {
                                       }
                             }
                         >
-                            Comprar
+                            Vender
                         </Button>
                         <Button
                             onClick={() => handleActiveButton("rent")}
@@ -337,7 +337,7 @@ export function Steps() {
                                       }
                             }
                         >
-                            Vender
+                            Ambos
                         </Button>
                     </Box>
                     <Box
