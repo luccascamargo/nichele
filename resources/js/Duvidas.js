@@ -1,6 +1,6 @@
 /* eslint-disable import/no-unresolved */
 import ReactDOM from "react-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { Navbar } from "./components/Navbar";
 import { DuvidaAluguel } from "./components/DuvidaAluguel.jsx";
@@ -8,6 +8,8 @@ import { DuvidaAnuncios } from "./components/DuvidaAnuncios.jsx";
 import { DuvidaDoc } from "./components/DuvidaDoc.jsx";
 import { DuvidaVendas } from "./components/DuvidaVendas.jsx";
 import { Footer } from "./components/Footer.jsx";
+
+import { api } from './plugins/api';
 
 import "../sass/duvidas.scss";
 
@@ -19,10 +21,21 @@ import iconVenda from "../../public/assets/svg/icon-venda.svg";
 
 export default function Duvidas() {
     const [changeContent, setChangeContent] = useState("doc");
+    const [faq, setFaq] = useState({doc: [], rent: [], buy: [], ad: []});
 
     const handleContent = (event) => {
         setChangeContent(event);
     };
+
+    useEffect(async () => {
+        const faqs = async () => {
+            const { data } = await api.get('api/faqs');
+
+            return data;
+        }
+
+        setFaq(await faqs());
+    }, [])
 
     return (
         <>
@@ -67,16 +80,16 @@ export default function Duvidas() {
                 </button>
                 <button
                     type="button"
-                    className={changeContent === "sale" ? "active" : ""}
-                    onClick={() => handleContent("sale")}
+                    className={changeContent === "buy" ? "active" : ""}
+                    onClick={() => handleContent("buy")}
                 >
                     <img src={iconVenda} alt="Doc" />
                     <span>Venda</span>
                 </button>
                 <button
                     type="button"
-                    className={changeContent === "announcement" ? "active" : ""}
-                    onClick={() => handleContent("announcement")}
+                    className={changeContent === "ad" ? "active" : ""}
+                    onClick={() => handleContent("ad")}
                 >
                     <img src={iconAnuncio} alt="Doc" />
                     <span>Anuncio</span>
@@ -84,10 +97,10 @@ export default function Duvidas() {
             </div>
 
             <div className="container__conteudo">
-                {changeContent === "doc" && <DuvidaDoc />}
-                {changeContent === "rent" && <DuvidaAluguel />}
-                {changeContent === "sale" && <DuvidaVendas />}
-                {changeContent === "announcement" && <DuvidaAnuncios />}
+                {changeContent === "doc" && <DuvidaDoc datas={faq.doc} />}
+                {changeContent === "rent" && <DuvidaAluguel datas={faq.rent} />}
+                {changeContent === "buy" && <DuvidaVendas datas={faq.buy} />}
+                {changeContent === "ad" && <DuvidaAnuncios datas={faq.ad} />}
             </div>
 
             <Footer />

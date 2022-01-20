@@ -1,15 +1,22 @@
 /* eslint-disable no-irregular-whitespace */
 /* eslint-disable import/no-unresolved */
 import ReactDOM from "react-dom";
+import { useState, useEffect } from 'react';
 
 import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
 
+import { api } from './plugins/api';
+
 import "../sass/blog.scss";
 
-import imageInfo from "../../public/assets/images/banner-info.png";
-
 export default function Blog() {
+    const [posts, setPosts] = useState([])
+
+    useEffect(async () => {
+        const { data } = await api.get('api/posts')
+        setPosts(data);
+    }, []);
     return (
         <>
             <header className="header__blog">
@@ -21,37 +28,18 @@ export default function Blog() {
 
             <div className="blog">
                 <div className="container">
-                    <a href="/blog/interna" className="item">
-                        <img src={imageInfo} alt="Image" />
-                        <div className="info">
-                            <span className="date">16/08/2021</span>
-                            <h2>As mulheres e o mercado imobiliário</h2>
-                            <a className="more" href="/blog/interna">
-                                Leia mais
-                            </a>
-                        </div>
-                    </a>
-
-                    <a href="/blog/interna" className="item">
-                        <img src={imageInfo} alt="Image" />
-                        <div className="info">
-                            <span className="date">16/08/2021</span>
-                            <h2>As mulheres e o mercado imobiliário</h2>
-                            <a className="more" href="/blog/interna">
-                                Leia mais
-                            </a>
-                        </div>
-                    </a>
-                    <a href="/blog/interna" className="item">
-                        <img src={imageInfo} alt="Image" />
-                        <div className="info">
-                            <span className="date">16/08/2021</span>
-                            <h2>As mulheres e o mercado imobiliário</h2>
-                            <a className="more" href="/blog/interna">
-                                Leia mais
-                            </a>
-                        </div>
-                    </a>
+                    {posts?.data?.map(item => (
+                        <a key={item.id} href={`/blog/${item.slug}`} className="item">
+                            <img src={item.media.path} alt={item.title} />
+                            <div className="info">
+                                <span className="date">{item.created_at}</span>
+                                <h2>{item.title}</h2>
+                                <a className="more" href={`/blog/${item.slug}`}>
+                                    Leia mais
+                                </a>
+                            </div>
+                        </a>
+                    ))}
                 </div>
             </div>
 

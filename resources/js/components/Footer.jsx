@@ -27,7 +27,7 @@ export const Footer = () => {
                             </a>
                         </div>
                         <div className="sociais">
-                            <a href="https://www.facebook.com/NicheleImoveis" target="_blank" rel="noreferrer">
+                        <a href="https://www.facebook.com/NicheleImoveis" target="_blank" rel="noreferrer">
                                 <img
                                     src={logoFacebook}
                                     alt="Instagram Nichele"
@@ -48,22 +48,21 @@ export const Footer = () => {
                         </div>
                     </div>
                     <div className="buttons">
-                        <a href="https://wa.me/54999678976" className="box" target="_blank" rel="noreferrer">
+                    <a href="https://wa.me/54981158489" className="box" target="_blank" rel="noreferrer">
                             <ButtonPrimary>
                                 <img src={logoWhats} alt="Whats Nichele" />
                                 Whats vendas
                             </ButtonPrimary>
                         </a>
-
-                        <a href="https://wa.me/54999678976" className="box" target="_blank" rel="noreferrer">
+                        <a href="https://wa.me/54996583631" className="box" target="_blank" rel="noreferrer">
                             <ButtonPrimary>
                                 <img src={logoWhats} alt="Whats Nichele" />
                                 Whats locação
                             </ButtonPrimary>
                         </a>
-
-
-                        <ButtonClient text="Área do cliente" footer />
+                        <a href="https://portal.viaimob.com.br/" target="_blank" rel="noreferrer">
+                            <ButtonClient text="Área do cliente" footer />
+                        </a>
                     </div>
                 </div>
                 <div className="line" />
@@ -100,17 +99,17 @@ export const Footer = () => {
                         <dl>
                             <dt>Institucional</dt>
                             <dd>
-                                <a href="/sobre">
+                                <a href="/Sobre">
                                     Sobre
                                 </a>
                             </dd>
                             <dd>
-                                <a href="/blog">
+                                <a href="/Blog">
                                     Blog
                                 </a>
                             </dd>
                             <dd>
-                                <a href="/contato">
+                                <a href="/Contato">
                                     Contato
                                 </a>
                             </dd>
@@ -118,17 +117,17 @@ export const Footer = () => {
                         <dl>
                             <dt>Imóveis</dt>
                             <dd>
-                                <a href="/imveis#alugar">
+                                <a href="/imoveis#alugar">
                                     Alugar
                                 </a>
                             </dd>
                             <dd>
-                                <a href="/imoveis#comprar">
+                                <a href="/imoveis/comprar">
                                     Comprar
                                 </a>
                             </dd>
                             <dd>
-                                <a href="/imoveis#comerciais">
+                                <a href="/imoveis#comperciais">
                                     Imóveis comerciais
                                 </a>
                             </dd>

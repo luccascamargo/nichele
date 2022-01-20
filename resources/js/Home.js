@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/no-autofocus */
 /* eslint-disable import/no-unresolved */
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
@@ -15,9 +15,11 @@ import { Footer } from "./components/Footer";
 import CarouselMoveis from "../js/components/CarouselMoveis";
 import CarouselMoveisComerciais from "../js/components/CarouselMoveisComerciais";
 
+
 import imgDropdown from "../../public/assets/svg/dropdown-icon.svg";
 import arrowTop from "../../public/assets/svg/arrow-top.svg";
 import imgWhats from "../../public/assets/svg/whats-icon.svg";
+import imgWhatWhite from "../../public/assets/svg/whats-icon-white.svg";
 import imgEmail from "../../public/assets/svg/email-icon.svg";
 import imgFace from "../../public/assets/svg/face-icon.svg";
 import imgInsta from "../../public/assets/svg/insta-icon.svg";
@@ -34,6 +36,8 @@ import {
     Typography,
 } from "@mui/material";
 
+import { api } from './plugins/api'
+
 const customStyles = {
     option: (provided, state) => ({
         ...provided,
@@ -42,9 +46,8 @@ const customStyles = {
     }),
     control: () => ({
         // none of react-select's styles are passed to <Control />
-        border: "1px solid #5C6476",
+        border: "none",
         display: "flex",
-        borderRadius: '10px',
     }),
     singleValue: (provided, state) => {
         const opacity = state.isDisabled ? 0.5 : 1;
@@ -54,42 +57,165 @@ const customStyles = {
     },
 };
 
+
+
+
+
 function Home() {
-    const [val, setVal] = useState({ min: 0, max: 10000 });
+    const [tabSelect, setTabSelect] = useState(0);
+    const [cities, setCities] = useState([]);
+    const [districts, setDistricts] = useState([]);
+    const [types, setTypes] = useState([]);
+    const [code, setCode] = useState('');
+    const [plant, setPlant] = useState(false);
+    const [offer, setOffer] = useState(false);
+
     const [area, setArea] = useState({ min: 0, max: 10000 });
     const [advanced, setAdvanced] = useState(false);
     const [codeSearch, setCodeSearch] = useState(false);
+    const [buildingType, setBuildingType] = useState('');
+    const [city, setCity] = useState('');
+    const [district, setDistrict] = useState('');
+    const [price, setPrice] = useState({ min: 0, max: 10000 });
 
-    const [dorms, setDorms] = useState("1");
-    const [suites, setSuites] = useState("1");
-    const [bathroom, setBathroom] = useState("1");
-    const [vacancies, setVacancies] = useState("1");
+    const [room, setRoom] = useState('');
+    const [suites, setSuites] = useState('');
+    const [toilet, setToilet] = useState('');
+    const [garage, setGarage] = useState('');
 
-    const handleDorms = (event) => setDorms(event);
+    const handleDorms = (event) => setRoom(event);
     const handleSuites = (event) => setSuites(event);
-    const handleBathroom = (event) => setBathroom(event);
-    const handleVacancies = (event) => setVacancies(event);
+    const handleBathroom = (event) => setToilet(event);
+    const handleVacancies = (event) => setGarage(event);
 
     const handleAdvanced = () => setAdvanced(!advanced);
     const handleCode = () => setCodeSearch(!codeSearch);
 
     const maxValue = 10000;
 
-    const options = [
-        { value: "chocolate", label: "Chocolate" },
-        { value: "strawberry", label: "Strawberry" },
-        { value: "vanilla", label: "Vanilla" },
-    ];
+    function handleSubmit() {
+        const params = new URLSearchParams();
+
+        if(buildingType) {
+            params.append('building_type', buildingType);
+        }
+
+        if(city) {
+           params.append('city',city);
+        }
+
+        if(district) {
+            params.append('district',district);
+        }
+
+        if(price) {
+            params.append('price',JSON.stringify(price));
+        }
+
+        if(room) {
+            params.append('room', room);
+        }
+
+        if(suites) {
+            params.append('suites',suites);
+        }
+
+        if(toilet) {
+            params.append('toilet', toilet);
+        }
+
+        if(garage) {
+            params.append('garage', garage);
+        }
+
+        if(area) {
+            params.append('area', JSON.stringify(area));
+        }
+
+        if(code) {
+            params.append('code', code);
+        }
+
+        if(plant) {
+            params.append('plant', plant);
+        }
+
+        if(offer) {
+            params.append('offer', offer);
+        }
+
+        params.append('type', tabSelect);
+
+
+        window.location.href = `/imoveis?${params.toString()}`;
+    }
+
+    useEffect(async function() {
+        const city = async () => {
+            const {data} = await api.get('api/cities');
+            return data;
+        }
+
+        setCities(await city());
+
+        const neigh = async () => {
+            const {data} = await api.get('api/districts');
+
+            return data;
+        }
+
+        setDistricts(await neigh());
+
+        const types = async () => {
+            const {data} = await api.get('api/types');
+
+            return data;
+        }
+
+        setTypes(await types());
+    },[])
+
+    const [showBuy, setBuy] = useState(false);
+    const [showSell, setSell] = useState(false);
+
+    const handleBuy = () => setBuy(!showBuy)
+    const handleSell = () => setSell(!showSell)
+
+    const [imoveisDestaque, setImovesDestaque] = useState([]);
+
+    useEffect(() => {
+        const fetchBuildingById = async () => {
+            let response = await api.get(`/api/highlight`);
+            setImovesDestaque(response.data)
+        };
+        fetchBuildingById()
+    }, [])
+
+
 
     return (
         <div className="container">
+                <a href="https://wa.me/54996583631" target="_blank" rel="noopener noreferrer" className={showBuy ? 'social__float__buy showSocials' : 'social__float__buy'} onMouseLeave={handleBuy} onMouseEnter={handleBuy}>
+                    <img src={imgWhatWhite} alt="whats" />
+                    <div className="text__social">
+                        <span>Whats para locação</span>
+                        <p>(54) 99658-3631</p>
+                    </div>
+                </a>
+                <a href="https://wa.me/54981158489" target="_blank" rel="noopener noreferrer" className={showSell ? 'social__float__sell showSocials' : 'social__float__sell'} onMouseLeave={handleSell} onMouseEnter={handleSell}>
+                <img src={imgWhatWhite} alt="whats" />
+                    <div className="text__social">
+                        <span>Whats para venda</span>
+                        <p>(54) 98115-8489</p>
+                    </div>
+                </a>
             <Navbar />
             <main className={advanced ? "main addHeight" : "main"}>
                 <h1>A realização do seu sonho está aqui!</h1>
 
                 {codeSearch ? (
                     <>
-                        <Tabs>
+                        <Tabs selectedIndex={tabSelect} onSelect={(index) => setTabSelect(index)}>
                             <TabList>
                                 <Tab>Alugar</Tab>
                                 <Tab>Comprar</Tab>
@@ -101,9 +227,11 @@ function Home() {
                                         <input
                                             type="text"
                                             id="input__code"
+                                            value={code}
+                                            onChange={(event) => setCode(event?.target.value)}
                                             placeholder="Digite aqui o código do imóvel"
                                         />
-                                        <ButtonPrimary>
+                                        <ButtonPrimary onClick={() => handleSubmit()}>
                                             Encontre seu imóvel
                                         </ButtonPrimary>
                                     </div>
@@ -117,7 +245,7 @@ function Home() {
                                             id="input__code"
                                             placeholder="Digite aqui o código do imóvel"
                                         />
-                                        <ButtonPrimary>
+                                        <ButtonPrimary onClick={() => handleSubmit()}>
                                             Encontre seu imóvel
                                         </ButtonPrimary>
                                     </div>
@@ -134,7 +262,7 @@ function Home() {
                     </>
                 ) : (
                     <>
-                        <Tabs>
+                       <Tabs selectedIndex={tabSelect} onSelect={(index) => setTabSelect(index)}>
                             <TabList>
                                 <Tab>Alugar</Tab>
                                 <Tab>Comprar</Tab>
@@ -150,10 +278,11 @@ function Home() {
                                             <Select
                                                 id="tipoMovel"
                                                 className="select"
-                                                options={options}
+                                                options={types}
+                                                onChange={(event) => setBuildingType(event?.value)}
                                                 styles={customStyles}
-                                                isSearchable
-                                                isClearable
+                                                isSearchable={true}
+                                                isClearable={true}
                                                 placeholder="Selecione..."
                                             />
                                         </div>
@@ -161,12 +290,12 @@ function Home() {
                                         <div className="div">
                                             <label htmlFor="cidade">
                                                 Cidade{" "}
-
                                             </label>
                                             <Select
                                                 id="cidade"
                                                 className="select"
-                                                options={options}
+                                                options={cities}
+                                                onChange={(event) => setCity(event?.value)}
                                                 styles={customStyles}
                                                 isSearchable
                                                 isClearable
@@ -182,7 +311,8 @@ function Home() {
                                             <Select
                                                 id="bairro"
                                                 className="select"
-                                                options={options}
+                                                options={districts}
+                                                onChange={(event) => setDistrict(event?.value)}
                                                 styles={customStyles}
                                                 isSearchable
                                                 isClearable
@@ -206,31 +336,25 @@ function Home() {
                                                         color: "#5C6476",
                                                     }}
                                                 >
-                                                    <div>{`R$${val.min}`}</div>
+                                                    <div>{`R$${price.min}`}</div>
                                                     <div>-</div>
-                                                    <div>{`R$${val.max}`}</div>
+                                                    <div>{`R$${price.max}`}</div>
                                                 </div>
                                                 <div className="div__input__range">
                                                     <InputRange
                                                         step={5}
-                                                        formatLabel={(value) =>
-                                                            null
-                                                        }
                                                         draggableTrack={false}
                                                         allowSameValues={false}
                                                         maxValue={maxValue}
                                                         minValue={0}
-                                                        value={val}
-                                                        onChange={setVal}
-                                                        onChangeComplete={(
-                                                            args
-                                                        ) => console.log(args)}
+                                                        value={price}
+                                                        onChange={setPrice}
                                                     />
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <ButtonPrimary>
+                                        <ButtonPrimary onClick={() => handleSubmit() }>
                                             Encontre seu imóvel
                                         </ButtonPrimary>
                                     </div>
@@ -273,7 +397,7 @@ function Home() {
                                                             handleDorms("1")
                                                         }
                                                         sx={
-                                                            dorms === "1"
+                                                            room === "1"
                                                                 ? {
                                                                       minWidth:
                                                                           "2rem",
@@ -314,7 +438,7 @@ function Home() {
                                                             handleDorms("2")
                                                         }
                                                         sx={
-                                                            dorms === "2"
+                                                            room === "2"
                                                                 ? {
                                                                       minWidth:
                                                                           "2rem",
@@ -355,7 +479,7 @@ function Home() {
                                                             handleDorms("3")
                                                         }
                                                         sx={
-                                                            dorms === "3"
+                                                            room === "3"
                                                                 ? {
                                                                       minWidth:
                                                                           "2rem",
@@ -396,7 +520,7 @@ function Home() {
                                                             handleDorms("4")
                                                         }
                                                         sx={
-                                                            dorms === "4"
+                                                            room === "4"
                                                                 ? {
                                                                       minWidth:
                                                                           "2rem",
@@ -644,7 +768,7 @@ function Home() {
                                                         lineHeight: "21px",
                                                     }}
                                                 >
-                                                    Suítes
+                                                    Banheiros
                                                 </Typography>
                                                 <Box
                                                     sx={{
@@ -655,10 +779,10 @@ function Home() {
                                                 >
                                                     <Button
                                                         onClick={() =>
-                                                            handleSuites("1")
+                                                            handleBathroom("1")
                                                         }
                                                         sx={
-                                                            suites === "1"
+                                                            toilet === "1"
                                                                 ? {
                                                                       minWidth:
                                                                           "2rem",
@@ -696,10 +820,10 @@ function Home() {
                                                     </Button>
                                                     <Button
                                                         onClick={() =>
-                                                            handleSuites("2")
+                                                            handleBathroom("2")
                                                         }
                                                         sx={
-                                                            suites === "2"
+                                                            toilet === "2"
                                                                 ? {
                                                                       minWidth:
                                                                           "2rem",
@@ -737,10 +861,10 @@ function Home() {
                                                     </Button>
                                                     <Button
                                                         onClick={() =>
-                                                            handleSuites("3")
+                                                            handleBathroom("3")
                                                         }
                                                         sx={
-                                                            suites === "3"
+                                                            toilet === "3"
                                                                 ? {
                                                                       minWidth:
                                                                           "2rem",
@@ -778,10 +902,10 @@ function Home() {
                                                     </Button>
                                                     <Button
                                                         onClick={() =>
-                                                            handleSuites("4")
+                                                            handleBathroom("4")
                                                         }
                                                         sx={
-                                                            suites === "4"
+                                                            toilet === "4"
                                                                 ? {
                                                                       minWidth:
                                                                           "2rem",
@@ -836,7 +960,7 @@ function Home() {
                                                         lineHeight: "21px",
                                                     }}
                                                 >
-                                                    Suítes
+                                                    Garagem
                                                 </Typography>
                                                 <Box
                                                     sx={{
@@ -847,10 +971,10 @@ function Home() {
                                                 >
                                                     <Button
                                                         onClick={() =>
-                                                            handleSuites("1")
+                                                            handleVacancies("1")
                                                         }
                                                         sx={
-                                                            suites === "1"
+                                                            garage === "1"
                                                                 ? {
                                                                       minWidth:
                                                                           "2rem",
@@ -888,10 +1012,10 @@ function Home() {
                                                     </Button>
                                                     <Button
                                                         onClick={() =>
-                                                            handleSuites("2")
+                                                            handleVacancies("2")
                                                         }
                                                         sx={
-                                                            suites === "2"
+                                                            garage === "2"
                                                                 ? {
                                                                       minWidth:
                                                                           "2rem",
@@ -929,10 +1053,10 @@ function Home() {
                                                     </Button>
                                                     <Button
                                                         onClick={() =>
-                                                            handleSuites("3")
+                                                            handleVacancies("3")
                                                         }
                                                         sx={
-                                                            suites === "3"
+                                                            garage === "3"
                                                                 ? {
                                                                       minWidth:
                                                                           "2rem",
@@ -970,10 +1094,10 @@ function Home() {
                                                     </Button>
                                                     <Button
                                                         onClick={() =>
-                                                            handleSuites("4")
+                                                            handleVacancies("4")
                                                         }
                                                         sx={
-                                                            suites === "4"
+                                                            garage === "4"
                                                                 ? {
                                                                       minWidth:
                                                                           "2rem",
@@ -1033,9 +1157,6 @@ function Home() {
                                                     <div>
                                                         <InputRange
                                                             step={5}
-                                                            formatLabel={(
-                                                                value
-                                                            ) => null}
                                                             draggableTrack={
                                                                 false
                                                             }
@@ -1046,13 +1167,6 @@ function Home() {
                                                             minValue={0}
                                                             value={area}
                                                             onChange={setArea}
-                                                            onChangeComplete={(
-                                                                args
-                                                            ) =>
-                                                                console.log(
-                                                                    args
-                                                                )
-                                                            }
                                                         />
                                                     </div>
                                                 </div>
@@ -1074,11 +1188,8 @@ function Home() {
                                                     }}
                                                     control={
                                                         <Checkbox
-                                                            onChange={() =>
-                                                                console.log(
-                                                                    "imoveis na planta"
-                                                                )
-                                                            }
+                                                            onChange={(event) => setPlant(event?.target.checked)}
+                                                            checked={plant}
                                                             sx={{
                                                                 "&.Mui-checked":
                                                                     {
@@ -1099,11 +1210,8 @@ function Home() {
                                                     }}
                                                     control={
                                                         <Checkbox
-                                                            onChange={() =>
-                                                                console.log(
-                                                                    "ofertas"
-                                                                )
-                                                            }
+                                                            onChange={(event) => setOffer(event?.target.checked)}
+                                                            checked={offer}
                                                             sx={{
                                                                 "&.Mui-checked":
                                                                     {
@@ -1125,12 +1233,12 @@ function Home() {
                                         <div className="div">
                                             <label htmlFor="tipoMovel">
                                                 Tipo de Imóvel{" "}
-
                                             </label>
                                             <Select
                                                 id="tipoMovel"
                                                 className="select"
-                                                options={options}
+                                                onChange={(event) => setBuildingType(event?.value)}
+                                                options={types}
                                                 styles={customStyles}
                                                 isSearchable
                                                 isClearable
@@ -1141,12 +1249,12 @@ function Home() {
                                         <div className="div">
                                             <label htmlFor="cidade">
                                                 Cidade{" "}
-
                                             </label>
                                             <Select
                                                 id="cidade"
                                                 className="select"
-                                                options={options}
+                                                onChange={(event) => setCity(event?.value)}
+                                                options={cities}
                                                 styles={customStyles}
                                                 isSearchable
                                                 isClearable
@@ -1157,12 +1265,12 @@ function Home() {
                                         <div className="div">
                                             <label htmlFor="bairro">
                                                 Bairro{" "}
-
                                             </label>
                                             <Select
                                                 id="bairro"
                                                 className="select"
-                                                options={options}
+                                                onChange={(event) => setDistrict(event?.value)}
+                                                options={districts}
                                                 styles={customStyles}
                                                 isSearchable
                                                 isClearable
@@ -1184,31 +1292,25 @@ function Home() {
                                                         color: "#5C6476",
                                                     }}
                                                 >
-                                                    <div>{`R$${val.min}`}</div>
+                                                    <div>{`R$${area.min}`}</div>
                                                     <div>-</div>
-                                                    <div>{`R$${val.max}`}</div>
+                                                    <div>{`R$${area.max}`}</div>
                                                 </div>
                                                 <div>
                                                     <InputRange
                                                         step={5}
-                                                        formatLabel={(value) =>
-                                                            null
-                                                        }
                                                         draggableTrack={false}
                                                         allowSameValues={false}
                                                         maxValue={maxValue}
                                                         minValue={0}
-                                                        value={val}
-                                                        onChange={setVal}
-                                                        onChangeComplete={(
-                                                            args
-                                                        ) => console.log(args)}
+                                                        value={area}
+                                                        onChange={setArea}
                                                     />
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <ButtonPrimary>
+                                        <ButtonPrimary onClick={() => handleSubmit()}>
                                             Encontre seu imóvel
                                         </ButtonPrimary>
                                     </div>
@@ -1251,7 +1353,7 @@ function Home() {
                                                             handleDorms("1")
                                                         }
                                                         sx={
-                                                            dorms === "1"
+                                                            room === "1"
                                                                 ? {
                                                                       minWidth:
                                                                           "2rem",
@@ -1292,7 +1394,7 @@ function Home() {
                                                             handleDorms("2")
                                                         }
                                                         sx={
-                                                            dorms === "2"
+                                                            room === "2"
                                                                 ? {
                                                                       minWidth:
                                                                           "2rem",
@@ -1333,7 +1435,7 @@ function Home() {
                                                             handleDorms("3")
                                                         }
                                                         sx={
-                                                            dorms === "3"
+                                                            room === "3"
                                                                 ? {
                                                                       minWidth:
                                                                           "2rem",
@@ -1374,7 +1476,7 @@ function Home() {
                                                             handleDorms("4")
                                                         }
                                                         sx={
-                                                            dorms === "4"
+                                                            room === "4"
                                                                 ? {
                                                                       minWidth:
                                                                           "2rem",
@@ -2011,9 +2113,6 @@ function Home() {
                                                     <div>
                                                         <InputRange
                                                             step={5}
-                                                            formatLabel={(
-                                                                value
-                                                            ) => null}
                                                             draggableTrack={
                                                                 false
                                                             }
@@ -2024,13 +2123,6 @@ function Home() {
                                                             minValue={0}
                                                             value={area}
                                                             onChange={setArea}
-                                                            onChangeComplete={(
-                                                                args
-                                                            ) =>
-                                                                console.log(
-                                                                    args
-                                                                )
-                                                            }
                                                         />
                                                     </div>
                                                 </div>
@@ -2128,7 +2220,7 @@ function Home() {
 
             <section className="redes">
                 <div className="wrap">
-                    <a href="https://wa.me/54999678976" className="box" target="_blank" rel="noreferrer">
+                    <a href="https://wa.me/54996583631" className="box" target="_blank" rel="noreferrer">
                         <img
                             src={imgWhats}
                             width={imgWhats.width}
@@ -2137,11 +2229,11 @@ function Home() {
                         />
                         <div className="boxInner">
                             <span>whats locação</span>
-                            <p>(54) 99967.8976</p>
+                            <p>(54) 9 9658.3631</p>
                         </div>
                     </a>
 
-                    <a href="https://wa.me/54999678976" className="box" target="_blank" rel="noreferrer">
+                    <a href="https://wa.me/54981158489" className="box" target="_blank" rel="noreferrer">
                         <img
                             src={imgWhats}
                             width={imgWhats.width}
@@ -2150,7 +2242,7 @@ function Home() {
                         />
                         <div className="boxInner">
                             <span>whats vendas</span>
-                            <p>(54) 99967.8976</p>
+                            <p>(54) 98115.8489</p>
                         </div>
                     </a>
 
@@ -2187,8 +2279,7 @@ function Home() {
                                         alt="Instagram"
                                     />
                                 </a>
-                                <a href="https://www.linkedin.com/company/imobili%C3%A1ria-nichele/" target="_blank" rel="noreferrer"
-                                >
+                                <a href="https://www.linkedin.com/company/imobili%C3%A1ria-nichele/" target="_blank" rel="noreferrer">
                                     <img
                                         src={imgLinke}
                                         width={imgLinke.width}
@@ -2203,7 +2294,7 @@ function Home() {
             </section>
 
             <section>
-                <CarouselMoveis />
+                <CarouselMoveis data={imoveisDestaque}/>
             </section>
 
             <section>

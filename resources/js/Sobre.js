@@ -38,7 +38,7 @@ export default function Sobre() {
                 <div className="content__sobre">
                     <span>Sobre nós</span>
                     <h1>
-                        A mais de 50 anos no mercado, oferecendo soluções
+                        Há mais de 50 anos no mercado, oferecendo soluções
                         imobiliárias
                     </h1>
                 </div>
@@ -47,12 +47,10 @@ export default function Sobre() {
             <div className="content__infos">
                 <div className="info">
                     <p>
-                        A mais de 50 anos no mercado, oferecendo soluções
-                        imobiliárias na Administração de Aluguéis e na Venda de
-                        Imóveis.
+                    Há mais de 50 anos no mercado, oferecendo soluções imobiliárias na administração de alugueis e na venda de imóveis.
                     </p>
                     <p>
-                        Somos uma empresa moderna, com visão de futuro. Buscamos
+                        Somos uma empresa moderna e que tem visão de futuro. Buscamos
                         permanentemente a qualificação dos serviços prestados,
                         comprometidos com a satisfação, lucratividade e a
                         qualidade de vida dos nossos clientes, parceiros e
@@ -106,41 +104,19 @@ export default function Sobre() {
                 </div>
                 <div className="infos__carousel">
                     <h2>
-                        Somos conhecidos no mercado imobiliário pelo
-                        profissionalismo e pela ética com que conduzimos os
-                        negócios
+                    Reconhecimento, profissionalismo e ética na condução dos negócios
                     </h2>
                     <p>
-                        A Imobiliária Nichele foi fundada em 1969, em Caxias do
-                        Sul, pelo seu atual Diretor Ivor Emilio Nichele. Em
-                        1987, ampliamos as atividades, ingressando na construção
-                        civil de imóveis residenciais e comerciais. Somos
-                        responsáveis pela construção de milhares de metros
-                        quadrados em apartamentos, sobrados, lojas e salas
-                        comerciais.
+                    Fundada em 1969, em Caxias do Sul, por Ivor Emilio Nichele, a Imobiliária Nichele ampliou suas atividades no ano de 1987, ingressando na construção civil de imóveis residenciais e comerciais. Ao longo desse período, milhares de metros quadrados em apartamentos, sobrados, lojas e salas comerciais foram construídos.
                     </p>
                     <p>
-                        A confiança e a credibilidade adquirida nesses anos de
-                        atuação, são os motivos que nos levam ao sucesso na
-                        administração, nas vendas e na construção de imóveis,
-                        contribuindo assim para o desenvolvimento da região e do
-                        setor imobiliário com o respeito e a confiança que a
-                        cidade merece.
+                    A confiança e a credibilidade adquiridas nesses anos foram os motivos que levaram a empresa ao sucesso na administração, vendas e construção de imóveis que possui nos dias atuais.
                     </p>
                     <p>
-                        A direção da Imobiliária Nichele é exercida pelo sócio
-                        fundador Ivor Emilio Nichele e seu filho Ricardo Antonio
-                        Nichele.
+                    Hoje, o sócio fundador Ivor Emilio Nichele e seu filho Ricardo Antônio Nichele administram juntos a Imobiliária, que segue crescendo e contribuindo para o desenvolvimento da região e do setor imobiliário com o respeito e a confiança que a cidade merece.
                     </p>
                     <p>
-                        Somos conhecidos no mercado imobiliário pelo
-                        profissionalismo e pela ética com que conduzimos os
-                        negócios, proporcionando segurança e tranquilidade na
-                        gestão de imóveis.
-                    </p>
-                    <p>
-                        A realização do seu sonho está aqui, descomplique com a
-                        Nichele.
+                    A realização do seu sonho está aqui. Descomplique com a Nichele.
                     </p>
                 </div>
             </div>
