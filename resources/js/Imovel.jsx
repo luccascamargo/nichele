@@ -72,10 +72,15 @@ export const Imovel = () => {
         pending: false,
         value: undefined,
     });
+    const [album, setAlbum] = useState({
+        pending: false,
+        value: undefined,
+    });
 
     useEffect(() => {
         setBuilding({ pending: true, value: undefined });
         setCharacteristics({ pending: true, value: undefined });
+        setAlbum({ pending: true, value: undefined });
 
         const params = new URLSearchParams(window.location.search);
         const id = params.get("code");
@@ -99,11 +104,21 @@ export const Imovel = () => {
             });
         };
 
+        const fetchAlbumById = async () => {
+            let response = await api.get(`/api/photos/${id}`);
+            response = await response.data;
+            setAlbum({
+                pending: true,
+                value: response,
+            });
+        };
+
         fetchBuildingById();
         fetchCharacteristicsById();
+        fetchAlbumById();
     }, []);
 
-    console.log(characteristics);
+    console.log(album);
 
     const {
         register,
@@ -111,6 +126,22 @@ export const Imovel = () => {
         formState: { errors },
     } = useForm();
     const onSubmit = (data) => console.log(data);
+
+    const Image = ({ src, alt, fallback }) => {
+        const [error, setError] = useState(false);
+
+        const onError = () => {
+            setError(true);
+        };
+
+        return error ? (
+            fallback
+        ) : (
+            <div className="image">
+                <img src={src} alt={alt} onError={onError} />
+            </div>
+        );
+    };
 
     return (
         <>
@@ -129,45 +160,38 @@ export const Imovel = () => {
                     </div>
                 </div>
             </div>
-            <Carousel
-                partialVisible={true}
-                additionalTransfrom={0}
-                arrows={false}
-                autoPlaySpeed={8000}
-                centerMode={false}
-                containerClass="carousel-container-imovel"
-                draggable
-                focusOnSelect={false}
-                infinite
-                itemClass="item"
-                keyBoardControl
-                minimumTouchDrag={80}
-                renderDotsOutside={false}
-                responsive={responsive}
-                showDots={false}
-                sliderClass=""
-                slidesToSlide={1}
-                customTransition={"transform 800ms ease-in-out"}
-            >
-                <div className="image">
-                    <img src={image} alt="image" />
-                </div>
-                <div className="image">
-                    <img src={image} alt="image" />
-                </div>
-                <div className="image">
-                    <img src={image} alt="image" />
-                </div>
-                <div className="image">
-                    <img src={image} alt="image" />
-                </div>
-                <div className="image">
-                    <img src={image} alt="image" />
-                </div>
-                <div className="image">
-                    <img src={image} alt="image" />
-                </div>
-            </Carousel>
+            {album?.value?.length > 0 ? (
+                <Carousel
+                    partialVisible={true}
+                    additionalTransfrom={0}
+                    arrows={false}
+                    autoPlaySpeed={8000}
+                    centerMode={false}
+                    containerClass="carousel-container-imovel"
+                    draggable
+                    focusOnSelect={false}
+                    infinite
+                    itemClass="item"
+                    keyBoardControl
+                    minimumTouchDrag={80}
+                    renderDotsOutside={false}
+                    responsive={responsive}
+                    showDots={false}
+                    sliderClass=""
+                    slidesToSlide={1}
+                    customTransition={"transform 800ms ease-in-out"}
+                >
+                    {album?.value?.map((photo) => (
+                        <Image
+                            src={"/images/viewsw/fotos/" + photo.ARQUIVOFOTO}
+                            alt={photo.DESCRICAO}
+                            fallback={<div></div>}
+                        />
+                    ))}
+                </Carousel>
+            ) : (
+                ""
+            )}
             <div className="container__aside">
                 <div className="content__aside">
                     <div className="top">
