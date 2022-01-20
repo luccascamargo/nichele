@@ -1,7 +1,12 @@
-@import url(https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;
-
-0,700;1,400&family=Roboto&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,700;1,400&family=Roboto&display=swap);
 @import url(https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap);
+/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
+/* Document
+   ========================================================================== */
+/**
+ * 1. Correct the line height in all browsers.
+ * 2. Prevent adjustments of font size after orientation changes in iOS.
+ */
 * {
   margin: 0;
   padding: 0;
@@ -14,19 +19,16 @@
     font-size: 93.75%;
   }
 }
-
 @media (max-width: 720px) {
   html {
     font-size: 87.5%;
   }
 }
-
 @media (max-width: 600px) {
   html {
     font-size: 81.25%;
   }
 }
-
 @media (max-width: 320px) {
   html {
     font-size: 75%;
@@ -35,11 +37,9 @@
 
 /* Sections
    ========================================================================== */
-
 /**
  * Remove the margin in all browsers.
  */
-
 body {
   margin: 0;
 }
@@ -47,7 +47,6 @@ body {
 /**
  * Render the `main` element consistently in IE.
  */
-
 main {
   display: block;
 }
@@ -56,15 +55,12 @@ main {
  * Correct the font size and margin on `h1` elements within `section` and
  * `article` contexts in Chrome, Firefox, and Safari.
  */
-
 /* Grouping content
    ========================================================================== */
-
 /**
  * 1. Add the correct box sizing in Firefox.
  * 2. Show the overflow in Edge and IE.
  */
-
 hr {
   box-sizing: content-box;
   /* 1 */
@@ -78,7 +74,6 @@ hr {
  * 1. Correct the inheritance and scaling of font size in all browsers.
  * 2. Correct the odd `em` font sizing in all browsers.
  */
-
 pre {
   font-family: monospace, monospace;
   /* 1 */
@@ -88,11 +83,9 @@ pre {
 
 /* Text-level semantics
    ========================================================================== */
-
 /**
  * Remove the gray background on active links in IE 10.
  */
-
 a {
   background-color: transparent;
   text-decoration: none;
@@ -102,7 +95,6 @@ a {
  * 1. Remove the bottom border in Chrome 57-
  * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
  */
-
 abbr[title] {
   border-bottom: none;
   /* 1 */
@@ -116,7 +108,6 @@ abbr[title] {
 /**
  * Add the correct font weight in Chrome, Edge, and Safari.
  */
-
 b,
 strong {
   font-weight: bolder;
@@ -126,7 +117,6 @@ strong {
  * 1. Correct the inheritance and scaling of font size in all browsers.
  * 2. Correct the odd `em` font sizing in all browsers.
  */
-
 code,
 kbd,
 samp {
@@ -139,7 +129,6 @@ samp {
 /**
  * Add the correct font size in all browsers.
  */
-
 small {
   font-size: 80%;
 }
@@ -148,7 +137,6 @@ small {
  * Prevent `sub` and `sup` elements from affecting the line height in
  * all browsers.
  */
-
 sub,
 sup {
   font-size: 75%;
@@ -167,23 +155,19 @@ sup {
 
 /* Embedded content
    ========================================================================== */
-
 /**
  * Remove the border on images inside links in IE 10.
  */
-
 img {
   border-style: none;
 }
 
 /* Forms
    ========================================================================== */
-
 /**
  * 1. Change the font styles in all browsers.
  * 2. Remove the margin in Firefox and Safari.
  */
-
 button,
 input,
 optgroup,
@@ -203,7 +187,6 @@ textarea {
  * Show the overflow in IE.
  * 1. Show the overflow in Edge.
  */
-
 button,
 input {
   /* 1 */
@@ -214,7 +197,6 @@ input {
  * Remove the inheritance of text transform in Edge, Firefox, and IE.
  * 1. Remove the inheritance of text transform in Firefox.
  */
-
 button,
 select {
   /* 1 */
@@ -224,7 +206,6 @@ select {
 /**
  * Correct the inability to style clickable types in iOS and Safari.
  */
-
 button,
 [type=button],
 [type=reset],
@@ -236,7 +217,6 @@ button,
 /**
  * Remove the inner border and padding in Firefox.
  */
-
 button::-moz-focus-inner,
 [type=button]::-moz-focus-inner,
 [type=reset]::-moz-focus-inner,
@@ -248,7 +228,6 @@ button::-moz-focus-inner,
 /**
  * Restore the focus styles unset by the previous rule.
  */
-
 button:-moz-focusring,
 [type=button]:-moz-focusring,
 [type=reset]:-moz-focusring,
@@ -259,7 +238,6 @@ button:-moz-focusring,
 /**
  * Correct the padding in Firefox.
  */
-
 fieldset {
   padding: 0.35em 0.75em 0.625em;
 }
@@ -270,7 +248,6 @@ fieldset {
  * 3. Remove the padding so developers are not caught out when they zero out
  *    `fieldset` elements in all browsers.
  */
-
 legend {
   box-sizing: border-box;
   /* 1 */
@@ -289,7 +266,6 @@ legend {
 /**
  * Add the correct vertical alignment in Chrome, Firefox, and Opera.
  */
-
 progress {
   vertical-align: baseline;
 }
@@ -297,7 +273,6 @@ progress {
 /**
  * Remove the default vertical scrollbar in IE 10+.
  */
-
 textarea {
   overflow: auto;
 }
@@ -306,7 +281,6 @@ textarea {
  * 1. Add the correct box sizing in IE 10.
  * 2. Remove the padding in IE 10.
  */
-
 [type=checkbox],
 [type=radio] {
   box-sizing: border-box;
@@ -318,7 +292,6 @@ textarea {
 /**
  * Correct the cursor style of increment and decrement buttons in Chrome.
  */
-
 [type=number]::-webkit-inner-spin-button,
 [type=number]::-webkit-outer-spin-button {
   height: auto;
@@ -328,7 +301,6 @@ textarea {
  * 1. Correct the odd appearance in Chrome and Safari.
  * 2. Correct the outline style in Safari.
  */
-
 [type=search] {
   -webkit-appearance: textfield;
   /* 1 */
@@ -339,7 +311,6 @@ textarea {
 /**
  * Remove the inner padding in Chrome and Safari on macOS.
  */
-
 [type=search]::-webkit-search-decoration {
   -webkit-appearance: none;
 }
@@ -348,7 +319,6 @@ textarea {
  * 1. Correct the inability to style clickable types in iOS and Safari.
  * 2. Change font properties to `inherit` in Safari.
  */
-
 ::-webkit-file-upload-button {
   -webkit-appearance: button;
   /* 1 */
@@ -358,11 +328,9 @@ textarea {
 
 /* Interactive
    ========================================================================== */
-
 /*
  * Add the correct display in Edge, IE 10+, and Firefox.
  */
-
 details {
   display: block;
 }
@@ -370,18 +338,15 @@ details {
 /*
  * Add the correct display in all browsers.
  */
-
 summary {
   display: list-item;
 }
 
 /* Misc
    ========================================================================== */
-
 /**
  * Add the correct display in IE 10+.
  */
-
 template {
   display: none;
 }
@@ -389,7 +354,6 @@ template {
 /**
  * Add the correct display in IE 10.
  */
-
 [hidden] {
   display: none;
 }
@@ -457,22 +421,18 @@ button {
 .content__carousel__sobre {
   width: 35rem;
 }
-
 .content__carousel__sobre .content__carousel__sobre__item {
   margin: 1rem 1rem 2rem 1rem;
 }
-
 .content__carousel__sobre .content__carousel__sobre__dotList {
   width: 100%;
 }
-
 .content__carousel__sobre .content__carousel__sobre__dotList .react-multi-carousel-dot button {
   width: 7px;
   height: 7px;
   background: rgba(32, 92, 164, 0.4);
   border: none;
 }
-
 .content__carousel__sobre .content__carousel__sobre__dotList .react-multi-carousel-dot--active button {
   width: 7px;
   height: 7px;
@@ -492,13 +452,11 @@ button {
   background-position: center center;
   transition: height 0.4s;
 }
-
 @media (max-width: 600px) {
   .main {
     height: 85rem;
   }
 }
-
 .main h1 {
   font-family: "Nunito", sans-serif;
   font-size: 3rem;
@@ -510,7 +468,6 @@ button {
   margin-bottom: 4.875rem;
   padding: 0 2rem 0 2rem;
 }
-
 .main .containerTab {
   width: 100%;
   background: #ffffff;
@@ -524,39 +481,33 @@ button {
   gap: 30px;
   flex-wrap: wrap;
 }
-
 @media (max-width: 600px) {
   .main .containerTab {
     padding: 30px 0 28px;
   }
 }
-
 .main .containerTab .div__code {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-
 .main .containerTab .div__code #input__code {
   width: 75%;
   height: 3rem;
   border: none;
   padding-left: 2rem;
 }
-
 .main .containerTab .advanced__search {
   display: none;
   width: 100%;
 }
-
 .main .containerTab .advanced__search .content__advanced {
   display: flex;
   gap: 2rem;
   flex-wrap: wrap;
   justify-content: center;
 }
-
 .main .containerTab .advanced__search .content__advanced .div {
   position: relative;
   /* input-range-slider */
@@ -568,7 +519,6 @@ button {
   /* _input-range-track.scss */
   /* input-range */
 }
-
 .main .containerTab .advanced__search .content__advanced .div .input-range__slider {
   border-radius: 100%;
   cursor: pointer;
@@ -585,7 +535,6 @@ button {
   transition: left 200ms ease-out;
   will-change: left;
 }
-
 .main .containerTab .advanced__search .content__advanced .div .input-range__slider::before {
   background: #ffffff;
   border-radius: 100%;
@@ -598,31 +547,25 @@ button {
   will-change: transform, box-shadow;
   border: 2px solid #7dafeb;
 }
-
 .main .containerTab .advanced__search .content__advanced .div .input-range__slider:active::before {
   transform: scale(1.15);
 }
-
 .main .containerTab .advanced__search .content__advanced .div .input-range__slider:focus::before {
   box-shadow: 0 0 0 5px rgba(125, 175, 235, 0.2);
 }
-
 .input-range--disabled .main .containerTab .advanced__search .content__advanced .div .input-range__slider::before {
   background: #cccccc;
   border: 1px solid #cccccc;
   box-shadow: none;
   transform: none;
 }
-
 .main .containerTab .advanced__search .content__advanced .div .input-range__label-container {
   display: none;
 }
-
 .main .containerTab .advanced__search .content__advanced .div .input-range__label-container .input-range__label--min,
 .main .containerTab .advanced__search .content__advanced .div .input-range__label-container .input-range__label--max {
   display: none;
 }
-
 .main .containerTab .advanced__search .content__advanced .div .input-range__track {
   background: #e6e9ea;
   border-radius: 3px;
@@ -633,11 +576,9 @@ button {
   transition: left 200ms ease-out, width 200ms ease-out;
   will-change: left, width;
 }
-
 .input-range--disabled .main .containerTab .advanced__search .content__advanced .div .input-range__track {
   background: #e6e9ea;
 }
-
 .main .containerTab .advanced__search .content__advanced .div .input-range__track--background {
   margin-top: -1.5px;
   top: 50%;
@@ -645,21 +586,17 @@ button {
   left: 0;
   right: 0;
 }
-
 .main .containerTab .advanced__search .content__advanced .div .input-range__track--active {
   background: #7dafeb;
 }
-
 .main .containerTab .advanced__search .content__advanced .div .input-range {
   height: 1rem;
   position: relative;
   width: 100%;
 }
-
 .main .containerTab .active {
   display: block;
 }
-
 .main .containerTab .simple__search {
   width: 100%;
   display: flex;
@@ -668,13 +605,11 @@ button {
   gap: 2rem;
   flex-wrap: wrap;
 }
-
 @media (max-width: 600px) {
   .main .containerTab .simple__search {
     padding: 30px 20px 28px;
   }
 }
-
 .main .containerTab .simple__search .div {
   position: relative;
   height: 5rem;
@@ -690,20 +625,17 @@ button {
   /* _input-range-track.scss */
   /* input-range */
 }
-
 @media (max-width: 600px) {
   .main .containerTab .simple__search .div {
     align-items: center;
     width: 100%;
   }
-
   .main .containerTab .simple__search .div .select {
     width: 100%;
     border: 1px solid #cccccc;
     border-radius: 10px;
   }
 }
-
 @media (max-width: 600px) {
   .main .containerTab .simple__search .div .div__range {
     width: 100%;
@@ -711,12 +643,10 @@ button {
     flex-direction: column;
     align-items: center;
   }
-
   .main .containerTab .simple__search .div .div__range .div__input__range {
     width: 100%;
   }
 }
-
 .main .containerTab .simple__search .div .input-range__slider {
   border-radius: 100%;
   cursor: pointer;
@@ -733,7 +663,6 @@ button {
   transition: left 200ms ease-out;
   will-change: left;
 }
-
 .main .containerTab .simple__search .div .input-range__slider::before {
   background: #ffffff;
   border-radius: 100%;
@@ -746,31 +675,25 @@ button {
   will-change: transform, box-shadow;
   border: 2px solid #7dafeb;
 }
-
 .main .containerTab .simple__search .div .input-range__slider:active::before {
   transform: scale(1.15);
 }
-
 .main .containerTab .simple__search .div .input-range__slider:focus::before {
   box-shadow: 0 0 0 5px rgba(125, 175, 235, 0.2);
 }
-
 .input-range--disabled .main .containerTab .simple__search .div .input-range__slider::before {
   background: #cccccc;
   border: 1px solid #cccccc;
   box-shadow: none;
   transform: none;
 }
-
 .main .containerTab .simple__search .div .input-range__label-container {
   display: none;
 }
-
 .main .containerTab .simple__search .div .input-range__label-container .input-range__label--min,
 .main .containerTab .simple__search .div .input-range__label-container .input-range__label--max {
   display: none;
 }
-
 .main .containerTab .simple__search .div .input-range__track {
   background: #e6e9ea;
   border-radius: 3px;
@@ -781,11 +704,9 @@ button {
   transition: left 200ms ease-out, width 200ms ease-out;
   will-change: left, width;
 }
-
 .input-range--disabled .main .containerTab .simple__search .div .input-range__track {
   background: #e6e9ea;
 }
-
 .main .containerTab .simple__search .div .input-range__track--background {
   margin-top: -1.5px;
   top: 50%;
@@ -793,21 +714,17 @@ button {
   left: 0;
   right: 0;
 }
-
 .main .containerTab .simple__search .div .input-range__track--active {
   background: #7dafeb;
 }
-
 .main .containerTab .simple__search .div .input-range {
   height: 1rem;
   position: relative;
   width: 100%;
 }
-
 .main .containerTab .simple__search .value {
   width: 9.68rem;
 }
-
 .main .containerTab label {
   font-family: "Roboto", sans-serif;
   font-style: normal;
@@ -818,14 +735,12 @@ button {
   display: flex;
   gap: 23px;
 }
-
 .main .buttons__advanced {
   display: flex;
   align-items: center;
   gap: 2rem;
   height: 3rem;
 }
-
 .main .buttons__advanced button {
   display: flex;
   align-items: center;
@@ -857,7 +772,6 @@ button {
   margin: 0 auto;
   padding: 0 2rem 0 2rem;
 }
-
 .redes .wrap {
   display: flex;
   justify-content: center;
@@ -865,13 +779,11 @@ button {
   gap: 2rem;
   margin-bottom: 118px;
 }
-
 @media (max-width: 1024px) {
   .redes .wrap {
     flex-wrap: wrap;
   }
 }
-
 .redes .wrap .box {
   display: flex;
   justify-content: center;
@@ -884,7 +796,6 @@ button {
   border-radius: 20px;
   text-decoration: none;
 }
-
 .redes .wrap .box span {
   font-family: "Nunito";
   font-style: normal;
@@ -894,7 +805,6 @@ button {
   letter-spacing: -0.01em;
   color: #5c6476;
 }
-
 .redes .wrap .box p {
   font-style: normal;
   font-weight: normal;
@@ -904,11 +814,9 @@ button {
   opacity: 0.7;
   margin: 0;
 }
-
 .redes .wrap .box p.p12 {
   font-size: 12px;
 }
-
 .redes .wrap .box .social {
   display: flex;
   justify-content: center;
@@ -936,7 +844,6 @@ button {
   color: #205ca4;
   transition: all 0.3s;
 }
-
 .button:hover {
   box-shadow: 1px 10px 20px 0px rgba(45, 93, 150, 0.5);
 }
@@ -954,7 +861,6 @@ button {
   justify-content: center;
   gap: 0.75rem;
 }
-
 .buttons__menu.button__footer {
   width: 11.12rem;
   height: 3.5rem;
@@ -966,13 +872,11 @@ button {
   background: url(/images/banner-contato.png?02d959bf37d569b337df7ff2cda30b21), #2969ae;
   background-repeat: no-repeat;
 }
-
 @media (max-width: 1250px) {
   .header__contato {
     height: auto;
   }
 }
-
 .header__contato .content__contato {
   width: 100%;
   max-width: 1248px;
@@ -984,18 +888,15 @@ button {
   gap: 30px;
   position: relative;
 }
-
 @media (max-width: 641px) {
   .header__contato .content__contato {
     padding-top: 10rem;
   }
 }
-
 .header__contato .content__contato .infos__contato {
   width: 100%;
   max-width: 31.25rem;
 }
-
 @media (max-width: 600px) {
   .header__contato .content__contato .infos__contato .title__contato {
     display: flex;
@@ -1004,7 +905,6 @@ button {
     text-align: center;
   }
 }
-
 .header__contato .content__contato .infos__contato .title__contato span {
   font-family: "Nunito";
   font-style: normal;
@@ -1014,7 +914,6 @@ button {
   letter-spacing: -0.01em;
   color: #ffdb21;
 }
-
 .header__contato .content__contato .infos__contato .title__contato h1 {
   font-family: "Nunito";
   font-style: normal;
@@ -1024,25 +923,21 @@ button {
   letter-spacing: -0.01em;
   color: #ffffff;
 }
-
 .header__contato .content__contato .infos__contato section {
   padding-top: 3rem;
   display: flex;
   flex-direction: column;
   gap: 3rem;
 }
-
 @media (max-width: 600px) {
   .header__contato .content__contato .infos__contato section {
     align-items: center;
   }
 }
-
 .header__contato .content__contato .infos__contato section .phone__contato {
   display: flex;
   gap: 1rem;
 }
-
 .header__contato .content__contato .infos__contato section .phone__contato span {
   font-family: "Nunito";
   font-weight: bold;
@@ -1051,12 +946,10 @@ button {
   letter-spacing: -0.01em;
   color: #ffffff;
 }
-
 .header__contato .content__contato .infos__contato section .email__contato {
   display: flex;
   gap: 1rem;
 }
-
 .header__contato .content__contato .infos__contato section .email__contato a {
   font-family: "Nunito";
   font-weight: bold;
@@ -1065,29 +958,24 @@ button {
   letter-spacing: -0.01em;
   color: #ffffff;
 }
-
 .header__contato .content__contato .infos__contato section .content__whats__contato {
   display: flex;
   gap: 5.4rem;
 }
-
 @media (max-width: 641px) {
   .header__contato .content__contato .infos__contato section .content__whats__contato {
     gap: 1rem;
   }
 }
-
 .header__contato .content__contato .infos__contato section .content__whats__contato .w1 {
   display: flex;
   gap: 1rem;
 }
-
 .header__contato .content__contato .infos__contato section .content__whats__contato .w1 .w1__info__contato {
   display: flex;
   flex-direction: column;
   gap: 2px;
 }
-
 .header__contato .content__contato .infos__contato section .content__whats__contato .w1 .w1__info__contato span {
   font-family: "Nunito";
   font-weight: bold;
@@ -1096,7 +984,6 @@ button {
   letter-spacing: -0.01em;
   color: #ffffff;
 }
-
 .header__contato .content__contato .infos__contato section .content__whats__contato .w1 .w1__info__contato a {
   font-family: "Roboto";
   font-weight: normal;
@@ -1111,7 +998,6 @@ button {
   padding-left: 20px;
   padding-right: 20px;
 }
-
 .anuncio .wrapper__anuncio {
   width: 100%;
   height: 26.43rem;
@@ -1121,13 +1007,11 @@ button {
   justify-content: flex-start;
   margin: 0 auto;
 }
-
 .anuncio .content__anuncio {
   display: flex;
   flex-direction: column;
   max-width: 32.625rem;
 }
-
 .anuncio .content__anuncio h2 {
   font-family: "Nunito";
   font-weight: bold;
@@ -1136,7 +1020,6 @@ button {
   letter-spacing: -0.01em;
   color: #ffffff;
 }
-
 .anuncio .content__anuncio p {
   max-width: 52rem;
   font-family: "Roboto";
@@ -1153,7 +1036,6 @@ button {
   width: 100%;
   height: 44.375rem;
 }
-
 .iframe__contato iframe {
   width: 100%;
   height: 100%;
@@ -1169,7 +1051,6 @@ button {
   top: 0;
   z-index: 1;
 }
-
 .container__navbar .navbar {
   width: 100%;
   max-width: 1248px;
@@ -1179,27 +1060,22 @@ button {
   align-items: center;
   justify-content: space-between;
 }
-
 .container__navbar .navbar .logo {
   width: 15.62rem;
 }
-
 .container__navbar .navbar .logo img {
   width: 100%;
 }
-
 @media (max-width: 1024px) {
   .container__navbar .navbar .navbar__items {
     display: none;
   }
 }
-
 .container__navbar .navbar .navbar__items ul {
   list-style: none;
   display: flex;
   gap: 2.375rem;
 }
-
 .container__navbar .navbar .navbar__items ul a {
   font-size: 0.87rem;
   color: #fff;
@@ -1207,20 +1083,16 @@ button {
   font-weight: 400;
   transition: color 0.3s;
 }
-
 .container__navbar .navbar .navbar__items ul a:hover {
   color: #7dafeb;
 }
-
 .container__navbar .navbar .navbar__items ul a.active {
   color: #7dafeb;
 }
-
 .container__navbar .navbar .buttons {
   display: flex;
   gap: 1rem;
 }
-
 @media (max-width: 1024px) {
   .container__navbar .navbar .buttons {
     display: none;
@@ -1233,7 +1105,6 @@ button {
   padding-left: 20px;
   margin-bottom: 93px;
 }
-
 .moveis .box {
   max-width: 24rem;
   margin-right: 32px;
@@ -1242,12 +1113,10 @@ button {
   transition: box-shadow 0.3s;
   position: relative;
 }
-
 .moveis .box:hover {
   background: #ffffff;
   box-shadow: 0px 4px 60px rgba(32, 92, 164, 0.12);
 }
-
 .moveis .box .tipo {
   position: absolute;
   z-index: 10;
@@ -1269,11 +1138,9 @@ button {
   letter-spacing: -0.01em;
   color: #ffffff;
 }
-
 .moveis .box .tipo.venda {
   color: #205ca4;
 }
-
 .moveis .box .image {
   border-top-left-radius: 40px;
   border-top-right-radius: 40px;
@@ -1281,11 +1148,9 @@ button {
      object-fit: cover;
   width: 100%;
 }
-
 .moveis .box .content {
   padding: 28px;
 }
-
 .moveis .box .content p {
   font-style: normal;
   font-weight: normal;
@@ -1296,7 +1161,6 @@ button {
   margin: 0;
   margin-bottom: 3px;
 }
-
 .moveis .box .info {
   display: flex;
   justify-content: space-between;
@@ -1305,23 +1169,19 @@ button {
   gap: 12px;
   margin-bottom: 26px;
 }
-
 .moveis .box .info .title {
   font-weight: bold;
   font-size: 18px;
   color: #454b5b;
 }
-
 .moveis .box .info .price {
   font-weight: 900;
   font-size: 16px;
   color: #205ca4;
 }
-
 .moveis .box .info .code {
   color: #8991a4;
 }
-
 .moveis .box .data {
   display: flex;
   justify-content: space-between;
@@ -1329,14 +1189,12 @@ button {
   flex-wrap: wrap;
   gap: 12px;
 }
-
 .moveis .box .data div {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 9px;
 }
-
 .moveis .carouselButtonGroup {
   max-width: 1248px;
   margin-left: auto;
@@ -1352,14 +1210,12 @@ button {
   align-items: center;
   width: 100%;
 }
-
 .moveis .carouselButtonGroup .carouselHeader {
   display: flex;
   gap: 2.813rem;
   justify-content: center;
   align-items: center;
 }
-
 .moveis .carouselButtonGroup .carouselHeader h2 {
   font-family: "Nunito";
   font-style: normal;
@@ -1369,7 +1225,6 @@ button {
   letter-spacing: -0.01em;
   color: #454b5b;
 }
-
 .moveis .carouselButtonGroup a {
   font-family: "Nunito";
   font-style: normal;
@@ -1379,7 +1234,6 @@ button {
   letter-spacing: -0.01em;
   color: #205ca4;
 }
-
 .moveis .carouselButtonGroup button {
   background-color: transparent;
   border: 0px solid;
@@ -1391,9 +1245,6 @@ button {
   transition: all 0.25s ease 0s;
   height: 1em;
 }
-
 .moveis .carouselButtonGroup button:hover {
   color: #5c6476;
 }
-
-

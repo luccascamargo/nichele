@@ -7,6 +7,7 @@ use App\Http\Requests\Contact\RequestCreate;
 use App\Models\Address;
 use App\Models\Contact;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
 {
@@ -17,14 +18,23 @@ class ContactController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(RequestCreate $request)
+    public function mail(Request $request)
     {
-        $data = $request->validated();
+        $data = $request->all();
+        
+        Mail::send('contact_email',
+        array(
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'phone' => $data['phone'],
+            'msg' => $data['message']
+            ),
+            function($webmail){
+                $webmail->from('sitmeddigital@gmail.com'); // trocar
+                $webmail->to('allankehl@hotmail.com', 'Nichele')->subject('Contato recebido do site'); // trocar
+            }
+        );
 
-        if(isset($data['address'])) {
-            $data['address_id'] = Address::create($data);
-        }
-
-        return Contact::create($data);
+        return;
     }
 }

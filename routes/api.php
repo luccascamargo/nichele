@@ -31,3 +31,4 @@ Route::apiResource('posts', PostController::class)->only('index','show')->scoped
 Route::get('characteristics/{id}', [BuildingController::class, 'characteristic']);
 Route::get('photos/{id}', [BuildingController::class, 'album']);
 
+Route::post('send/email', [ContactController::class, 'mail'])->name('email');
