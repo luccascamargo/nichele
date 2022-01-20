@@ -27,7 +27,11 @@ export const Footer = () => {
                             </a>
                         </div>
                         <div className="sociais">
+<<<<<<< HEAD
                         <a href="https://www.facebook.com/NicheleImoveis" target="_blank" rel="noreferrer">
+=======
+                            <a href="https://www.facebook.com/NicheleImoveis" target="_blank" rel="noreferrer">
+>>>>>>> eac65508f7c7f439bd176f077db3505a60821368
                                 <img
                                     src={logoFacebook}
                                     alt="Instagram Nichele"
@@ -48,21 +52,36 @@ export const Footer = () => {
                         </div>
                     </div>
                     <div className="buttons">
+<<<<<<< HEAD
                     <a href="https://wa.me/54981158489" className="box" target="_blank" rel="noreferrer">
+=======
+                        <a href="https://wa.me/54999678976" className="box" target="_blank" rel="noreferrer">
+>>>>>>> eac65508f7c7f439bd176f077db3505a60821368
                             <ButtonPrimary>
                                 <img src={logoWhats} alt="Whats Nichele" />
                                 Whats vendas
                             </ButtonPrimary>
                         </a>
+<<<<<<< HEAD
                         <a href="https://wa.me/54996583631" className="box" target="_blank" rel="noreferrer">
+=======
+
+                        <a href="https://wa.me/54999678976" className="box" target="_blank" rel="noreferrer">
+>>>>>>> eac65508f7c7f439bd176f077db3505a60821368
                             <ButtonPrimary>
                                 <img src={logoWhats} alt="Whats Nichele" />
                                 Whats locação
                             </ButtonPrimary>
                         </a>
+<<<<<<< HEAD
                         <a href="https://portal.viaimob.com.br/" target="_blank" rel="noreferrer">
                             <ButtonClient text="Área do cliente" footer />
                         </a>
+=======
+
+
+                        <ButtonClient text="Área do cliente" footer />
+>>>>>>> eac65508f7c7f439bd176f077db3505a60821368
                     </div>
                 </div>
                 <div className="line" />
@@ -99,17 +118,29 @@ export const Footer = () => {
                         <dl>
                             <dt>Institucional</dt>
                             <dd>
+<<<<<<< HEAD
                                 <a href="/Sobre">
+=======
+                                <a href="/sobre">
+>>>>>>> eac65508f7c7f439bd176f077db3505a60821368
                                     Sobre
                                 </a>
                             </dd>
                             <dd>
+<<<<<<< HEAD
                                 <a href="/Blog">
+=======
+                                <a href="/blog">
+>>>>>>> eac65508f7c7f439bd176f077db3505a60821368
                                     Blog
                                 </a>
                             </dd>
                             <dd>
+<<<<<<< HEAD
                                 <a href="/Contato">
+=======
+                                <a href="/contato">
+>>>>>>> eac65508f7c7f439bd176f077db3505a60821368
                                     Contato
                                 </a>
                             </dd>
@@ -117,17 +148,29 @@ export const Footer = () => {
                         <dl>
                             <dt>Imóveis</dt>
                             <dd>
+<<<<<<< HEAD
                                 <a href="/imoveis#alugar">
+=======
+                                <a href="/imveis#alugar">
+>>>>>>> eac65508f7c7f439bd176f077db3505a60821368
                                     Alugar
                                 </a>
                             </dd>
                             <dd>
+<<<<<<< HEAD
                                 <a href="/imoveis/comprar">
+=======
+                                <a href="/imoveis#comprar">
+>>>>>>> eac65508f7c7f439bd176f077db3505a60821368
                                     Comprar
                                 </a>
                             </dd>
                             <dd>
+<<<<<<< HEAD
                                 <a href="/imoveis#comperciais">
+=======
+                                <a href="/imoveis#comerciais">
+>>>>>>> eac65508f7c7f439bd176f077db3505a60821368
                                     Imóveis comerciais
                                 </a>
                             </dd>

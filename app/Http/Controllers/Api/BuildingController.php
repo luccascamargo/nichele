@@ -105,7 +105,19 @@ class BuildingController extends Controller
         return $data = DB::table('imb_imovelcaracteristica')
             ->join('imb_caracteristica', 'imb_caracteristica.codigocaracteristica', '=', 'imb_imovelcaracteristica.codigocaracteristica')
             ->select('imb_imovelcaracteristica.*', 'imb_caracteristica.descricao')
-            ->where('imb_imovelcaracteristica.codigoimovel', 27)
+            ->where('imb_imovelcaracteristica.codigoimovel', $id)
+            ->get();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function album($id)
+    {
+        return $data = DB::table('imb_imovelfoto')
+            ->select('imb_imovelfoto.*')
+            ->where('imb_imovelfoto.codigoimovel', $id)
+            ->orderBy('imb_imovelfoto.ordem', 'asc')
             ->get();
     }
 

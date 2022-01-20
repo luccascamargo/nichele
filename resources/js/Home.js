@@ -46,8 +46,9 @@ const customStyles = {
     }),
     control: () => ({
         // none of react-select's styles are passed to <Control />
-        border: "none",
+        border: "1px solid #5C6476",
         display: "flex",
+        borderRadius: '10px',
     }),
     singleValue: (provided, state) => {
         const opacity = state.isDisabled ? 0.5 : 1;
@@ -290,6 +291,10 @@ function Home() {
                                         <div className="div">
                                             <label htmlFor="cidade">
                                                 Cidade{" "}
+<<<<<<< HEAD
+=======
+
+>>>>>>> eac65508f7c7f439bd176f077db3505a60821368
                                             </label>
                                             <Select
                                                 id="cidade"
@@ -1233,6 +1238,10 @@ function Home() {
                                         <div className="div">
                                             <label htmlFor="tipoMovel">
                                                 Tipo de Imóvel{" "}
+<<<<<<< HEAD
+=======
+
+>>>>>>> eac65508f7c7f439bd176f077db3505a60821368
                                             </label>
                                             <Select
                                                 id="tipoMovel"
@@ -1249,6 +1258,10 @@ function Home() {
                                         <div className="div">
                                             <label htmlFor="cidade">
                                                 Cidade{" "}
+<<<<<<< HEAD
+=======
+
+>>>>>>> eac65508f7c7f439bd176f077db3505a60821368
                                             </label>
                                             <Select
                                                 id="cidade"
@@ -1265,6 +1278,10 @@ function Home() {
                                         <div className="div">
                                             <label htmlFor="bairro">
                                                 Bairro{" "}
+<<<<<<< HEAD
+=======
+
+>>>>>>> eac65508f7c7f439bd176f077db3505a60821368
                                             </label>
                                             <Select
                                                 id="bairro"
@@ -2220,7 +2237,11 @@ function Home() {
 
             <section className="redes">
                 <div className="wrap">
+<<<<<<< HEAD
                     <a href="https://wa.me/54996583631" className="box" target="_blank" rel="noreferrer">
+=======
+                    <a href="https://wa.me/54999678976" className="box" target="_blank" rel="noreferrer">
+>>>>>>> eac65508f7c7f439bd176f077db3505a60821368
                         <img
                             src={imgWhats}
                             width={imgWhats.width}
@@ -2233,7 +2254,11 @@ function Home() {
                         </div>
                     </a>
 
+<<<<<<< HEAD
                     <a href="https://wa.me/54981158489" className="box" target="_blank" rel="noreferrer">
+=======
+                    <a href="https://wa.me/54999678976" className="box" target="_blank" rel="noreferrer">
+>>>>>>> eac65508f7c7f439bd176f077db3505a60821368
                         <img
                             src={imgWhats}
                             width={imgWhats.width}
@@ -2279,7 +2304,12 @@ function Home() {
                                         alt="Instagram"
                                     />
                                 </a>
+<<<<<<< HEAD
                                 <a href="https://www.linkedin.com/company/imobili%C3%A1ria-nichele/" target="_blank" rel="noreferrer">
+=======
+                                <a href="https://www.linkedin.com/company/imobili%C3%A1ria-nichele/" target="_blank" rel="noreferrer"
+                                >
+>>>>>>> eac65508f7c7f439bd176f077db3505a60821368
                                     <img
                                         src={imgLinke}
                                         width={imgLinke.width}

@@ -502,9 +502,15 @@ export function Steps() {
                                     id="demo-simple-select-filled"
                                     value={uf}
                                     onChange={handleChange}
+<<<<<<< HEAD
                                     sx={{ borderRadius: '10px','&:before': {
                                         display: "none",
                                     }  }}
+=======
+                                    sx={{borderRadius: "10px",'&:before': {
+                                        display: "none",
+                                    }}}
+>>>>>>> eac65508f7c7f439bd176f077db3505a60821368
                                 >
                                     <MenuItem value="rs">RS</MenuItem>
                                 </Select>

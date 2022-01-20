@@ -64,8 +64,13 @@ export const Form = () => {
                         render={({ field }) => (
                             <Select
                                 {...field}
+<<<<<<< HEAD
                                 placeholder="Selecione"
                                 styles={customStyles}
+=======
+                                styles={customStyles}
+                                placeholder="Selecione"
+>>>>>>> eac65508f7c7f439bd176f077db3505a60821368
                                 className="select__input"
                                 options={[
                                     { value: "geral", label: "Geral"},
