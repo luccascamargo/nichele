@@ -5,6 +5,7 @@ import ReactDOM from "react-dom";
 import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
 import { Steps } from "./components/Steps";
+import { Steps2 } from "./components/Steps2";
 
 import "../sass/anuncie.scss";
 
@@ -26,7 +27,7 @@ export default function Anuncie() {
                 </div>
             </header>
 
-            <Steps />
+            <Steps2 />
 
             <Footer />
         </>

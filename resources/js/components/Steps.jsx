@@ -24,56 +24,56 @@ import {
 } from "@mui/material";
 import { Box } from "@mui/system";
 import axios from "axios";
-import '../../sass/steps.scss';
+import "../../sass/steps.scss";
 
-const QontoStepIconRoot = styled("div")(({ theme, ownerState }) => ({
-    color: theme.palette.mode === "dark" ? theme.palette.grey[700] : "#eaeaf0",
-    display: "flex",
-    height: 22,
-    alignItems: "center",
-    ...(ownerState.active && {
-        color: "#784af4",
-    }),
-    "& .QontoStepIcon-completedIcon": {
-        color: "#784af4",
-        zIndex: 1,
-        fontSize: 18,
-    },
-    "& .QontoStepIcon-circle": {
-        width: 8,
-        height: 8,
-        borderRadius: "50%",
-        backgroundColor: "currentColor",
-    },
-}));
+// const QontoStepIconRoot = styled("div")(({ theme, ownerState }) => ({
+//     color: theme.palette.mode === "dark" ? theme.palette.grey[700] : "#eaeaf0",
+//     display: "flex",
+//     height: 22,
+//     alignItems: "center",
+//     ...(ownerState.active && {
+//         color: "#784af4",
+//     }),
+//     "& .QontoStepIcon-completedIcon": {
+//         color: "#784af4",
+//         zIndex: 1,
+//         fontSize: 18,
+//     },
+//     "& .QontoStepIcon-circle": {
+//         width: 8,
+//         height: 8,
+//         borderRadius: "50%",
+//         backgroundColor: "currentColor",
+//     },
+// }));
 
-function QontoStepIcon(props) {
-    const { active, completed, className } = props;
+// function QontoStepIcon(props) {
+//     const { active, completed, className } = props;
 
-    return (
-        <QontoStepIconRoot ownerState={{ active }} className={className}>
-            {completed ? (
-                <Check className="QontoStepIcon-completedIcon" />
-            ) : (
-                <div className="QontoStepIcon-circle" />
-            )}
-        </QontoStepIconRoot>
-    );
-}
+//     return (
+//         <QontoStepIconRoot ownerState={{ active }} className={className}>
+//             {completed ? (
+//                 <Check className="QontoStepIcon-completedIcon" />
+//             ) : (
+//                 <div className="QontoStepIcon-circle" />
+//             )}
+//         </QontoStepIconRoot>
+//     );
+// }
 
-QontoStepIcon.propTypes = {
-    /**
-     * Whether this step is active.
-     * @default false
-     */
-    active: PropTypes.bool,
-    className: PropTypes.string,
-    /**
-     * Mark the step as completed. Is passed to child components.
-     * @default false
-     */
-    completed: PropTypes.bool,
-};
+// QontoStepIcon.propTypes = {
+//     /**
+//      * Whether this step is active.
+//      * @default false
+//      */
+//     active: PropTypes.bool,
+//     className: PropTypes.string,
+//     /**
+//      * Mark the step as completed. Is passed to child components.
+//      * @default false
+//      */
+//     completed: PropTypes.bool,
+// };
 
 const ColorlibConnector = styled(StepConnector)(({ theme }) => ({
     [`&.${stepConnectorClasses.alternativeLabel}`]: {
@@ -163,18 +163,12 @@ const steps = ["Dados pessoais", "Cadastro do imóvel", "Finalização"];
 
 export function Steps() {
     const [step1, setStap1] = React.useState({
-        name: '',
-        email: '',
-        phone: '',
+        name: "",
+        email: "",
+        phone: "",
     });
 
-    const dataAnuncio = {
-        name: '',
-        email: '',
-    }
     const [tipoImovel, setTipoImovel] = React.useState();
-
-
 
     const [activeButton, setActiveButton] = React.useState("sell");
 
@@ -183,16 +177,12 @@ export function Steps() {
     };
     const handleName = (event) => {
         // step1({name: event.target.value});
-        dataAnuncio.name = event.target.value
+        dataAnuncio.name = event.target.value;
     };
     const handleEmail = (event) => {
         // step1({email: event.target.value});
-        dataAnuncio.email = event.value
+        dataAnuncio.email = event.value;
     };
-
-    console.log(dataAnuncio);
-
-
 
     const [activeStep, setActiveStep] = React.useState(0);
     const [skipped, setSkipped] = React.useState(new Set());
@@ -220,16 +210,23 @@ export function Steps() {
     //     setActiveStep(0);
     // };
 
-
-    const BtnStep1 = () => {
+    const BtnStep1 = ({ inputValues, setStap1 }) => {
+        const handleChangeInputsCustom = (event) => {
+            const { name, value } = event.target;
+            setStap1({
+                ...step1,
+                [name]: value,
+            });
+        };
         const handleActiveButton = (e) => setActiveButton(e);
         return (
             <>
-                <Stack
-                    sx={{
+                <div
+                    style={{
                         width: "100%",
                         display: "flex",
                         alignItems: "center",
+                        flexDirection: 'column',
                         justifyContent: "center",
                         gap: "1rem",
                         paddingBottom: "4rem",
@@ -369,10 +366,14 @@ export function Steps() {
                     </Box>
                     <div id="form__step__1">
                         <input
+                            key="uniqueName"
+                            name="name"
                             type="text"
                             placeholder="Nome"
-                            value=""
-                            onChange={handleName}
+                            onChange={(e) => {
+                                handleChangeInputsCustom(e);
+                            }}
+                            value={inputValues.name}
                             style={{
                                 width: "100%",
                                 height: "3.5rem",
@@ -383,10 +384,14 @@ export function Steps() {
                             }}
                         />
                         <input
+                            key="uniqueNEma"
+                            name="email"
                             type="text"
                             placeholder="E-mail"
-                            value=""
-                            onChange={handleEmail}
+                            onChange={(e) => {
+                                handleChangeInputsCustom(e);
+                            }}
+                            value={inputValues.email}
                             style={{
                                 width: "100%",
                                 height: "3.5rem",
@@ -397,10 +402,13 @@ export function Steps() {
                             }}
                         />
                         <input
+                            name="phone"
                             type="text"
                             placeholder="Telefone"
-                            value=""
-                            onChange={(e) => setStap1({phone: e.target.value})}
+                            onChange={(e) => {
+                                handleChangeInputsCustom(e);
+                            }}
+                            value={inputValues.phone}
                             style={{
                                 width: "100%",
                                 height: "3.5rem",
@@ -459,7 +467,7 @@ export function Steps() {
                             {activeStep === 0 ? "Cadastre seu imovel" : ""}
                         </Button>
                     </div>
-                </Stack>
+                </div>
             </>
         );
     };
@@ -474,7 +482,7 @@ export function Steps() {
 
         const handleCheckTerms = (event) => setCheckTerms(event.target.checked);
 
-        const handleChange = (event) => setUf(event.target.value);
+        const InputsCustom = (event) => setUf(event.target.value);
         const handleDorms = (event) => setDorms(event);
         const handleSuites = (event) => setSuites(event);
         const handleBathroom = (event) => setBathroom(event);
@@ -531,7 +539,7 @@ export function Steps() {
                                     labelId="demo-simple-select-filled-label"
                                     id="demo-simple-select-filled"
                                     value={uf}
-                                    onChange={handleChange}
+                                    onChange={InputsCustom}
                                     sx={{
                                         borderRadius: "10px",
                                         "&:before": {
@@ -1360,12 +1368,12 @@ export function Steps() {
     const BtnStep3 = () => {
         // ENVIAR EMAIL COM A CONFIRMACAO
 
-        axios
-            .post("/api/send/email/advertise", data)
-            .then((response) => console.log(JSON.stringify(response.data))) // trocar
-            .catch((error) => {
-                console.log("ERROR:: ", error.response.data);
-            });
+        // axios
+        //     .post("/api/send/email/advertise", data)
+        //     .then((response) => console.log(JSON.stringify(response.data))) // trocar
+        //     .catch((error) => {
+        //         console.log("ERROR:: ", error.response.data);
+        //     });
 
         return (
             <>
@@ -1466,7 +1474,11 @@ export function Steps() {
                     </Step>
                 ))}
             </Stepper>
-            {activeStep === 0 ? <BtnStep1 /> : ""}
+            {activeStep === 0 ? (
+                <BtnStep1 inputValues={step1} setStap1={setStap1} />
+            ) : (
+                ""
+            )}
             {activeStep === 1 ? <BtnStep2 /> : ""}
             {activeStep === 2 ? <BtnStep3 /> : ""}
             {/* <React.Fragment>
@@ -1523,3 +1535,4 @@ export function Steps() {
                 </React.Fragment>
             )} */
 }
+
