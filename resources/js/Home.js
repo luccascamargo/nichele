@@ -182,11 +182,20 @@ function Home() {
     const handleSell = () => setSell(!showSell)
 
     const [imoveisDestaque, setImovesDestaque] = useState([]);
+    const [imoveisComerciais, setImovesComerciais] = useState([]);
 
     useEffect(() => {
         const fetchBuildingById = async () => {
             let response = await api.get(`/api/highlight`);
             setImovesDestaque(response.data)
+        };
+        fetchBuildingById()
+    }, [])
+
+    useEffect(() => {
+        const fetchBuildingById = async () => {
+            let response = await api.get(`/api/comercialsState`);
+            setImovesComerciais(response.data)
         };
         fetchBuildingById()
     }, [])
@@ -2298,7 +2307,7 @@ function Home() {
             </section>
 
             <section>
-                <CarouselMoveisComerciais />
+                <CarouselMoveisComerciais data={imoveisComerciais}/>
             </section>
 
             <CarouselBanner />

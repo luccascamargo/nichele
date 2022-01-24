@@ -3,6 +3,7 @@ import "../../sass/form.scss";
 import { useForm, Controller } from "react-hook-form";
 import Select from "react-select";
 import { ButtonPrimary } from "./Button";
+import axios from "axios";
 
 const customStyles = {
     option: (provided, state) => ({
@@ -14,9 +15,9 @@ const customStyles = {
         display: "flex",
         alignItems: "center",
         border: "none",
-        borderRadius: '10px',
-        height: '3.5rem',
-        backgroundColor: '#f2f2f2'
+        borderRadius: "10px",
+        height: "3.5rem",
+        backgroundColor: "#f2f2f2",
     }),
     singleValue: (provided, state) => {
         const opacity = state.isDisabled ? 0.5 : 1;
@@ -33,7 +34,14 @@ export const Form = () => {
         handleSubmit,
         formState: { errors },
     } = useForm();
-    const onSubmit = (data) => console.log(data);
+    const onSubmit = (data) => {
+        axios
+            .post("/api/send/email", data)
+            .then((response) => alert(JSON.stringify(response.data))) // trocar
+            .catch((error) => {
+                console.log("ERROR:: ", error.response.data);
+            });
+    };
 
     return (
         <>
@@ -64,8 +72,8 @@ export const Form = () => {
                         render={({ field }) => (
                             <Select
                                 {...field}
-                                placeholder="Selecione"
                                 styles={customStyles}
+                                placeholder="Selecione"
                                 className="select__input"
                                 options={[
                                     { value: "geral", label: "Geral"},
@@ -90,7 +98,7 @@ export const Form = () => {
                     <div className="checkbox">
                         <input
                             type="checkbox"
-                            {...register("checkbox", { required: true })}
+                            {...register("checkbox", { required: false })}
                             name="teste"
                             id="teste"
                         />

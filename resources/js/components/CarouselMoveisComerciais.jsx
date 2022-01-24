@@ -55,7 +55,8 @@ const ButtonGroup = ({ next, previous }) => {
     );
 };
 
-const CarouselMoveisComerciais = ({ deviceType, items = [] }) => {
+const CarouselMoveisComerciais = ({ deviceType, items = [], data }) => {
+    console.log(data)
     const [commercials, setCommercials] = useState([]);
 
     useEffect( async () => {
@@ -93,10 +94,11 @@ const CarouselMoveisComerciais = ({ deviceType, items = [] }) => {
                 slidesToSlide={1}
                 customTransition={"transform 800ms ease-in-out"}
             >
-                {commercials.map(item => (
-                    <div key={item.id} className="box">
-                        <a href="/">
-                            <span className="tipo">{item.type}</span>
+                {data?.map(item => {
+                    return (
+                    <div key={item.CODIGOIMOVEL} className="box">
+                        <div>
+                            <span className="tipo">{item.TIPOALUGUEL === "S" ? 'Aluguel': '' || item.TIPOVENDA === 'S' ? 'Venda' : ''}</span>
                             <img
                                 className="image"
                                 src={imgMovel}
@@ -107,14 +109,14 @@ const CarouselMoveisComerciais = ({ deviceType, items = [] }) => {
                             <div className="content">
                                 <div className="info">
                                     <div>
-                                        <p className="title">{item.building_type.name}</p>
+                                        <p className="title">{item.TIPOIMOVEL}</p>
                                         <p className="local">
-                                            {item.address.place}
+                                            {item.ENDERECO}
                                         </p>
                                     </div>
                                     <div>
-                                        <p className="price">{item.price}</p>
-                                        <p className="code">Cód:{item.code}</p>
+                                        <p className="price">{item.TIPOALUGUEL === 'S' ? item.VALORALUGUEL : 'sem valor' || item.TIPOVENDA === 'S' ? item.VALORVENDA : 'sem valor'}</p>
+                                        <p className="code">Cód:{item.CODIGOIMOVEL}</p>
                                     </div>
                                 </div>
                                 <div className="data">
@@ -125,7 +127,7 @@ const CarouselMoveisComerciais = ({ deviceType, items = [] }) => {
                                             height={imgBed.height}
                                             alt="Quartos"
                                         />
-                                        <p>{item.rooms} quartos</p>
+                                        <p>{item.QUANTIDADEDORMITORIO || '0'} quartos</p>
                                     </div>
                                     <div>
                                         <img
@@ -134,7 +136,7 @@ const CarouselMoveisComerciais = ({ deviceType, items = [] }) => {
                                             height={imgCar.height}
                                             alt="Vagas"
                                         />
-                                        <p>{item.garage} vaga</p>
+                                        <p>{item?.QUANTIDADEGARAGEM || '0'} vaga</p>
                                     </div>
                                     <div>
                                         <img
@@ -143,13 +145,13 @@ const CarouselMoveisComerciais = ({ deviceType, items = [] }) => {
                                             height={imgSize.height}
                                             alt="Metros"
                                         />
-                                        <p>{item.private_area} mª</p>
+                                        <p>{item.AREAPRIVATIVA || '0'} mª</p>
                                     </div>
                                 </div>
                             </div>
-                        </a>
+                        </div>
                     </div>
-                ))}
+                )})}
             </Carousel>
         </div>
     );

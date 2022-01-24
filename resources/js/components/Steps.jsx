@@ -23,6 +23,8 @@ import {
     Typography,
 } from "@mui/material";
 import { Box } from "@mui/system";
+import axios from "axios";
+import '../../sass/steps.scss';
 
 const QontoStepIconRoot = styled("div")(({ theme, ownerState }) => ({
     color: theme.palette.mode === "dark" ? theme.palette.grey[700] : "#eaeaf0",
@@ -160,6 +162,38 @@ ColorlibStepIcon.propTypes = {
 const steps = ["Dados pessoais", "Cadastro do imóvel", "Finalização"];
 
 export function Steps() {
+    const [step1, setStap1] = React.useState({
+        name: '',
+        email: '',
+        phone: '',
+    });
+
+    const dataAnuncio = {
+        name: '',
+        email: '',
+    }
+    const [tipoImovel, setTipoImovel] = React.useState();
+
+
+
+    const [activeButton, setActiveButton] = React.useState("sell");
+
+    const handleTipoImovel = (event) => {
+        setTipoImovel(event.target.value);
+    };
+    const handleName = (event) => {
+        // step1({name: event.target.value});
+        dataAnuncio.name = event.target.value
+    };
+    const handleEmail = (event) => {
+        // step1({email: event.target.value});
+        dataAnuncio.email = event.value
+    };
+
+    console.log(dataAnuncio);
+
+
+
     const [activeStep, setActiveStep] = React.useState(0);
     const [skipped, setSkipped] = React.useState(new Set());
 
@@ -186,16 +220,9 @@ export function Steps() {
     //     setActiveStep(0);
     // };
 
+
     const BtnStep1 = () => {
-        const [age, setAge] = React.useState("");
-        const [activeButton, setActiveButton] = React.useState("buy");
-
-        const handleChange = (event) => {
-            setAge(event.target.value);
-        };
-
         const handleActiveButton = (e) => setActiveButton(e);
-
         return (
             <>
                 <Stack
@@ -226,9 +253,9 @@ export function Steps() {
                         }}
                     >
                         <Button
-                            onClick={() => handleActiveButton("buy")}
+                            onClick={() => handleActiveButton("sell")}
                             sx={
-                                activeButton === "buy"
+                                activeButton === "sell"
                                     ? {
                                           borderRadius: "10px",
                                           backgroundColor: "#FFDB21",
@@ -302,9 +329,9 @@ export function Steps() {
                             Alugar
                         </Button>
                         <Button
-                            onClick={() => handleActiveButton("sell")}
+                            onClick={() => handleActiveButton("others")}
                             sx={
-                                activeButton === "sell"
+                                activeButton === "others"
                                     ? {
                                           borderRadius: "10px",
                                           backgroundColor: "#FFDB21",
@@ -340,19 +367,12 @@ export function Steps() {
                             Ambos
                         </Button>
                     </Box>
-                    <Box
-                        sx={{
-                            width: "34.56rem",
-                            display: "flex",
-                            flexDirection: "column",
-                            alignItems: "flex-start",
-                            gap: "1.5rem",
-                            paddingTop: "3.5rem",
-                        }}
-                    >
+                    <div id="form__step__1">
                         <input
                             type="text"
                             placeholder="Nome"
+                            value=""
+                            onChange={handleName}
                             style={{
                                 width: "100%",
                                 height: "3.5rem",
@@ -365,6 +385,8 @@ export function Steps() {
                         <input
                             type="text"
                             placeholder="E-mail"
+                            value=""
+                            onChange={handleEmail}
                             style={{
                                 width: "100%",
                                 height: "3.5rem",
@@ -377,6 +399,8 @@ export function Steps() {
                         <input
                             type="text"
                             placeholder="Telefone"
+                            value=""
+                            onChange={(e) => setStap1({phone: e.target.value})}
                             style={{
                                 width: "100%",
                                 height: "3.5rem",
@@ -391,23 +415,29 @@ export function Steps() {
                         </Typography>
 
                         <FormControl variant="filled" sx={{ width: "100%" }}>
-                            <InputLabel id="demo-simple-select-filled-label">
+                            {/* <InputLabel id="demo-simple-select-filled-label">
                                 Selecione o tipo de imóvel
-                            </InputLabel>
-                            <Select
+                            </InputLabel> */}
+                            {/* <Select
                                 labelId="demo-simple-select-filled-label"
                                 id="demo-simple-select-filled"
-                                value={age}
-                                onChange={handleChange}
-                                sx={{ width: "100%", borderRadius: '10px','&:before': {
-                                    display: "none",
-                                }  }}
+                                value={tipoImovel}
+                                onChange={handleTipoImovel}
+                                sx={{
+                                    width: "100%",
+                                    borderRadius: "10px",
+                                    "&:before": {
+                                        display: "none",
+                                    },
+                                }}
                             >
                                 <MenuItem value="Ap">Apartamento</MenuItem>
-                            </Select>
+                                <MenuItem value="teste">Teste</MenuItem>
+                            </Select> */}
                         </FormControl>
                         <Button
                             onClick={handleNext}
+                            type="submit"
                             sx={{
                                 borderRadius: "10px",
                                 backgroundColor: "#FFDB21",
@@ -428,7 +458,7 @@ export function Steps() {
                             {/* {activeStep === steps.length - 1 ? "Finish" : "Next"} */}
                             {activeStep === 0 ? "Cadastre seu imovel" : ""}
                         </Button>
-                    </Box>
+                    </div>
                 </Stack>
             </>
         );
@@ -502,9 +532,12 @@ export function Steps() {
                                     id="demo-simple-select-filled"
                                     value={uf}
                                     onChange={handleChange}
-                                    sx={{ borderRadius: '10px','&:before': {
-                                        display: "none",
-                                    }  }}
+                                    sx={{
+                                        borderRadius: "10px",
+                                        "&:before": {
+                                            display: "none",
+                                        },
+                                    }}
                                 >
                                     <MenuItem value="rs">RS</MenuItem>
                                 </Select>
@@ -1325,6 +1358,15 @@ export function Steps() {
     };
 
     const BtnStep3 = () => {
+        // ENVIAR EMAIL COM A CONFIRMACAO
+
+        axios
+            .post("/api/send/email/advertise", data)
+            .then((response) => console.log(JSON.stringify(response.data))) // trocar
+            .catch((error) => {
+                console.log("ERROR:: ", error.response.data);
+            });
+
         return (
             <>
                 <Stack

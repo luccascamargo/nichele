@@ -1,0 +1,14 @@
+#form__step__1 {
+    width: 34.56rem;
+    display: flex;
+    flex-Direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+    padding-top: 3.5rem;
+
+    .MuiOutlinedInput-root{
+        border-radius: 10px;
+    }
+
+
+}

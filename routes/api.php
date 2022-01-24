@@ -1,6 +1,9 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Api\BuildingController;
+use App\Http\Controllers\Api\ContactController;
+use App\Http\Controllers\Api\FaqController;
+use App\Http\Controllers\Api\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +17,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::apiResource('buildings', BuildingController::class)->only('index','show');
+Route::apiResource('contacts', ContactController::class)->only('store');
+Route::get('cities', [BuildingController::class, 'city']);
+Route::get('districts', [BuildingController::class, 'district']);
+Route::get('types', [BuildingController::class, 'type']);
+Route::get('emphasis', [BuildingController::class, 'emphasis']);
+Route::get('commercials', [BuildingController::class, 'commercial']);
+Route::get('faqs', [FaqController::class, 'index']);
+Route::apiResource('posts', PostController::class)->only('index','show')->scoped([
+    'post' => 'slug'
+]);
+Route::get('characteristics/{id}', [BuildingController::class, 'characteristic']);
+Route::get('highlight', [BuildingController::class, 'highligthRent']);
+Route::get('comercialsState', [BuildingController::class, 'GetCommercialRealEstate']);
+Route::get('photos/{id}', [BuildingController::class, 'album']);
+
+Route::post('send/email', [ContactController::class, 'mail'])->name('email');
+Route::post('send/email/advertise', [ContactController::class, 'mailAdvertise'])->name('emailAdvertise');

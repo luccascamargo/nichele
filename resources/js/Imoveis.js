@@ -384,7 +384,7 @@ export default function Imoveis() {
                                           color: "#205CA4",
                                           width: "10.5rem",
                                           height: "3rem",
-                                          fontFamily: "Nunito",
+                                          fontFamily: "Roboto",
                                           fontWeight: "bold",
                                           lineHeight: "18px",
                                           letterSpacing: "-0.01em",
@@ -399,7 +399,7 @@ export default function Imoveis() {
                                           color: "#B2B2B2",
                                           width: "10.5rem",
                                           height: "3rem",
-                                          fontFamily: "Nunito",
+                                          fontFamily: "Roboto",
                                           fontWeight: "bold",
                                           lineHeight: "18px",
                                           letterSpacing: "-0.01em",
@@ -422,7 +422,7 @@ export default function Imoveis() {
                                           color: "#205CA4",
                                           width: "10.5rem",
                                           height: "3rem",
-                                          fontFamily: "Nunito",
+                                          fontFamily: "Roboto",
                                           fontWeight: "bold",
                                           lineHeight: "18px",
                                           letterSpacing: "-0.01em",
@@ -437,7 +437,7 @@ export default function Imoveis() {
                                           color: "#B2B2B2",
                                           width: "10.5rem",
                                           height: "3rem",
-                                          fontFamily: "Nunito",
+                                          fontFamily: "Roboto",
                                           fontWeight: "bold",
                                           lineHeight: "18px",
                                           letterSpacing: "-0.01em",
@@ -483,6 +483,10 @@ export default function Imoveis() {
                             }
                             sx={{
                                 width: "100%",
+                                borderRadius: "10px",
+                                    "&:before": {
+                                        display: "none",
+                                    },
                             }}
                         >
                             {types.map(({ value, label }, index) => (
@@ -510,6 +514,10 @@ export default function Imoveis() {
                             }
                             sx={{
                                 width: "100%",
+                                borderRadius: "10px",
+                                    "&:before": {
+                                        display: "none",
+                                    },
                             }}
                         >
                             {cities.map(({ value, label }, index) => (
@@ -537,6 +545,10 @@ export default function Imoveis() {
                             }
                             sx={{
                                 width: "100%",
+                                borderRadius: "10px",
+                                    "&:before": {
+                                        display: "none",
+                                    },
                             }}
                         >
                             {districts.map(({ value, label }, index) => (
@@ -563,6 +575,10 @@ export default function Imoveis() {
                             onChange={(event) => setCity(event?.target.value)}
                             sx={{
                                 width: "100%",
+                                borderRadius: "10px",
+                                    "&:before": {
+                                        display: "none",
+                                    },
                             }}
                         >
                             <MenuItem value="caracteristica">teste</MenuItem>
@@ -1324,7 +1340,7 @@ export default function Imoveis() {
                                           color: "#205CA4",
                                           width: "7.37rem",
                                           height: "3rem",
-                                          fontFamily: "Nunito",
+                                          fontFamily: "Roboto",
                                           fontWeight: "bold",
                                           lineHeight: "18px",
                                           letterSpacing: "-0.01em",
@@ -1339,7 +1355,7 @@ export default function Imoveis() {
                                           color: "#B2B2B2",
                                           width: "7.37rem",
                                           height: "3rem",
-                                          fontFamily: "Nunito",
+                                          fontFamily: "Roboto",
                                           fontWeight: "bold",
                                           lineHeight: "18px",
                                           letterSpacing: "-0.01em",
@@ -1354,30 +1370,13 @@ export default function Imoveis() {
                         </Button>
                         <Button
                             onClick={() => handleSubmitSearch()}
-                            sx={
-                                activeButton === "buscar"
-                                    ? {
+                            sx={{
                                           borderRadius: "10px",
                                           backgroundColor: "#FFDB21",
                                           color: "#205CA4",
                                           width: "13.5rem",
                                           height: "3rem",
-                                          fontFamily: "Nunito",
-                                          fontWeight: "bold",
-                                          lineHeight: "18px",
-                                          letterSpacing: "-0.01em",
-                                          "&:hover": {
-                                              backgroundColor: "#FFDB21",
-                                              color: "#205CA4",
-                                          },
-                                      }
-                                    : {
-                                          borderRadius: "10px",
-                                          backgroundColor: "#F2F2F2",
-                                          color: "#B2B2B2",
-                                          width: "13.5rem",
-                                          height: "3rem",
-                                          fontFamily: "Nunito",
+                                          fontFamily: "Roboto",
                                           fontWeight: "bold",
                                           lineHeight: "18px",
                                           letterSpacing: "-0.01em",
@@ -1392,36 +1391,37 @@ export default function Imoveis() {
                         </Button>
                     </div>
                 </section>
+                {console.log(buildings.data)}
                 <section className="section__imoveis">
                     {buildings?.data?.map((item) => (
-                        <div key={item.id} className="box__imoveis">
+                        <div key={item.CODIGOIMOVEL} className="box__imoveis">
                             <div className="sticker">
-                                <span>{item.type}</span>
+                                <span>{item.TIPOALUGUEL === "S" ? 'Aluguel': '' || item.TIPOVENDA === 'S' ? 'Venda' : ''}</span>
                             </div>
                             <img src={imageBox} alt="Imagem imovel" />
                             <div className="infos">
                                 <div className="top">
                                     <div className="title__box">
-                                        <span>{item.building_type.name}</span>
-                                        <p>{item.address.place}</p>
+                                        <span>{item.TIPOIMOVEL}</span>
+                                        <p>{item.ENDERECO}</p>
                                     </div>
                                     <div className="value__box">
-                                        <span>{item.price}</span>
-                                        <p>Cód: {item.code}</p>
+                                        <span>{item.TIPOALUGUEL === 'S' ? item.VALORALUGUEL : 'sem valor' || item.TIPOVENDA === 'S' ? item.VALORVENDA : 'sem valor'}</span>
+                                        <p>Cód: {item.CODIGOIMOVEL}</p>
                                     </div>
                                 </div>
                                 <div className="bottom">
                                     <div className="desc">
                                         <img src={iconQuarto} alt="" />
-                                        <p>{item.rooms} quartos</p>
+                                        <p>{item.QUANTIDADEDORMITORIO} quartos</p>
                                     </div>
                                     <div className="desc">
                                         <img src={iconCar} alt="" />
-                                        <p>{item.garage} vaga</p>
+                                        <p>{item?.QUANTIDADEGARAGEM || '0'} vaga{'(s)'}</p>
                                     </div>
                                     <div className="desc">
                                         <img src={iconRegua} alt="" />
-                                        <p>{item.private_area} m²</p>
+                                        <p>{item.AREAPRIVATIVA} m²</p>
                                     </div>
                                 </div>
                             </div>

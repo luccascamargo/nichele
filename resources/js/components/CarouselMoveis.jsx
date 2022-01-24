@@ -56,17 +56,6 @@ const ButtonGroup = ({ next, previous }) => {
 };
 
 const CarouselMoveis = ({data}) => {
-    const [emphasis, setEmphasis] = useState([]);
-
-    // useEffect(async () => {
-    //     const emphasi = async () => {
-    //         const {data} = await api.get('api/emphasis');
-
-    //         return data;
-    //     }
-
-    //     setEmphasis(await emphasi());
-    // }, [])
     return (
         <div className="moveis">
             <Carousel
@@ -79,9 +68,9 @@ const CarouselMoveis = ({data}) => {
                 containerClass="carousel-container"
                 customButtonGroup={<ButtonGroup />}
                 dotListClass=""
-                draggable
+                draggable={false}
                 focusOnSelect={false}
-                infinite={false}
+                infinite={true}
                 itemClass="item"
                 keyBoardControl
                 minimumTouchDrag={80}
@@ -94,13 +83,11 @@ const CarouselMoveis = ({data}) => {
                 customTransition={"transform 800ms ease-in-out"}
             >
                 <div />
-                {data.map(imovel => {
-                    console.log(imovel.ENDERECO)
-                })}
-                {/* {data?.map(item => (
-                    <div key={item.id} className="box">
-                        <a href="/">
-                            <span className="tipo">{item.type}</span>
+                {data?.map(item => {
+                    return (
+                    <div key={item.CODIGOIMOVEL} className="box">
+                        <div>
+                            <span className="tipo">{item.TIPOALUGUEL === "S" ? 'Aluguel': '' || item.TIPOVENDA === 'S' ? 'Venda' : ''}</span>
                             <img
                                 className="image"
                                 src={imgMovel}
@@ -111,14 +98,14 @@ const CarouselMoveis = ({data}) => {
                             <div className="content">
                                 <div className="info">
                                     <div>
-                                        <p className="title">{item.building_type.name}</p>
+                                        <p className="title">{item.TIPOIMOVEL}</p>
                                         <p className="local">
-                                            {item.address.place}
+                                            {item.ENDERECO}
                                         </p>
                                     </div>
                                     <div>
-                                        <p className="price">{item.price}</p>
-                                        <p className="code">Cód:{item.code}</p>
+                                        <p className="price">{item.TIPOALUGUEL === 'S' ? item.VALORALUGUEL : 'sem valor' || item.TIPOVENDA === 'S' ? item.VALORVENDA : 'sem valor'}</p>
+                                        <p className="code">Cód:{item.CODIGOIMOVEL}</p>
                                     </div>
                                 </div>
                                 <div className="data">
@@ -129,7 +116,7 @@ const CarouselMoveis = ({data}) => {
                                             height={imgBed.height}
                                             alt="Quartos"
                                         />
-                                        <p>{item.rooms} quartos</p>
+                                        <p>{item.QUANTIDADEDORMITORIO || '0'} quartos</p>
                                     </div>
                                     <div>
                                         <img
@@ -138,7 +125,7 @@ const CarouselMoveis = ({data}) => {
                                             height={imgCar.height}
                                             alt="Vagas"
                                         />
-                                        <p>{item.garage} vaga</p>
+                                        <p>{item?.QUANTIDADEGARAGEM || '0'} vagas</p>
                                     </div>
                                     <div>
                                         <img
@@ -147,13 +134,13 @@ const CarouselMoveis = ({data}) => {
                                             height={imgSize.height}
                                             alt="Metros"
                                         />
-                                        <p>{item.private_area} mª</p>
+                                        <p>{item.AREAPRIVATIVA} mª</p>
                                     </div>
                                 </div>
                             </div>
-                        </a>
+                        </div>
                     </div>
-                ))} */}
+                )})}
             </Carousel>
         </div>
     );
