@@ -357,9 +357,25 @@
                         <br>
                         <span><b>Telefone:</b> {{ $phone }}</span>
                         <br>
-                        <span><b>Imóvel para:</b> {{ $building }}</span>
+                        <span><b>Para:</b> {{ $typeFor }}</span>
                         <br>
-                        <span><b>Tipo de Imóvel:</b> {{ $type }}</span>
+                        <span><b>Tipo de imóvel:</b> {{ $building }}</span>
+                        <br>
+                        <span><b>CEP:</b> {{ $cep }}</span>
+                        <br>
+                        <span><b>Cidade:</b> {{ $city }} / <b>UF:</b> {{ $uf }}</span>
+                        <br>
+                        <span><b>Bairro:</b> {{ $district }}</span>
+                        <br>
+                        <span><b>Endereço:</b> {{ $address }} / <b>Nº:</b> {{ $number }}</span>
+                        <br>
+                        <span><b>Complemento:</b> {{ $complement }}</span>
+                        <br>
+                        <span><b>Mensagem:</b> {{ $msg }}</span>
+                        <br>
+                        <span><b>Dormitórios:</b> {{ $dormitories }} / <b>Suites:</b> {{ $suits }}</span>
+                        <br>
+                        <span><b>Banheiros:</b> {{ $bathrooms }} / <b>Vagas:</b> {{ $vacancies }}</span>
                       </td>
                     </tr>
                   </table>

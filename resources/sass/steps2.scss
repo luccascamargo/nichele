@@ -19,12 +19,12 @@
         .bg-line {
             width: 100%;
             background-color: #c4c4c4;
-            border: 1px solid #C4C4C4;
+            border: 1px solid #c4c4c4;
 
             position: relative;
 
             .line {
-                border: 1px solid #205CA4;
+                border: 1px solid #205ca4;
             }
 
             .one {
@@ -34,12 +34,12 @@
                 width: 41px;
                 height: 41px;
                 border-radius: 50%;
-                background: #C4C4C4;
+                background: #c4c4c4;
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 transform: translateY(-50%);
-                color: #FFFFFF;
+                color: #ffffff;
 
                 ::after {
                     content: "content";
@@ -59,12 +59,12 @@
                 width: 41px;
                 height: 41px;
                 border-radius: 50%;
-                background: #C4C4C4;
+                background: #c4c4c4;
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 transform: translateY(-50%);
-                color: #FFFFFF;
+                color: #ffffff;
             }
 
             .three {
@@ -74,12 +74,12 @@
                 width: 41px;
                 height: 41px;
                 border-radius: 50%;
-                background: #C4C4C4;
+                background: #c4c4c4;
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 transform: translateY(-50%);
-                color: #FFFFFF;
+                color: #ffffff;
             }
         }
     }
@@ -90,7 +90,9 @@
         align-items: center;
         gap: 2rem;
 
-        .body .personal-info-container, .sign-up-container,.other-info-container{
+        .body .personal-info-container,
+        .sign-up-container,
+        .other-info-container {
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -104,28 +106,28 @@
                 button {
                     width: 168px;
                     height: 48px;
-                    background: #F2F2F2;
+                    background: #f2f2f2;
                     border-radius: 10px;
-                    color: #B2B2B2;
-                    font-family: 'Roboto';
+                    color: #b2b2b2;
+                    font-family: "Roboto";
                     font-size: 16px;
                     font-weight: 700;
 
                     &:hover {
-                        background: #FFDB21;
+                        background: #ffdb21;
                         color: #124480;
                         transition: all 0.3s ease-in;
                     }
                 }
 
                 .active {
-                    background: #FFDB21;
+                    background: #ffdb21;
                     color: #124480;
                 }
             }
 
             span {
-                font-family: 'Nunito', sans-serif;
+                font-family: "Nunito", sans-serif;
                 font-size: 2rem;
                 font-weight: 700;
                 line-height: 42px;
@@ -134,25 +136,26 @@
                 color: #124480;
             }
 
-            p{
+            p {
                 font-family: Roboto;
                 font-size: 14px;
                 font-weight: 700;
                 line-height: 21px;
                 letter-spacing: 0em;
                 text-align: left;
-                color: #45565B;
+                color: #45565b;
             }
 
-            input, select{
+            input,
+            select {
                 width: 100%;
                 height: 3rem;
                 border: none;
-                border-radius:10px;
-                background: #F2F2F2;
+                border-radius: 10px;
+                background: #f2f2f2;
                 padding-left: 1rem;
                 padding-right: 1rem;
-                color: #8C9193;
+                color: #8c9193;
             }
 
             #mensagem {
@@ -160,23 +163,23 @@
                 height: 10rem;
                 resize: none;
                 border: none;
-                border-radius:10px;
-                background: #F2F2F2;
+                border-radius: 10px;
+                background: #f2f2f2;
                 padding-left: 1rem;
                 padding-top: 1rem;
             }
 
-            .group-inputs{
+            .group-inputs {
                 display: flex;
                 flex-direction: row;
                 gap: 1rem;
 
-                input{
+                input {
                     width: 50%;
                 }
             }
 
-            .group-uf{
+            .group-uf {
                 display: flex;
                 flex-direction: row;
                 gap: 1rem;
@@ -212,14 +215,23 @@
                                 width: 32px;
                                 height: 32px;
                                 border-radius: 10px;
-                                background: #205CA4;
-                                color: #FFFFFF;
+                                background: #205ca4;
+                                color: #ffffff;
 
                                 display: flex;
                                 align-items: center;
                                 justify-content: center;
 
                                 cursor: pointer;
+
+                                label {
+                                    margin-right: 10px;
+                                    cursor: pointer;
+                                }
+
+                                input[type="radio"] {
+                                    opacity: 0;
+                                }
                             }
                         }
                     }
@@ -232,20 +244,20 @@
         display: flex;
         gap: 1rem;
 
-            button {
-                width: 168px;
-                height: 48px;
-                background: #FFDB21;
-                border-radius: 10px;
-                color: #124480;
-                font-family: 'Roboto';
-                font-size: 16px;
-                font-weight: 700;
+        button {
+            width: 168px;
+            height: 48px;
+            background: #ffdb21;
+            border-radius: 10px;
+            color: #124480;
+            font-family: "Roboto";
+            font-size: 16px;
+            font-weight: 700;
 
-                &:disabled{
-                    background-color: #F2F2F2;
-                    color: #B2B2B2;
-                }
+            &:disabled {
+                background-color: #f2f2f2;
+                color: #b2b2b2;
             }
+        }
     }
 }
