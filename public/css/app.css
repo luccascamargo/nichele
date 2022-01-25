@@ -427,6 +427,8 @@ button {
 
 .react-tabs__tab-panel {
   max-width: 100%;
+  opacity: 0;
+  transition: opacity 1s;
 }
 
 .react-tabs__tab {
@@ -434,24 +436,51 @@ button {
   width: 9.375rem;
   text-align: center;
   max-width: 100%;
+  opacity: 0.6;
+  transition: opacity 1.5s;
+  position: relative;
+}
+
+.react-tabs__tab:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background: #DEDEDE;
+  bottom: -7px;
+  left: 0;
+  border-radius: 5px;
 }
 
 .react-tabs__tab--selected {
   background: none !important;
   border-color: none !important;
   border: none !important;
-  border-bottom: 5px solid #7dafeb !important;
   font-style: normal;
   font-weight: bold;
   font-size: 1.125rem;
   line-height: 150%;
   color: #ffffff !important;
+  opacity: 1;
+  position: relative;
+}
+
+.react-tabs__tab--selected:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 5px;
+  background: #7DAFEB;
+  bottom: -5px;
+  left: 0;
+  border-radius: 5px;
 }
 
 .react-tabs__tab-panel--selected {
   display: flex !important;
   justify-content: center !important;
   align-items: center !important;
+  opacity: 1;
 }
 
 .content__carousel__sobre {
@@ -939,6 +968,11 @@ button {
   box-shadow: 0px 4px 50px rgba(45, 67, 95, 0.1);
   border-radius: 20px;
   text-decoration: none;
+  transition: all 0.5s;
+}
+
+.redes .wrap .box:hover {
+  transform: scale(1.05);
 }
 
 .redes .wrap .box span {
@@ -1185,7 +1219,7 @@ button {
 }
 
 .anuncio .content__anuncio h2 {
-  font-family: "Nunito";
+  font-family: "Nunito", sans-serif;
   font-weight: bold;
   font-size: 2rem;
   line-height: 37px;
@@ -1285,9 +1319,13 @@ button {
 
 .moveis {
   position: relative;
-  padding-top: 148px;
+  padding-top: 100px;
   padding-left: 20px;
   margin-bottom: 93px;
+}
+
+.moveis .carousel-container {
+  padding-top: 3rem;
 }
 
 .moveis .box {
@@ -1297,11 +1335,11 @@ button {
   border-radius: 40px;
   transition: box-shadow 0.3s;
   position: relative;
+  transition: all 0.3s;
 }
 
 .moveis .box:hover {
-  background: #ffffff;
-  box-shadow: 0px 4px 60px rgba(32, 92, 164, 0.12);
+  transform: scale(1.05);
 }
 
 .moveis .box .tipo {

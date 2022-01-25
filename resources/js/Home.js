@@ -48,6 +48,7 @@ const customStyles = {
         // none of react-select's styles are passed to <Control />
         border: "none",
         display: "flex",
+        transform: "translateX(-0.7rem)",
     }),
     singleValue: (provided, state) => {
         const opacity = state.isDisabled ? 0.5 : 1;

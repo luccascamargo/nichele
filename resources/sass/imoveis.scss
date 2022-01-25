@@ -228,6 +228,12 @@
                 padding: 0 0 1rem 0;
             }
 
+            &:hover {
+                transform: scale(1.05);
+            }
+
+            transition: all 0.3s;
+
             .sticker {
                 position: absolute;
                 top: 31px;

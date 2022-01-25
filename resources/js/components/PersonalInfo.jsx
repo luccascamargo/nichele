@@ -1,7 +1,7 @@
 export const PersonalInfo = ({ formData, setFormData }) => {
     return (
         <div className="personal-info-container">
-            <span>Possui imóvel par vender ou alugar?</span>
+            <span>Possui imóvel para vender ou alugar?</span>
             <div className="buttons">
                 <button
                     type="button"

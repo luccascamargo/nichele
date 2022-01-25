@@ -1,6 +1,6 @@
 .form {
     max-width: 1248px;
-    padding: 2rem;
+    padding: 5rem 2rem 5rem 2rem;
     margin: 0 auto;
 
     display: flex;
@@ -27,59 +27,105 @@
                 border: 1px solid #205ca4;
             }
 
-            .one {
+            .content__icon__1 {
                 position: absolute;
-                left: -1%;
+                left: -10%;
                 top: 50%;
-                width: 41px;
-                height: 41px;
-                border-radius: 50%;
-                background: #c4c4c4;
+                transform: translateY(-35%);
+
                 display: flex;
+                flex-direction: column;
                 align-items: center;
                 justify-content: center;
-                transform: translateY(-50%);
-                color: #ffffff;
+                gap: 0.5rem;
 
-                ::after {
-                    content: "content";
-                    width: 1rem;
-                    height: 1rem;
-                    bottom: 0;
-                    left: 0;
-                    color: red;
+                    > span {
+                        font-family: 'Nunito', sans-serif;
+                        font-size: 14px;
+                        font-weight: 400;
+                        line-height: 21px;
+                        letter-spacing: -0.01em;
+                        color: #205ca4;
+                    }
+
+                    .one {
+                        width: 41px;
+                        height: 41px;
+                        border-radius: 50%;
+                        background: #c4c4c4;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        color: #ffffff;
+                    }
+            }
+
+
+
+            .content__icon__2 {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -35%);
+
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 0.5rem;
+
+                > span {
+                    font-family: 'Nunito', sans-serif;
+                    font-size: 14px;
+                    font-weight: 400;
+                    line-height: 21px;
+                    letter-spacing: -0.01em;
+                    color: #205ca4;
+                }
+
+                .two {
+                    width: 41px;
+                    height: 41px;
+                    border-radius: 50%;
+                    background: #c4c4c4;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: #ffffff;
                 }
             }
 
-            .two {
+            .content__icon__3 {
                 position: absolute;
-                left: 50%;
-                transform: translateX(-50%);
+                right: -5%;
                 top: 50%;
-                width: 41px;
-                height: 41px;
-                border-radius: 50%;
-                background: #c4c4c4;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                transform: translateY(-50%);
-                color: #ffffff;
-            }
+                transform: translateY(-35%);
 
-            .three {
-                position: absolute;
-                right: -1%;
-                top: 50%;
-                width: 41px;
-                height: 41px;
-                border-radius: 50%;
-                background: #c4c4c4;
                 display: flex;
+                flex-direction: column;
                 align-items: center;
                 justify-content: center;
-                transform: translateY(-50%);
-                color: #ffffff;
+                gap: 0.5rem;
+
+                > span {
+                    font-family: 'Nunito', sans-serif;
+                    font-size: 14px;
+                    font-weight: 400;
+                    line-height: 21px;
+                    letter-spacing: -0.01em;
+                    color: #205ca4;
+                }
+
+                .three {
+                    width: 41px;
+                    height: 41px;
+                    border-radius: 50%;
+                    background: #c4c4c4;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: #ffffff;
+                }
             }
         }
     }
@@ -90,18 +136,65 @@
         align-items: center;
         gap: 2rem;
 
+        .other-info-container{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 3rem;
+
+            h4 {
+                font-family: "Nunito", sans-serif;
+                font-size: 2rem;
+                font-weight: 700;
+                line-height: 42px;
+                letter-spacing: -0.01em;
+                text-align: center;
+                color: #124480;
+            }
+
+            .revisao_dados {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: flex-start;
+                gap: 1rem;
+
+                p {
+                    font-family: 'Roboto';
+                    font-size: 14px;
+                    font-weight: 700;
+                    line-height: 21px;
+                    letter-spacing: 0em;
+                    text-align: left;
+                    color: #124480;
+
+                    #data {
+                        color: #d6d6d6;
+                        font-family: 'Roboto';
+                        font-size: 14px;
+                        font-weight: 700;
+                        line-height: 21px;
+                        letter-spacing: 0em;
+                        text-align: left;
+                    }
+                }
+            }
+        }
+
         .body .personal-info-container,
-        .sign-up-container,
-        .other-info-container {
+        .sign-up-container {
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 2rem;
 
             .buttons {
+                width: 100%;
                 display: flex;
-                gap: 1rem;
                 align-items: center;
+                justify-content: space-between;
 
                 button {
                     width: 168px;
@@ -136,15 +229,7 @@
                 color: #124480;
             }
 
-            p {
-                font-family: Roboto;
-                font-size: 14px;
-                font-weight: 700;
-                line-height: 21px;
-                letter-spacing: 0em;
-                text-align: left;
-                color: #45565b;
-            }
+
 
             input,
             select {
@@ -215,8 +300,8 @@
                                 width: 32px;
                                 height: 32px;
                                 border-radius: 10px;
-                                background: #205ca4;
-                                color: #ffffff;
+                                background: #F2F2F2;
+                                color: #8C9193;
 
                                 display: flex;
                                 align-items: center;

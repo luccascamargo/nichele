@@ -78,8 +78,11 @@ export const PropertyRegistration = ({ formData, setFormData }) => {
                                 style={{
                                     background:
                                         formData.dormitories === "1"
-                                            ? "rgb(221 190 28)"
+                                            ? "#205CA4"
                                             : "",
+                                    color: formData.dormitories === "1"
+                                            ? "#ffffff"
+                                            : '',
                                 }}
                             >
                                 <input
@@ -105,8 +108,11 @@ export const PropertyRegistration = ({ formData, setFormData }) => {
                                 style={{
                                     background:
                                         formData.dormitories === "2"
-                                            ? "rgb(221 190 28)"
+                                            ? "#205CA4"
                                             : "",
+                                    color: formData.dormitories === "2"
+                                            ? "#ffffff"
+                                            : '',
                                 }}
                             >
                                 <input
@@ -128,8 +134,11 @@ export const PropertyRegistration = ({ formData, setFormData }) => {
                                 style={{
                                     background:
                                         formData.dormitories === "3"
-                                            ? "rgb(221 190 28)"
+                                            ? "#205CA4"
                                             : "",
+                                        color: formData.dormitories === "3"
+                                            ? "#ffffff"
+                                            : '',
                                 }}
                             >
                                 <input
@@ -151,8 +160,11 @@ export const PropertyRegistration = ({ formData, setFormData }) => {
                                 style={{
                                     background:
                                         formData.dormitories === "4+"
-                                            ? "rgb(221 190 28)"
+                                            ? "#205CA4"
                                             : "",
+                                    color: formData.dormitories === "4+"
+                                            ? "#ffffff"
+                                            : '',
                                 }}
                             >
                                 <input
@@ -180,8 +192,11 @@ export const PropertyRegistration = ({ formData, setFormData }) => {
                                     style={{
                                         background:
                                             formData.suits === "1"
-                                                ? "rgb(221 190 28)"
+                                                ? "#205CA4"
                                                 : "",
+                                            color: formData.suits === "1"
+                                                ? "#ffffff"
+                                                : '',
                                     }}
                                 >
                                     <input
@@ -207,8 +222,11 @@ export const PropertyRegistration = ({ formData, setFormData }) => {
                                     style={{
                                         background:
                                             formData.suits === "2"
-                                                ? "rgb(221 190 28)"
+                                                ? "#205CA4"
                                                 : "",
+                                                color: formData.suits === "2"
+                                                ? "#ffffff"
+                                                : '',
                                     }}
                                 >
                                     <input
@@ -230,8 +248,11 @@ export const PropertyRegistration = ({ formData, setFormData }) => {
                                     style={{
                                         background:
                                             formData.suits === "3"
-                                                ? "rgb(221 190 28)"
+                                                ? "#205CA4"
                                                 : "",
+                                                color: formData.suits === "3"
+                                                ? "#ffffff"
+                                                : '',
                                     }}
                                 >
                                     <input
@@ -253,8 +274,11 @@ export const PropertyRegistration = ({ formData, setFormData }) => {
                                     style={{
                                         background:
                                             formData.suits === "4+"
-                                                ? "rgb(221 190 28)"
+                                                ? "#205CA4"
                                                 : "",
+                                                color: formData.suits === "4+"
+                                                ? "#ffffff"
+                                                : '',
                                     }}
                                 >
                                     <input
@@ -284,8 +308,11 @@ export const PropertyRegistration = ({ formData, setFormData }) => {
                                 style={{
                                     background:
                                         formData.bathrooms === "1"
-                                            ? "rgb(221 190 28)"
+                                            ? "#205CA4"
                                             : "",
+                                            color: formData.bathrooms === "1"
+                                                ? "#ffffff"
+                                                : '',
                                 }}
                             >
                                 <input
@@ -311,8 +338,11 @@ export const PropertyRegistration = ({ formData, setFormData }) => {
                                 style={{
                                     background:
                                         formData.bathrooms === "2"
-                                            ? "rgb(221 190 28)"
+                                            ? "#205CA4"
                                             : "",
+                                            color: formData.bathrooms === "2"
+                                                ? "#ffffff"
+                                                : '',
                                 }}
                             >
                                 <input
@@ -334,8 +364,11 @@ export const PropertyRegistration = ({ formData, setFormData }) => {
                                 style={{
                                     background:
                                         formData.bathrooms === "3"
-                                            ? "rgb(221 190 28)"
+                                            ? "#205CA4"
                                             : "",
+                                            color: formData.bathrooms === "3"
+                                                ? "#ffffff"
+                                                : '',
                                 }}
                             >
                                 <input
@@ -357,8 +390,11 @@ export const PropertyRegistration = ({ formData, setFormData }) => {
                                 style={{
                                     background:
                                         formData.bathrooms === "4+"
-                                            ? "rgb(221 190 28)"
+                                            ? "#205CA4"
                                             : "",
+                                            color: formData.bathrooms === "4+"
+                                                ? "#ffffff"
+                                                : '',
                                 }}
                             >
                                 <input
@@ -385,8 +421,11 @@ export const PropertyRegistration = ({ formData, setFormData }) => {
                                 style={{
                                     background:
                                         formData.vacancies === "1"
-                                            ? "rgb(221 190 28)"
+                                            ? "#205CA4"
                                             : "",
+                                            color: formData.vacancies === "1"
+                                                ? "#ffffff"
+                                                : '',
                                 }}
                             >
                                 <input
@@ -412,8 +451,11 @@ export const PropertyRegistration = ({ formData, setFormData }) => {
                                 style={{
                                     background:
                                         formData.vacancies === "2"
-                                            ? "rgb(221 190 28)"
+                                            ? "#205CA4"
                                             : "",
+                                            color: formData.vacancies === "2"
+                                                ? "#ffffff"
+                                                : '',
                                 }}
                             >
                                 <input
@@ -435,8 +477,11 @@ export const PropertyRegistration = ({ formData, setFormData }) => {
                                 style={{
                                     background:
                                         formData.vacancies === "3"
-                                            ? "rgb(221 190 28)"
+                                            ? "#205CA4"
                                             : "",
+                                            color: formData.vacancies === "3"
+                                                ? "#ffffff"
+                                                : '',
                                 }}
                             >
                                 <input
@@ -458,8 +503,11 @@ export const PropertyRegistration = ({ formData, setFormData }) => {
                                 style={{
                                     background:
                                         formData.vacancies === "4+"
-                                            ? "rgb(221 190 28)"
+                                            ? "#205CA4"
                                             : "",
+                                            color: formData.vacancies === "4+"
+                                                ? "#ffffff"
+                                                : '',
                                 }}
                             >
                                 <input

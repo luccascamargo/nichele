@@ -1393,10 +1393,12 @@ export default function Imoveis() {
                 </section>
                 {console.log(buildings.data)}
                 <section className="section__imoveis">
-                    {buildings?.data?.map((item) => (
-                        <div key={item.CODIGOIMOVEL} className="box__imoveis">
+                    {buildings?.data?.map((item) => {
+                        return (
+                            <div key={item.CODIGOIMOVEL} className="box__imoveis">
                             <div className="sticker">
-                                <span>{item.TIPOALUGUEL === "S" ? 'Aluguel': '' || item.TIPOVENDA === 'S' ? 'Venda' : ''}</span>
+                                <span>{item.TIPOALUGUEL === 'S' ? 'Aluguel' : 'Venda'}</span>
+                                {/* <span>{item.TIPOALUGUEL === "S" ? 'Aluguel': '' || item.TIPOVENDA === 'S' ? 'Venda' : ''}</span> */}
                             </div>
                             <img src={imageBox} alt="Imagem imovel" />
                             <div className="infos">
@@ -1426,7 +1428,8 @@ export default function Imoveis() {
                                 </div>
                             </div>
                         </div>
-                    ))}
+                        )
+                    })}
                 </section>
             </main>
             <Footer />
