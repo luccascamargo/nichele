@@ -54,65 +54,63 @@ class Building extends Model
     //     return $this->belongsToMany(Characteristic::class)->select(array('CODIGOIMOVEL'));
     // }
 
-    // public function scopeWhenWhereType($query, $bool, $type)
-    // {
-    //     $query->when($bool, function ($query) use ($type) {
-    //         $query->where('type', $type);
-    //     });
-    // }
+    public function scopeWhenWhereBuildingType($query, $bool, $building_type)
+    {
+        $query->when($bool, function ($query) use ($building_type) {
+            $query->where('TIPOIMOVEL', $building_type);
+        });
+    }
 
-    // public function scopeWhenWhereBuildingType($query, $bool, $building_type)
-    // {
-    //     $query->when($bool, function ($query) use ($building_type) {
-    //         $query->whereHas('buildingType', function ($query) use ($building_type) {
-    //             $query->where('name', $building_type);
-    //         });
-    //     });
-    // }
+    public function scopeWhenWhereType($query, $bool, $type)
+    {
+        if ($type === "TIPOVENDA") {
+            $query->when($bool, function ($query) use ($type) {
+                $query->where('TIPOVENDA', $type);
+            });
+        } else {
+            $query->when($bool, function ($query) use ($type) {
+                $query->where('TIPOALUGUEL', "S");
+            });
+        }
+    }
 
-    // public function scopeWhenWhereCity($query, $bool, $city)
-    // {
-    //     $query->when($bool, function ($query) use ($city) {
-    //         $query->whereHas('address', function ($query) use ($city) {
-    //             $query->where('city', $city);
-    //         });
-    //     });
-    // }
+    public function scopeWhenWhereCity($query, $bool, $city)
+    {
+        $query->when($bool, function ($query) use ($city) {
+            $query->where('CIDADE', $city);
+        });
+    }
 
-    // public function scopeWhenWhereDistrict($query, $bool, $district)
-    // {
-    //     $query->when($bool, function ($query) use ($district) {
-    //         $query->whereHas('address', function ($query) use ($district) {
-    //             $query->where('neighborhood', $district);
-    //         });
-    //     });
-    // }
+    public function scopeWhenWhereDistrict($query, $bool, $district)
+    {
+        $query->when($bool, function ($query) use ($district) {
+            $query->where('BAIRRO', $district);
+        });
+    }
 
-    // public function scopeWhenWherePrice($query, $bool, $price)
-    // {
-    //     $price = json_decode($price, true);
+    public function scopeWhenWherePrice($query, $bool, $price)
+    {
+        $price = json_decode($price, true);
 
-    //     $query->when($bool, function ($query) use ($price) {
-    //         $query->whereHas('characteristics', function ($query) use ($price) {
-    //             $query->where(function ($query) use ($price) {
-    //                 $query->where('description', 'Alugar')->whereBetween('price', [$price['min'], $price['max']]);
-    //             })->orWhere(function ($query) use ($price) {
-    //                 $query->where('description', 'Venda')->whereBetween('price', [$price['min'], $price['max']]);
-    //             });
-    //         });
-    //     });
-    // }
+        $query->when($bool, function ($query) use ($price) {
+            $query->where(function ($query) use ($price) {
+                $query->where('TIPOVENDA', 'S')->whereBetween('VALORVENDA', [$price['min'], $price['max']]);
+            })->orWhere(function ($query) use ($price) {
+                $query->where('TIPOALUGUEL', 'S')->whereBetween('VALORALUGUEL', [$price['min'], $price['max']]);
+            });
+        });
+    }
 
-    // public function scopeWhenWhereRooms($query, $bool, $room)
-    // {
-    //     $query->when($bool, function ($query) use ($room) {
-    //         $query->when($room >= 4, function ($query) use ($room) {
-    //             $query->where('rooms', '>=', 4);
-    //         })->when($room < 4, function ($query) use ($room) {
-    //             $query->where('rooms', $room);
-    //         });
-    //     });
-    // }
+    public function scopeWhenWhereRooms($query, $bool, $room)
+    {
+        $query->when($bool, function ($query) use ($room) {
+            $query->when($room >= 4, function ($query) use ($room) {
+                $query->where('QUANTIDADEDORMITORIO', '>=', 4);
+            })->when($room < 4, function ($query) use ($room) {
+                $query->where('QUANTIDADEDORMITORIO', $room);
+            });
+        });
+    }
 
     // public function scopeWhenWhereSuites($query, $bool, $suite)
     // {
@@ -125,36 +123,36 @@ class Building extends Model
     //     });
     // }
 
-    // public function scopeWhenWhereToilets($query, $bool, $toilet)
-    // {
-    //     $query->when($bool, function ($query) use ($toilet) {
-    //         $query->when($toilet >= 4, function ($query) use ($toilet) {
-    //             $query->where('toilets', '>=', 4);
-    //         })->when($toilet < 4, function ($query) use ($toilet) {
-    //             $query->where('toilets', $toilet);
-    //         });
-    //     });
-    // }
+    public function scopeWhenWhereToilets($query, $bool, $toilet)
+    {
+        $query->when($bool, function ($query) use ($toilet) {
+            $query->when($toilet >= 4, function ($query) use ($toilet) {
+                $query->where('QUANTIDADEBANHEIRO', '>=', 4);
+            })->when($toilet < 4, function ($query) use ($toilet) {
+                $query->where('QUANTIDADEBANHEIRO', $toilet);
+            });
+        });
+    }
 
-    // public function scopeWhenWhereGarage($query, $bool, $garage)
-    // {
-    //     $query->when($bool, function ($query) use ($garage) {
-    //         $query->when($garage >= 4, function ($query) use ($garage) {
-    //             $query->where('garage', '>=', 4);
-    //         })->when($garage < 4, function ($query) use ($garage) {
-    //             $query->where('garage', $garage);
-    //         });
-    //     });
-    // }
+    public function scopeWhenWhereGarage($query, $bool, $garage)
+    {
+        $query->when($bool, function ($query) use ($garage) {
+            $query->when($garage >= 4, function ($query) use ($garage) {
+                $query->where('QUANTIDADEGARAGEM', '>=', 4);
+            })->when($garage < 4, function ($query) use ($garage) {
+                $query->where('QUANTIDADEGARAGEM', $garage);
+            });
+        });
+    }
 
-    // public function scopeWhenWhereArea($query, $bool, $area)
-    // {
-    //     $area = json_decode($area, true);
+    public function scopeWhenWhereArea($query, $bool, $area)
+    {
+        $area = json_decode($area, true);
 
-    //     $query->when($bool, function ($query) use ($area) {
-    //         $query->whereBetween('private_area',[$area['min'], $area['max']]);
-    //     });
-    // }
+        $query->when($bool, function ($query) use ($area) {
+            $query->whereBetween('AREAPRIVATIVA',[$area['min'], $area['max']]);
+        });
+    }
 
     public function scopeWhenWhereCode($query, $bool, $code)
     {
@@ -178,10 +176,10 @@ class Building extends Model
     //     });
     // }
 
-    // public function scopeIsPending($query)
-    // {
-    //     $query->where('status', 'pending');
-    // }
+    public function scopeIsPending($query)
+    {
+        $query->where('PUBLICAR', '1');
+    }
 
     // public function getTypeAttribute()
     // {

@@ -18,21 +18,20 @@ class BuildingController extends Controller
      */
     public function index(Request $request)
     {
-        $buildings = Building::
-        whenWhereCode($request->has('code'), $request->code)
-            // ->whenWhereType($request->has('type'), $request->type)
-            // ->whenWhereBuildingType($request->has('building_type'), $request->building_type)
-            // ->whenWhereCity($request->has('city'), $request->city)
-            // ->whenWhereDistrict($request->has('district'), $request->district)
-            // ->whenWherePrice($request->has('price'), $request->price)
-            // ->whenWhereRooms($request->has('room'), $request->room)
-            // ->whenWhereSuites($request->has('suite'), $request->suite)
-            // ->whenWhereToilets($request->has('toilet'), $request->toilet)
-            // ->whenWhereGarage($request->has('garage'), $request->garage)
-            // ->whenWherePlant($request->has('plan'), $request->plan)
-            // ->whenWhereOffer($request->has('offer'), $request->offer)
-            // ->whenWhereArea($request->has('area'), $request->area)
-            // ->isPending()
+        $buildings = Building::whenWhereCode($request->has('code'), $request->code) // Coluna CodigoImovel (imb_imbimovel)
+            ->whenWhereType($request->has('type'), $request->type) // Coluna TIPOVENDA ou TIPOALUGUEL (imb_imbimovel)
+            ->whenWhereBuildingType($request->has('building_type'), $request->building_type) // Coluna TIPOIMOVEL (imb_imbimovel)
+            ->whenWhereCity($request->has('city'), $request->city) // Coluna Cidade (imb_imbimovel)
+            ->whenWhereDistrict($request->has('district'), $request->district) // Coluna BAIRRO (imb_imbimovel)
+            ->whenWherePrice($request->has('price'), $request->price) // Coluna VALORVENDA ou VALORALUGUEL (imb_imbimovel)
+            ->whenWhereRooms($request->has('room'), $request->room) // Coluna QUANTIDADEDORMITORIO
+            ->whenWhereToilets($request->has('toilet'), $request->toilet)
+            ->whenWhereGarage($request->has('garage'), $request->garage)
+            ->whenWhereArea($request->has('area'), $request->area)  // Coluna AREAPRIVATIVA
+            // ->whenWhereSuites($request->has('suite'), $request->suite) // Tabela imb_imovelcaracteristica, coluna QUANTIDADE, codigo = 8
+            // ->whenWherePlant($request->has('plan'), $request->plan) // Marcus previsa ver onde tem esse dado, nao encontrei
+            // ->whenWhereOffer($request->has('offer'), $request->offer) // REMOVER FRONT, Marcus pediu pra remover, mas iremos fazer apenas no front
+            ->isPending()
             ->simplePaginate(10);
         return $buildings;
     }

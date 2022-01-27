@@ -35,17 +35,18 @@ export default function Imoveis() {
     const [cities, setCities] = useState([]);
     const [districts, setDistricts] = useState([]);
     const [types, setTypes] = useState([]);
-    const [code, setCode] = useState("");
+    const [code, setCode] = useState(""); // só passar o filtro whenWhereCode
     const [plant, setPlant] = useState(false);
     const [offer, setOffer] = useState(false);
 
-    const [area, setArea] = useState({ min: 0, max: 10000 });
-    const [buildingType, setBuildingType] = useState("");
-    const [city, setCity] = useState("");
-    const [district, setDistrict] = useState("");
-    const [price, setPrice] = useState({ min: 0, max: 10000 });
+    // JSON examplo http://?param1={"price":[{"min":89},{"max":3}]}
+    const [area, setArea] = useState({ min: 0, max: 10000 }); // passar o min e max dos valores json
+    const [buildingType, setBuildingType] = useState(""); // buscar descricao da tabela imb_tipoimovel
+    const [city, setCity] = useState(""); // pode ser todas as cidades do brasil ou filtrar a CIDADE da tabela imb_imovel
+    const [district, setDistrict] = useState(""); // filtrar apenas os bairros da cidade selecionado, tabela imb_imovel
+    const [price, setPrice] = useState({ min: 0, max: 10000 }); // passar o min e max dos valores json
 
-    const [activeButton, setActiveButton] = useState("1");
+    const [activeButton, setActiveButton] = useState("1"); // Tipo Aluguel ou comprar
 
     const [room, setRoom] = useState("");
     const [suites, setSuites] = useState("");
@@ -484,9 +485,9 @@ export default function Imoveis() {
                             sx={{
                                 width: "100%",
                                 borderRadius: "10px",
-                                    "&:before": {
-                                        display: "none",
-                                    },
+                                "&:before": {
+                                    display: "none",
+                                },
                             }}
                         >
                             {types.map(({ value, label }, index) => (
@@ -515,9 +516,9 @@ export default function Imoveis() {
                             sx={{
                                 width: "100%",
                                 borderRadius: "10px",
-                                    "&:before": {
-                                        display: "none",
-                                    },
+                                "&:before": {
+                                    display: "none",
+                                },
                             }}
                         >
                             {cities.map(({ value, label }, index) => (
@@ -546,9 +547,9 @@ export default function Imoveis() {
                             sx={{
                                 width: "100%",
                                 borderRadius: "10px",
-                                    "&:before": {
-                                        display: "none",
-                                    },
+                                "&:before": {
+                                    display: "none",
+                                },
                             }}
                         >
                             {districts.map(({ value, label }, index) => (
@@ -576,9 +577,9 @@ export default function Imoveis() {
                             sx={{
                                 width: "100%",
                                 borderRadius: "10px",
-                                    "&:before": {
-                                        display: "none",
-                                    },
+                                "&:before": {
+                                    display: "none",
+                                },
                             }}
                         >
                             <MenuItem value="caracteristica">teste</MenuItem>
@@ -1371,21 +1372,20 @@ export default function Imoveis() {
                         <Button
                             onClick={() => handleSubmitSearch()}
                             sx={{
-                                          borderRadius: "10px",
-                                          backgroundColor: "#FFDB21",
-                                          color: "#205CA4",
-                                          width: "13.5rem",
-                                          height: "3rem",
-                                          fontFamily: "Roboto",
-                                          fontWeight: "bold",
-                                          lineHeight: "18px",
-                                          letterSpacing: "-0.01em",
-                                          "&:hover": {
-                                              backgroundColor: "#FFDB21",
-                                              color: "#205CA4",
-                                          },
-                                      }
-                            }
+                                borderRadius: "10px",
+                                backgroundColor: "#FFDB21",
+                                color: "#205CA4",
+                                width: "13.5rem",
+                                height: "3rem",
+                                fontFamily: "Roboto",
+                                fontWeight: "bold",
+                                lineHeight: "18px",
+                                letterSpacing: "-0.01em",
+                                "&:hover": {
+                                    backgroundColor: "#FFDB21",
+                                    color: "#205CA4",
+                                },
+                            }}
                         >
                             Encontre seu imóvel
                         </Button>
@@ -1395,40 +1395,60 @@ export default function Imoveis() {
                 <section className="section__imoveis">
                     {buildings?.data?.map((item) => {
                         return (
-                            <div key={item.CODIGOIMOVEL} className="box__imoveis">
-                            <div className="sticker">
-                                <span>{item.TIPOALUGUEL === 'S' ? 'Aluguel' : 'Venda'}</span>
-                                {/* <span>{item.TIPOALUGUEL === "S" ? 'Aluguel': '' || item.TIPOVENDA === 'S' ? 'Venda' : ''}</span> */}
-                            </div>
-                            <img src={imageBox} alt="Imagem imovel" />
-                            <div className="infos">
-                                <div className="top">
-                                    <div className="title__box">
-                                        <span>{item.TIPOIMOVEL}</span>
-                                        <p>{item.ENDERECO}</p>
+                            <div
+                                key={item.CODIGOIMOVEL}
+                                className="box__imoveis"
+                            >
+                                <div className="sticker">
+                                    <span>
+                                        {item.TIPOALUGUEL === "S"
+                                            ? "Aluguel"
+                                            : "Venda"}
+                                    </span>
+                                    {/* <span>{item.TIPOALUGUEL === "S" ? 'Aluguel': '' || item.TIPOVENDA === 'S' ? 'Venda' : ''}</span> */}
+                                </div>
+                                <img src={imageBox} alt="Imagem imovel" />
+                                <div className="infos">
+                                    <div className="top">
+                                        <div className="title__box">
+                                            <span>{item.TIPOIMOVEL}</span>
+                                            <p>{item.ENDERECO}</p>
+                                        </div>
+                                        <div className="value__box">
+                                            <span>
+                                                {item.TIPOALUGUEL === "S"
+                                                    ? item.VALORALUGUEL
+                                                    : "sem valor" ||
+                                                      item.TIPOVENDA === "S"
+                                                    ? item.VALORVENDA
+                                                    : "sem valor"}
+                                            </span>
+                                            <p>Cód: {item.CODIGOIMOVEL}</p>
+                                        </div>
                                     </div>
-                                    <div className="value__box">
-                                        <span>{item.TIPOALUGUEL === 'S' ? item.VALORALUGUEL : 'sem valor' || item.TIPOVENDA === 'S' ? item.VALORVENDA : 'sem valor'}</span>
-                                        <p>Cód: {item.CODIGOIMOVEL}</p>
+                                    <div className="bottom">
+                                        <div className="desc">
+                                            <img src={iconQuarto} alt="" />
+                                            <p>
+                                                {item.QUANTIDADEDORMITORIO}{" "}
+                                                quartos
+                                            </p>
+                                        </div>
+                                        <div className="desc">
+                                            <img src={iconCar} alt="" />
+                                            <p>
+                                                {item?.QUANTIDADEGARAGEM || "0"}{" "}
+                                                vaga{"(s)"}
+                                            </p>
+                                        </div>
+                                        <div className="desc">
+                                            <img src={iconRegua} alt="" />
+                                            <p>{item.AREAPRIVATIVA} m²</p>
+                                        </div>
                                     </div>
                                 </div>
-                                <div className="bottom">
-                                    <div className="desc">
-                                        <img src={iconQuarto} alt="" />
-                                        <p>{item.QUANTIDADEDORMITORIO} quartos</p>
-                                    </div>
-                                    <div className="desc">
-                                        <img src={iconCar} alt="" />
-                                        <p>{item?.QUANTIDADEGARAGEM || '0'} vaga{'(s)'}</p>
-                                    </div>
-                                    <div className="desc">
-                                        <img src={iconRegua} alt="" />
-                                        <p>{item.AREAPRIVATIVA} m²</p>
-                                    </div>
-                                </div>
                             </div>
-                        </div>
-                        )
+                        );
                     })}
                 </section>
             </main>
