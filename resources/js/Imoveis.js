@@ -34,19 +34,20 @@ export default function Imoveis() {
 
     const [cities, setCities] = useState([]);
     const [districts, setDistricts] = useState([]);
-    const [types, setTypes] = useState([]);
+    const [types, setTypes] = useState([]); // buscar descricao da tabela imb_tipoimovel
     const [code, setCode] = useState(""); // só passar o filtro whenWhereCode
     const [plant, setPlant] = useState(false);
-    const [offer, setOffer] = useState(false);
+    const [characteristics, setCharacteristics] = useState([]);
 
     // JSON examplo http://?param1={"price":[{"min":89},{"max":3}]}
     const [area, setArea] = useState({ min: 0, max: 10000 }); // passar o min e max dos valores json
-    const [buildingType, setBuildingType] = useState(""); // buscar descricao da tabela imb_tipoimovel
+    const [buildingType, setBuildingType] = useState("");
     const [city, setCity] = useState(""); // pode ser todas as cidades do brasil ou filtrar a CIDADE da tabela imb_imovel
     const [district, setDistrict] = useState(""); // filtrar apenas os bairros da cidade selecionado, tabela imb_imovel
     const [price, setPrice] = useState({ min: 0, max: 10000 }); // passar o min e max dos valores json
+    const [characteristic, setCharacteristic] = useState(""); // pode ser todas as cidades do brasil ou filtrar a CIDADE da tabela imb_imovel
 
-    const [activeButton, setActiveButton] = useState("1"); // Tipo Aluguel ou comprar
+    const [activeButton, setActiveButton] = useState(""); // Tipo Aluguel ou comprar
 
     const [room, setRoom] = useState("");
     const [suites, setSuites] = useState("");
@@ -63,7 +64,7 @@ export default function Imoveis() {
         } else {
             url.set("type", e);
         }
-
+        console.log(url);
         setActiveButton(e);
     };
 
@@ -202,17 +203,6 @@ export default function Imoveis() {
         setPlant(event);
     };
 
-    const handleOffer = (event) => {
-        const url = new URL(window.location.href).searchParams;
-
-        if (!url.has("plant")) {
-            url.append("plant", event);
-        } else {
-            url.set("plant", event);
-        }
-        setOffer(event);
-    };
-
     function compareParamAndSet(param, state) {
         const url = new URL(window.location.href).searchParams;
 
@@ -229,8 +219,27 @@ export default function Imoveis() {
         }
     }
 
+    const handleCityChange = async (event) => {
+        setCity(event);
+
+        const neigh = async () => {
+            const { data } = await api.get(`api/districts/${event}`);
+            return data;
+        };
+
+        setDistricts(await neigh());
+    };
+
+    const handleCharacteristicChange = async (event) => {
+        setCharacteristic(event);
+    };
+
     const handleSubmitSearch = async () => {
         const params = new URLSearchParams();
+
+        if (activeButton) {
+            params.append("type", activeButton);
+        }
 
         if (buildingType) {
             params.append("building_type", buildingType);
@@ -276,64 +285,70 @@ export default function Imoveis() {
             params.append("plant", plant);
         }
 
-        if (offer) {
-            params.append("offer", offer);
-        }
-
         setBuildings(
             (await api.get(`api/buildings?${params.toString()}`)).data
         );
+
+        // se tiver alguma caracteristica de imovel selecionado, filtra
+        if (characteristic !== "") {
+            const characs = (
+                await api.get(`api/buildings/characteristics/${characteristic}`)
+            ).data;
+
+            buildings.data = buildings.data.filter(function (o1) {
+                return !characs.some(function (o2) {
+                    return o1.CODIGOIMOVEL === o2.CODIGOIMOVEL;
+                });
+            });
+            setBuildings(buildings);
+        }
     };
 
     useEffect(async () => {
-        // compareParamAndSet('price', setPrice)
+        compareParamAndSet("price", setPrice);
 
-        // compareParamAndSet('area', setArea)
+        compareParamAndSet("area", setArea);
 
-        // compareParamAndSet('room', setRoom)
+        compareParamAndSet("room", setRoom);
 
-        // compareParamAndSet('building_type', setBuildingType)
+        compareParamAndSet("building_type", setBuildingType);
 
-        // compareParamAndSet('district', setDistrict)
+        compareParamAndSet("district", setDistrict);
 
         // compareParamAndSet('suites', setSuites)
 
-        // compareParamAndSet('toilet', setToilet)
+        compareParamAndSet("toilet", setToilet);
 
-        // compareParamAndSet('garage', setGarage)
+        compareParamAndSet("garage", setGarage);
 
-        // compareParamAndSet('type', setActiveButton)
+        compareParamAndSet("type", setActiveButton);
 
-        // compareParamAndSet('city', setCity)
+        compareParamAndSet("city", setCity);
 
-        // compareParamAndSet('code', setCode)
+        compareParamAndSet("code", setCode);
 
         // compareParamAndSet('plant', setPlant)
 
-        // compareParamAndSet('offer', setOffer)
+        const buildingsType = async () => {
+            const { data } = await api.get("api/types");
+            return data;
+        };
 
-        // const city = async () => {
-        //     const {data} = await api.get('api/cities');
-        //     return data;
-        // }
+        setTypes(await buildingsType());
 
-        // setCities(await city());
+        const city = async () => {
+            const { data } = await api.get("api/cities");
+            return data;
+        };
 
-        // const neigh = async () => {
-        //     const {data} = await api.get('api/districts');
+        setCities(await city());
 
-        //     return data;
-        // }
+        const characteristics = async () => {
+            const { data } = await api.get(`api/characteristics`);
+            return data;
+        };
 
-        // setDistricts(await neigh());
-
-        // const types = async () => {
-        //     const {data} = await api.get('api/types');
-
-        //     return data;
-        // }
-
-        // setTypes(await types());
+        setCharacteristics(await characteristics());
 
         const buildings = async () => {
             const url = new URL(window.location.href).searchParams;
@@ -347,9 +362,13 @@ export default function Imoveis() {
         };
 
         setBuildings(await buildings());
+
+        // verifica se o usuario selecionou suite, se sim, fazer outro filtro com a suite
+        // setSuites();
     }, []);
 
     const handleSubmitReset = async () => {
+        setActiveButton("");
         setBuildingType("");
         setCity("");
         setDistrict("");
@@ -361,9 +380,9 @@ export default function Imoveis() {
         setArea({ min: 0, max: 10000 });
         setCode("");
         setPlant(false);
-        setOffer(false);
+        setCharacteristic("");
 
-        setBuildings(await api.get(`api/buildings`));
+        setBuildings((await api.get(`api/buildings`)).data);
     };
 
     return (
@@ -376,9 +395,9 @@ export default function Imoveis() {
                 <section className="section__filter">
                     <div className="buttons__content">
                         <Button
-                            onClick={() => handleActiveButton("1")}
+                            onClick={() => handleActiveButton("TIPOVENDA")}
                             sx={
-                                activeButton === "1"
+                                activeButton === "TIPOVENDA"
                                     ? {
                                           borderRadius: "10px",
                                           backgroundColor: "#FFDB21",
@@ -414,9 +433,9 @@ export default function Imoveis() {
                             Comprar
                         </Button>
                         <Button
-                            onClick={() => handleActiveButton("0")}
+                            onClick={() => handleActiveButton("TIPOALUGUEL")}
                             sx={
-                                activeButton === "0"
+                                activeButton === "TIPOALUGUEL"
                                     ? {
                                           borderRadius: "10px",
                                           backgroundColor: "#FFDB21",
@@ -490,9 +509,9 @@ export default function Imoveis() {
                                 },
                             }}
                         >
-                            {types.map(({ value, label }, index) => (
-                                <MenuItem key={index} value={value}>
-                                    {label}
+                            {types?.map(({ DESCRICAO }, index) => (
+                                <MenuItem key={index} value={DESCRICAO}>
+                                    {DESCRICAO}
                                 </MenuItem>
                             ))}
                         </Select>
@@ -511,7 +530,7 @@ export default function Imoveis() {
                             options={cities}
                             value={city}
                             onChange={(event) =>
-                                handleCity(event?.target.value)
+                                handleCityChange(event?.target.value)
                             }
                             sx={{
                                 width: "100%",
@@ -521,9 +540,9 @@ export default function Imoveis() {
                                 },
                             }}
                         >
-                            {cities.map(({ value, label }, index) => (
-                                <MenuItem key={index} value={value}>
-                                    {label}
+                            {cities?.map(({ CIDADE }, index) => (
+                                <MenuItem key={index} value={CIDADE}>
+                                    {CIDADE}
                                 </MenuItem>
                             ))}
                         </Select>
@@ -552,9 +571,9 @@ export default function Imoveis() {
                                 },
                             }}
                         >
-                            {districts.map(({ value, label }, index) => (
-                                <MenuItem key={index} value={value}>
-                                    {label}
+                            {districts?.map(({ BAIRRO }, index) => (
+                                <MenuItem key={index} value={BAIRRO}>
+                                    {BAIRRO}
                                 </MenuItem>
                             ))}
                         </Select>
@@ -572,8 +591,11 @@ export default function Imoveis() {
                         <Select
                             labelId="caracteristica-label"
                             id="caracteristica"
-                            value={city}
-                            onChange={(event) => setCity(event?.target.value)}
+                            options={characteristics}
+                            value={characteristic}
+                            onChange={(event) =>
+                                handleCharacteristicChange(event?.target.value)
+                            }
                             sx={{
                                 width: "100%",
                                 borderRadius: "10px",
@@ -582,7 +604,19 @@ export default function Imoveis() {
                                 },
                             }}
                         >
-                            <MenuItem value="caracteristica">teste</MenuItem>
+                            {characteristics?.map(
+                                (
+                                    { CODIGOCARACTERISTICA, DESCRICAO },
+                                    index
+                                ) => (
+                                    <MenuItem
+                                        key={index}
+                                        value={CODIGOCARACTERISTICA}
+                                    >
+                                        {DESCRICAO}
+                                    </MenuItem>
+                                )
+                            )}
                         </Select>
                     </FormControl>
                     <Box
@@ -1305,29 +1339,6 @@ export default function Imoveis() {
                             }
                             label="Imóveis na planta"
                         />
-                        <FormControlLabel
-                            sx={{
-                                fontFamily: "Roboto",
-                                fontWeight: "normal",
-                                fontSize: "14px",
-                                lineHeight: "21px",
-                                color: "#8C9193",
-                            }}
-                            control={
-                                <Checkbox
-                                    onChange={(event) =>
-                                        handleOffer(event?.target.value)
-                                    }
-                                    checked={offer}
-                                    sx={{
-                                        "&.Mui-checked": {
-                                            color: "#205CA4",
-                                        },
-                                    }}
-                                />
-                            }
-                            label="Ofertas"
-                        />
                     </FormGroup>
 
                     <div className="buttons__content">
@@ -1391,65 +1402,69 @@ export default function Imoveis() {
                         </Button>
                     </div>
                 </section>
-                {console.log(buildings.data)}
                 <section className="section__imoveis">
                     {buildings?.data?.map((item) => {
                         return (
-                            <div
+                            <a
+                                href={`/imovel?code=${item.CODIGOIMOVEL}`}
+                                target="_blank"
                                 key={item.CODIGOIMOVEL}
-                                className="box__imoveis"
                             >
-                                <div className="sticker">
-                                    <span>
-                                        {item.TIPOALUGUEL === "S"
-                                            ? "Aluguel"
-                                            : "Venda"}
-                                    </span>
-                                    {/* <span>{item.TIPOALUGUEL === "S" ? 'Aluguel': '' || item.TIPOVENDA === 'S' ? 'Venda' : ''}</span> */}
-                                </div>
-                                <img src={imageBox} alt="Imagem imovel" />
-                                <div className="infos">
-                                    <div className="top">
-                                        <div className="title__box">
-                                            <span>{item.TIPOIMOVEL}</span>
-                                            <p>{item.ENDERECO}</p>
+                                <div className="box__imoveis">
+                                    <div className="sticker">
+                                        <span>
+                                            {item.TIPOALUGUEL === "S"
+                                                ? "Aluguel"
+                                                : "Venda"}
+                                        </span>
+                                        {/* <span>{item.TIPOALUGUEL === "S" ? 'Aluguel': '' || item.TIPOVENDA === 'S' ? 'Venda' : ''}</span> */}
+                                    </div>
+                                    <img src={imageBox} alt="Imagem imovel" />
+                                    <div className="infos">
+                                        <div className="top">
+                                            <div className="title__box">
+                                                <span>{item.TIPOIMOVEL}</span>
+                                                <p>{item.ENDERECO}</p>
+                                            </div>
+                                            <div className="value__box">
+                                                <span>
+                                                    {item.TIPOALUGUEL === "S"
+                                                        ? item.VALORALUGUEL
+                                                        : "sem valor" ||
+                                                          item.TIPOVENDA === "S"
+                                                        ? item.VALORVENDA
+                                                        : "sem valor"}
+                                                </span>
+                                                <p>Cód: {item.CODIGOIMOVEL}</p>
+                                            </div>
                                         </div>
-                                        <div className="value__box">
-                                            <span>
-                                                {item.TIPOALUGUEL === "S"
-                                                    ? item.VALORALUGUEL
-                                                    : "sem valor" ||
-                                                      item.TIPOVENDA === "S"
-                                                    ? item.VALORVENDA
-                                                    : "sem valor"}
-                                            </span>
-                                            <p>Cód: {item.CODIGOIMOVEL}</p>
+                                        <div className="bottom">
+                                            <div className="desc">
+                                                <img src={iconQuarto} alt="" />
+                                                <p>
+                                                    {item.QUANTIDADEDORMITORIO}{" "}
+                                                    quartos
+                                                </p>
+                                            </div>
+                                            <div className="desc">
+                                                <img src={iconCar} alt="" />
+                                                <p>
+                                                    {item?.QUANTIDADEGARAGEM ||
+                                                        "0"}{" "}
+                                                    vaga{"(s)"}
+                                                </p>
+                                            </div>
+                                            <div className="desc">
+                                                <img src={iconRegua} alt="" />
+                                                <p>{item.AREAPRIVATIVA} m²</p>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div className="bottom">
-                                        <div className="desc">
-                                            <img src={iconQuarto} alt="" />
-                                            <p>
-                                                {item.QUANTIDADEDORMITORIO}{" "}
-                                                quartos
-                                            </p>
-                                        </div>
-                                        <div className="desc">
-                                            <img src={iconCar} alt="" />
-                                            <p>
-                                                {item?.QUANTIDADEGARAGEM || "0"}{" "}
-                                                vaga{"(s)"}
-                                            </p>
-                                        </div>
-                                        <div className="desc">
-                                            <img src={iconRegua} alt="" />
-                                            <p>{item.AREAPRIVATIVA} m²</p>
-                                        </div>
-                                    </div>
                                 </div>
-                            </div>
+                            </a>
                         );
                     })}
+                    {!buildings.length && <p>Nenhum imóvel encontrado.</p>}
                 </section>
             </main>
             <Footer />
