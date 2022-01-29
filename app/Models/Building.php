@@ -65,7 +65,7 @@ class Building extends Model
     {
         if ($type === "TIPOVENDA") {
             $query->when($bool, function ($query) use ($type) {
-                $query->where('TIPOVENDA', $type);
+                $query->where('TIPOVENDA', "S");
             });
         } else {
             $query->when($bool, function ($query) use ($type) {
@@ -166,13 +166,6 @@ class Building extends Model
     // {
     //     $query->when($bool, function($query) use ($plant) {
     //         $query->where('plant', $plant);
-    //     });
-    // }
-
-    // public function scopeWhenWhereOffer($query, $bool, $offer)
-    // {
-    //     $query->when($bool, function($query) use ($offer) {
-    //         $query->where('offer', $offer);
     //     });
     // }
 
