@@ -5,22 +5,17 @@ import "../../sass/sectionAbout.scss";
 
 import imageSobre from "../../../public/assets/images/image-sobre.png";
 
-export const SectionAbout = () => {
+export const SectionAbout = ({data}) => {
     return (
         <>
             <div className="container__sobre">
                 <div className="content__sobre">
                     <div className="esq">
                         <h2>
-                            A mais de 50 anos no mercado, oferecendo soluções
-                            imobiliárias
+                            {data?.title}
                         </h2>
                         <p>
-                            Somos uma empresa moderna, com visão de futuro.
-                            Buscamos permanentemente a qualificação dos serviços
-                            prestados, comprometidos com a satisfação,
-                            lucratividade e a qualidade de vida dos nossos
-                            clientes, parceiros e colaboradores.
+                            {data?.description}
                         </p>
                         <a href="/sobre">
                             <ButtonPrimary>Conheça a Nichele</ButtonPrimary>

@@ -140,4 +140,16 @@ class BuildingController extends Controller
             ->where('IMB_IMOVEL.DESTAQUEVENDA', 'S')
             ->get();
     }
+
+    /**
+     * @return mixed
+     */
+    public function GetImoveisRelacionais($cep)
+    {
+        return $data = DB::table('IMB_IMOVEL')
+            ->select('IMB_IMOVEL.*')
+            ->where('IMB_IMOVEL.CEP', $cep)
+            ->limit(10)
+            ->get();
+    }
 }

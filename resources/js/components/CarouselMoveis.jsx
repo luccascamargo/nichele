@@ -1,10 +1,8 @@
 /* eslint-disable no-unused-vars */
-import {useState, useEffect} from 'react';
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { IoIosArrowRoundBack, IoIosArrowRoundForward } from "react-icons/io";
 
-import {api} from '../plugins/api';
 
 import imgMovel from "../../../public/assets/images/movel.png";
 import imgBed from "../../../public/assets/svg/bed-icon.svg";
@@ -12,10 +10,15 @@ import imgCar from "../../../public/assets/svg/car-icon.png";
 import imgSize from "../../../public/assets/svg/size-icon.svg";
 
 const responsive = {
-    desktop: {
-        breakpoint: { max: 3000, min: 1024 },
+    desktopFull: {
+        breakpoint: { max: 3000, min: 1440 },
         items: 3,
         partialVisibilityGutter: 220,
+    },
+    desktop: {
+        breakpoint: { max: 1440, min: 1024 },
+        items: 3,
+        partialVisibilityGutter: 20,
     },
     desktopSmall: {
         breakpoint: { max: 1024, min: 600 },

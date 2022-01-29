@@ -11,12 +11,27 @@ import { api } from './plugins/api';
 import "../sass/blog.scss";
 
 export default function Blog() {
+    const [cmsInfo, setCmsInfo] = useState({});
     const [posts, setPosts] = useState([])
 
     useEffect(async () => {
         const { data } = await api.get('api/posts')
         setPosts(data);
     }, []);
+
+    useEffect(() => {
+        const getCmsInfo = async () => {
+            await fetch('http://localhost:1337/api/info', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+            .then(response => response.json())
+            .then(data => setCmsInfo(data.data.attributes));
+        }
+        getCmsInfo();
+    }, [])
     return (
         <>
             <header className="header__blog">
@@ -43,7 +58,7 @@ export default function Blog() {
                 </div>
             </div>
 
-            <Footer />
+            <Footer data={cmsInfo}/>
         </>
     );
 }

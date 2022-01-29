@@ -30,6 +30,7 @@ import InputRange from "react-input-range";
 import { api } from "./plugins/api";
 
 export default function Imoveis() {
+    const [cmsInfo, setCmsInfo] = useState({});
     const [buildings, setBuildings] = useState([]);
 
     const [cities, setCities] = useState([]);
@@ -365,6 +366,20 @@ export default function Imoveis() {
 
         setBuildings(await api.get(`api/buildings`));
     };
+
+    useEffect(() => {
+        const getCmsInfo = async () => {
+            await fetch('http://localhost:1337/api/info', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+            .then(response => response.json())
+            .then(data => setCmsInfo(data.data.attributes));
+        }
+        getCmsInfo();
+    }, [])
 
     return (
         <div className="container__imoveis">
@@ -1452,7 +1467,7 @@ export default function Imoveis() {
                     })}
                 </section>
             </main>
-            <Footer />
+            <Footer data={cmsInfo}/>
         </div>
     );
 }

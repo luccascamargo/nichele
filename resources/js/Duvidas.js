@@ -20,6 +20,7 @@ import iconAluguel from "../../public/assets/svg/icon-aluguel.svg";
 import iconVenda from "../../public/assets/svg/icon-venda.svg";
 
 export default function Duvidas() {
+    const [cmsInfo, setCmsInfo] = useState({});
     const [changeContent, setChangeContent] = useState("doc");
     const [faq, setFaq] = useState({doc: [], rent: [], buy: [], ad: []});
 
@@ -35,6 +36,20 @@ export default function Duvidas() {
         }
 
         setFaq(await faqs());
+    }, [])
+
+    useEffect(() => {
+        const getCmsInfo = async () => {
+            await fetch('http://localhost:1337/api/info', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+            .then(response => response.json())
+            .then(data => setCmsInfo(data.data.attributes));
+        }
+        getCmsInfo();
     }, [])
 
     return (
@@ -103,7 +118,7 @@ export default function Duvidas() {
                 {changeContent === "ad" && <DuvidaAnuncios datas={faq.ad} />}
             </div>
 
-            <Footer />
+            <Footer data={cmsInfo}/>
         </>
     );
 }

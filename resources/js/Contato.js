@@ -12,8 +12,26 @@ import iconEmail from "../../public/assets/svg/contato/mail.svg";
 import iconWhats from "../../public/assets/svg/contato/whats-contato.svg";
 import { Form } from "./components/Form";
 import { ButtonPrimary } from "./components/Button";
+import { useEffect, useState } from "react";
 
 export default function Contato() {
+    const [cmsInfo, setCmsInfo] = useState({});
+
+
+    useEffect(() => {
+        const getCmsInfo = async () => {
+            await fetch('http://localhost:1337/api/info', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+            .then(response => response.json())
+            .then(data => setCmsInfo(data.data.attributes));
+        }
+        getCmsInfo();
+    }, [])
+
     return (
         <>
             <header className="header__contato">
@@ -30,12 +48,12 @@ export default function Contato() {
                                     src={iconPhone}
                                     alt="Telefone de contato"
                                 />
-                                <span>(54) 3289.2900</span>
+                                <span>{cmsInfo.phone}</span>
                             </div>
                             <div className="email__contato">
                                 <img src={iconEmail} alt="E-mail de contato" />
-                                <a href="mailto:nichele@nicheleimoveis.com.br">
-                                    nichele@nicheleimoveis.com.br
+                                <a href={`mailto:${cmsInfo.email}`}>
+                                    {cmsInfo.email}
                                 </a>
                             </div>
                             <div className="content__whats__contato">
@@ -46,8 +64,8 @@ export default function Contato() {
                                     />
                                     <div className="w1__info__contato">
                                         <span>whats locação</span>
-                                        <a href="tel:(54)999678976">
-                                            (54) 99967.8976
+                                        <a href={`tel:${cmsInfo.whatsLocation}`}>
+                                            {cmsInfo.whatsLocation}
                                         </a>
                                     </div>
                                 </div>
@@ -57,9 +75,9 @@ export default function Contato() {
                                         alt="Whatsapp Nichele"
                                     />
                                     <div className="w1__info__contato">
-                                        <span>whats locação</span>
-                                        <a href="tel:(54)999678976">
-                                            (54) 99967.8976
+                                        <span>whats vendas</span>
+                                        <a href={`tel:${cmsInfo.whatsSales}`}>
+                                            {cmsInfo.whatsSales}
                                         </a>
                                     </div>
                                 </div>
@@ -85,7 +103,7 @@ export default function Contato() {
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d871.0003160668039!2d-51.18218117075731!3d-29.16463499888818!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x951ea2d50beee271%3A0xf340d87dc688966c!2sImobili%C3%A1ria%20Nichele!5e0!3m2!1spt-BR!2sbr!4v1636566475597!5m2!1spt-BR!2sbr" />
             </div>
 
-            <Footer />
+            <Footer data={cmsInfo}/>
         </>
     );
 }
