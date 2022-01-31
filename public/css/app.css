@@ -1330,6 +1330,10 @@ button {
   padding-top: 3rem;
 }
 
+.moveis .carousel-container .react-multi-carousel-track {
+  gap: 2rem;
+}
+
 .moveis .box {
   max-width: 24rem;
   margin-right: 32px;

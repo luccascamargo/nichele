@@ -88,7 +88,7 @@ const CarouselMoveis = ({data}) => {
                 <div />
                 {data?.map(item => {
                     return (
-                    <div key={item.CODIGOIMOVEL} className="box">
+                    <a href={`/imovel?code=${item.CODIGOIMOVEL}`} key={item.CODIGOIMOVEL} className="box">
                         <div>
                             <span className="tipo">{item.TIPOALUGUEL === "S" ? 'Aluguel': '' || item.TIPOVENDA === 'S' ? 'Venda' : ''}</span>
                             <img
@@ -142,7 +142,7 @@ const CarouselMoveis = ({data}) => {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 )})}
             </Carousel>
         </div>

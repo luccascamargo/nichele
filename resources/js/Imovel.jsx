@@ -481,7 +481,7 @@ export const Imovel = () => {
                     {cep.value?.map(imovel => {
                         return (
                             <SwiperSlide>
-                                <div className="box__imoveis">
+                                <a href={`/imovel?code=${imovel.CODIGOIMOVEL}`} className="box__imoveis">
                                     <div className="sticker">
                                         <span>{imovel.TIPOALUGUEL === "S" ? 'Aluguel': '' || imovel.TIPOVENDA === 'S' ? 'Venda' : ''}</span>
                                     </div>
@@ -512,7 +512,7 @@ export const Imovel = () => {
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </a>
                             </SwiperSlide>
                         )
                     })}

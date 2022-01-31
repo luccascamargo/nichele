@@ -6,6 +6,10 @@
 
     .carousel-container {
         padding-top: 3rem;
+
+        .react-multi-carousel-track {
+            gap: 2rem;
+        }
     }
 
     .box {
