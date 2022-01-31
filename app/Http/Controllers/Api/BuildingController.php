@@ -11,6 +11,8 @@ use DB;
 
 class BuildingController extends Controller
 {
+    protected $buildings;
+
     /**
      * Display a listing of the resource.
      *
@@ -32,6 +34,15 @@ class BuildingController extends Controller
             // ->whenWherePlant($request->has('plan'), $request->plan) // Marcus previsa ver onde tem esse dado, nao encontrei
             ->isPending()
             ->simplePaginate(10);
+
+            foreach ($buildings as $build) {
+                $build->ALBUM = $this->album($build->CODIGOIMOVEL);
+            }
+
+            foreach ($buildings as $build) {
+                $build->CHARACTERISTICS = $this->characteristic($build->CODIGOIMOVEL);
+            }
+
         return $buildings;
     }
 
@@ -73,17 +84,6 @@ class BuildingController extends Controller
         });
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Building $building)
-    {
-        return $building->load('ENDERECO');
-    }
-
     public function emphasis()
     {
         return Building::where('emphasis',1)->isPending()->get();
@@ -112,11 +112,25 @@ class BuildingController extends Controller
     public function album($id)
     {
         return $data = DB::table('imb_imovelfoto')
-            ->select('imb_imovelfoto.*')
+            ->select('imb_imovelfoto.ARQUIVOFOTO', 'imb_imovelfoto.DESCRICAO')
             ->where('imb_imovelfoto.codigoimovel', $id)
             ->orderBy('imb_imovelfoto.ordem', 'asc')
             ->get();
     }
+
+    /**
+     * @return mixed
+     */
+    public function albumLimited($id)
+    {
+        return $data = DB::table('imb_imovelfoto')
+            ->select('imb_imovelfoto.*')
+            ->where('imb_imovelfoto.codigoimovel', $id)
+            ->orderBy('imb_imovelfoto.ordem', 'desc')
+            ->limit(1)
+            ->get();
+    }
+
     /**
      * @return mixed
      */
