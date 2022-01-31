@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::apiResource('buildings', BuildingController::class)->only('index','show');
+Route::apiResource('buildings', BuildingController::class)->only('index');
 Route::get('buildings/characteristics/{search}', [BuildingController::class, 'characteristicsBySearch']);
 Route::apiResource('contacts', ContactController::class)->only('store');
 Route::get('cities', [BuildingController::class, 'city']);
@@ -34,6 +34,8 @@ Route::get('characteristics/{id}', [BuildingController::class, 'characteristic']
 Route::get('highlight', [BuildingController::class, 'highligthRent']);
 Route::get('comercialsState', [BuildingController::class, 'GetCommercialRealEstate']);
 Route::get('photos/{id}', [BuildingController::class, 'album']);
+Route::get('photos/limited/{id}', [BuildingController::class, 'albumLimited']);
+Route::get('teste', [BuildingController::class, 'teste']);
 
 Route::post('send/email', [ContactController::class, 'mail'])->name('email');
 Route::post('send/email/advertise', [ContactController::class, 'mailAdvertise'])->name('emailAdvertise');

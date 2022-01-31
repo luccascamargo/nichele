@@ -56,6 +56,16 @@ export default function Imoveis() {
 
     const maxValue = 10000;
 
+    const Image = ({ src, alt, fallback }) => {
+        const [error, setError] = useState(false);
+
+        const onError = () => {
+            setError(true);
+        };
+
+        return error ? fallback : <img src={src} alt={alt} onError={onError} />;
+    };
+
     const handleActiveButton = (e) => {
         const url = new URL(window.location.href).searchParams;
 
@@ -64,7 +74,7 @@ export default function Imoveis() {
         } else {
             url.set("type", e);
         }
-        console.log(url);
+
         setActiveButton(e);
     };
 
@@ -1419,7 +1429,21 @@ export default function Imoveis() {
                                         </span>
                                         {/* <span>{item.TIPOALUGUEL === "S" ? 'Aluguel': '' || item.TIPOVENDA === 'S' ? 'Venda' : ''}</span> */}
                                     </div>
-                                    <img src={imageBox} alt="Imagem imovel" />
+                                    {item.ALBUM.length > 0 && (
+                                        <Image
+                                            src={
+                                                "/images/viewsw/fotos/" +
+                                                item.ALBUM[0].ARQUIVOFOTO
+                                            }
+                                            alt={item.ALBUM[0].DESCRICAO}
+                                            fallback={
+                                                <img
+                                                    src={imageBox}
+                                                    alt="Imagem imovel"
+                                                />
+                                            }
+                                        />
+                                    )}
                                     <div className="infos">
                                         <div className="top">
                                             <div className="title__box">

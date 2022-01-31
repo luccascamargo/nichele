@@ -258,6 +258,13 @@
                 }
             }
 
+            > img {
+                width: 384px;
+                height: 384px;
+                border-top-left-radius: 50px;
+                border-top-right-radius: 50px;
+            }
+
             .infos {
                 display: flex;
                 flex-direction: column;
