@@ -47,6 +47,7 @@ export default function Imoveis() {
     const [district, setDistrict] = useState(""); // filtrar apenas os bairros da cidade selecionado, tabela imb_imovel
     const [price, setPrice] = useState({ min: 0, max: 10000 }); // passar o min e max dos valores json
     const [characteristic, setCharacteristic] = useState(""); // pode ser todas as cidades do brasil ou filtrar a CIDADE da tabela imb_imovel
+    const [characteristicInput, setCharacteristicInput] = useState("");
 
     const [activeButton, setActiveButton] = useState(""); // Tipo Aluguel ou comprar
 
@@ -242,10 +243,12 @@ export default function Imoveis() {
     };
 
     const handleCharacteristicChange = async (event) => {
-        setCharacteristic(event);
+        setCharacteristicInput(event);
     };
 
     const handleSubmitSearch = async () => {
+        setCharacteristic(characteristicInput);
+
         const params = new URLSearchParams();
 
         if (activeButton) {
@@ -299,20 +302,6 @@ export default function Imoveis() {
         setBuildings(
             (await api.get(`api/buildings?${params.toString()}`)).data
         );
-
-        // se tiver alguma caracteristica de imovel selecionado, filtra
-        if (characteristic !== "") {
-            const characs = (
-                await api.get(`api/buildings/characteristics/${characteristic}`)
-            ).data;
-
-            buildings.data = buildings.data.filter(function (o1) {
-                return !characs.some(function (o2) {
-                    return o1.CODIGOIMOVEL === o2.CODIGOIMOVEL;
-                });
-            });
-            setBuildings(buildings);
-        }
     };
 
     useEffect(async () => {
@@ -398,17 +387,17 @@ export default function Imoveis() {
 
     useEffect(() => {
         const getCmsInfo = async () => {
-            await fetch('http://localhost:1337/api/info', {
-                method: 'GET',
+            await fetch("http://localhost:1337/api/info", {
+                method: "GET",
                 headers: {
-                    'Content-Type': 'application/json',
+                    "Content-Type": "application/json",
                 },
             })
-            .then(response => response.json())
-            .then(data => setCmsInfo(data.data.attributes));
-        }
+                .then((response) => response.json())
+                .then((data) => setCmsInfo(data.data.attributes));
+        };
         getCmsInfo();
-    }, [])
+    }, []);
 
     return (
         <div className="container__imoveis">
@@ -617,7 +606,7 @@ export default function Imoveis() {
                             labelId="caracteristica-label"
                             id="caracteristica"
                             options={characteristics}
-                            value={characteristic}
+                            value={characteristicInput}
                             onChange={(event) =>
                                 handleCharacteristicChange(event?.target.value)
                             }
@@ -1428,85 +1417,119 @@ export default function Imoveis() {
                     </div>
                 </section>
                 <section className="section__imoveis">
-                    {buildings?.data?.map((item) => {
-                        return (
-                            <a
-                                href={`/imovel?code=${item.CODIGOIMOVEL}`}
-                                target="_blank"
-                                key={item.CODIGOIMOVEL}
-                            >
-                                <div className="box__imoveis">
-                                    <div className="sticker">
-                                        <span>
-                                            {item.TIPOALUGUEL === "S"
-                                                ? "Aluguel"
-                                                : "Venda"}
-                                        </span>
-                                        {/* <span>{item.TIPOALUGUEL === "S" ? 'Aluguel': '' || item.TIPOVENDA === 'S' ? 'Venda' : ''}</span> */}
-                                    </div>
-                                    {item.ALBUM.length > 0 && (
-                                        <Image
-                                            src={
-                                                "/images/viewsw/fotos/" +
-                                                item.ALBUM[0].ARQUIVOFOTO
-                                            }
-                                            alt={item.ALBUM[0].DESCRICAO}
-                                            fallback={
-                                                <img
-                                                    src={imageBox}
-                                                    alt="Imagem imovel"
-                                                />
-                                            }
-                                        />
-                                    )}
-                                    <div className="infos">
-                                        <div className="top">
-                                            <div className="title__box">
-                                                <span>{item.TIPOIMOVEL}</span>
-                                                <p>{item.ENDERECO}</p>
+                    {buildings?.data
+                        ?.filter((item) => {
+                            if (characteristic !== "") {
+                                if (
+                                    item.CHARACTERISTICS.some(
+                                        (e) =>
+                                            e.CODIGOCARACTERISTICA ===
+                                            characteristic
+                                    )
+                                ) {
+                                    return true;
+                                } else {
+                                    return false;
+                                }
+                            } else {
+                                return true;
+                            }
+                        })
+                        .map((item) => {
+                            return (
+                                <a
+                                    href={`/imovel?code=${item.CODIGOIMOVEL}`}
+                                    target="_blank"
+                                    key={item.CODIGOIMOVEL}
+                                >
+                                    <div className="box__imoveis">
+                                        <div className="sticker">
+                                            <span>
+                                                {item.TIPOALUGUEL === "S"
+                                                    ? "Aluguel"
+                                                    : "Venda"}
+                                            </span>
+                                            {/* <span>{item.TIPOALUGUEL === "S" ? 'Aluguel': '' || item.TIPOVENDA === 'S' ? 'Venda' : ''}</span> */}
+                                        </div>
+                                        {item.ALBUM.length > 0 && (
+                                            <Image
+                                                src={
+                                                    "/images/viewsw/fotos/" +
+                                                    item.ALBUM[0].ARQUIVOFOTO
+                                                }
+                                                alt={item.ALBUM[0].DESCRICAO}
+                                                fallback={
+                                                    <img
+                                                        src={imageBox}
+                                                        alt="Imagem imovel"
+                                                    />
+                                                }
+                                            />
+                                        )}
+                                        <div className="infos">
+                                            <div className="top">
+                                                <div className="title__box">
+                                                    <span>
+                                                        {item.TIPOIMOVEL}
+                                                    </span>
+                                                    <p>{item.ENDERECO}</p>
+                                                </div>
+                                                <div className="value__box">
+                                                    <span>
+                                                        {item.TIPOALUGUEL ===
+                                                        "S"
+                                                            ? item.VALORALUGUEL
+                                                            : "sem valor" ||
+                                                              item.TIPOVENDA ===
+                                                                  "S"
+                                                            ? item.VALORVENDA
+                                                            : "sem valor"}
+                                                    </span>
+                                                    <p>
+                                                        Cód: {item.CODIGOIMOVEL}
+                                                    </p>
+                                                </div>
                                             </div>
-                                            <div className="value__box">
-                                                <span>
-                                                    {item.TIPOALUGUEL === "S"
-                                                        ? item.VALORALUGUEL
-                                                        : "sem valor" ||
-                                                          item.TIPOVENDA === "S"
-                                                        ? item.VALORVENDA
-                                                        : "sem valor"}
-                                                </span>
-                                                <p>Cód: {item.CODIGOIMOVEL}</p>
+                                            <div className="bottom">
+                                                <div className="desc">
+                                                    <img
+                                                        src={iconQuarto}
+                                                        alt=""
+                                                    />
+                                                    <p>
+                                                        {
+                                                            item.QUANTIDADEDORMITORIO
+                                                        }{" "}
+                                                        quartos
+                                                    </p>
+                                                </div>
+                                                <div className="desc">
+                                                    <img src={iconCar} alt="" />
+                                                    <p>
+                                                        {item?.QUANTIDADEGARAGEM ||
+                                                            "0"}{" "}
+                                                        vaga{"(s)"}
+                                                    </p>
+                                                </div>
+                                                <div className="desc">
+                                                    <img
+                                                        src={iconRegua}
+                                                        alt=""
+                                                    />
+                                                    <p>
+                                                        {item.AREAPRIVATIVA} m²
+                                                    </p>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div className="bottom">
-                                            <div className="desc">
-                                                <img src={iconQuarto} alt="" />
-                                                <p>
-                                                    {item.QUANTIDADEDORMITORIO}{" "}
-                                                    quartos
-                                                </p>
-                                            </div>
-                                            <div className="desc">
-                                                <img src={iconCar} alt="" />
-                                                <p>
-                                                    {item?.QUANTIDADEGARAGEM ||
-                                                        "0"}{" "}
-                                                    vaga{"(s)"}
-                                                </p>
-                                            </div>
-                                            <div className="desc">
-                                                <img src={iconRegua} alt="" />
-                                                <p>{item.AREAPRIVATIVA} m²</p>
-                                            </div>
-                                        </div>
                                     </div>
-                                </div>
-                            </a>
-                        );
-                    })}
-                    {!buildings.length && <p>Nenhum imóvel encontrado.</p>}
+                                </a>
+                            );
+                        })}
+                    {buildings.length === 0 && <p>Nenhum imóvel encontrado.</p>}
                 </section>
             </main>
-            <Footer data={cmsInfo}/>
+            <Footer data={cmsInfo} />
         </div>
     );
 }

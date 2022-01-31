@@ -69,15 +69,6 @@ export const Imovel = () => {
         pending: false,
         value: undefined,
     });
-    const [characteristics, setCharacteristics] = useState({
-        pending: false,
-        value: undefined,
-    });
-    const [album, setAlbum] = useState({
-        pending: false,
-        value: undefined,
-    });
-
     const [cep, setCep] = useState({
         pending: false,
         value: undefined,
@@ -85,22 +76,20 @@ export const Imovel = () => {
 
     useEffect(() => {
         const getCmsInfo = async () => {
-            await fetch('http://localhost:1337/api/info', {
-                method: 'GET',
+            await fetch("http://localhost:1337/api/info", {
+                method: "GET",
                 headers: {
-                    'Content-Type': 'application/json',
+                    "Content-Type": "application/json",
                 },
             })
-            .then(response => response.json())
-            .then(data => setCmsInfo(data.data.attributes));
-        }
+                .then((response) => response.json())
+                .then((data) => setCmsInfo(data.data.attributes));
+        };
         getCmsInfo();
-    }, [])
+    }, []);
 
     useEffect(() => {
         setBuilding({ pending: true, value: undefined });
-        setCharacteristics({ pending: true, value: undefined });
-        setAlbum({ pending: true, value: undefined });
         setCep({ pending: true, value: undefined });
 
         const params = new URLSearchParams(window.location.search);
@@ -124,27 +113,7 @@ export const Imovel = () => {
             });
         };
 
-        const fetchCharacteristicsById = async () => {
-            let response = await api.get(`/api/characteristics/${id}`);
-            response = await response.data;
-            setCharacteristics({
-                pending: true,
-                value: response,
-            });
-        };
-
-        const fetchAlbumById = async () => {
-            let response = await api.get(`/api/photos/${id}`);
-            response = await response.data;
-            setAlbum({
-                pending: true,
-                value: response,
-            });
-        };
-
         fetchBuildingById();
-        fetchCharacteristicsById();
-        fetchAlbumById();
     }, []);
 
     const {
@@ -187,7 +156,7 @@ export const Imovel = () => {
                     </div>
                 </div>
             </div>
-            {album?.value?.length > 0 ? (
+            {building?.value?.ALBUM?.length > 0 ? (
                 <Carousel
                     partialVisible={true}
                     additionalTransfrom={0}
@@ -197,7 +166,7 @@ export const Imovel = () => {
                     containerClass="carousel-container-imovel"
                     draggable
                     focusOnSelect={false}
-                    infinite
+                    // infinite
                     itemClass="item"
                     keyBoardControl
                     minimumTouchDrag={80}
@@ -208,11 +177,11 @@ export const Imovel = () => {
                     slidesToSlide={1}
                     customTransition={"transform 800ms ease-in-out"}
                 >
-                    {album?.value?.map((photo) => (
+                    {building?.value?.ALBUM.map((photo) => (
                         <Image
                             src={"/images/viewsw/fotos/" + photo.ARQUIVOFOTO}
                             alt={photo.DESCRICAO}
-                            fallback={<div></div>}
+                            fallback={<img src={image} alt="imagem" />}
                         />
                     ))}
                 </Carousel>
@@ -320,7 +289,7 @@ export const Imovel = () => {
                         <div className="body__main">
                             <span>Principais características</span>
                             <div className="diferenciais">
-                                {characteristics?.value?.map((d) => (
+                                {building?.value?.CHARACTERISTICS?.map((d) => (
                                     <div
                                         className="item"
                                         key={d.CODIGOCARACTERISTICA}
@@ -478,14 +447,38 @@ export const Imovel = () => {
                         },
                     }}
                 >
-                    {cep.value?.map(imovel => {
+                    {cep.value?.map((imovel) => {
+                        console.log(imovel);
                         return (
                             <SwiperSlide>
-                                <a href={`/imovel?code=${imovel.CODIGOIMOVEL}`} className="box__imoveis">
+                                <a
+                                    href={`/imovel?code=${imovel.CODIGOIMOVEL}`}
+                                    className="box__imoveis"
+                                >
                                     <div className="sticker">
-                                        <span>{imovel.TIPOALUGUEL === "S" ? 'Aluguel': '' || imovel.TIPOVENDA === 'S' ? 'Venda' : ''}</span>
+                                        <span>
+                                            {imovel.TIPOALUGUEL === "S"
+                                                ? "Aluguel"
+                                                : "" || imovel.TIPOVENDA === "S"
+                                                ? "Venda"
+                                                : ""}
+                                        </span>
                                     </div>
-                                    <img src={imageBox} alt="Imagem imovel" />
+                                    {imovel?.ALBUM && (
+                                        <Image
+                                            src={
+                                                "/images/viewsw/fotos/" +
+                                                imovel.ALBUM
+                                            }
+                                            alt="imagem"
+                                            fallback={
+                                                <img
+                                                    src={imageBox}
+                                                    alt="imagem"
+                                                />
+                                            }
+                                        />
+                                    )}
                                     <div className="infos">
                                         <div className="top">
                                             <div className="title__box">
@@ -494,17 +487,27 @@ export const Imovel = () => {
                                             </div>
                                             <div className="value__box">
                                                 <span>R$1.000,00</span>
-                                                <p>Cód: {imovel.CODIGOIMOVEL}</p>
+                                                <p>
+                                                    Cód: {imovel.CODIGOIMOVEL}
+                                                </p>
                                             </div>
                                         </div>
                                         <div className="bottom">
                                             <div className="desc">
                                                 <img src={iconCama} alt="" />
-                                                <p>{imovel.QUANTIDADEDORMITORIO || '0'} quartos</p>
+                                                <p>
+                                                    {imovel.QUANTIDADEDORMITORIO ||
+                                                        "0"}{" "}
+                                                    quartos
+                                                </p>
                                             </div>
                                             <div className="desc">
                                                 <img src={iconCar} alt="" />
-                                                <p>{imovel.QUANTIDADEGARAGEM || '0'} vaga</p>
+                                                <p>
+                                                    {imovel.QUANTIDADEGARAGEM ||
+                                                        "0"}{" "}
+                                                    vaga
+                                                </p>
                                             </div>
                                             <div className="desc">
                                                 <img src={iconRegua} alt="" />
@@ -514,11 +517,11 @@ export const Imovel = () => {
                                     </div>
                                 </a>
                             </SwiperSlide>
-                        )
+                        );
                     })}
                 </Swiper>
             </div>
-            <Footer data={cmsInfo}/>
+            <Footer data={cmsInfo} />
         </>
     );
 };

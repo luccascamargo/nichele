@@ -121,19 +121,6 @@ class BuildingController extends Controller
     /**
      * @return mixed
      */
-    public function albumLimited($id)
-    {
-        return $data = DB::table('imb_imovelfoto')
-            ->select('imb_imovelfoto.*')
-            ->where('imb_imovelfoto.codigoimovel', $id)
-            ->orderBy('imb_imovelfoto.ordem', 'desc')
-            ->limit(1)
-            ->get();
-    }
-
-    /**
-     * @return mixed
-     */
     public function highligthRent()
     {
         return $data = DB::table('IMB_IMOVEL')
@@ -196,7 +183,7 @@ class BuildingController extends Controller
     public function GetImoveisRelacionais($cep)
     {
         return $data = DB::table('IMB_IMOVEL')
-            ->select('IMB_IMOVEL.*')
+            ->select('IMB_IMOVEL.*', DB::raw('(select ARQUIVOFOTO from IMB_IMOVELFOTO where CODIGOIMOVEL = IMB_IMOVEL.CODIGOIMOVEL order by CODIGOIMOVEL asc limit 1) as ALBUM')  )
             ->where('IMB_IMOVEL.CEP', $cep)
             ->limit(10)
             ->get();
