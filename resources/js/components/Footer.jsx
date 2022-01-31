@@ -12,7 +12,7 @@ import logoMacaw from "../../../public/assets/svg/macaw.svg";
 
 import { ButtonPrimary, ButtonClient } from "./Button";
 
-export const Footer = () => {
+export const Footer = ({data}) => {
     return (
         <div className="container__footer">
             <div className="content">
@@ -27,19 +27,19 @@ export const Footer = () => {
                             </a>
                         </div>
                         <div className="sociais">
-                        <a href="https://www.facebook.com/NicheleImoveis" target="_blank" rel="noreferrer">
+                        <a href={data.facebook} target="_blank" rel="noreferrer">
                                 <img
                                     src={logoFacebook}
                                     alt="Instagram Nichele"
                                 />
                             </a>
-                            <a href="https://www.instagram.com/nicheleimoveis/" target="_blank" rel="noreferrer">
+                            <a href={data.instagram} target="_blank" rel="noreferrer">
                                 <img
                                     src={logoInstagram}
                                     alt="Instagram Nichele"
                                 />
                             </a>
-                            <a href="https://www.linkedin.com/company/imobili%C3%A1ria-nichele/" target="_blank" rel="noreferrer">
+                            <a href={data.linkedin} target="_blank" rel="noreferrer">
                                 <img
                                     src={logoLinkedin}
                                     alt="Instagram Nichele"
@@ -48,13 +48,13 @@ export const Footer = () => {
                         </div>
                     </div>
                     <div className="buttons">
-                    <a href="https://wa.me/54981158489" className="box" target="_blank" rel="noreferrer">
+                    <a href={`https://wa.me/${data.whatsSales}`} className="box" target="_blank" rel="noreferrer">
                             <ButtonPrimary>
                                 <img src={logoWhats} alt="Whats Nichele" />
                                 Whats vendas
                             </ButtonPrimary>
                         </a>
-                        <a href="https://wa.me/54996583631" className="box" target="_blank" rel="noreferrer">
+                        <a href={`https://wa.me/${data.whatsLocation}`} className="box" target="_blank" rel="noreferrer">
                             <ButtonPrimary>
                                 <img src={logoWhats} alt="Whats Nichele" />
                                 Whats locação
@@ -74,7 +74,7 @@ export const Footer = () => {
                                     src={iconPhone}
                                     alt="Telefone Imobiliária Nichele"
                                 />
-                                <a href="tel:5432892900">
+                                <a href={`tel:${data.phone}`}>
                                     <span>54</span> 3289 2900
                                 </a>
                             </p>
@@ -88,8 +88,7 @@ export const Footer = () => {
                                     />
                                 </div>
                                 <span>
-                                    Rua Visconde de Pelotas, 381, Centro -
-                                    Caxias do Sul / RS
+                                    {data.address}
                                     <p>com estacionamento para clientes</p>
                                 </span>
                             </aside>

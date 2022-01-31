@@ -15,6 +15,8 @@ import { Footer } from "./components/Footer";
 import CarouselMoveis from "../js/components/CarouselMoveis";
 import CarouselMoveisComerciais from "../js/components/CarouselMoveisComerciais";
 
+import axios from 'axios'
+
 
 import imgDropdown from "../../public/assets/svg/dropdown-icon.svg";
 import arrowTop from "../../public/assets/svg/arrow-top.svg";
@@ -202,26 +204,58 @@ function Home() {
     }, [])
 
 
+    const [cmsHome, setCmsHome] = useState({});
+    const [cmsInfo, setCmsInfo] = useState({});
+
+        useEffect(() => {
+            const getCmsHome = async () => {
+                await fetch('http://localhost:1337/api/home?populate=componentSectionAbout', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                })
+                .then(response => response.json())
+                .then(data => setCmsHome(data.data.attributes));
+            }
+            getCmsHome();
+        }, [])
+
+        useEffect(() => {
+            const getCmsInfo = async () => {
+                await fetch('http://localhost:1337/api/info', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                })
+                .then(response => response.json())
+                .then(data => setCmsInfo(data.data.attributes));
+            }
+            getCmsInfo();
+        }, [])
+
+
 
     return (
         <div className="container">
-                <a href="https://wa.me/54996583631" target="_blank" rel="noopener noreferrer" className={showBuy ? 'social__float__buy showSocials' : 'social__float__buy'} onMouseLeave={handleBuy} onMouseEnter={handleBuy}>
+                <a href={`https://wa.me/${cmsInfo.whatsLocation}`} target="_blank" rel="noopener noreferrer" className={showBuy ? 'social__float__buy showSocials' : 'social__float__buy'} onMouseLeave={handleBuy} onMouseEnter={handleBuy}>
                     <img src={imgWhatWhite} alt="whats" />
                     <div className="text__social">
                         <span>Whats para locação</span>
-                        <p>(54) 99658-3631</p>
+                        <p>{cmsInfo.whatsLocation}</p>
                     </div>
                 </a>
-                <a href="https://wa.me/54981158489" target="_blank" rel="noopener noreferrer" className={showSell ? 'social__float__sell showSocials' : 'social__float__sell'} onMouseLeave={handleSell} onMouseEnter={handleSell}>
+                <a href={`https://wa.me/${cmsInfo.whatsSales}`} target="_blank" rel="noopener noreferrer" className={showSell ? 'social__float__sell showSocials' : 'social__float__sell'} onMouseLeave={handleSell} onMouseEnter={handleSell}>
                 <img src={imgWhatWhite} alt="whats" />
                     <div className="text__social">
                         <span>Whats para venda</span>
-                        <p>(54) 98115-8489</p>
+                        <p>{cmsInfo.whatsSales}</p>
                     </div>
                 </a>
             <Navbar />
             <main className={advanced ? "main addHeight" : "main"}>
-                <h1>A realização do seu sonho está aqui!</h1>
+                <h1>{cmsHome?.title}</h1>
 
                 {codeSearch ? (
                     <>
@@ -2230,7 +2264,7 @@ function Home() {
 
             <section className="redes">
                 <div className="wrap">
-                    <a href="https://wa.me/54996583631" className="box" target="_blank" rel="noreferrer">
+                    <a href={`https://wa.me/${cmsInfo.whatsLocation}`} className="box" target="_blank" rel="noreferrer">
                         <img
                             src={imgWhats}
                             width={imgWhats.width}
@@ -2239,11 +2273,11 @@ function Home() {
                         />
                         <div className="boxInner">
                             <span>whats locação</span>
-                            <p>(54) 9 9658.3631</p>
+                            <p>{cmsInfo.whatsLocation}</p>
                         </div>
                     </a>
 
-                    <a href="https://wa.me/54981158489" className="box" target="_blank" rel="noreferrer">
+                    <a href={`https://wa.me/${cmsInfo.whatsSales}`} className="box" target="_blank" rel="noreferrer">
                         <img
                             src={imgWhats}
                             width={imgWhats.width}
@@ -2252,11 +2286,11 @@ function Home() {
                         />
                         <div className="boxInner">
                             <span>whats vendas</span>
-                            <p>(54) 98115.8489</p>
+                            <p>{cmsInfo.whatsSales}</p>
                         </div>
                     </a>
 
-                    <a href="mailto:nichele@nicheleimoveis.com.br" className="box">
+                    <a href={`mailto:${cmsInfo.email}`} className="box">
                         <img
                             src={imgEmail}
                             width={imgEmail.width}
@@ -2265,7 +2299,7 @@ function Home() {
                         />
                         <div className="boxInner">
                             <span>envie um e-mail</span>
-                            <p className="p12">contato@nicheleimoveis.com.br</p>
+                            <p className="p12">{cmsInfo.email}</p>
                         </div>
                     </a>
 
@@ -2273,7 +2307,7 @@ function Home() {
                         <div className="boxInner">
                             <span>nos siga nas redes</span>
                             <div className="social">
-                                <a href="https://www.facebook.com/NicheleImoveis" target="_blank" rel="noreferrer">
+                                <a href={cmsInfo.facebook} target="_blank" rel="noreferrer">
                                     <img
                                         src={imgFace}
                                         width={imgFace.width}
@@ -2281,7 +2315,7 @@ function Home() {
                                         alt="Facebook"
                                     />
                                 </a>
-                                <a href="https://www.instagram.com/nicheleimoveis/" target="_blank" rel="noreferrer">
+                                <a href={cmsInfo.instagram} target="_blank" rel="noreferrer">
                                     <img
                                         src={imgInsta}
                                         width={imgInsta.width}
@@ -2289,7 +2323,7 @@ function Home() {
                                         alt="Instagram"
                                     />
                                 </a>
-                                <a href="https://www.linkedin.com/company/imobili%C3%A1ria-nichele/" target="_blank" rel="noreferrer">
+                                <a href={cmsInfo.linkedin} target="_blank" rel="noreferrer">
                                     <img
                                         src={imgLinke}
                                         width={imgLinke.width}
@@ -2313,13 +2347,13 @@ function Home() {
 
             <CarouselBanner />
 
-            <SectionAbout />
+            <SectionAbout data={cmsHome?.componentSectionAbout}/>
 
             <BannerAnuncie />
 
             <DuvidasHome />
 
-            <Footer />
+            <Footer data={cmsInfo}/>
         </div>
     );
 }

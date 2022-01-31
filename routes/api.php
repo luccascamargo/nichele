@@ -35,7 +35,7 @@ Route::get('highlight', [BuildingController::class, 'highligthRent']);
 Route::get('comercialsState', [BuildingController::class, 'GetCommercialRealEstate']);
 Route::get('photos/{id}', [BuildingController::class, 'album']);
 Route::get('photos/limited/{id}', [BuildingController::class, 'albumLimited']);
-Route::get('teste', [BuildingController::class, 'teste']);
+Route::get('relacionados/{cep}', [BuildingController::class, 'GetImoveisRelacionais']);
 
 Route::post('send/email', [ContactController::class, 'mail'])->name('email');
 Route::post('send/email/advertise', [ContactController::class, 'mailAdvertise'])->name('emailAdvertise');

@@ -64,6 +64,7 @@ const responsive = {
 };
 
 export const Imovel = () => {
+    const [cmsInfo, setCmsInfo] = useState({});
     const [building, setBuilding] = useState({
         pending: false,
         value: undefined,
@@ -77,10 +78,30 @@ export const Imovel = () => {
         value: undefined,
     });
 
+    const [cep, setCep] = useState({
+        pending: false,
+        value: undefined,
+    });
+
+    useEffect(() => {
+        const getCmsInfo = async () => {
+            await fetch('http://localhost:1337/api/info', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+            .then(response => response.json())
+            .then(data => setCmsInfo(data.data.attributes));
+        }
+        getCmsInfo();
+    }, [])
+
     useEffect(() => {
         setBuilding({ pending: true, value: undefined });
         setCharacteristics({ pending: true, value: undefined });
         setAlbum({ pending: true, value: undefined });
+        setCep({ pending: true, value: undefined });
 
         const params = new URLSearchParams(window.location.search);
         const id = params.get("code");
@@ -92,6 +113,14 @@ export const Imovel = () => {
             setBuilding({
                 pending: true,
                 value: response,
+            });
+
+            const cep = response.CEP;
+            let response2 = await api.get(`/api/relacionados/${cep}`);
+            response2 = await response2.data;
+            setCep({
+                pending: true,
+                value: response2,
             });
         };
 
@@ -117,8 +146,6 @@ export const Imovel = () => {
         fetchCharacteristicsById();
         fetchAlbumById();
     }, []);
-
-    console.log(album);
 
     const {
         register,
@@ -417,6 +444,9 @@ export const Imovel = () => {
                 </div>
             </main>
             <div className="carousel__relacionais">
+                <div className="title">
+                    <span>Imóveis relacionados</span>
+                </div>
                 <Swiper
                     slidesPerView={3}
                     spaceBetween={30}
@@ -448,213 +478,47 @@ export const Imovel = () => {
                         },
                     }}
                 >
-                    <SwiperSlide>
-                        <div className="box__imoveis">
-                            <div className="sticker">
-                                <span>Venda</span>
-                            </div>
-                            <img src={imageBox} alt="Imagem imovel" />
-                            <div className="infos">
-                                <div className="top">
-                                    <div className="title__box">
-                                        <span>Casa</span>
-                                        <p>Centro - Caxias do sul</p>
+                    {cep.value?.map(imovel => {
+                        return (
+                            <SwiperSlide>
+                                <a href={`/imovel?code=${imovel.CODIGOIMOVEL}`} className="box__imoveis">
+                                    <div className="sticker">
+                                        <span>{imovel.TIPOALUGUEL === "S" ? 'Aluguel': '' || imovel.TIPOVENDA === 'S' ? 'Venda' : ''}</span>
                                     </div>
-                                    <div className="value__box">
-                                        <span>R$1.000,00</span>
-                                        <p>Cód:1934</p>
+                                    <img src={imageBox} alt="Imagem imovel" />
+                                    <div className="infos">
+                                        <div className="top">
+                                            <div className="title__box">
+                                                <span>{imovel.TIPOIMOVEL}</span>
+                                                <p>{imovel.ENDERECO}</p>
+                                            </div>
+                                            <div className="value__box">
+                                                <span>R$1.000,00</span>
+                                                <p>Cód: {imovel.CODIGOIMOVEL}</p>
+                                            </div>
+                                        </div>
+                                        <div className="bottom">
+                                            <div className="desc">
+                                                <img src={iconCama} alt="" />
+                                                <p>{imovel.QUANTIDADEDORMITORIO || '0'} quartos</p>
+                                            </div>
+                                            <div className="desc">
+                                                <img src={iconCar} alt="" />
+                                                <p>{imovel.QUANTIDADEGARAGEM || '0'} vaga</p>
+                                            </div>
+                                            <div className="desc">
+                                                <img src={iconRegua} alt="" />
+                                                <p>{imovel.AREAPRIVATIVA} m²</p>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div className="bottom">
-                                    <div className="desc">
-                                        <img src={iconCama} alt="" />
-                                        <p>2 quartos</p>
-                                    </div>
-                                    <div className="desc">
-                                        <img src={iconCar} alt="" />
-                                        <p>1 vaga</p>
-                                    </div>
-                                    <div className="desc">
-                                        <img src={iconRegua} alt="" />
-                                        <p>98 m²</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <div className="box__imoveis">
-                            <div className="sticker">
-                                <span>Venda</span>
-                            </div>
-                            <img src={imageBox} alt="Imagem imovel" />
-                            <div className="infos">
-                                <div className="top">
-                                    <div className="title__box">
-                                        <span>Casa</span>
-                                        <p>Centro - Caxias do sul</p>
-                                    </div>
-                                    <div className="value__box">
-                                        <span>R$1.000,00</span>
-                                        <p>Cód:1934</p>
-                                    </div>
-                                </div>
-                                <div className="bottom">
-                                    <div className="desc">
-                                        <img src={iconCama} alt="" />
-                                        <p>2 quartos</p>
-                                    </div>
-                                    <div className="desc">
-                                        <img src={iconCar} alt="" />
-                                        <p>1 vaga</p>
-                                    </div>
-                                    <div className="desc">
-                                        <img src={iconRegua} alt="" />
-                                        <p>98 m²</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <div className="box__imoveis">
-                            <div className="sticker">
-                                <span>Venda</span>
-                            </div>
-                            <img src={imageBox} alt="Imagem imovel" />
-                            <div className="infos">
-                                <div className="top">
-                                    <div className="title__box">
-                                        <span>Casa</span>
-                                        <p>Centro - Caxias do sul</p>
-                                    </div>
-                                    <div className="value__box">
-                                        <span>R$1.000,00</span>
-                                        <p>Cód:1934</p>
-                                    </div>
-                                </div>
-                                <div className="bottom">
-                                    <div className="desc">
-                                        <img src={iconCama} alt="" />
-                                        <p>2 quartos</p>
-                                    </div>
-                                    <div className="desc">
-                                        <img src={iconCar} alt="" />
-                                        <p>1 vaga</p>
-                                    </div>
-                                    <div className="desc">
-                                        <img src={iconRegua} alt="" />
-                                        <p>98 m²</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <div className="box__imoveis">
-                            <div className="sticker">
-                                <span>Venda</span>
-                            </div>
-                            <img src={imageBox} alt="Imagem imovel" />
-                            <div className="infos">
-                                <div className="top">
-                                    <div className="title__box">
-                                        <span>Casa</span>
-                                        <p>Centro - Caxias do sul</p>
-                                    </div>
-                                    <div className="value__box">
-                                        <span>R$1.000,00</span>
-                                        <p>Cód:1934</p>
-                                    </div>
-                                </div>
-                                <div className="bottom">
-                                    <div className="desc">
-                                        <img src={iconCama} alt="" />
-                                        <p>2 quartos</p>
-                                    </div>
-                                    <div className="desc">
-                                        <img src={iconCar} alt="" />
-                                        <p>1 vaga</p>
-                                    </div>
-                                    <div className="desc">
-                                        <img src={iconRegua} alt="" />
-                                        <p>98 m²</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <div className="box__imoveis">
-                            <div className="sticker">
-                                <span>Venda</span>
-                            </div>
-                            <img src={imageBox} alt="Imagem imovel" />
-                            <div className="infos">
-                                <div className="top">
-                                    <div className="title__box">
-                                        <span>Casa</span>
-                                        <p>Centro - Caxias do sul</p>
-                                    </div>
-                                    <div className="value__box">
-                                        <span>R$1.000,00</span>
-                                        <p>Cód:1934</p>
-                                    </div>
-                                </div>
-                                <div className="bottom">
-                                    <div className="desc">
-                                        <img src={iconCama} alt="" />
-                                        <p>2 quartos</p>
-                                    </div>
-                                    <div className="desc">
-                                        <img src={iconCar} alt="" />
-                                        <p>1 vaga</p>
-                                    </div>
-                                    <div className="desc">
-                                        <img src={iconRegua} alt="" />
-                                        <p>98 m²</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <div className="box__imoveis">
-                            <div className="sticker">
-                                <span>Venda</span>
-                            </div>
-                            <img src={imageBox} alt="Imagem imovel" />
-                            <div className="infos">
-                                <div className="top">
-                                    <div className="title__box">
-                                        <span>Casa</span>
-                                        <p>Centro - Caxias do sul</p>
-                                    </div>
-                                    <div className="value__box">
-                                        <span>R$1.000,00</span>
-                                        <p>Cód:1934</p>
-                                    </div>
-                                </div>
-                                <div className="bottom">
-                                    <div className="desc">
-                                        <img src={iconCama} alt="" />
-                                        <p>2 quartos</p>
-                                    </div>
-                                    <div className="desc">
-                                        <img src={iconCar} alt="" />
-                                        <p>1 vaga</p>
-                                    </div>
-                                    <div className="desc">
-                                        <img src={iconRegua} alt="" />
-                                        <p>98 m²</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </SwiperSlide>
+                                </a>
+                            </SwiperSlide>
+                        )
+                    })}
                 </Swiper>
             </div>
-            <Footer />
+            <Footer data={cmsInfo}/>
         </>
     );
 };

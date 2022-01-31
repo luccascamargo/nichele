@@ -12,10 +12,15 @@ import imgCar from "../../../public/assets/svg/car-icon.png";
 import imgSize from "../../../public/assets/svg/size-icon.svg";
 
 const responsive = {
-    desktop: {
+    desktopFull: {
         breakpoint: { max: 3000, min: 1024 },
         items: 3,
         partialVisibilityGutter: 220,
+    },
+    desktop: {
+        breakpoint: { max: 1440, min: 1024 },
+        items: 3,
+        partialVisibilityGutter: 20,
     },
     desktopSmall: {
         breakpoint: { max: 1024, min: 600 },
@@ -56,7 +61,6 @@ const ButtonGroup = ({ next, previous }) => {
 };
 
 const CarouselMoveisComerciais = ({ deviceType, items = [], data }) => {
-    console.log(data)
     const [commercials, setCommercials] = useState([]);
 
     useEffect( async () => {
@@ -96,7 +100,7 @@ const CarouselMoveisComerciais = ({ deviceType, items = [], data }) => {
             >
                 {data?.map(item => {
                     return (
-                    <div key={item.CODIGOIMOVEL} className="box">
+                    <a href={`/imovel?code=${item.CODIGOIMOVEL}`} key={item.CODIGOIMOVEL} className="box">
                         <div>
                             <span className="tipo">{item.TIPOALUGUEL === "S" ? 'Aluguel': '' || item.TIPOVENDA === 'S' ? 'Venda' : ''}</span>
                             <img
@@ -150,7 +154,7 @@ const CarouselMoveisComerciais = ({ deviceType, items = [], data }) => {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 )})}
             </Carousel>
         </div>

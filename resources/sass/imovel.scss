@@ -182,9 +182,12 @@ header {
     .content__main {
         width: 100%;
         display: flex;
-        gap: 1rem;
-        flex-wrap: wrap;
         justify-content: center;
+
+        @media (max-width: 1024px) {
+            align-items: center;
+            gap: 5rem;
+        }
 
         .esq {
             display: flex;
@@ -422,7 +425,7 @@ header {
                         border: 1px solid transparent;
                         background: #F2F2F2;
                         border-radius: 10px;
-                        padding-left: 2rem;
+                        padding-left: 1rem;
                     }
 
 
@@ -432,7 +435,8 @@ header {
                         border: 1px solid transparent;
                         background: #F2F2F2;
                         border-radius: 10px;
-                        padding-left: 2rem;
+                        padding-left: 1rem;
+                        padding-top: 1rem;
                         width: 100%;
                         height: 10rem;
                     }
@@ -497,6 +501,27 @@ header {
 
     margin-top: 5rem;
 
+    .title{
+        width: 100%;
+        max-width: 1248px;
+        padding: 0 2rem 0 2rem;
+        margin: 0 auto;
+
+        > span {
+            font-family: 'Roboto';
+            font-size: 18px;
+            font-weight: 700;
+            line-height: 21px;
+            letter-spacing: -0.01em;
+            color: #7DAFEB;
+        }
+    }
+
+    .swiper {
+        padding-top: 5rem;
+        padding-bottom: 5rem;
+    }
+
     .box__imoveis {
         width: 20rem;
         padding-bottom: 2rem;
@@ -508,6 +533,11 @@ header {
         border-radius: 40px;
 
         position: relative;
+        transition: all 0.3s;
+
+        &:hover {
+            transform: scale(1.05);
+        }
 
         @media (max-width: 1024px) {
             height: auto;
@@ -528,7 +558,7 @@ header {
             justify-content: center;
 
             > span {
-                font-family: "Nunito";
+                font-family: "Roboto";
                 font-style: normal;
                 font-weight: bold;
                 font-size: 1.1rem;
