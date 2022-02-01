@@ -51,6 +51,7 @@ const customStyles = {
         border: "none",
         display: "flex",
         transform: "translateX(-0.7rem)",
+        width: "10rem",
     }),
     singleValue: (provided, state) => {
         const opacity = state.isDisabled ? 0.5 : 1;
@@ -2263,7 +2264,6 @@ function Home() {
             </main>
 
             <section className="redes">
-                <div className="wrap">
                     <a href={`https://wa.me/${cmsInfo.whatsLocation}`} className="box" target="_blank" rel="noreferrer">
                         <img
                             src={imgWhats}
@@ -2334,7 +2334,6 @@ function Home() {
                             </div>
                         </div>
                     </div>
-                </div>
             </section>
 
             <section>

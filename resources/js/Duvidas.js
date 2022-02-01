@@ -22,21 +22,14 @@ import iconVenda from "../../public/assets/svg/icon-venda.svg";
 export default function Duvidas() {
     const [cmsInfo, setCmsInfo] = useState({});
     const [changeContent, setChangeContent] = useState("doc");
-    const [faq, setFaq] = useState({doc: [], rent: [], buy: [], ad: []});
+    const [documentation, setDocumentation] = useState([]);
+    const [rent, setRent] = useState([]);
+    const [sale, setSale] = useState([]);
+    const [announcement, setAnnouncement] = useState([]);
 
     const handleContent = (event) => {
         setChangeContent(event);
     };
-
-    useEffect(async () => {
-        const faqs = async () => {
-            const { data } = await api.get('api/faqs');
-
-            return data;
-        }
-
-        setFaq(await faqs());
-    }, [])
 
     useEffect(() => {
         const getCmsInfo = async () => {
@@ -51,6 +44,65 @@ export default function Duvidas() {
         }
         getCmsInfo();
     }, [])
+
+
+    useEffect(() => {
+        const getRent = async () => {
+            await fetch('http://localhost:1337/api/rents?populate=*', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+            .then(response => response.json())
+            .then(data => setRent(data.data));
+        }
+        getRent();
+    }, [])
+
+    useEffect(() => {
+        const getAnnouncement = async () => {
+            await fetch('http://localhost:1337/api/announcements?populate=*', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+            .then(response => response.json())
+            .then(data => setAnnouncement(data.data));
+        }
+        getAnnouncement();
+    }, [])
+
+    useEffect(() => {
+        const getSale = async () => {
+            await fetch('http://localhost:1337/api/sales?populate=*', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+            .then(response => response.json())
+            .then(data => setSale(data.data));
+        }
+        getSale();
+    }, [])
+
+    useEffect(() => {
+        const getDocumentations = async () => {
+            await fetch('http://localhost:1337/api/documentations?populate=*', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+            .then(response => response.json())
+            .then(data => setDocumentation(data.data));
+        }
+        getDocumentations();
+    }, [])
+
+
 
     return (
         <>
@@ -112,10 +164,10 @@ export default function Duvidas() {
             </div>
 
             <div className="container__conteudo">
-                {changeContent === "doc" && <DuvidaDoc datas={faq.doc} />}
-                {changeContent === "rent" && <DuvidaAluguel datas={faq.rent} />}
-                {changeContent === "buy" && <DuvidaVendas datas={faq.buy} />}
-                {changeContent === "ad" && <DuvidaAnuncios datas={faq.ad} />}
+                {changeContent === "doc" && <DuvidaDoc datas={documentation} />}
+                {changeContent === "rent" && <DuvidaAluguel datas={rent} />}
+                {changeContent === "buy" && <DuvidaVendas datas={sale} />}
+                {changeContent === "ad" && <DuvidaAnuncios datas={announcement} />}
             </div>
 
             <Footer data={cmsInfo}/>

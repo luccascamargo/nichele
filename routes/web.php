@@ -33,7 +33,7 @@ Route::get('/blog', function () {
     return view('blog');
 });
 
-Route::get('/blog/{slug?}', function () {
+Route::get('/blogcontent', function () {
     return view('bloginterna');
 });
 

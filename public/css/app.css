@@ -603,7 +603,7 @@ button {
   background: #ffffff;
   border-radius: 40px;
   margin-top: 40px;
-  padding: 30px 72px 28px;
+  padding: 30px 16px 28px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -750,7 +750,7 @@ button {
 .main .containerTab .simple__search {
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   gap: 2rem;
   flex-wrap: wrap;
@@ -942,29 +942,19 @@ button {
   width: 100%;
   max-width: 1248px;
   margin: 0 auto;
-  padding: 0 2rem 0 2rem;
-}
-
-.redes .wrap {
+  padding: 0 2rem 5rem 2rem;
   display: flex;
-  justify-content: center;
-  align-items: center;
   gap: 2rem;
-  margin-bottom: 118px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-@media (max-width: 1024px) {
-  .redes .wrap {
-    flex-wrap: wrap;
-  }
-}
-
-.redes .wrap .box {
+.redes .box {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 20px;
-  width: 280px;
+  gap: 16px;
+  width: 290px;
   height: 88px;
   background: #ffffff;
   box-shadow: 0px 4px 50px rgba(45, 67, 95, 0.1);
@@ -973,11 +963,11 @@ button {
   transition: all 0.5s;
 }
 
-.redes .wrap .box:hover {
+.redes .box:hover {
   transform: scale(1.05);
 }
 
-.redes .wrap .box span {
+.redes .box span {
   font-family: "Nunito", sans-serif;
   font-style: normal;
   font-weight: bold;
@@ -987,7 +977,7 @@ button {
   color: #5c6476;
 }
 
-.redes .wrap .box p {
+.redes .box p {
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
@@ -997,11 +987,11 @@ button {
   margin: 0;
 }
 
-.redes .wrap .box p.p12 {
+.redes .box p.p12 {
   font-size: 12px;
 }
 
-.redes .wrap .box .social {
+.redes .box .social {
   display: flex;
   justify-content: center;
   align-items: center;

@@ -7,7 +7,6 @@ import { useState, useEffect } from 'react';
 import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
 
-import { api } from './plugins/api';
 
 import "../sass/blog.scss";
 
@@ -17,12 +16,45 @@ import linkedinShare from "../../public/assets/svg/linkedin-share.svg";
 import whatsShare from "../../public/assets/svg/whats-share.svg";
 
 export default function BlogInterna() {
-    const [post, setPost] = useState({});
+    const [cmsInfo, setCmsInfo] = useState({});
+    const [post, setPost] = useState({id: 0, attributes: {content: '', createdAt: '', title: '', image: { data: { attributes: {url: ''}}}}});
 
     useEffect(async () => {
-        const slug = new URL(window.location.href).pathname.split('/blog/')[1]
-        setPost((await api.get(`/api/posts/${slug}`)).data);
+        const params = new URLSearchParams(window.location.search);
+        const id = (params.get("code"))
+        const getBlog = async () => {
+            await fetch(`http://localhost:1337/api/blogs/${id}?populate=*`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+            .then(response => response.json())
+            .then(data => setPost(data.data));
+        }
+        getBlog();
     }, [])
+
+    useEffect(() => {
+        const getCmsInfo = async () => {
+            await fetch('http://localhost:1337/api/info', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+            .then(response => response.json())
+            .then(data => setCmsInfo(data.data.attributes));
+        }
+        getCmsInfo();
+    }, [])
+
+    const imagePost = `${
+        post?.attributes.image.data.attributes.url.startsWith(`/`)
+          ? "http://localhost:1337"
+          : ``
+      }${post?.attributes.image.data.attributes.url}`;
+
     return (
         <>
             <header className="header__blog">
@@ -33,11 +65,11 @@ export default function BlogInterna() {
             </header>
 
             <div className="bloginterna">
-                <span className="date">{post.created_at}</span>
-                <h1>{post.title}</h1>
-                <img className="imagem" src={post?.media?.path} alt={post.title} />
+                <span className="date">{post?.attributes.createdAt}</span>
+                <h1>{post?.attributes.title}</h1>
+                <img className="imagem" src={imagePost} alt={post?.attributes.title} />
                 <p className="text">
-                    {post.content}
+                    {post?.attributes.content}
                 </p>
 
                 <div className="redes">
@@ -59,7 +91,7 @@ export default function BlogInterna() {
                 </div>
             </div>
 
-            <Footer />
+            <Footer data={cmsInfo}/>
         </>
     );
 }

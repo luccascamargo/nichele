@@ -2,6 +2,7 @@
 /* eslint-disable import/no-unresolved */
 import ReactDOM from "react-dom";
 import { useEffect, useState } from "react";
+import ImageGallery from 'react-image-gallery';
 
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
@@ -36,15 +37,17 @@ import iconLoc from "../../public/assets/images/imovel/icon-loc.png";
 import iconInfo from "../../public/assets/images/imovel/icon-info.png";
 import imageBox from "../../public/assets/images/image-imovel.png";
 
-import image from "../../public/assets/images/img-carousel.png";
+import image from '../../public/images/viewsw/fotos/27_148294.jpg'
 
 import "../sass/imovel.scss";
+
+
 
 const responsive = {
     desktopFull: {
         breakpoint: { max: 3000, min: 1440 },
         items: 4,
-        partialVisibilityGutter: 40,
+        // partialVisibilityGutter: 40,
     },
     desktop: {
         breakpoint: { max: 1440, min: 1024 },
@@ -139,6 +142,16 @@ export const Imovel = () => {
         );
     };
 
+    const images = [
+        {
+          original: image,
+          thumbnail: image,
+          originalHeight: '411px'
+        },
+      ];
+
+    building?.value?.ALBUM.map(item => (console.log(item.ARQUIVOFOTO)))
+
     return (
         <>
             <header>
@@ -156,9 +169,9 @@ export const Imovel = () => {
                     </div>
                 </div>
             </div>
-            {building?.value?.ALBUM?.length > 0 ? (
+            {/* {building?.value?.ALBUM?.length > 0 ? (
                 <Carousel
-                    partialVisible={true}
+                    partialVisible={false}
                     additionalTransfrom={0}
                     arrows={false}
                     autoPlaySpeed={8000}
@@ -187,7 +200,8 @@ export const Imovel = () => {
                 </Carousel>
             ) : (
                 ""
-            )}
+            )} */}
+            <ImageGallery items={images} showPlayButton={false}/>
             <div className="container__aside">
                 <div className="content__aside">
                     <div className="top">

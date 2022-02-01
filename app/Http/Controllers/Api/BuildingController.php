@@ -99,10 +99,10 @@ class BuildingController extends Controller
      */
     public function characteristic($id)
     {
-        return $data = DB::table('imb_imovelcaracteristica')
-            ->join('imb_caracteristica', 'imb_caracteristica.codigocaracteristica', '=', 'imb_imovelcaracteristica.codigocaracteristica')
-            ->select('imb_imovelcaracteristica.*', 'imb_caracteristica.descricao')
-            ->where('imb_imovelcaracteristica.codigoimovel', $id)
+        return $data = DB::table('IMB_IMOVELCARACTERISTICA')
+            ->join('IMB_CARACTERISTICA', 'IMB_CARACTERISTICA.CODIGOCARACTERISTICA', '=', 'IMB_IMOVELCARACTERISTICA.CODIGOCARACTERISTICA')
+            ->select('IMB_IMOVELCARACTERISTICA.*', 'IMB_CARACTERISTICA.DESCRICAO')
+            ->where('IMB_IMOVELCARACTERISTICA.CODIGOIMOVEL', $id)
             ->get();
     }
 
@@ -111,10 +111,10 @@ class BuildingController extends Controller
      */
     public function album($id)
     {
-        return $data = DB::table('imb_imovelfoto')
-            ->select('imb_imovelfoto.ARQUIVOFOTO', 'imb_imovelfoto.DESCRICAO')
-            ->where('imb_imovelfoto.codigoimovel', $id)
-            ->orderBy('imb_imovelfoto.ordem', 'asc')
+        return $data = DB::table('IMB_IMOVELFOTO')
+            ->select('IMB_IMOVELFOTO.ARQUIVOFOTO', 'IMB_IMOVELFOTO.DESCRICAO')
+            ->where('IMB_IMOVELFOTO.CODIGOIMOVEL', $id)
+            ->orderBy('IMB_IMOVELFOTO.ORDEM', 'asc')
             ->get();
     }
 

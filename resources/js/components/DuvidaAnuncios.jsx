@@ -15,8 +15,8 @@ export const DuvidaAnuncios = ({datas}) => {
                         <div key={index}>
                             <li key={index} className="list__item">
                                 <DuvidaItems
-                                    title={item.title}
-                                    description={item.content}
+                                    title={item.attributes.title}
+                                    description={item.attributes.description}
                                 />
                             </li>
                         </div>
