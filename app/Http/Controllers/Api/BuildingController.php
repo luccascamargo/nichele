@@ -43,6 +43,10 @@ class BuildingController extends Controller
                 $build->CHARACTERISTICS = $this->characteristic($build->CODIGOIMOVEL);
             }
 
+            foreach ($buildings as $build) {
+                $build->SUITS = $this->getSuits($build->CODIGOIMOVEL);
+            }
+
         return $buildings;
     }
 
@@ -99,10 +103,10 @@ class BuildingController extends Controller
      */
     public function characteristic($id)
     {
-        return $data = DB::table('imb_imovelcaracteristica')
-            ->join('imb_caracteristica', 'imb_caracteristica.codigocaracteristica', '=', 'imb_imovelcaracteristica.codigocaracteristica')
-            ->select('imb_imovelcaracteristica.*', 'imb_caracteristica.descricao')
-            ->where('imb_imovelcaracteristica.codigoimovel', $id)
+        return $data = DB::table('IMB_IMOVELCARACTERISTICA')
+            ->join('IMB_CARACTERISTICA', 'IMB_CARACTERISTICA.CODIGOCARACTERISTICA', '=', 'IMB_IMOVELCARACTERISTICA.CODIGOCARACTERISTICA')
+            ->select('IMB_IMOVELCARACTERISTICA.*', 'IMB_CARACTERISTICA.DESCRICAO')
+            ->where('IMB_IMOVELCARACTERISTICA.CODIGOIMOVEL', $id)
             ->get();
     }
 
@@ -111,10 +115,10 @@ class BuildingController extends Controller
      */
     public function album($id)
     {
-        return $data = DB::table('imb_imovelfoto')
-            ->select('imb_imovelfoto.ARQUIVOFOTO', 'imb_imovelfoto.DESCRICAO')
-            ->where('imb_imovelfoto.codigoimovel', $id)
-            ->orderBy('imb_imovelfoto.ordem', 'asc')
+        return $data = DB::table('IMB_IMOVELFOTO')
+            ->select('IMB_IMOVELFOTO.ARQUIVOFOTO', 'IMB_IMOVELFOTO.DESCRICAO')
+            ->where('IMB_IMOVELFOTO.CODIGOIMOVEL', $id)
+            ->orderBy('IMB_IMOVELFOTO.ORDEM', 'asc')
             ->get();
     }
 
@@ -186,6 +190,20 @@ class BuildingController extends Controller
             ->select('IMB_IMOVEL.*', DB::raw('(select ARQUIVOFOTO from IMB_IMOVELFOTO where CODIGOIMOVEL = IMB_IMOVEL.CODIGOIMOVEL order by CODIGOIMOVEL asc limit 1) as ALBUM')  )
             ->where('IMB_IMOVEL.CEP', $cep)
             ->limit(10)
+            ->get();
+    }
+
+    /**
+     * @return mixed
+     * suite codigo 8
+     */
+    public function getSuits($id)
+    {
+        return $data = DB::table('IMB_IMOVELCARACTERISTICA')
+            ->join('IMB_CARACTERISTICA', 'IMB_CARACTERISTICA.CODIGOCARACTERISTICA', '=', 'IMB_IMOVELCARACTERISTICA.CODIGOCARACTERISTICA')
+            ->select('IMB_IMOVELCARACTERISTICA.*')
+            ->where('IMB_IMOVELCARACTERISTICA.CODIGOCARACTERISTICA', 8)
+            ->where('IMB_IMOVELCARACTERISTICA.CODIGOIMOVEL', $id)
             ->get();
     }
 }
