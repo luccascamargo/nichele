@@ -3,6 +3,8 @@
 import ReactDOM from "react-dom";
 import { useEffect, useState } from "react";
 import ImageGallery from 'react-image-gallery';
+import axios from "axios";
+
 
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
@@ -79,7 +81,7 @@ export const Imovel = () => {
 
     useEffect(() => {
         const getCmsInfo = async () => {
-            await fetch("http://localhost:1337/api/info", {
+            await fetch("https://fathomless-chamber-79732.herokuapp.com/api/info", {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -124,7 +126,14 @@ export const Imovel = () => {
         handleSubmit,
         formState: { errors },
     } = useForm();
-    const onSubmit = (data) => console.log(data);
+    const onSubmit = (data) => {
+        axios
+            .post("/api/send/email", data)
+            .then((response) => alert(JSON.stringify(response.data))) // trocar
+            .catch((error) => {
+                console.log("ERROR:: ", error.response.data);
+            });
+    }
 
     const Image = ({ src, alt, fallback }) => {
         const [error, setError] = useState(false);
@@ -150,7 +159,6 @@ export const Imovel = () => {
         },
       ];
 
-    building?.value?.ALBUM.map(item => (console.log(item.ARQUIVOFOTO)))
 
     return (
         <>
@@ -309,7 +317,7 @@ export const Imovel = () => {
                                         key={d.CODIGOCARACTERISTICA}
                                     >
                                         <img src={iconAgua} alt="" />
-                                        <span>{d.descricao}</span>
+                                        <span>{d.DESCRICAO}</span>
                                     </div>
                                 ))}
                             </div>
@@ -426,6 +434,22 @@ export const Imovel = () => {
                     </div>
                 </div>
             </main>
+
+
+            {/* <div className="map">
+                <iframe
+                    width="100%"
+                    height="400"
+                    frameborder="0"
+                    scrolling="no"
+                    marginheight="0"
+                    marginwidth="0"
+                    src={`https://maps.google.com/maps?q='+${building?.value?.LATITUDEMAPA}+','+${building?.value?.LONGITUDEMAPA}+'&hl=es&z=14&amp;output=embed`}
+                    >
+                </iframe>
+            </div> */}
+
+
             <div className="carousel__relacionais">
                 <div className="title">
                     <span>Imóveis relacionados</span>
@@ -462,7 +486,6 @@ export const Imovel = () => {
                     }}
                 >
                     {cep.value?.map((imovel) => {
-                        console.log(imovel);
                         return (
                             <SwiperSlide>
                                 <a

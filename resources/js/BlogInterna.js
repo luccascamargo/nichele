@@ -23,7 +23,7 @@ export default function BlogInterna() {
         const params = new URLSearchParams(window.location.search);
         const id = (params.get("code"))
         const getBlog = async () => {
-            await fetch(`http://localhost:1337/api/blogs/${id}?populate=*`, {
+            await fetch(`https://fathomless-chamber-79732.herokuapp.com/api/blogs/${id}?populate=*`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -37,7 +37,7 @@ export default function BlogInterna() {
 
     useEffect(() => {
         const getCmsInfo = async () => {
-            await fetch('http://localhost:1337/api/info', {
+            await fetch('https://fathomless-chamber-79732.herokuapp.com/api/info', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -54,6 +54,7 @@ export default function BlogInterna() {
           ? "http://localhost:1337"
           : ``
       }${post?.attributes.image.data.attributes.url}`;
+
 
     return (
         <>

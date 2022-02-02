@@ -45,7 +45,7 @@ export default function Sobre() {
 
     useEffect(() => {
         const getCmsInfo = async () => {
-            await fetch('http://localhost:1337/api/info', {
+            await fetch('https://fathomless-chamber-79732.herokuapp.com/api/info', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -59,7 +59,7 @@ export default function Sobre() {
 
     useEffect(() => {
         const getCms = async () => {
-            await fetch('http://localhost:1337/api/about?populate=*', {
+            await fetch('https://fathomless-chamber-79732.herokuapp.com/api/about?populate=*', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',

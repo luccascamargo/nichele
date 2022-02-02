@@ -210,7 +210,7 @@ function Home() {
 
         useEffect(() => {
             const getCmsHome = async () => {
-                await fetch('http://localhost:1337/api/home?populate=componentSectionAbout', {
+                await fetch('https://fathomless-chamber-79732.herokuapp.com/api/home?populate=componentSectionAbout', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -224,7 +224,7 @@ function Home() {
 
         useEffect(() => {
             const getCmsInfo = async () => {
-                await fetch('http://localhost:1337/api/info', {
+                await fetch('https://fathomless-chamber-79732.herokuapp.com/api/info', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -235,6 +235,7 @@ function Home() {
             }
             getCmsInfo();
         }, [])
+
 
 
 

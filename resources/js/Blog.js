@@ -16,7 +16,7 @@ export default function Blog() {
 
     useEffect(() => {
         const getCmsInfo = async () => {
-            await fetch('http://localhost:1337/api/info', {
+            await fetch('https://fathomless-chamber-79732.herokuapp.com/api/info', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -30,7 +30,7 @@ export default function Blog() {
 
     useEffect(() => {
         const getBlog = async () => {
-            await fetch('http://localhost:1337/api/blogs?populate=*', {
+            await fetch('https://fathomless-chamber-79732.herokuapp.com/api/blogs?populate=*', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -41,6 +41,7 @@ export default function Blog() {
         }
         getBlog();
     }, [])
+
 
     return (
         <>

@@ -100,7 +100,6 @@ export default function Imoveis() {
         } else {
             url.set("suites", event);
         }
-
         setSuites(event);
     };
 
@@ -367,6 +366,8 @@ export default function Imoveis() {
         // setSuites();
     }, []);
 
+    console.log(suites)
+
     const handleSubmitReset = async () => {
         setActiveButton("");
         setBuildingType("");
@@ -374,7 +375,7 @@ export default function Imoveis() {
         setDistrict("");
         setPrice({ min: 0, max: 10000 });
         setRoom(0);
-        setSuites(0);
+        setSuites('');
         setToilet(0);
         setGarage(0);
         setArea({ min: 0, max: 10000 });
@@ -387,7 +388,7 @@ export default function Imoveis() {
 
     useEffect(() => {
         const getCmsInfo = async () => {
-            await fetch("http://localhost:1337/api/info", {
+            await fetch("https://fathomless-chamber-79732.herokuapp.com/api/info", {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -1419,23 +1420,52 @@ export default function Imoveis() {
                 <section className="section__imoveis">
                     {buildings?.data
                         ?.filter((item) => {
-                            if (characteristic !== "") {
-                                if (
-                                    item.CHARACTERISTICS.some(
-                                        (e) =>
-                                            e.CODIGOCARACTERISTICA ===
-                                            characteristic
-                                    )
-                                ) {
+                            if(characteristic !== "" && suites !== ""){
+                                if((item.CHARACTERISTICS.some(
+                                    (e) =>
+                                        e.CODIGOCARACTERISTICA ===
+                                        characteristic
+                                )) && (item.SUITS.some((e) =>
+                                e.QUANTIDADE.toString().includes(suites)
+                            ))) {
                                     return true;
                                 } else {
                                     return false;
                                 }
-                            } else {
-                                return true;
+                            }
+                            else{
+                                if (characteristic !== "") {
+                                    if (
+                                        item.CHARACTERISTICS.some(
+                                            (e) =>
+                                                e.CODIGOCARACTERISTICA ===
+                                                characteristic
+                                        )
+                                    ) {
+                                        return true;
+                                    } else {
+                                        return false;
+                                    }
+                                }
+                                if (suites !== "") {
+                                    if (
+                                        item.SUITS.some((e) =>
+                                            e.QUANTIDADE.toString().includes(suites)
+                                        )
+                                    ) {
+                                        return true;
+                                    } else {
+                                        return false;
+                                    }
+                                }
+                            }
+
+                            if(characteristic === "" && suites === "") {
+                                return true
                             }
                         })
                         .map((item) => {
+                            console.log(item)
                             return (
                                 <a
                                     href={`/imovel?code=${item.CODIGOIMOVEL}`}

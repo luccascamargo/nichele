@@ -33,7 +33,7 @@ export default function Duvidas() {
 
     useEffect(() => {
         const getCmsInfo = async () => {
-            await fetch('http://localhost:1337/api/info', {
+            await fetch('https://fathomless-chamber-79732.herokuapp.com/api/info', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -48,7 +48,7 @@ export default function Duvidas() {
 
     useEffect(() => {
         const getRent = async () => {
-            await fetch('http://localhost:1337/api/rents?populate=*', {
+            await fetch('https://fathomless-chamber-79732.herokuapp.com/api/rents?populate=*', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -62,7 +62,7 @@ export default function Duvidas() {
 
     useEffect(() => {
         const getAnnouncement = async () => {
-            await fetch('http://localhost:1337/api/announcements?populate=*', {
+            await fetch('https://fathomless-chamber-79732.herokuapp.com/api/announcements?populate=*', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -76,7 +76,7 @@ export default function Duvidas() {
 
     useEffect(() => {
         const getSale = async () => {
-            await fetch('http://localhost:1337/api/sales?populate=*', {
+            await fetch('https://fathomless-chamber-79732.herokuapp.com/api/sales?populate=*', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -90,7 +90,7 @@ export default function Duvidas() {
 
     useEffect(() => {
         const getDocumentations = async () => {
-            await fetch('http://localhost:1337/api/documentations?populate=*', {
+            await fetch('https://fathomless-chamber-79732.herokuapp.com/api/documentations?populate=*', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',

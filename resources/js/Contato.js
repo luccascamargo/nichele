@@ -20,7 +20,7 @@ export default function Contato() {
 
     useEffect(() => {
         const getCmsInfo = async () => {
-            await fetch('http://localhost:1337/api/info', {
+            await fetch('https://fathomless-chamber-79732.herokuapp.com/api/info', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',

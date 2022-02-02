@@ -8,8 +8,24 @@ import { Steps } from "./components/Steps";
 import { Steps2 } from "./components/Steps2";
 
 import "../sass/anuncie.scss";
+import { useEffect } from "react";
+import { useState } from "react";
 
 export default function Anuncie() {
+    const [cmsInfo, setCmsInfo] = useState({});
+    useEffect(() => {
+        const getCmsInfo = async () => {
+            await fetch('https://fathomless-chamber-79732.herokuapp.com/api/info', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+            .then(response => response.json())
+            .then(data => setCmsInfo(data.data.attributes));
+        }
+        getCmsInfo();
+    }, [])
     return (
         <>
             <header className="header__anuncie">
@@ -29,7 +45,7 @@ export default function Anuncie() {
 
             <Steps2 />
 
-            <Footer />
+            <Footer data={cmsInfo}/>
         </>
     );
 }
