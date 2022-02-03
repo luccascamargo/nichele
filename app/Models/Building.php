@@ -172,6 +172,7 @@ class Building extends Model
     public function scopeIsPending($query)
     {
         $query->where('PUBLICAR', '1');
+        $query->where('EXCLUIDO', '0');
     }
 
     // public function getTypeAttribute()

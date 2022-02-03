@@ -100,9 +100,9 @@ const CarouselMoveisComerciais = ({ deviceType, items = [], data }) => {
             >
                 {data?.map(item => {
                     return (
-                    <a href={`/imovel?code=${item.CODIGOIMOVEL}`} key={item.CODIGOIMOVEL} className="box">
+                    <a href={`/imovel?code=${item?.CODIGOIMOVEL}`} key={item?.CODIGOIMOVEL} className="box">
                         <div>
-                            <span className="tipo">{item.TIPOALUGUEL === "S" ? 'Aluguel': '' || item.TIPOVENDA === 'S' ? 'Venda' : ''}</span>
+                            <span className="tipo">{item?.TIPOALUGUEL === "S" ? 'Aluguel': '' || item?.TIPOVENDA === 'S' ? 'Venda' : ''}</span>
                             <img
                                 className="image"
                                 src={imgMovel}
@@ -113,14 +113,14 @@ const CarouselMoveisComerciais = ({ deviceType, items = [], data }) => {
                             <div className="content">
                                 <div className="info">
                                     <div>
-                                        <p className="title">{item.TIPOIMOVEL}</p>
+                                        <p className="title">{item?.TIPOIMOVEL}</p>
                                         <p className="local">
-                                            {item.ENDERECO}
+                                            {item?.ENDERECO}
                                         </p>
                                     </div>
                                     <div>
-                                        <p className="price">{item.TIPOALUGUEL === 'S' ? item.VALORALUGUEL : 'sem valor' || item.TIPOVENDA === 'S' ? item.VALORVENDA : 'sem valor'}</p>
-                                        <p className="code">Cód:{item.CODIGOIMOVEL}</p>
+                                        <p className="price">R${item?.TIPOALUGUEL === 'S' ? item?.VALORALUGUEL : 'sem valor' || item?.TIPOVENDA === 'S' ? item?.VALORVENDA : 'sem valor'}</p>
+                                        <p className="code">Cód:{item?.CODIGOIMOVEL}</p>
                                     </div>
                                 </div>
                                 <div className="data">
@@ -131,7 +131,7 @@ const CarouselMoveisComerciais = ({ deviceType, items = [], data }) => {
                                             height={imgBed.height}
                                             alt="Quartos"
                                         />
-                                        <p>{item.QUANTIDADEDORMITORIO || '0'} quartos</p>
+                                        <p>{item?.QUANTIDADEDORMITORIO || '0'} quartos</p>
                                     </div>
                                     <div>
                                         <img
@@ -149,7 +149,7 @@ const CarouselMoveisComerciais = ({ deviceType, items = [], data }) => {
                                             height={imgSize.height}
                                             alt="Metros"
                                         />
-                                        <p>{item.AREAPRIVATIVA || '0'} mª</p>
+                                        <p>{item?.AREAPRIVATIVA || '0'} mª</p>
                                     </div>
                                 </div>
                             </div>

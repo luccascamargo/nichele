@@ -2190,11 +2190,6 @@ function Home() {
                                                     }}
                                                     control={
                                                         <Checkbox
-                                                            onChange={() =>
-                                                                console.log(
-                                                                    "imoveis na planta"
-                                                                )
-                                                            }
                                                             sx={{
                                                                 "&.Mui-checked":
                                                                     {
@@ -2215,11 +2210,6 @@ function Home() {
                                                     }}
                                                     control={
                                                         <Checkbox
-                                                            onChange={() =>
-                                                                console.log(
-                                                                    "ofertas"
-                                                                )
-                                                            }
                                                             sx={{
                                                                 "&.Mui-checked":
                                                                     {

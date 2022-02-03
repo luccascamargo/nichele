@@ -41,11 +41,11 @@ export default function Imoveis() {
     const [characteristics, setCharacteristics] = useState([]);
 
     // JSON examplo http://?param1={"price":[{"min":89},{"max":3}]}
-    const [area, setArea] = useState({ min: 0, max: 10000 }); // passar o min e max dos valores json
+    const [area, setArea] = useState({ min: 0, max: 300000 }); // passar o min e max dos valores json
     const [buildingType, setBuildingType] = useState("");
     const [city, setCity] = useState(""); // pode ser todas as cidades do brasil ou filtrar a CIDADE da tabela imb_imovel
     const [district, setDistrict] = useState(""); // filtrar apenas os bairros da cidade selecionado, tabela imb_imovel
-    const [price, setPrice] = useState({ min: 0, max: 10000 }); // passar o min e max dos valores json
+    const [price, setPrice] = useState({ min: 0, max: 1500000000 }); // passar o min e max dos valores json
     const [characteristic, setCharacteristic] = useState(""); // pode ser todas as cidades do brasil ou filtrar a CIDADE da tabela imb_imovel
     const [characteristicInput, setCharacteristicInput] = useState("");
 
@@ -366,7 +366,6 @@ export default function Imoveis() {
         // setSuites();
     }, []);
 
-    console.log(suites)
 
     const handleSubmitReset = async () => {
         setActiveButton("");
@@ -1465,7 +1464,6 @@ export default function Imoveis() {
                             }
                         })
                         .map((item) => {
-                            console.log(item)
                             return (
                                 <a
                                     href={`/imovel?code=${item.CODIGOIMOVEL}`}
@@ -1481,7 +1479,6 @@ export default function Imoveis() {
                                             </span>
                                             {/* <span>{item.TIPOALUGUEL === "S" ? 'Aluguel': '' || item.TIPOVENDA === 'S' ? 'Venda' : ''}</span> */}
                                         </div>
-                                        {item.ALBUM.length > 0 && (
                                             <Image
                                                 src={
                                                     "/images/viewsw/fotos/" +
@@ -1495,7 +1492,6 @@ export default function Imoveis() {
                                                     />
                                                 }
                                             />
-                                        )}
                                         <div className="infos">
                                             <div className="top">
                                                 <div className="title__box">
@@ -1506,14 +1502,19 @@ export default function Imoveis() {
                                                 </div>
                                                 <div className="value__box">
                                                     <span>
-                                                        {item.TIPOALUGUEL ===
-                                                        "S"
-                                                            ? item.VALORALUGUEL
-                                                            : "sem valor" ||
-                                                              item.TIPOVENDA ===
-                                                                  "S"
-                                                            ? item.VALORVENDA
-                                                            : "sem valor"}
+                                                    {item?.TIPOVENDA === "S"
+                                        ? Number(
+                                              item?.VALORVENDA
+                                          ).toLocaleString("pt-br", {
+                                              style: "currency",
+                                              currency: "BRL",
+                                          })
+                                        : Number(
+                                              item?.VALORALUGUEL
+                                          ).toLocaleString("pt-br", {
+                                              style: "currency",
+                                              currency: "BRL",
+                                          })}
                                                     </span>
                                                     <p>
                                                         Cód: {item.CODIGOIMOVEL}
@@ -1547,7 +1548,7 @@ export default function Imoveis() {
                                                         alt=""
                                                     />
                                                     <p>
-                                                        {item.AREAPRIVATIVA} m²
+                                                        {item.AREATOTAL} m²
                                                     </p>
                                                 </div>
                                             </div>

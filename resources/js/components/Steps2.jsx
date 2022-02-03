@@ -152,7 +152,6 @@ export const Steps2 = () => {
                         onClick={() => {
                             if (page === FormTitles.length - 1) {
                                 sendEmail(formData);
-                                console.log(formData);
                             } else {
                                 setPage((currPage) => currPage + 1);
                             }

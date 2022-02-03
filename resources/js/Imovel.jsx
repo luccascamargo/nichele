@@ -42,6 +42,7 @@ import imageBox from "../../public/assets/images/image-imovel.png";
 import image from '../../public/images/viewsw/fotos/27_148294.jpg'
 
 import "../sass/imovel.scss";
+import { ContentCutOutlined } from "@mui/icons-material";
 
 
 
@@ -151,14 +152,28 @@ export const Imovel = () => {
         );
     };
 
-    const images = [
-        {
-          original: image,
-          thumbnail: image,
-          originalHeight: '411px'
-        },
-      ];
+    const images = [];
 
+      function imageExists(image_url){
+
+        var http = new XMLHttpRequest();
+
+        http.open('HEAD', image_url, false);
+        http.send();
+
+        return http.status != 404;
+
+    }
+
+    building?.value?.ALBUM.map(function(photo){
+        if (imageExists("/images/viewsw/fotos/" + photo.ARQUIVOFOTO)) {
+            images.push({
+                original: "/images/viewsw/fotos/" + photo.ARQUIVOFOTO,
+                thumbnail: "/images/viewsw/fotos/" + photo.ARQUIVOFOTO,
+                originalHeight: '411px'
+              })
+        }
+    });
 
     return (
         <>
@@ -209,7 +224,8 @@ export const Imovel = () => {
             ) : (
                 ""
             )} */}
-            <ImageGallery items={images} showPlayButton={false}/>
+            {images.length > 0 && <ImageGallery items={images} showPlayButton={false}/>}
+
             <div className="container__aside">
                 <div className="content__aside">
                     <div className="top">
@@ -548,7 +564,7 @@ export const Imovel = () => {
                                             </div>
                                             <div className="desc">
                                                 <img src={iconRegua} alt="" />
-                                                <p>{imovel.AREAPRIVATIVA} m²</p>
+                                                <p>{imovel?.AREAPRIVATIVA} m²</p>
                                             </div>
                                         </div>
                                     </div>

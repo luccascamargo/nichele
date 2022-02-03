@@ -390,7 +390,7 @@
 
             document.getElementById('zipcode').addEventListener('change', function() {
                 fetch(`https://viacep.com.br/ws/${this.value}/json/`).then(r => r.json()).then(result => {
-                    console.log(result.logradouro, document.getElementById('address').value)
+                    // console.log(result.logradouro, document.getElementById('address').value)
                     document.getElementById('address').value = result.logradouro
                     document.getElementById('neighborhood').value = result.bairro
                     document.getElementById('city').value = result.localidade
