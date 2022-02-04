@@ -118,6 +118,11 @@
                 border: none;
                 padding-left: 2rem;
             }
+
+            @media (max-width: 600px) {
+                flex-direction: column;
+                gap: 2rem;
+            }
         }
 
         .advanced__search {
@@ -427,7 +432,7 @@
                 }
             }
             .value {
-                width: 9.68rem;
+                width: fit-content;
             }
         }
 

@@ -4,10 +4,9 @@ import "../../sass/duvidasHome.scss";
 import icon1 from "../../../public/assets/svg/icon-duvida.svg";
 import icon2 from "../../../public/assets/svg/icon-link-duvida.svg";
 
-import { list } from "../lib/listDuvidas";
 import { DuvidaItemsHome } from "./DuvidaItemsHome";
 
-export const DuvidasHome = () => {
+export const DuvidasHome = ({data}) => {
     return (
         <>
             <div className="container__duvidas__home">
@@ -22,12 +21,12 @@ export const DuvidasHome = () => {
                 </div>
                 <div className="content__dir">
                     <ul className="list__duvidas__home">
-                        {list.map((item, index) => (
+                        {data?.data?.map((item, index) => (
                             <div key={index}>
                                 <li key={index} className="list__item__home">
                                     <DuvidaItemsHome
-                                        title={item.title}
-                                        description={item.description}
+                                        title={item.attributes.title}
+                                        description={item.attributes.description}
                                     />
                                 </li>
                             </div>

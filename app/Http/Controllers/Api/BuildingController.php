@@ -125,22 +125,10 @@ class BuildingController extends Controller
     /**
      * @return mixed
      */
-    public function highligthRent()
-    {
-        return $data = DB::table('IMB_IMOVEL')
-            ->select('IMB_IMOVEL.*')
-            ->where('IMB_IMOVEL.DESTAQUEALUGUEL', 'S')
-            ->where('IMB_IMOVEL.PUBLICAR', '1')
-            ->get();
-    }
-
-    /**
-     * @return mixed
-     */
     public function GetCommercialRealEstate()
     {
         return $data = DB::table('IMB_IMOVEL')
-            ->select('IMB_IMOVEL.*')
+            ->select('IMB_IMOVEL.*', DB::raw('(select ARQUIVOFOTO from IMB_IMOVELFOTO where CODIGOIMOVEL = IMB_IMOVEL.CODIGOIMOVEL order by CODIGOIMOVEL asc limit 1) as ALBUM'))
             ->where('IMB_IMOVEL.DESTAQUEVENDA', 'S')
             ->where('IMB_IMOVEL.PUBLICAR', '1')
             ->get();
@@ -178,6 +166,18 @@ class BuildingController extends Controller
             ->select('IMB_IMOVELCARACTERISTICA.CODIGOIMOVEL')
             ->where('IMB_IMOVELCARACTERISTICA.CODIGOCARACTERISTICA', $search)
             ->groupBy('CODIGOIMOVEL')
+            ->get();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function highligthRent()
+    {
+        return $data = DB::table('IMB_IMOVEL')
+            ->select('IMB_IMOVEL.*', DB::raw('(select ARQUIVOFOTO from IMB_IMOVELFOTO where CODIGOIMOVEL = IMB_IMOVEL.CODIGOIMOVEL order by CODIGOIMOVEL asc limit 1) as ALBUM'))
+            ->where('IMB_IMOVEL.DESTAQUEALUGUEL', 'S')
+            ->where('IMB_IMOVEL.PUBLICAR', '1')
             ->get();
     }
 

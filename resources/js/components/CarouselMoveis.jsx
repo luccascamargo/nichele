@@ -3,7 +3,8 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { IoIosArrowRoundBack, IoIosArrowRoundForward } from "react-icons/io";
 
-
+import '../../sass/carouselMoveis.scss'
+import imageBox from "../../../public/assets/images/image-imovel.png";
 import imgMovel from "../../../public/assets/images/movel.png";
 import imgBed from "../../../public/assets/svg/bed-icon.svg";
 import imgCar from "../../../public/assets/svg/car-icon.png";
@@ -87,33 +88,34 @@ const CarouselMoveis = ({data}) => {
             >
                 <div />
                 {data?.map(item => {
-                    console.log(item)
                     return (
                     <a href={`/imovel?code=${item?.CODIGOIMOVEL}`} key={item?.CODIGOIMOVEL} className="box">
                         <div>
                             <span className="tipo">{item?.TIPOALUGUEL === "S" ? 'Aluguel': '' || item?.TIPOVENDA === 'S' ? 'Venda' : ''}</span>
-                            <img
+                            {/* <img
                                 className="image"
                                 src={imgMovel}
                                 width={"384px"}
                                 height={"384px"}
                                 alt="teste"
+                            /> */}
+                            {item?.ALBUM?.length > 0 ? (
+                                <img
+                                src={"/images/viasw/fotos/" + item?.ALBUM}
+                                alt="Imagem Imovel"
+                                width={"384px"}
+                                height={"384px"}
+                                style={{borderTopLeftRadius: "40px", borderTopRightRadius: "40px"}}
                             />
-                            {/* {item?.ALBUM.length > 0 && (
-                                <Image
-                                    src={
-                                        "/images/viewsw/fotos/" +
-                                        item?.ALBUM[0].ARQUIVOFOTO
-                                    }
-                                    alt={item?.ALBUM[0].DESCRICAO}
-                                    fallback={
-                                        <img
-                                            src={imageBox}
-                                            alt="Imagem imovel"
-                                        />
-                                    }
+                            ) : (
+                                <img
+                                    src={imageBox}
+                                    alt="Imagem teste"
+                                    width={"384px"}
+                                    height={"384px"}
+                                    style={{borderTopLeftRadius: "40px", borderTopRightRadius: "40px"}}
                                 />
-                            )} */}
+                            )}
                             <div className="content">
                                 <div className="info">
                                     <div>
@@ -123,7 +125,21 @@ const CarouselMoveis = ({data}) => {
                                         </p>
                                     </div>
                                     <div>
-                                        <p className="price">R${item?.TIPOALUGUEL === 'S' ? item?.VALORALUGUEL : 'sem valor' || item?.TIPOVENDA === 'S' ? item?.VALORVENDA : 'sem valor'}</p>
+                                        <p className="price">
+                                        {item?.TIPOVENDA === "S"
+                                        ? Number(
+                                              item?.VALORVENDA
+                                          ).toLocaleString("pt-br", {
+                                              style: "currency",
+                                              currency: "BRL",
+                                          })
+                                        : Number(
+                                              item?.VALORALUGUEL
+                                          ).toLocaleString("pt-br", {
+                                              style: "currency",
+                                              currency: "BRL",
+                                          })}
+                                        </p>
                                         <p className="code">Cód:{item?.CODIGOIMOVEL}</p>
                                     </div>
                                 </div>

@@ -135,7 +135,7 @@ export default function Duvidas() {
                     onClick={() => handleContent("doc")}
                 >
                     <img src={iconDoc} alt="Doc" />
-                    <span>Documentacao</span>
+                    <span>Documentação</span>
                 </button>
                 <button
                     type="button"
@@ -159,7 +159,7 @@ export default function Duvidas() {
                     onClick={() => handleContent("ad")}
                 >
                     <img src={iconAnuncio} alt="Doc" />
-                    <span>Anuncio</span>
+                    <span>Anúncio</span>
                 </button>
             </div>
 

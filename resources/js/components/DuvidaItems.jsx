@@ -3,7 +3,6 @@
 import { useState } from "react";
 
 import "../../sass/duvidaDoc.scss";
-
 import iconList from "../../../public/assets/svg/icon-list.svg";
 
 export const DuvidaItems = ({ ...props }) => {

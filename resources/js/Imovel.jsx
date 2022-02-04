@@ -31,7 +31,7 @@ import iconRegua from "../../public/assets/images/imovel/icon-regua.png";
 import iconSol from "../../public/assets/images/imovel/icon-sol.png";
 import iconChuveiro from "../../public/assets/images/imovel/icon-chuveiro.png";
 import iconCama from "../../public/assets/images/imovel/icon-cama.png";
-import iconAgua from "../../public/assets/images/imovel/icon-agua.png";
+import iconOk from "../../public/assets/svg/certo.svg";
 import iconElevador from "../../public/assets/images/imovel/icon-elevador.png";
 import iconMobiliado from "../../public/assets/images/imovel/icon-mobiliado.png";
 import iconTerraco from "../../public/assets/images/imovel/icon-terraco.png";
@@ -39,7 +39,6 @@ import iconLoc from "../../public/assets/images/imovel/icon-loc.png";
 import iconInfo from "../../public/assets/images/imovel/icon-info.png";
 import imageBox from "../../public/assets/images/image-imovel.png";
 
-import image from '../../public/images/viewsw/fotos/27_148294.jpg'
 
 import "../sass/imovel.scss";
 import { ContentCutOutlined } from "@mui/icons-material";
@@ -166,14 +165,21 @@ export const Imovel = () => {
     }
 
     building?.value?.ALBUM.map(function(photo){
-        if (imageExists("/images/viewsw/fotos/" + photo.ARQUIVOFOTO)) {
+        if (imageExists("/images/viasw/fotos/" + photo.ARQUIVOFOTO)) {
             images.push({
-                original: "/images/viewsw/fotos/" + photo.ARQUIVOFOTO,
-                thumbnail: "/images/viewsw/fotos/" + photo.ARQUIVOFOTO,
+                original: "/images/viasw/fotos/" + photo.ARQUIVOFOTO,
+                thumbnail: "/images/viasw/fotos/" + photo.ARQUIVOFOTO,
                 originalHeight: '411px'
               })
         }
     });
+
+    const [charText, setChar] = useState(false)
+
+    const char = building?.value?.CHARACTERISTICS.filter((e) => e.CODIGOCARACTERISTICA === 244)
+
+
+
 
     return (
         <>
@@ -192,40 +198,7 @@ export const Imovel = () => {
                     </div>
                 </div>
             </div>
-            {/* {building?.value?.ALBUM?.length > 0 ? (
-                <Carousel
-                    partialVisible={false}
-                    additionalTransfrom={0}
-                    arrows={false}
-                    autoPlaySpeed={8000}
-                    centerMode={false}
-                    containerClass="carousel-container-imovel"
-                    draggable
-                    focusOnSelect={false}
-                    // infinite
-                    itemClass="item"
-                    keyBoardControl
-                    minimumTouchDrag={80}
-                    renderDotsOutside={false}
-                    responsive={responsive}
-                    showDots={false}
-                    sliderClass=""
-                    slidesToSlide={1}
-                    customTransition={"transform 800ms ease-in-out"}
-                >
-                    {building?.value?.ALBUM.map((photo) => (
-                        <Image
-                            src={"/images/viewsw/fotos/" + photo.ARQUIVOFOTO}
-                            alt={photo.DESCRICAO}
-                            fallback={<img src={image} alt="imagem" />}
-                        />
-                    ))}
-                </Carousel>
-            ) : (
-                ""
-            )} */}
-            {images.length > 0 && <ImageGallery items={images} showPlayButton={false}/>}
-
+                {images.length > 0 && <ImageGallery items={images} showPlayButton={false}/>}
             <div className="container__aside">
                 <div className="content__aside">
                     <div className="top">
@@ -332,12 +305,12 @@ export const Imovel = () => {
                                         className="item"
                                         key={d.CODIGOCARACTERISTICA}
                                     >
-                                        <img src={iconAgua} alt="" />
+                                        <img src={iconOk} alt="ok" />
                                         <span>{d.DESCRICAO}</span>
                                     </div>
                                 ))}
                             </div>
-                            <span>Sobre o imovel</span>
+                            <span>Sobre o imóvel</span>
                             <p>
                                 {building?.value?.DESCRICAOVENDA === null
                                     ? building?.value?.DESCRICAOALUGUEL
@@ -355,7 +328,7 @@ export const Imovel = () => {
                     </div>
                     <div className="dir">
                         <div className="header__dir">
-                            <span>Informacoes adicionais</span>
+                            <span>Informações adicionais</span>
                             <div className="item__header__dir">
                                 <div className="esq__header__dir">
                                     <img src={iconInfo} alt="" />
@@ -442,10 +415,12 @@ export const Imovel = () => {
 
                         <div className="contact">
                             <span>Entre em contato pelo whats</span>
-                            <ButtonPrimary>
-                                <img src={iconWhats} alt="" />
-                                Whats locação
-                            </ButtonPrimary>
+                            <a href={`https://wa.me/54996583631`}>
+                                <ButtonPrimary>
+                                    <img src={iconWhats} alt="" />
+                                    Whats locação
+                                </ButtonPrimary>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -503,7 +478,7 @@ export const Imovel = () => {
                 >
                     {cep.value?.map((imovel) => {
                         return (
-                            <SwiperSlide>
+                            <SwiperSlide key={imovel.CODIGOIMOVEL}>
                                 <a
                                     href={`/imovel?code=${imovel.CODIGOIMOVEL}`}
                                     className="box__imoveis"
@@ -520,7 +495,7 @@ export const Imovel = () => {
                                     {imovel?.ALBUM && (
                                         <Image
                                             src={
-                                                "/images/viewsw/fotos/" +
+                                                "/images/viasw/fotos/" +
                                                 imovel.ALBUM
                                             }
                                             alt="imagem"

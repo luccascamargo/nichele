@@ -64,7 +64,7 @@ export default function Contato() {
                                     />
                                     <div className="w1__info__contato">
                                         <span>whats locação</span>
-                                        <a href={`tel:${cmsInfo.whatsLocation}`}>
+                                        <a href={`https://wa.me/54996583631`}>
                                             {cmsInfo.whatsLocation}
                                         </a>
                                     </div>
@@ -76,7 +76,7 @@ export default function Contato() {
                                     />
                                     <div className="w1__info__contato">
                                         <span>whats vendas</span>
-                                        <a href={`tel:${cmsInfo.whatsSales}`}>
+                                        <a href={`https://wa.me/54981158489`}>
                                             {cmsInfo.whatsSales}
                                         </a>
                                     </div>

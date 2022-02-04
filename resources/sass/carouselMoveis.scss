@@ -9,6 +9,10 @@
 
         .react-multi-carousel-track {
             gap: 2rem;
+
+            .item {
+                width: 384px!important;
+            }
         }
     }
 
@@ -17,14 +21,9 @@
         margin-right: 32px;
         height: auto;
         border-radius: 40px;
-        transition: box-shadow 0.3s;
+        transition: all 0.3s;
         position: relative;
 
-        &:hover {
-            transform: scale(1.05);
-        }
-
-        transition: all 0.3s;
 
         .tipo {
             position: absolute;
@@ -108,7 +107,6 @@
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 12px;
 
             div {
                 display: flex;
@@ -116,6 +114,10 @@
                 align-items: center;
                 gap: 9px;
             }
+        }
+
+        .remove {
+            justify-content:space-around;
         }
     }
 

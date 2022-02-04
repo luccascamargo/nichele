@@ -35,6 +35,7 @@ import {
     Checkbox,
     FormControlLabel,
     FormGroup,
+    MenuItem,
     Typography,
 } from "@mui/material";
 
@@ -44,6 +45,7 @@ const customStyles = {
     option: (provided, state) => ({
         ...provided,
         color: state.isSelected ? "#7dafeb" : "#000000",
+        // color: "#d4f4",
         padding: 20,
     }),
     control: () => ({
@@ -52,6 +54,9 @@ const customStyles = {
         display: "flex",
         transform: "translateX(-0.7rem)",
         width: "10rem",
+        "@media only screen and (max-width: 600px)": {
+            width: "100%",
+        },
     }),
     singleValue: (provided, state) => {
         const opacity = state.isDisabled ? 0.5 : 1;
@@ -74,13 +79,13 @@ function Home() {
     const [plant, setPlant] = useState(false);
     const [offer, setOffer] = useState(false);
 
-    const [area, setArea] = useState({ min: 0, max: 10000 });
+    const [area, setArea] = useState({ min: 0, max: 30000 });
     const [advanced, setAdvanced] = useState(false);
     const [codeSearch, setCodeSearch] = useState(false);
     const [buildingType, setBuildingType] = useState('');
     const [city, setCity] = useState('');
     const [district, setDistrict] = useState('');
-    const [price, setPrice] = useState({ min: 0, max: 10000 });
+    const [price, setPrice] = useState({ min: 0, max: 15000000 });
 
     const [room, setRoom] = useState('');
     const [suites, setSuites] = useState('');
@@ -95,7 +100,7 @@ function Home() {
     const handleAdvanced = () => setAdvanced(!advanced);
     const handleCode = () => setCodeSearch(!codeSearch);
 
-    const maxValue = 10000;
+    const maxValue = 15000000;
 
     function handleSubmit() {
         const params = new URLSearchParams();
@@ -207,6 +212,7 @@ function Home() {
 
     const [cmsHome, setCmsHome] = useState({});
     const [cmsInfo, setCmsInfo] = useState({});
+    const [mainDoubts, setDoubts] = useState({});
 
         useEffect(() => {
             const getCmsHome = async () => {
@@ -236,23 +242,36 @@ function Home() {
             getCmsInfo();
         }, [])
 
+        useEffect(() => {
+            const getMainDoubts = async () => {
+                await fetch('https://fathomless-chamber-79732.herokuapp.com/api/main-doubts', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                })
+                .then(response => response.json())
+                .then(data => setDoubts(data));
+            }
+            getMainDoubts();
+        }, [])
 
 
 
     return (
         <div className="container">
-                <a href={`https://wa.me/${cmsInfo.whatsLocation}`} target="_blank" rel="noopener noreferrer" className={showBuy ? 'social__float__buy showSocials' : 'social__float__buy'} onMouseLeave={handleBuy} onMouseEnter={handleBuy}>
+                <a href={`https://wa.me/54996583631`} target="_blank" rel="noopener noreferrer" className={showBuy ? 'social__float__buy showSocials' : 'social__float__buy'} onMouseLeave={handleBuy} onMouseEnter={handleBuy}>
                     <img src={imgWhatWhite} alt="whats" />
                     <div className="text__social">
                         <span>Whats para locação</span>
-                        <p>{cmsInfo.whatsLocation}</p>
+                        <p>(54) 99658.3631</p>
                     </div>
                 </a>
-                <a href={`https://wa.me/${cmsInfo.whatsSales}`} target="_blank" rel="noopener noreferrer" className={showSell ? 'social__float__sell showSocials' : 'social__float__sell'} onMouseLeave={handleSell} onMouseEnter={handleSell}>
+                <a href={`https://wa.me/54981158489`} target="_blank" rel="noopener noreferrer" className={showSell ? 'social__float__sell showSocials' : 'social__float__sell'} onMouseLeave={handleSell} onMouseEnter={handleSell}>
                 <img src={imgWhatWhite} alt="whats" />
                     <div className="text__social">
                         <span>Whats para venda</span>
-                        <p>{cmsInfo.whatsSales}</p>
+                        <p>(54) 98115.8489</p>
                     </div>
                 </a>
             <Navbar />
@@ -343,8 +362,6 @@ function Home() {
                                                 options={cities}
                                                 onChange={(event) => setCity(event?.value)}
                                                 styles={customStyles}
-                                                isSearchable
-                                                isClearable
                                                 placeholder="Selecione..."
                                             />
                                         </div>
@@ -352,7 +369,6 @@ function Home() {
                                         <div className="div">
                                             <label htmlFor="bairro">
                                                 Bairro{" "}
-
                                             </label>
                                             <Select
                                                 id="bairro"
@@ -384,7 +400,15 @@ function Home() {
                                                 >
                                                     <div>{`R$${price.min}`}</div>
                                                     <div>-</div>
-                                                    <div>{`R$${price.max}`}</div>
+                                                    {/* <div>{`R$${price.max}`}</div> */}
+                                                    <div>{
+                                                    Number(
+                                                        price.max
+                                                    ).toLocaleString("pt-br", {
+                                                        style: "currency",
+                                                        currency: "BRL",
+                                                    })}
+                                                    </div>
                                                 </div>
                                                 <div className="div__input__range">
                                                     <InputRange
@@ -1245,28 +1269,6 @@ function Home() {
                                                         />
                                                     }
                                                     label="Imóveis na planta"
-                                                />
-                                                <FormControlLabel
-                                                    sx={{
-                                                        fontFamily: "Roboto",
-                                                        fontWeight: "normal",
-                                                        fontSize: "14px",
-                                                        lineHeight: "21px",
-                                                        color: "#8C9193",
-                                                    }}
-                                                    control={
-                                                        <Checkbox
-                                                            onChange={(event) => setOffer(event?.target.checked)}
-                                                            checked={offer}
-                                                            sx={{
-                                                                "&.Mui-checked":
-                                                                    {
-                                                                        color: "#205CA4",
-                                                                    },
-                                                            }}
-                                                        />
-                                                    }
-                                                    label="Ofertas"
                                                 />
                                             </FormGroup>
                                         </div>
@@ -2200,26 +2202,6 @@ function Home() {
                                                     }
                                                     label="Imóveis na planta"
                                                 />
-                                                <FormControlLabel
-                                                    sx={{
-                                                        fontFamily: "Roboto",
-                                                        fontWeight: "normal",
-                                                        fontSize: "14px",
-                                                        lineHeight: "21px",
-                                                        color: "#8C9193",
-                                                    }}
-                                                    control={
-                                                        <Checkbox
-                                                            sx={{
-                                                                "&.Mui-checked":
-                                                                    {
-                                                                        color: "#205CA4",
-                                                                    },
-                                                            }}
-                                                        />
-                                                    }
-                                                    label="Ofertas"
-                                                />
                                             </FormGroup>
                                         </div>
                                     </div>
@@ -2255,7 +2237,7 @@ function Home() {
             </main>
 
             <section className="redes">
-                    <a href={`https://wa.me/${cmsInfo.whatsLocation}`} className="box" target="_blank" rel="noreferrer">
+                    <a href={`https://wa.me/54996583631`} className="box" target="_blank" rel="noreferrer">
                         <img
                             src={imgWhats}
                             width={imgWhats.width}
@@ -2268,7 +2250,7 @@ function Home() {
                         </div>
                     </a>
 
-                    <a href={`https://wa.me/${cmsInfo.whatsSales}`} className="box" target="_blank" rel="noreferrer">
+                    <a href={`https://wa.me/54981158489`} className="box" target="_blank" rel="noreferrer">
                         <img
                             src={imgWhats}
                             width={imgWhats.width}
@@ -2341,7 +2323,7 @@ function Home() {
 
             <BannerAnuncie />
 
-            <DuvidasHome />
+            <DuvidasHome data={mainDoubts}/>
 
             <Footer data={cmsInfo}/>
         </div>

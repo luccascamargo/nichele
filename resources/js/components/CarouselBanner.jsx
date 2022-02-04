@@ -3,7 +3,7 @@ import "react-multi-carousel/lib/styles.css";
 
 import "../../sass/carouselBanner.scss";
 
-import banner01 from "../../../public/assets/images/banner01.png";
+import banner01 from "../../../public/assets/images/banner1.png";
 import banner02 from "../../../public/assets/images/banner02.png";
 
 const responsive = {

@@ -12,14 +12,16 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
 
 
+
 // Import Swiper styles
 import "swiper/css";
 import 'swiper/css/pagination';
 
 import "../sass/sobre.scss";
 
-import imageInfo from "../../public/assets/images/banner-info.png";
+import imageInfo from "../../public/assets/images/video_nichele.jpg";
 import imageCarousel from "../../public/assets/images/image-carousel.png";
+import { Box, Button, Modal, Typography } from "@mui/material";
 
 const responsive = {
     desktop: {
@@ -39,7 +41,22 @@ const responsive = {
     },
 };
 
+const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 'auto',
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4,
+  };
+
 export default function Sobre() {
+    const [open, setOpen] = useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
     const [cmsInfo, setCmsInfo] = useState({});
     const [cms, setCms] = useState({});
 
@@ -93,7 +110,17 @@ export default function Sobre() {
                     <p>{cms.description}</p>
                 </div>
                 <div className="img">
-                    <img src={imageInfo} alt="Imagem 50 anos" />
+                    <img src={imageInfo} onClick={handleOpen} alt="Imagem 50 anos" />
+                    <Modal
+                        open={open}
+                        onClose={handleClose}
+                        aria-labelledby="modal-modal-title"
+                        aria-describedby="modal-modal-description"
+                        >
+                        <Box sx={style}>
+                            <iframe width="950" height="534" src="https://www.youtube.com/embed/OXctR22VCOw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </Box>
+                        </Modal>
                 </div>
             </div>
 

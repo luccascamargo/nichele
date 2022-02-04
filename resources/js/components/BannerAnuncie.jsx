@@ -13,10 +13,9 @@ export const BannerAnuncie = () => {
                 <div className="anuncie__infos">
                     <h3>Anuncie seu imóvel</h3>
                     <p>
-                        Anunciar seu imóvel na Nichele é fácil e seguro. Tenha
-                        mais visibilidade na venda ou locação, além da
-                        possibilidade de fechar negócios em menos tempo e mais
-                        confiáveis.
+                        Anunciar seu imóvel na Nichele é fácil e seguro.
+                        Tenha mais visibilidade na venda ou locação. Divulgamos o seu imóvel no site, nos principais portais imobiliários, em anúncios no Google,
+                        no Facebook e no Instagram. Conte conosco!
                     </p>
                     <a href="/anuncie">
                         <ButtonPrimary>Clique aqui</ButtonPrimary>

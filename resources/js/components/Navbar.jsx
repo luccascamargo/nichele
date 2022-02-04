@@ -26,7 +26,7 @@ export const Navbar = () => {
                     </ul>
                 </nav>
                 <div className="buttons">
-                    <a href="https://portal.viaimob.com.br/" target="_blank" rel="noreferrer">
+                    <a href="https://portal.viaimob.com.br/42" target="_blank" rel="noreferrer">
                         <ButtonClient text="Área do cliente" />
                     </a>
                     <a href="/anuncie">

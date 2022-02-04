@@ -56,7 +56,7 @@ export default function Imoveis() {
     const [toilet, setToilet] = useState("");
     const [garage, setGarage] = useState("");
 
-    const maxValue = 10000;
+    const maxValue = 1500000000;
 
     const Image = ({ src, alt, fallback }) => {
         const [error, setError] = useState(false);
@@ -362,8 +362,6 @@ export default function Imoveis() {
 
         setBuildings(await buildings());
 
-        // verifica se o usuario selecionou suite, se sim, fazer outro filtro com a suite
-        // setSuites();
     }, []);
 
 
@@ -398,6 +396,7 @@ export default function Imoveis() {
         };
         getCmsInfo();
     }, []);
+
 
     return (
         <div className="container__imoveis">
@@ -1481,7 +1480,7 @@ export default function Imoveis() {
                                         </div>
                                             <Image
                                                 src={
-                                                    "/images/viewsw/fotos/" +
+                                                    "/images/viasw/fotos/" +
                                                     item.ALBUM[0].ARQUIVOFOTO
                                                 }
                                                 alt={item.ALBUM[0].DESCRICAO}

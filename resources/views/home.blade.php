@@ -3,8 +3,8 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <title>Home</title>
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+        <title>Nichele Imóveis - Aluguel e Venda de imóveis Caxias do Sul</title>
 
         <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">

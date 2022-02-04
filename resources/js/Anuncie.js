@@ -32,13 +32,10 @@ export default function Anuncie() {
                 <Navbar />
                 <div className="content__anuncie">
                     <span>Anuncie seu imóvel</span>
-                    <h1>Ajudamos você a fazer o melhor negócio!</h1>
+                    <h1>Anunciar seu imóvel na Nichele é fácil e seguro.</h1>
                     <p>
-                        Anunciar seu imóvel na Nichele é fácil e seguro. Tenha
-                        mais visibilidade na venda ou locação, além da
-                        possibilidade de fechar negócios em menos tempo e mais
-                        confiáveis. Preencha o formulário abaixo e entraremos em
-                        contato.
+                        Tenha mais visibilidade na venda ou locação, fechando seu negócios com maior agilidade.
+                        Preencha o formulário abaixo e entraremos em contato.
                     </p>
                 </div>
             </header>
