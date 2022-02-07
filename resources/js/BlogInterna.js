@@ -51,7 +51,7 @@ export default function BlogInterna() {
 
     const imagePost = `${
         post?.attributes.image.data.attributes.url.startsWith(`/`)
-          ? "http://localhost:1337"
+          ? "https://fathomless-chamber-79732.herokuapp.com/"
           : ``
       }${post?.attributes.image.data.attributes.url}`;
 

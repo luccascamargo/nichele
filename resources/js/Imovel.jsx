@@ -174,12 +174,17 @@ export const Imovel = () => {
         }
     });
 
-    const [charText, setChar] = useState(false)
 
-    const char = building?.value?.CHARACTERISTICS.filter((e) => e.CODIGOCARACTERISTICA === 244)
+    useEffect(() => {
+        const [state, setState]= useState(false);
+        const char = building?.value?.CHARACTERISTICS?.filter((e) => e.CODIGOCARACTERISTICA === 244);
+        let charText= '';
 
-
-
+        if(char) {
+            setState(true)
+            charText = char[0]?.TEXTO;
+        };
+    }, [state])
 
     return (
         <>
@@ -250,11 +255,15 @@ export const Imovel = () => {
                                 banheiro(s)
                             </span>
                         </div>
-                        <div className="border" />
-                        <div className="item">
-                            <img src={iconSol} alt="" />
-                            <span>Oeste</span>
-                        </div>
+                        {state && (
+                            <>
+                                <div className="border" />
+                                <div className="item">
+                                    <img src={iconSol} alt="" />
+                                    <span>{charText}</span>
+                                </div>
+                            </>
+                        )}
                     </div>
                 </div>
             </div>

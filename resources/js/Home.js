@@ -398,16 +398,23 @@ function Home() {
                                                         color: "#5C6476",
                                                     }}
                                                 >
-                                                    <div>{`R$${price.min}`}</div>
+                                                    <div>{
+                                                        Number(
+                                                            price.min
+                                                        ).toLocaleString("pt-br", {
+                                                            style: "currency",
+                                                            currency: "BRL",
+                                                        })}
+                                                    </div>
                                                     <div>-</div>
                                                     {/* <div>{`R$${price.max}`}</div> */}
                                                     <div>{
-                                                    Number(
-                                                        price.max
-                                                    ).toLocaleString("pt-br", {
-                                                        style: "currency",
-                                                        currency: "BRL",
-                                                    })}
+                                                        Number(
+                                                            price.max
+                                                        ).toLocaleString("pt-br", {
+                                                            style: "currency",
+                                                            currency: "BRL",
+                                                        })}
                                                     </div>
                                                 </div>
                                                 <div className="div__input__range">
@@ -1340,9 +1347,23 @@ function Home() {
                                                         color: "#5C6476",
                                                     }}
                                                 >
-                                                    <div>{`R$${area.min}`}</div>
+                                                    <div>{
+                                                        Number(
+                                                            price.min
+                                                        ).toLocaleString("pt-br", {
+                                                            style: "currency",
+                                                            currency: "BRL",
+                                                        })}
+                                                    </div>
                                                     <div>-</div>
-                                                    <div>{`R$${area.max}`}</div>
+                                                    <div>{
+                                                        Number(
+                                                            price.max
+                                                        ).toLocaleString("pt-br", {
+                                                            style: "currency",
+                                                            currency: "BRL",
+                                                        })}
+                                                    </div>
                                                 </div>
                                                 <div>
                                                     <InputRange
@@ -1351,7 +1372,7 @@ function Home() {
                                                         allowSameValues={false}
                                                         maxValue={maxValue}
                                                         minValue={0}
-                                                        value={area}
+                                                        value={price}
                                                         onChange={setArea}
                                                     />
                                                 </div>

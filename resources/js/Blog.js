@@ -6,7 +6,6 @@ import { useState, useEffect } from 'react';
 import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
 
-import { api } from './plugins/api';
 
 import "../sass/blog.scss";
 
@@ -57,7 +56,7 @@ export default function Blog() {
                     {posts?.map(item => {
                         const imageBlog = `${
                             item.attributes.image.data.attributes.url.startsWith(`/`)
-                              ? "http://localhost:1337"
+                              ? "https://fathomless-chamber-79732.herokuapp.com/"
                               : ``
                           }${item.attributes.image.data.attributes.url}`;
                         return (
