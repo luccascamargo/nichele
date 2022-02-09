@@ -57,7 +57,7 @@ export default function Imoveis() {
     const [garage, setGarage] = useState("");
 
     const maxValue = 1500000000;
-
+    console.log(buildingType);
     const Image = ({ src, alt, fallback }) => {
         const [error, setError] = useState(false);
 
@@ -223,8 +223,11 @@ export default function Imoveis() {
                 return;
             }
 
-            if (url.get(param) === "true") {
-                state(Boolean(url.get(param)));
+            if (url.get(param) !== "") {
+                state(url.get(param));
+                if (param === "city" && district === "") {
+                    handleCityChange(url.get(param));
+                }
                 return;
             }
         }
@@ -314,8 +317,6 @@ export default function Imoveis() {
 
         compareParamAndSet("district", setDistrict);
 
-        // compareParamAndSet('suites', setSuites)
-
         compareParamAndSet("toilet", setToilet);
 
         compareParamAndSet("garage", setGarage);
@@ -361,9 +362,7 @@ export default function Imoveis() {
         };
 
         setBuildings(await buildings());
-
     }, []);
-
 
     const handleSubmitReset = async () => {
         setActiveButton("");
@@ -372,7 +371,7 @@ export default function Imoveis() {
         setDistrict("");
         setPrice({ min: 0, max: 10000 });
         setRoom(0);
-        setSuites('');
+        setSuites("");
         setToilet(0);
         setGarage(0);
         setArea({ min: 0, max: 10000 });
@@ -385,18 +384,20 @@ export default function Imoveis() {
 
     useEffect(() => {
         const getCmsInfo = async () => {
-            await fetch("https://fathomless-chamber-79732.herokuapp.com/api/info", {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            })
+            await fetch(
+                "https://fathomless-chamber-79732.herokuapp.com/api/info",
+                {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                }
+            )
                 .then((response) => response.json())
                 .then((data) => setCmsInfo(data.data.attributes));
         };
         getCmsInfo();
     }, []);
-
 
     return (
         <div className="container__imoveis">
@@ -1418,20 +1419,22 @@ export default function Imoveis() {
                 <section className="section__imoveis">
                     {buildings?.data
                         ?.filter((item) => {
-                            if(characteristic !== "" && suites !== ""){
-                                if((item.CHARACTERISTICS.some(
-                                    (e) =>
-                                        e.CODIGOCARACTERISTICA ===
-                                        characteristic
-                                )) && (item.SUITS.some((e) =>
-                                e.QUANTIDADE.toString().includes(suites)
-                            ))) {
+                            if (characteristic !== "" && suites !== "") {
+                                if (
+                                    item.CHARACTERISTICS.some(
+                                        (e) =>
+                                            e.CODIGOCARACTERISTICA ===
+                                            characteristic
+                                    ) &&
+                                    item.SUITS.some((e) =>
+                                        e.QUANTIDADE.toString().includes(suites)
+                                    )
+                                ) {
                                     return true;
                                 } else {
                                     return false;
                                 }
-                            }
-                            else{
+                            } else {
                                 if (characteristic !== "") {
                                     if (
                                         item.CHARACTERISTICS.some(
@@ -1448,7 +1451,9 @@ export default function Imoveis() {
                                 if (suites !== "") {
                                     if (
                                         item.SUITS.some((e) =>
-                                            e.QUANTIDADE.toString().includes(suites)
+                                            e.QUANTIDADE.toString().includes(
+                                                suites
+                                            )
                                         )
                                     ) {
                                         return true;
@@ -1458,8 +1463,8 @@ export default function Imoveis() {
                                 }
                             }
 
-                            if(characteristic === "" && suites === "") {
-                                return true
+                            if (characteristic === "" && suites === "") {
+                                return true;
                             }
                         })
                         .map((item) => {
@@ -1478,19 +1483,19 @@ export default function Imoveis() {
                                             </span>
                                             {/* <span>{item.TIPOALUGUEL === "S" ? 'Aluguel': '' || item.TIPOVENDA === 'S' ? 'Venda' : ''}</span> */}
                                         </div>
-                                            <Image
-                                                src={
-                                                    "/images/viasw/fotos/" +
-                                                    item.ALBUM[0].ARQUIVOFOTO
-                                                }
-                                                alt={item.ALBUM[0].DESCRICAO}
-                                                fallback={
-                                                    <img
-                                                        src={imageBox}
-                                                        alt="Imagem imovel"
-                                                    />
-                                                }
-                                            />
+                                        <Image
+                                            src={
+                                                "/images/viasw/fotos/" +
+                                                item?.ALBUM[0]?.ARQUIVOFOTO
+                                            }
+                                            alt={item?.ALBUM[0]?.DESCRICAO}
+                                            fallback={
+                                                <img
+                                                    src={imageBox}
+                                                    alt="Imagem imovel"
+                                                />
+                                            }
+                                        />
                                         <div className="infos">
                                             <div className="top">
                                                 <div className="title__box">
@@ -1501,19 +1506,27 @@ export default function Imoveis() {
                                                 </div>
                                                 <div className="value__box">
                                                     <span>
-                                                    {item?.TIPOVENDA === "S"
-                                        ? Number(
-                                              item?.VALORVENDA
-                                          ).toLocaleString("pt-br", {
-                                              style: "currency",
-                                              currency: "BRL",
-                                          })
-                                        : Number(
-                                              item?.VALORALUGUEL
-                                          ).toLocaleString("pt-br", {
-                                              style: "currency",
-                                              currency: "BRL",
-                                          })}
+                                                        {item?.TIPOVENDA === "S"
+                                                            ? Number(
+                                                                  item?.VALORVENDA
+                                                              ).toLocaleString(
+                                                                  "pt-br",
+                                                                  {
+                                                                      style: "currency",
+                                                                      currency:
+                                                                          "BRL",
+                                                                  }
+                                                              )
+                                                            : Number(
+                                                                  item?.VALORALUGUEL
+                                                              ).toLocaleString(
+                                                                  "pt-br",
+                                                                  {
+                                                                      style: "currency",
+                                                                      currency:
+                                                                          "BRL",
+                                                                  }
+                                                              )}
                                                     </span>
                                                     <p>
                                                         Cód: {item.CODIGOIMOVEL}
@@ -1546,9 +1559,7 @@ export default function Imoveis() {
                                                         src={iconRegua}
                                                         alt=""
                                                     />
-                                                    <p>
-                                                        {item.AREATOTAL} m²
-                                                    </p>
+                                                    <p>{item.AREATOTAL} m²</p>
                                                 </div>
                                             </div>
                                         </div>

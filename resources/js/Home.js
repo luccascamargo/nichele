@@ -15,8 +15,7 @@ import { Footer } from "./components/Footer";
 import CarouselMoveis from "../js/components/CarouselMoveis";
 import CarouselMoveisComerciais from "../js/components/CarouselMoveisComerciais";
 
-import axios from 'axios'
-
+import axios from "axios";
 
 import imgDropdown from "../../public/assets/svg/dropdown-icon.svg";
 import arrowTop from "../../public/assets/svg/arrow-top.svg";
@@ -39,7 +38,7 @@ import {
     Typography,
 } from "@mui/material";
 
-import { api } from './plugins/api'
+import { api } from "./plugins/api";
 
 const customStyles = {
     option: (provided, state) => ({
@@ -66,31 +65,28 @@ const customStyles = {
     },
 };
 
-
-
-
-
 function Home() {
     const [tabSelect, setTabSelect] = useState(0);
     const [cities, setCities] = useState([]);
     const [districts, setDistricts] = useState([]);
-    const [types, setTypes] = useState([]);
-    const [code, setCode] = useState('');
+    const [types, setTypes] = useState([]); // buscar descricao da tabela imb_tipoimovel
+    const [code, setCode] = useState("");
     const [plant, setPlant] = useState(false);
     const [offer, setOffer] = useState(false);
+    const [activeButton, setActiveButton] = useState("TIPOALUGUEL"); // Tipo Aluguel ou comprar
 
     const [area, setArea] = useState({ min: 0, max: 30000 });
     const [advanced, setAdvanced] = useState(false);
     const [codeSearch, setCodeSearch] = useState(false);
-    const [buildingType, setBuildingType] = useState('');
-    const [city, setCity] = useState('');
-    const [district, setDistrict] = useState('');
+    const [buildingType, setBuildingType] = useState("");
+    const [city, setCity] = useState("");
+    const [district, setDistrict] = useState("");
     const [price, setPrice] = useState({ min: 0, max: 15000000 });
 
-    const [room, setRoom] = useState('');
-    const [suites, setSuites] = useState('');
-    const [toilet, setToilet] = useState('');
-    const [garage, setGarage] = useState('');
+    const [room, setRoom] = useState("");
+    const [suites, setSuites] = useState("");
+    const [toilet, setToilet] = useState("");
+    const [garage, setGarage] = useState("");
 
     const handleDorms = (event) => setRoom(event);
     const handleSuites = (event) => setSuites(event);
@@ -105,90 +101,86 @@ function Home() {
     function handleSubmit() {
         const params = new URLSearchParams();
 
-        if(buildingType) {
-            params.append('building_type', buildingType);
+        if (activeButton) {
+            params.append("type", activeButton);
         }
 
-        if(city) {
-           params.append('city',city);
+        if (buildingType) {
+            params.append("building_type", buildingType);
         }
 
-        if(district) {
-            params.append('district',district);
+        if (city) {
+            params.append("city", city);
         }
 
-        if(price) {
-            params.append('price',JSON.stringify(price));
+        if (district) {
+            params.append("district", district);
         }
 
-        if(room) {
-            params.append('room', room);
+        if (price) {
+            params.append("price", JSON.stringify(price));
         }
 
-        if(suites) {
-            params.append('suites',suites);
+        if (room) {
+            params.append("room", room);
         }
 
-        if(toilet) {
-            params.append('toilet', toilet);
+        if (suites) {
+            params.append("suites", suites);
         }
 
-        if(garage) {
-            params.append('garage', garage);
+        if (toilet) {
+            params.append("toilet", toilet);
         }
 
-        if(area) {
-            params.append('area', JSON.stringify(area));
+        if (garage) {
+            params.append("garage", garage);
         }
 
-        if(code) {
-            params.append('code', code);
+        if (area) {
+            params.append("area", JSON.stringify(area));
         }
 
-        if(plant) {
-            params.append('plant', plant);
+        if (code) {
+            params.append("code", code);
         }
 
-        if(offer) {
-            params.append('offer', offer);
+        if (plant) {
+            params.append("plant", plant);
         }
-
-        params.append('type', tabSelect);
-
 
         window.location.href = `/imoveis?${params.toString()}`;
     }
 
-    useEffect(async function() {
+    useEffect(async function () {
+        const buildingsType = async () => {
+            const { data } = await api.get("api/types");
+            const options = [];
+            data.map((type) => {
+                options.push({ value: type.DESCRICAO, label: type.DESCRICAO });
+            });
+            return options;
+        };
+
+        setTypes(await buildingsType());
+
         const city = async () => {
-            const {data} = await api.get('api/cities');
-            return data;
-        }
+            const { data } = await api.get("api/cities");
+            const options = [];
+            data.map((city) => {
+                options.push({ value: city.CIDADE, label: city.CIDADE });
+            });
+            return options;
+        };
 
         setCities(await city());
-
-        const neigh = async () => {
-            const {data} = await api.get('api/districts');
-
-            return data;
-        }
-
-        setDistricts(await neigh());
-
-        const types = async () => {
-            const {data} = await api.get('api/types');
-
-            return data;
-        }
-
-        setTypes(await types());
-    },[])
+    }, []);
 
     const [showBuy, setBuy] = useState(false);
     const [showSell, setSell] = useState(false);
 
-    const handleBuy = () => setBuy(!showBuy)
-    const handleSell = () => setSell(!showSell)
+    const handleBuy = () => setBuy(!showBuy);
+    const handleSell = () => setSell(!showSell);
 
     const [imoveisDestaque, setImovesDestaque] = useState([]);
     const [imoveisComerciais, setImovesComerciais] = useState([]);
@@ -196,94 +188,150 @@ function Home() {
     useEffect(() => {
         const fetchBuildingById = async () => {
             let response = await api.get(`/api/highlight`);
-            setImovesDestaque(response.data)
+            setImovesDestaque(response.data);
         };
-        fetchBuildingById()
-    }, [])
+        fetchBuildingById();
+    }, []);
 
     useEffect(() => {
         const fetchBuildingById = async () => {
             let response = await api.get(`/api/comercialsState`);
-            setImovesComerciais(response.data)
+            setImovesComerciais(response.data);
         };
-        fetchBuildingById()
-    }, [])
-
+        fetchBuildingById();
+    }, []);
 
     const [cmsHome, setCmsHome] = useState({});
     const [cmsInfo, setCmsInfo] = useState({});
     const [mainDoubts, setDoubts] = useState({});
 
-        useEffect(() => {
-            const getCmsHome = async () => {
-                await fetch('https://fathomless-chamber-79732.herokuapp.com/api/home?populate=componentSectionAbout', {
-                    method: 'GET',
+    useEffect(() => {
+        const getCmsHome = async () => {
+            await fetch(
+                "https://fathomless-chamber-79732.herokuapp.com/api/home?populate=componentSectionAbout",
+                {
+                    method: "GET",
                     headers: {
-                        'Content-Type': 'application/json',
+                        "Content-Type": "application/json",
                     },
-                })
-                .then(response => response.json())
-                .then(data => setCmsHome(data.data.attributes));
-            }
-            getCmsHome();
-        }, [])
+                }
+            )
+                .then((response) => response.json())
+                .then((data) => setCmsHome(data.data.attributes));
+        };
+        getCmsHome();
+    }, []);
 
-        useEffect(() => {
-            const getCmsInfo = async () => {
-                await fetch('https://fathomless-chamber-79732.herokuapp.com/api/info', {
-                    method: 'GET',
+    useEffect(() => {
+        const getCmsInfo = async () => {
+            await fetch(
+                "https://fathomless-chamber-79732.herokuapp.com/api/info",
+                {
+                    method: "GET",
                     headers: {
-                        'Content-Type': 'application/json',
+                        "Content-Type": "application/json",
                     },
-                })
-                .then(response => response.json())
-                .then(data => setCmsInfo(data.data.attributes));
-            }
-            getCmsInfo();
-        }, [])
+                }
+            )
+                .then((response) => response.json())
+                .then((data) => setCmsInfo(data.data.attributes));
+        };
+        getCmsInfo();
+    }, []);
 
-        useEffect(() => {
-            const getMainDoubts = async () => {
-                await fetch('https://fathomless-chamber-79732.herokuapp.com/api/main-doubts', {
-                    method: 'GET',
+    useEffect(() => {
+        const getMainDoubts = async () => {
+            await fetch(
+                "https://fathomless-chamber-79732.herokuapp.com/api/main-doubts",
+                {
+                    method: "GET",
                     headers: {
-                        'Content-Type': 'application/json',
+                        "Content-Type": "application/json",
                     },
-                })
-                .then(response => response.json())
-                .then(data => setDoubts(data));
-            }
-            getMainDoubts();
-        }, [])
+                }
+            )
+                .then((response) => response.json())
+                .then((data) => setDoubts(data));
+        };
+        getMainDoubts();
+    }, []);
 
+    const handleCityChange = async (event) => {
+        setCity(event);
 
+        const neigh = async () => {
+            const { data } = await api.get(`api/districts/${event}`);
+            const options = [];
+            data.map((nei) => {
+                options.push({ value: nei.BAIRRO, label: nei.BAIRRO });
+            });
+            return options;
+        };
+
+        setDistricts(await neigh());
+    };
 
     return (
         <div className="container">
-                <a href={`https://wa.me/54996583631`} target="_blank" rel="noopener noreferrer" className={showBuy ? 'social__float__buy showSocials' : 'social__float__buy'} onMouseLeave={handleBuy} onMouseEnter={handleBuy}>
-                    <img src={imgWhatWhite} alt="whats" />
-                    <div className="text__social">
-                        <span>Whats para locação</span>
-                        <p>(54) 99658.3631</p>
-                    </div>
-                </a>
-                <a href={`https://wa.me/54981158489`} target="_blank" rel="noopener noreferrer" className={showSell ? 'social__float__sell showSocials' : 'social__float__sell'} onMouseLeave={handleSell} onMouseEnter={handleSell}>
+            <a
+                href={`https://wa.me/54996583631`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={
+                    showBuy
+                        ? "social__float__buy showSocials"
+                        : "social__float__buy"
+                }
+                onMouseLeave={handleBuy}
+                onMouseEnter={handleBuy}
+            >
                 <img src={imgWhatWhite} alt="whats" />
-                    <div className="text__social">
-                        <span>Whats para venda</span>
-                        <p>(54) 98115.8489</p>
-                    </div>
-                </a>
+                <div className="text__social">
+                    <span>Whats para locação</span>
+                    <p>(54) 99658.3631</p>
+                </div>
+            </a>
+            <a
+                href={`https://wa.me/54981158489`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={
+                    showSell
+                        ? "social__float__sell showSocials"
+                        : "social__float__sell"
+                }
+                onMouseLeave={handleSell}
+                onMouseEnter={handleSell}
+            >
+                <img src={imgWhatWhite} alt="whats" />
+                <div className="text__social">
+                    <span>Whats para venda</span>
+                    <p>(54) 98115.8489</p>
+                </div>
+            </a>
             <Navbar />
             <main className={advanced ? "main addHeight" : "main"}>
                 <h1>{cmsHome?.title}</h1>
 
                 {codeSearch ? (
                     <>
-                        <Tabs selectedIndex={tabSelect} onSelect={(index) => setTabSelect(index)}>
+                        <Tabs
+                            selectedIndex={tabSelect}
+                            onSelect={(index) => setTabSelect(index)}
+                        >
                             <TabList>
-                                <Tab>Alugar</Tab>
-                                <Tab>Comprar</Tab>
+                                <Tab
+                                    onClick={() =>
+                                        setActiveButton("TIPOALUGUEL")
+                                    }
+                                >
+                                    Alugar
+                                </Tab>
+                                <Tab
+                                    onClick={() => setActiveButton("TIPOVENDA")}
+                                >
+                                    Comprar
+                                </Tab>
                             </TabList>
 
                             <TabPanel>
@@ -293,10 +341,14 @@ function Home() {
                                             type="text"
                                             id="input__code"
                                             value={code}
-                                            onChange={(event) => setCode(event?.target.value)}
+                                            onChange={(event) =>
+                                                setCode(event?.target.value)
+                                            }
                                             placeholder="Digite aqui o código do imóvel"
                                         />
-                                        <ButtonPrimary onClick={() => handleSubmit()}>
+                                        <ButtonPrimary
+                                            onClick={() => handleSubmit()}
+                                        >
                                             Encontre seu imóvel
                                         </ButtonPrimary>
                                     </div>
@@ -310,7 +362,9 @@ function Home() {
                                             id="input__code"
                                             placeholder="Digite aqui o código do imóvel"
                                         />
-                                        <ButtonPrimary onClick={() => handleSubmit()}>
+                                        <ButtonPrimary
+                                            onClick={() => handleSubmit()}
+                                        >
                                             Encontre seu imóvel
                                         </ButtonPrimary>
                                     </div>
@@ -327,10 +381,23 @@ function Home() {
                     </>
                 ) : (
                     <>
-                       <Tabs selectedIndex={tabSelect} onSelect={(index) => setTabSelect(index)}>
+                        <Tabs
+                            selectedIndex={tabSelect}
+                            onSelect={(index) => setTabSelect(index)}
+                        >
                             <TabList>
-                                <Tab>Alugar</Tab>
-                                <Tab>Comprar</Tab>
+                                <Tab
+                                    onClick={() =>
+                                        setActiveButton("TIPOALUGUEL")
+                                    }
+                                >
+                                    Alugar
+                                </Tab>
+                                <Tab
+                                    onClick={() => setActiveButton("TIPOVENDA")}
+                                >
+                                    Comprar
+                                </Tab>
                             </TabList>
 
                             <TabPanel>
@@ -344,7 +411,11 @@ function Home() {
                                                 id="tipoMovel"
                                                 className="select"
                                                 options={types}
-                                                onChange={(event) => setBuildingType(event?.value)}
+                                                onChange={(event) =>
+                                                    setBuildingType(
+                                                        event?.value
+                                                    )
+                                                }
                                                 styles={customStyles}
                                                 isSearchable={true}
                                                 isClearable={true}
@@ -360,7 +431,11 @@ function Home() {
                                                 id="cidade"
                                                 className="select"
                                                 options={cities}
-                                                onChange={(event) => setCity(event?.value)}
+                                                onChange={(event) =>
+                                                    handleCityChange(
+                                                        event?.value
+                                                    )
+                                                }
                                                 styles={customStyles}
                                                 placeholder="Selecione..."
                                             />
@@ -374,7 +449,9 @@ function Home() {
                                                 id="bairro"
                                                 className="select"
                                                 options={districts}
-                                                onChange={(event) => setDistrict(event?.value)}
+                                                onChange={(event) =>
+                                                    setDistrict(event?.value)
+                                                }
                                                 styles={customStyles}
                                                 isSearchable
                                                 isClearable
@@ -398,22 +475,28 @@ function Home() {
                                                         color: "#5C6476",
                                                     }}
                                                 >
-                                                    <div>{
-                                                        Number(
+                                                    <div>
+                                                        {Number(
                                                             price.min
-                                                        ).toLocaleString("pt-br", {
-                                                            style: "currency",
-                                                            currency: "BRL",
-                                                        })}
+                                                        ).toLocaleString(
+                                                            "pt-br",
+                                                            {
+                                                                style: "currency",
+                                                                currency: "BRL",
+                                                            }
+                                                        )}
                                                     </div>
                                                     <div>-</div>
-                                                    <div>{
-                                                        Number(
+                                                    <div>
+                                                        {Number(
                                                             price.max
-                                                        ).toLocaleString("pt-br", {
-                                                            style: "currency",
-                                                            currency: "BRL",
-                                                        })}
+                                                        ).toLocaleString(
+                                                            "pt-br",
+                                                            {
+                                                                style: "currency",
+                                                                currency: "BRL",
+                                                            }
+                                                        )}
                                                     </div>
                                                 </div>
                                                 <div className="div__input__range">
@@ -430,7 +513,9 @@ function Home() {
                                             </div>
                                         </div>
 
-                                        <ButtonPrimary onClick={() => handleSubmit() }>
+                                        <ButtonPrimary
+                                            onClick={() => handleSubmit()}
+                                        >
                                             Encontre seu imóvel
                                         </ButtonPrimary>
                                     </div>
@@ -1264,7 +1349,13 @@ function Home() {
                                                     }}
                                                     control={
                                                         <Checkbox
-                                                            onChange={(event) => setPlant(event?.target.checked)}
+                                                            onChange={(event) =>
+                                                                setPlant(
+                                                                    event
+                                                                        ?.target
+                                                                        .checked
+                                                                )
+                                                            }
                                                             checked={plant}
                                                             sx={{
                                                                 "&.Mui-checked":
@@ -1292,7 +1383,11 @@ function Home() {
                                                 id="tipoMovel"
                                                 className="select"
                                                 options={types}
-                                                onChange={(event) => setBuildingType(event?.value)}
+                                                onChange={(event) =>
+                                                    setBuildingType(
+                                                        event?.value
+                                                    )
+                                                }
                                                 styles={customStyles}
                                                 isSearchable={true}
                                                 isClearable={true}
@@ -1308,7 +1403,9 @@ function Home() {
                                                 id="cidade"
                                                 className="select"
                                                 options={cities}
-                                                onChange={(event) => setCity(event?.value)}
+                                                onChange={(event) =>
+                                                    setCity(event?.value)
+                                                }
                                                 styles={customStyles}
                                                 placeholder="Selecione..."
                                             />
@@ -1322,7 +1419,9 @@ function Home() {
                                                 id="bairro"
                                                 className="select"
                                                 options={districts}
-                                                onChange={(event) => setDistrict(event?.value)}
+                                                onChange={(event) =>
+                                                    setDistrict(event?.value)
+                                                }
                                                 styles={customStyles}
                                                 isSearchable
                                                 isClearable
@@ -1346,22 +1445,28 @@ function Home() {
                                                         color: "#5C6476",
                                                     }}
                                                 >
-                                                    <div>{
-                                                        Number(
+                                                    <div>
+                                                        {Number(
                                                             price.min
-                                                        ).toLocaleString("pt-br", {
-                                                            style: "currency",
-                                                            currency: "BRL",
-                                                        })}
+                                                        ).toLocaleString(
+                                                            "pt-br",
+                                                            {
+                                                                style: "currency",
+                                                                currency: "BRL",
+                                                            }
+                                                        )}
                                                     </div>
                                                     <div>-</div>
-                                                    <div>{
-                                                        Number(
+                                                    <div>
+                                                        {Number(
                                                             price.max
-                                                        ).toLocaleString("pt-br", {
-                                                            style: "currency",
-                                                            currency: "BRL",
-                                                        })}
+                                                        ).toLocaleString(
+                                                            "pt-br",
+                                                            {
+                                                                style: "currency",
+                                                                currency: "BRL",
+                                                            }
+                                                        )}
                                                     </div>
                                                 </div>
                                                 <div className="div__input__range">
@@ -1378,7 +1483,9 @@ function Home() {
                                             </div>
                                         </div>
 
-                                        <ButtonPrimary onClick={() => handleSubmit() }>
+                                        <ButtonPrimary
+                                            onClick={() => handleSubmit()}
+                                        >
                                             Encontre seu imóvel
                                         </ButtonPrimary>
                                     </div>
@@ -2212,7 +2319,13 @@ function Home() {
                                                     }}
                                                     control={
                                                         <Checkbox
-                                                            onChange={(event) => setPlant(event?.target.checked)}
+                                                            onChange={(event) =>
+                                                                setPlant(
+                                                                    event
+                                                                        ?.target
+                                                                        .checked
+                                                                )
+                                                            }
                                                             checked={plant}
                                                             sx={{
                                                                 "&.Mui-checked":
@@ -2259,95 +2372,117 @@ function Home() {
             </main>
 
             <section className="redes">
-                    <a href={`https://wa.me/54996583631`} className="box" target="_blank" rel="noreferrer">
-                        <img
-                            src={imgWhats}
-                            width={imgWhats.width}
-                            height={imgWhats.height}
-                            alt="WhatsApp"
-                        />
-                        <div className="boxInner">
-                            <span>whats locação</span>
-                            <p>{cmsInfo.whatsLocation}</p>
-                        </div>
-                    </a>
+                <a
+                    href={`https://wa.me/54996583631`}
+                    className="box"
+                    target="_blank"
+                    rel="noreferrer"
+                >
+                    <img
+                        src={imgWhats}
+                        width={imgWhats.width}
+                        height={imgWhats.height}
+                        alt="WhatsApp"
+                    />
+                    <div className="boxInner">
+                        <span>whats locação</span>
+                        <p>{cmsInfo.whatsLocation}</p>
+                    </div>
+                </a>
 
-                    <a href={`https://wa.me/54981158489`} className="box" target="_blank" rel="noreferrer">
-                        <img
-                            src={imgWhats}
-                            width={imgWhats.width}
-                            height={imgWhats.height}
-                            alt="WhatsApp"
-                        />
-                        <div className="boxInner">
-                            <span>whats vendas</span>
-                            <p>{cmsInfo.whatsSales}</p>
-                        </div>
-                    </a>
+                <a
+                    href={`https://wa.me/54981158489`}
+                    className="box"
+                    target="_blank"
+                    rel="noreferrer"
+                >
+                    <img
+                        src={imgWhats}
+                        width={imgWhats.width}
+                        height={imgWhats.height}
+                        alt="WhatsApp"
+                    />
+                    <div className="boxInner">
+                        <span>whats vendas</span>
+                        <p>{cmsInfo.whatsSales}</p>
+                    </div>
+                </a>
 
-                    <a href={`mailto:${cmsInfo.email}`} className="box">
-                        <img
-                            src={imgEmail}
-                            width={imgEmail.width}
-                            height={imgEmail.height}
-                            alt="E-mail"
-                        />
-                        <div className="boxInner">
-                            <span>envie um e-mail</span>
-                            <p className="p12">{cmsInfo.email}</p>
-                        </div>
-                    </a>
+                <a href={`mailto:${cmsInfo.email}`} className="box">
+                    <img
+                        src={imgEmail}
+                        width={imgEmail.width}
+                        height={imgEmail.height}
+                        alt="E-mail"
+                    />
+                    <div className="boxInner">
+                        <span>envie um e-mail</span>
+                        <p className="p12">{cmsInfo.email}</p>
+                    </div>
+                </a>
 
-                    <div className="box">
-                        <div className="boxInner">
-                            <span>nos siga nas redes</span>
-                            <div className="social">
-                                <a href={cmsInfo.facebook} target="_blank" rel="noreferrer">
-                                    <img
-                                        src={imgFace}
-                                        width={imgFace.width}
-                                        height={imgFace.height}
-                                        alt="Facebook"
-                                    />
-                                </a>
-                                <a href={cmsInfo.instagram} target="_blank" rel="noreferrer">
-                                    <img
-                                        src={imgInsta}
-                                        width={imgInsta.width}
-                                        height={imgInsta.height}
-                                        alt="Instagram"
-                                    />
-                                </a>
-                                <a href={cmsInfo.linkedin} target="_blank" rel="noreferrer">
-                                    <img
-                                        src={imgLinke}
-                                        width={imgLinke.width}
-                                        height={imgLinke.height}
-                                        alt="Linkedin"
-                                    />
-                                </a>
-                            </div>
+                <div className="box">
+                    <div className="boxInner">
+                        <span>nos siga nas redes</span>
+                        <div className="social">
+                            <a
+                                href={cmsInfo.facebook}
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                <img
+                                    src={imgFace}
+                                    width={imgFace.width}
+                                    height={imgFace.height}
+                                    alt="Facebook"
+                                />
+                            </a>
+                            <a
+                                href={cmsInfo.instagram}
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                <img
+                                    src={imgInsta}
+                                    width={imgInsta.width}
+                                    height={imgInsta.height}
+                                    alt="Instagram"
+                                />
+                            </a>
+                            <a
+                                href={cmsInfo.linkedin}
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                <img
+                                    src={imgLinke}
+                                    width={imgLinke.width}
+                                    height={imgLinke.height}
+                                    alt="Linkedin"
+                                />
+                            </a>
                         </div>
                     </div>
+                </div>
             </section>
 
             <section>
-                <CarouselMoveis data={imoveisDestaque}/>
+                <CarouselMoveis data={imoveisDestaque} />
             </section>
 
             <section>
-                <CarouselMoveisComerciais data={imoveisComerciais}/>
+                <CarouselMoveisComerciais data={imoveisComerciais} />
             </section>
 
             <CarouselBanner />
 
-            <SectionAbout data={cmsHome?.componentSectionAbout}/>
+            <SectionAbout data={cmsHome?.componentSectionAbout} />
 
             <BannerAnuncie />
 
-            <DuvidasHome data={mainDoubts}/>
+            <DuvidasHome data={mainDoubts} />
 
-            <Footer data={cmsInfo}/>
+            <Footer data={cmsInfo} />
         </div>
     );
 }
