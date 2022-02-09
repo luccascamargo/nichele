@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Blog</title>
+        <title>Blog - Nichele Imóveis</title>
 
         <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
