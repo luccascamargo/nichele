@@ -57,7 +57,7 @@ export default function Imoveis() {
     const [garage, setGarage] = useState("");
 
     const maxValue = 1500000000;
-    console.log(buildingType);
+
     const Image = ({ src, alt, fallback }) => {
         const [error, setError] = useState(false);
 
@@ -1281,7 +1281,7 @@ export default function Imoveis() {
                             </div>
                             <div>
                                 <InputRange
-                                    step={5}
+                                    step={10000}
                                     draggableTrack={false}
                                     allowSameValues={false}
                                     maxValue={maxValue}

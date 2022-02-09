@@ -6,7 +6,7 @@ import "../../sass/duvidaDoc.scss";
 
 import { DuvidaItems } from "../components/DuvidaItems";
 
-export const DuvidaVendas = ({datas}) => {
+export const DuvidaVendas = ({ datas }) => {
     return (
         <>
             <div className="container__duvidas__doc">

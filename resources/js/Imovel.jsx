@@ -2,9 +2,8 @@
 /* eslint-disable import/no-unresolved */
 import ReactDOM from "react-dom";
 import { useEffect, useState } from "react";
-import ImageGallery from 'react-image-gallery';
+import ImageGallery from "react-image-gallery";
 import axios from "axios";
-
 
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
@@ -36,7 +35,6 @@ import iconLoc from "../../public/assets/images/imovel/icon-loc.png";
 import iconInfo from "../../public/assets/images/imovel/icon-info.png";
 import imageBox from "../../public/assets/images/image-imovel.png";
 
-
 import "../sass/imovel.scss";
 
 export const Imovel = () => {
@@ -52,12 +50,15 @@ export const Imovel = () => {
 
     useEffect(() => {
         const getCmsInfo = async () => {
-            await fetch("https://fathomless-chamber-79732.herokuapp.com/api/info", {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            })
+            await fetch(
+                "https://fathomless-chamber-79732.herokuapp.com/api/info",
+                {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                }
+            )
                 .then((response) => response.json())
                 .then((data) => setCmsInfo(data.data.attributes));
         };
@@ -79,6 +80,10 @@ export const Imovel = () => {
                 pending: true,
                 value: response,
             });
+            if (response) {
+                document.title =
+                    response?.TIPOIMOVEL + " - #" + response?.CODIGOIMOVEL;
+            }
 
             const cep = response.CEP;
             let response2 = await api.get(`/api/relacionados/${cep}`);
@@ -104,7 +109,7 @@ export const Imovel = () => {
             .catch((error) => {
                 console.log("ERROR:: ", error.response.data);
             });
-    }
+    };
 
     const Image = ({ src, alt, fallback }) => {
         const [error, setError] = useState(false);
@@ -124,53 +129,48 @@ export const Imovel = () => {
 
     const images = [];
 
-      function imageExists(image_url){
-
+    function imageExists(image_url) {
         var http = new XMLHttpRequest();
 
-        http.open('HEAD', image_url, false);
+        http.open("HEAD", image_url, false);
         http.send();
 
         return http.status != 404;
-
     }
 
-    building?.value?.ALBUM.map(function(photo){
+    building?.value?.ALBUM.map(function (photo) {
         if (imageExists("/images/viasw/fotos/" + photo.ARQUIVOFOTO)) {
             images.push({
                 original: "/images/viasw/fotos/" + photo.ARQUIVOFOTO,
                 thumbnail: "/images/viasw/fotos/" + photo.ARQUIVOFOTO,
-                originalHeight: '411px'
-              })
+                originalHeight: "411px",
+            });
         }
     });
 
-    const [latitude, setLatitude] = useState('')
-    const [longitude, setLongitude] = useState('')
+    const [latitude, setLatitude] = useState("");
+    const [longitude, setLongitude] = useState("");
 
-   useEffect(() => {
-    if(building?.value?.LATITUDEMAPA){
-        setLatitude(building?.value?.LATITUDEMAPA)
-    };
-    if (building?.value?.LONGITUDEMAPA){
-        setLongitude(building?.value?.LONGITUDEMAPA)
-    };
-   })
-
-   const [char, setChar] = useState('')
-
-   const characteristic = building?.value?.CHARACTERISTICS.filter((e) => e.CODIGOCARACTERISTICA === 244)
-
-
-   useEffect(() => {
-       if(characteristic?.length > 0){
-            console.log(characteristic)
-            setChar(characteristic[0]?.TEXTO)
+    useEffect(() => {
+        if (building?.value?.LATITUDEMAPA) {
+            setLatitude(building?.value?.LATITUDEMAPA);
         }
-   })
+        if (building?.value?.LONGITUDEMAPA) {
+            setLongitude(building?.value?.LONGITUDEMAPA);
+        }
+    });
 
+    const [char, setChar] = useState("");
 
+    const characteristic = building?.value?.CHARACTERISTICS.filter(
+        (e) => e.CODIGOCARACTERISTICA === 244
+    );
 
+    useEffect(() => {
+        if (characteristic?.length > 0) {
+            setChar(characteristic[0]?.TEXTO);
+        }
+    });
 
     return (
         <>
@@ -189,7 +189,9 @@ export const Imovel = () => {
                     </div>
                 </div>
             </div>
-                {images.length > 0 && <ImageGallery items={images} showPlayButton={false}/>}
+            {images.length > 0 && (
+                <ImageGallery items={images} showPlayButton={false} />
+            )}
             <div className="container__aside">
                 <div className="content__aside">
                     <div className="top">
@@ -200,7 +202,9 @@ export const Imovel = () => {
                         <div className="top__dir">
                             <div className="compartilhar">
                                 <span>Compartilhar:</span>
-                                <a href={`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`}>
+                                <a
+                                    href={`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`}
+                                >
                                     <img src={iconFacebook} alt="Facebook" />
                                 </a>
                                 <img src={iconWhats} alt="Whats" />
@@ -243,7 +247,9 @@ export const Imovel = () => {
                                 banheiro(s)
                             </span>
                         </div>
-                        {char === '' ? ('') : (
+                        {char === "" ? (
+                            ""
+                        ) : (
                             <>
                                 <div className="border" />
                                 <div className="item">
@@ -324,50 +330,52 @@ export const Imovel = () => {
                         </div>
                     </div>
                     <div className="dir">
-                        {building?.value?.VALORIPTU && !building?.value?.VALORCONDOMINIO !== null ? (
+                        {building?.value?.VALORIPTU &&
+                        !building?.value?.VALORCONDOMINIO !== null ? (
                             <div className="header__dir">
-                            <span>Informações adicionais</span>
-                            <div className="item__header__dir">
-                                <div className="esq__header__dir">
-                                    <img src={iconInfo} alt="" />
-                                    <span>Condomínio</span>
+                                <span>Informações adicionais</span>
+                                <div className="item__header__dir">
+                                    <div className="esq__header__dir">
+                                        <img src={iconInfo} alt="" />
+                                        <span>Condomínio</span>
+                                    </div>
+                                    <div className="dir__header__dir">
+                                        <span>
+                                            {building?.value
+                                                ?.VALORCONDOMINIO === null
+                                                ? "-"
+                                                : Number(
+                                                      building?.value
+                                                          ?.VALORCONDOMINIO
+                                                  ).toLocaleString("pt-br", {
+                                                      style: "currency",
+                                                      currency: "BRL",
+                                                  })}
+                                        </span>
+                                    </div>
                                 </div>
-                                <div className="dir__header__dir">
-                                    <span>
-                                        {building?.value?.VALORCONDOMINIO ===
-                                        null
-                                            ? "-"
-                                            : Number(
-                                                  building?.value
-                                                      ?.VALORCONDOMINIO
-                                              ).toLocaleString("pt-br", {
-                                                  style: "currency",
-                                                  currency: "BRL",
-                                              })}
-                                    </span>
+                                <div className="item__header__dir">
+                                    <div className="esq__header__dir">
+                                        <img src={iconInfo} alt="" />
+                                        <span>IPTU</span>
+                                    </div>
+                                    <div className="dir__header__dir">
+                                        <span>
+                                            {building?.value?.VALORIPTU === null
+                                                ? "-"
+                                                : Number(
+                                                      building?.value?.VALORIPTU
+                                                  ).toLocaleString("pt-br", {
+                                                      style: "currency",
+                                                      currency: "BRL",
+                                                  })}
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
-                            <div className="item__header__dir">
-                                <div className="esq__header__dir">
-                                    <img src={iconInfo} alt="" />
-                                    <span>IPTU</span>
-                                </div>
-                                <div className="dir__header__dir">
-                                    <span>
-                                        {building?.value?.VALORIPTU === null
-                                            ? "-"
-                                            : Number(
-                                                  building?.value?.VALORIPTU
-                                              ).toLocaleString("pt-br", {
-                                                  style: "currency",
-                                                  currency: "BRL",
-                                              })}
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        ) : ('')}
-
+                        ) : (
+                            ""
+                        )}
 
                         <div className="formulario">
                             <h3>Tenho interesse</h3>
@@ -426,18 +434,15 @@ export const Imovel = () => {
                 </div>
             </main>
 
-
-                <div className="map">
+            <div className="map">
                 <iframe
                     width="100%"
                     height="400"
                     frameBorder="0"
                     scrolling="no"
                     src={`https://maps.google.com/maps?q='+${latitude}+','+${longitude}+'&hl=es&z=14&amp;output=embed`}
-                    >
-                </iframe>
+                ></iframe>
             </div>
-
 
             <div className="carousel__relacionais">
                 <div className="title">
@@ -509,7 +514,10 @@ export const Imovel = () => {
                                         <div className="top">
                                             <div className="title__box">
                                                 <span>{imovel.TIPOIMOVEL}</span>
-                                                <p>{imovel?.CIDADE} {" - "} {imovel?.BAIRRO}</p>
+                                                <p>
+                                                    {imovel?.CIDADE} {" - "}{" "}
+                                                    {imovel?.BAIRRO}
+                                                </p>
                                             </div>
                                             <div className="value__box">
                                                 <span>R$1.000,00</span>
@@ -536,8 +544,13 @@ export const Imovel = () => {
                                                 </p>
                                             </div>
                                             <div className="desc">
-                                                <img src={iconChuveiro} alt="" />
-                                                <p>{imovel?.QUANTIDADEBANHEIRO}</p>
+                                                <img
+                                                    src={iconChuveiro}
+                                                    alt=""
+                                                />
+                                                <p>
+                                                    {imovel?.QUANTIDADEBANHEIRO}
+                                                </p>
                                             </div>
                                         </div>
                                     </div>

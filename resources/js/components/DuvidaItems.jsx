@@ -25,7 +25,7 @@ export const DuvidaItems = ({ ...props }) => {
                         : "content__duvida__item"
                 }
             >
-                <p>{props.description}</p>
+                <div dangerouslySetInnerHTML={{ __html: props.description }} />
             </div>
         </>
     );
