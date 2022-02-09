@@ -6,20 +6,20 @@ export const PersonalInfo = ({ formData, setFormData }) => {
                 <button
                     type="button"
                     onClick={(e) => {
-                        setFormData({ ...formData, typeFor: "Comprar" });
-                    }}
-                    className={formData.typeFor === "Comprar" ? "active" : ""}
-                >
-                    Comprar
-                </button>
-                <button
-                    type="button"
-                    onClick={(e) => {
                         setFormData({ ...formData, typeFor: "Alugar" });
                     }}
                     className={formData.typeFor === "Alugar" ? "active" : ""}
                 >
                     Alugar
+                </button>
+                <button
+                    type="button"
+                    onClick={(e) => {
+                        setFormData({ ...formData, typeFor: "Vender" });
+                    }}
+                    className={formData.typeFor === "Vender" ? "active" : ""}
+                >
+                    Vender
                 </button>
                 <button
                     type="button"
@@ -66,7 +66,20 @@ export const PersonalInfo = ({ formData, setFormData }) => {
             >
                 <option value="selecione">Selecione</option>
                 <option value="ap">Apartamento</option>
-                <option value="teste">Teste</option>
+                <option value="apto-cobertura">Apto Cobertura</option>
+                <option value="apto-loft">Apto Loft</option>
+                <option value="apto-studio">Apto Studio</option>
+                <option value="box">Box</option>
+                <option value="casa">Casa</option>
+                <option value="casa-comercial">Casa Comercial</option>
+                <option value="casa-condominio">Casa em Condomínio</option>
+                <option value="chacara">Chácara</option>
+                <option value="empreendimento">Empreendimento</option>
+                <option value="loja">Loja</option>
+                <option value="pavilhao">Pavilhão</option>
+                <option value="predio-comercial">Prédio Comercial</option>
+                <option value="salas-conjunto">Salas/Conjuntos</option>
+                <option value="terreno">Terreno</option>
             </select>
         </div>
     );

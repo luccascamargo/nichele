@@ -139,7 +139,8 @@ export const Steps2 = () => {
             </div>
             <div className="form-container">
                 <div className="body">{PageDisplay()}</div>
-                <div className="footer">
+                {page !== 2 ?(
+                    <div className="footer">
                     <button
                         disabled={page == 0}
                         onClick={() => {
@@ -150,16 +151,19 @@ export const Steps2 = () => {
                     </button>
                     <button
                         onClick={() => {
-                            if (page === FormTitles.length - 1) {
+                            if (page === FormTitles.length - 2) {
                                 sendEmail(formData);
+                                // alert('testando')
+                                setPage((currPage) => currPage + 1);
                             } else {
                                 setPage((currPage) => currPage + 1);
                             }
                         }}
                     >
-                        {page === FormTitles.length - 1 ? "Finalizar" : "Próximo"}
+                        {page === FormTitles.length - 2 ? "Finalizar" : "Próximo"}
                     </button>
                 </div>
+                ):('')}
             </div>
         </div>
     );

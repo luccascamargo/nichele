@@ -100,7 +100,7 @@ function Home() {
     const handleAdvanced = () => setAdvanced(!advanced);
     const handleCode = () => setCodeSearch(!codeSearch);
 
-    const maxValue = 15000000;
+    const maxValue = 30000;
 
     function handleSubmit() {
         const params = new URLSearchParams();
@@ -407,7 +407,6 @@ function Home() {
                                                         })}
                                                     </div>
                                                     <div>-</div>
-                                                    {/* <div>{`R$${price.max}`}</div> */}
                                                     <div>{
                                                         Number(
                                                             price.max
@@ -419,10 +418,10 @@ function Home() {
                                                 </div>
                                                 <div className="div__input__range">
                                                     <InputRange
-                                                        step={5}
+                                                        step={100000}
                                                         draggableTrack={false}
                                                         allowSameValues={false}
-                                                        maxValue={maxValue}
+                                                        maxValue={15000000}
                                                         minValue={0}
                                                         value={price}
                                                         onChange={setPrice}
@@ -1233,7 +1232,7 @@ function Home() {
                                                     </div>
                                                     <div>
                                                         <InputRange
-                                                            step={5}
+                                                            step={50}
                                                             draggableTrack={
                                                                 false
                                                             }
@@ -1292,11 +1291,11 @@ function Home() {
                                             <Select
                                                 id="tipoMovel"
                                                 className="select"
-                                                onChange={(event) => setBuildingType(event?.value)}
                                                 options={types}
+                                                onChange={(event) => setBuildingType(event?.value)}
                                                 styles={customStyles}
-                                                isSearchable
-                                                isClearable
+                                                isSearchable={true}
+                                                isClearable={true}
                                                 placeholder="Selecione..."
                                             />
                                         </div>
@@ -1308,11 +1307,9 @@ function Home() {
                                             <Select
                                                 id="cidade"
                                                 className="select"
-                                                onChange={(event) => setCity(event?.value)}
                                                 options={cities}
+                                                onChange={(event) => setCity(event?.value)}
                                                 styles={customStyles}
-                                                isSearchable
-                                                isClearable
                                                 placeholder="Selecione..."
                                             />
                                         </div>
@@ -1324,8 +1321,8 @@ function Home() {
                                             <Select
                                                 id="bairro"
                                                 className="select"
-                                                onChange={(event) => setDistrict(event?.value)}
                                                 options={districts}
+                                                onChange={(event) => setDistrict(event?.value)}
                                                 styles={customStyles}
                                                 isSearchable
                                                 isClearable
@@ -1333,7 +1330,7 @@ function Home() {
                                             />
                                         </div>
 
-                                        <div className="div">
+                                        <div className="div value">
                                             <label htmlFor="valor">
                                                 Valor{" "}
                                             </label>
@@ -1342,6 +1339,8 @@ function Home() {
                                                     style={{
                                                         display: "flex",
                                                         alignItems: "center",
+                                                        justifyContent:
+                                                            "space-between",
                                                         gap: "1rem",
                                                         fontWeight: 500,
                                                         color: "#5C6476",
@@ -1365,21 +1364,21 @@ function Home() {
                                                         })}
                                                     </div>
                                                 </div>
-                                                <div>
+                                                <div className="div__input__range">
                                                     <InputRange
-                                                        step={5}
+                                                        step={100000}
                                                         draggableTrack={false}
                                                         allowSameValues={false}
-                                                        maxValue={maxValue}
+                                                        maxValue={15000000}
                                                         minValue={0}
                                                         value={price}
-                                                        onChange={setArea}
+                                                        onChange={setPrice}
                                                     />
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <ButtonPrimary onClick={() => handleSubmit()}>
+                                        <ButtonPrimary onClick={() => handleSubmit() }>
                                             Encontre seu imóvel
                                         </ButtonPrimary>
                                     </div>
@@ -1793,7 +1792,7 @@ function Home() {
                                                         lineHeight: "21px",
                                                     }}
                                                 >
-                                                    Suítes
+                                                    Banheiros
                                                 </Typography>
                                                 <Box
                                                     sx={{
@@ -1804,10 +1803,10 @@ function Home() {
                                                 >
                                                     <Button
                                                         onClick={() =>
-                                                            handleSuites("1")
+                                                            handleBathroom("1")
                                                         }
                                                         sx={
-                                                            suites === "1"
+                                                            toilet === "1"
                                                                 ? {
                                                                       minWidth:
                                                                           "2rem",
@@ -1845,10 +1844,10 @@ function Home() {
                                                     </Button>
                                                     <Button
                                                         onClick={() =>
-                                                            handleSuites("2")
+                                                            handleBathroom("2")
                                                         }
                                                         sx={
-                                                            suites === "2"
+                                                            toilet === "2"
                                                                 ? {
                                                                       minWidth:
                                                                           "2rem",
@@ -1886,10 +1885,10 @@ function Home() {
                                                     </Button>
                                                     <Button
                                                         onClick={() =>
-                                                            handleSuites("3")
+                                                            handleBathroom("3")
                                                         }
                                                         sx={
-                                                            suites === "3"
+                                                            toilet === "3"
                                                                 ? {
                                                                       minWidth:
                                                                           "2rem",
@@ -1927,10 +1926,10 @@ function Home() {
                                                     </Button>
                                                     <Button
                                                         onClick={() =>
-                                                            handleSuites("4")
+                                                            handleBathroom("4")
                                                         }
                                                         sx={
-                                                            suites === "4"
+                                                            toilet === "4"
                                                                 ? {
                                                                       minWidth:
                                                                           "2rem",
@@ -1985,7 +1984,7 @@ function Home() {
                                                         lineHeight: "21px",
                                                     }}
                                                 >
-                                                    Suítes
+                                                    Garagem
                                                 </Typography>
                                                 <Box
                                                     sx={{
@@ -1996,10 +1995,10 @@ function Home() {
                                                 >
                                                     <Button
                                                         onClick={() =>
-                                                            handleSuites("1")
+                                                            handleVacancies("1")
                                                         }
                                                         sx={
-                                                            suites === "1"
+                                                            garage === "1"
                                                                 ? {
                                                                       minWidth:
                                                                           "2rem",
@@ -2037,10 +2036,10 @@ function Home() {
                                                     </Button>
                                                     <Button
                                                         onClick={() =>
-                                                            handleSuites("2")
+                                                            handleVacancies("2")
                                                         }
                                                         sx={
-                                                            suites === "2"
+                                                            garage === "2"
                                                                 ? {
                                                                       minWidth:
                                                                           "2rem",
@@ -2078,10 +2077,10 @@ function Home() {
                                                     </Button>
                                                     <Button
                                                         onClick={() =>
-                                                            handleSuites("3")
+                                                            handleVacancies("3")
                                                         }
                                                         sx={
-                                                            suites === "3"
+                                                            garage === "3"
                                                                 ? {
                                                                       minWidth:
                                                                           "2rem",
@@ -2119,10 +2118,10 @@ function Home() {
                                                     </Button>
                                                     <Button
                                                         onClick={() =>
-                                                            handleSuites("4")
+                                                            handleVacancies("4")
                                                         }
                                                         sx={
-                                                            suites === "4"
+                                                            garage === "4"
                                                                 ? {
                                                                       minWidth:
                                                                           "2rem",
@@ -2181,7 +2180,7 @@ function Home() {
                                                     </div>
                                                     <div>
                                                         <InputRange
-                                                            step={5}
+                                                            step={50}
                                                             draggableTrack={
                                                                 false
                                                             }
@@ -2213,6 +2212,8 @@ function Home() {
                                                     }}
                                                     control={
                                                         <Checkbox
+                                                            onChange={(event) => setPlant(event?.target.checked)}
+                                                            checked={plant}
                                                             sx={{
                                                                 "&.Mui-checked":
                                                                     {

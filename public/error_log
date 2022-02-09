@@ -1,0 +1,11 @@
+[13-Jan-2022 16:41:10 America/Campo_Grande] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.0.2". You are running 7.3.33. in /home/nichelei/public_html/nichele/vendor/composer/platform_check.php on line 24
+[13-Jan-2022 16:41:20 America/Campo_Grande] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.0.2". You are running 7.3.33. in /home/nichelei/public_html/nichele/vendor/composer/platform_check.php on line 24
+[13-Jan-2022 16:41:25 America/Campo_Grande] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.0.2". You are running 7.3.33. in /home/nichelei/public_html/nichele/vendor/composer/platform_check.php on line 24
+[13-Jan-2022 16:41:31 America/Campo_Grande] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.0.2". You are running 7.4.27. in /home/nichelei/public_html/nichele/vendor/composer/platform_check.php on line 24
+[13-Jan-2022 20:53:47 UTC] PHP Warning:  Missing arginfo for clos_ssa_test() in Unknown on line 0
+[13-Jan-2022 20:54:15 UTC] PHP Warning:  Missing arginfo for clos_ssa_test() in Unknown on line 0
+[13-Jan-2022 20:54:16 UTC] PHP Warning:  Missing arginfo for clos_ssa_test() in Unknown on line 0
+[13-Jan-2022 20:54:16 UTC] PHP Warning:  Missing arginfo for clos_ssa_test() in Unknown on line 0
+[13-Jan-2022 20:54:17 UTC] PHP Warning:  Missing arginfo for clos_ssa_test() in Unknown on line 0
+[13-Jan-2022 20:54:17 UTC] PHP Warning:  Missing arginfo for clos_ssa_test() in Unknown on line 0
+[13-Jan-2022 20:54:34 UTC] PHP Warning:  Missing arginfo for clos_ssa_test() in Unknown on line 0

@@ -8,7 +8,7 @@ import imageBox from "../../../public/assets/images/image-imovel.png";
 import imgMovel from "../../../public/assets/images/movel.png";
 import imgBed from "../../../public/assets/svg/bed-icon.svg";
 import imgCar from "../../../public/assets/svg/car-icon.png";
-import imgSize from "../../../public/assets/svg/size-icon.svg";
+import imgSize from "../../../public/assets/images/imovel/icon-chuveiro.png";
 
 const responsive = {
     desktopFull: {
@@ -121,7 +121,7 @@ const CarouselMoveis = ({data}) => {
                                     <div>
                                         <p className="title">{item?.TIPOIMOVEL}</p>
                                         <p className="local">
-                                            {item?.ENDERECO}
+                                            {item?.CIDADE} {" - "} {item?.BAIRRO}
                                         </p>
                                     </div>
                                     <div>
@@ -169,7 +169,7 @@ const CarouselMoveis = ({data}) => {
                                             height={imgSize.height}
                                             alt="Metros"
                                         />
-                                        <p>{item?.AREAPRIVATIVA || '0'} mª</p>
+                                        <p>{item?.QUANTIDADEBANHEIRO || '0'}</p>
                                     </div>
                                 </div>
                             </div>

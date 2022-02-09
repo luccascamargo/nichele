@@ -32,41 +32,12 @@ import iconSol from "../../public/assets/images/imovel/icon-sol.png";
 import iconChuveiro from "../../public/assets/images/imovel/icon-chuveiro.png";
 import iconCama from "../../public/assets/images/imovel/icon-cama.png";
 import iconOk from "../../public/assets/svg/certo.svg";
-import iconElevador from "../../public/assets/images/imovel/icon-elevador.png";
-import iconMobiliado from "../../public/assets/images/imovel/icon-mobiliado.png";
-import iconTerraco from "../../public/assets/images/imovel/icon-terraco.png";
 import iconLoc from "../../public/assets/images/imovel/icon-loc.png";
 import iconInfo from "../../public/assets/images/imovel/icon-info.png";
 import imageBox from "../../public/assets/images/image-imovel.png";
 
 
 import "../sass/imovel.scss";
-import { ContentCutOutlined } from "@mui/icons-material";
-
-
-
-const responsive = {
-    desktopFull: {
-        breakpoint: { max: 3000, min: 1440 },
-        items: 4,
-        // partialVisibilityGutter: 40,
-    },
-    desktop: {
-        breakpoint: { max: 1440, min: 1024 },
-        items: 4,
-        // partialVisibilityGutter: 30,
-    },
-    desktopSmall: {
-        breakpoint: { max: 1024, min: 600 },
-        items: 3,
-        // partialVisibilityGutter: 100,
-    },
-    mobile: {
-        breakpoint: { max: 600, min: 0 },
-        items: 1,
-        partialVisibilityGutter: 20,
-    },
-};
 
 export const Imovel = () => {
     const [cmsInfo, setCmsInfo] = useState({});
@@ -174,17 +145,32 @@ export const Imovel = () => {
         }
     });
 
+    const [latitude, setLatitude] = useState('')
+    const [longitude, setLongitude] = useState('')
 
-    useEffect(() => {
-        const [state, setState]= useState(false);
-        const char = building?.value?.CHARACTERISTICS?.filter((e) => e.CODIGOCARACTERISTICA === 244);
-        let charText= '';
+   useEffect(() => {
+    if(building?.value?.LATITUDEMAPA){
+        setLatitude(building?.value?.LATITUDEMAPA)
+    };
+    if (building?.value?.LONGITUDEMAPA){
+        setLongitude(building?.value?.LONGITUDEMAPA)
+    };
+   })
 
-        if(char) {
-            setState(true)
-            charText = char[0]?.TEXTO;
-        };
-    }, [state])
+   const [char, setChar] = useState('')
+
+   const characteristic = building?.value?.CHARACTERISTICS.filter((e) => e.CODIGOCARACTERISTICA === 244)
+
+
+   useEffect(() => {
+       if(characteristic?.length > 0){
+            console.log(characteristic)
+            setChar(characteristic[0]?.TEXTO)
+        }
+   })
+
+
+
 
     return (
         <>
@@ -214,7 +200,9 @@ export const Imovel = () => {
                         <div className="top__dir">
                             <div className="compartilhar">
                                 <span>Compartilhar:</span>
-                                <img src={iconFacebook} alt="Facebook" />
+                                <a href={`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`}>
+                                    <img src={iconFacebook} alt="Facebook" />
+                                </a>
                                 <img src={iconWhats} alt="Whats" />
                             </div>
                             <div className="favoritar">
@@ -231,7 +219,7 @@ export const Imovel = () => {
                                 {building?.value?.QUANTIDADEGARAGEM === null
                                     ? "Sem garagem"
                                     : building?.value?.QUANTIDADEGARAGEM +
-                                      "vaga(s)"}
+                                      " vaga(s)"}
                             </span>
                         </div>
                         <div className="border" />
@@ -255,12 +243,12 @@ export const Imovel = () => {
                                 banheiro(s)
                             </span>
                         </div>
-                        {state && (
+                        {char === '' ? ('') : (
                             <>
                                 <div className="border" />
                                 <div className="item">
                                     <img src={iconSol} alt="" />
-                                    <span>{charText}</span>
+                                    <span>{char.toLocaleLowerCase()}</span>
                                 </div>
                             </>
                         )}
@@ -336,7 +324,8 @@ export const Imovel = () => {
                         </div>
                     </div>
                     <div className="dir">
-                        <div className="header__dir">
+                        {building?.value?.VALORIPTU && !building?.value?.VALORCONDOMINIO !== null ? (
+                            <div className="header__dir">
                             <span>Informações adicionais</span>
                             <div className="item__header__dir">
                                 <div className="esq__header__dir">
@@ -377,6 +366,8 @@ export const Imovel = () => {
                                 </div>
                             </div>
                         </div>
+                        ) : ('')}
+
 
                         <div className="formulario">
                             <h3>Tenho interesse</h3>
@@ -436,18 +427,16 @@ export const Imovel = () => {
             </main>
 
 
-            {/* <div className="map">
+                <div className="map">
                 <iframe
                     width="100%"
                     height="400"
-                    frameborder="0"
+                    frameBorder="0"
                     scrolling="no"
-                    marginheight="0"
-                    marginwidth="0"
-                    src={`https://maps.google.com/maps?q='+${building?.value?.LATITUDEMAPA}+','+${building?.value?.LONGITUDEMAPA}+'&hl=es&z=14&amp;output=embed`}
+                    src={`https://maps.google.com/maps?q='+${latitude}+','+${longitude}+'&hl=es&z=14&amp;output=embed`}
                     >
                 </iframe>
-            </div> */}
+            </div>
 
 
             <div className="carousel__relacionais">
@@ -520,7 +509,7 @@ export const Imovel = () => {
                                         <div className="top">
                                             <div className="title__box">
                                                 <span>{imovel.TIPOIMOVEL}</span>
-                                                <p>{imovel.ENDERECO}</p>
+                                                <p>{imovel?.CIDADE} {" - "} {imovel?.BAIRRO}</p>
                                             </div>
                                             <div className="value__box">
                                                 <span>R$1.000,00</span>
@@ -547,8 +536,8 @@ export const Imovel = () => {
                                                 </p>
                                             </div>
                                             <div className="desc">
-                                                <img src={iconRegua} alt="" />
-                                                <p>{imovel?.AREAPRIVATIVA} m²</p>
+                                                <img src={iconChuveiro} alt="" />
+                                                <p>{imovel?.QUANTIDADEBANHEIRO}</p>
                                             </div>
                                         </div>
                                     </div>

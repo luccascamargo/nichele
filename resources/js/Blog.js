@@ -59,6 +59,7 @@ export default function Blog() {
                               ? "https://fathomless-chamber-79732.herokuapp.com/"
                               : ``
                           }${item.attributes.image.data.attributes.url}`;
+                          console.log(item)
                         return (
                             <a key={item.id} href={`/blogcontent?code=${item.id}`} className="item">
                             <img src={imageBlog} alt={item.attributes.title} />
