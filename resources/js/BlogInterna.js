@@ -99,13 +99,13 @@ export default function BlogInterna() {
                     </a>
                     <div className="shareButtons">
                         <span>compartilhe nas redes</span>
-                        <a href="#facebook">
+                        <a href={`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`}>
                             <img src={facebookShare} alt="Facebook" />
                         </a>
-                        <a href="#linkedin">
+                        <a href={`https://www.linkedin.com/shareArticle?mini=true&url=${window.location.href}`}>
                             <img src={linkedinShare} alt="Linkedin" />
                         </a>
-                        <a href="#whats">
+                        <a href={`https://api.whatsapp.com/send?text=${window.location.href}`}>
                             <img src={whatsShare} alt="WhatsApp" />
                         </a>
                     </div>

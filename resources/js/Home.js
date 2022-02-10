@@ -274,7 +274,7 @@ function Home() {
     return (
         <div className="container">
             <a
-                href={`https://wa.me/054996583631`}
+                href={`https://wa.me/55054996583631`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={
@@ -292,7 +292,7 @@ function Home() {
                 </div>
             </a>
             <a
-                href={`https://wa.me/054981158489`}
+                href={`https://wa.me/55054981158489`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={
@@ -2373,7 +2373,7 @@ function Home() {
 
             <section className="redes">
                 <a
-                    href={`https://wa.me/054996583631`}
+                    href={`https://wa.me/55054996583631`}
                     className="box"
                     target="_blank"
                     rel="noreferrer"
@@ -2391,7 +2391,7 @@ function Home() {
                 </a>
 
                 <a
-                    href={`https://wa.me/054981158489`}
+                    href={`https://wa.me/55054981158489`}
                     className="box"
                     target="_blank"
                     rel="noreferrer"

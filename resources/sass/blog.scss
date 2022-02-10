@@ -129,8 +129,10 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
+    width: 100%;
+    max-width: 1248px;
+    margin: 0 auto;
+    padding: 0 2rem 0 2rem;
 
     .date {
         font-family: "Nunito", sans-serif;
@@ -177,6 +179,8 @@
         max-width: 800px;
         margin-top: 3.063rem;
         margin-bottom: 3.813rem;
+
+        white-space: break-spaces;
     }
 
     .redes {

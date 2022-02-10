@@ -207,7 +207,9 @@ export const Imovel = () => {
                                 >
                                     <img src={iconFacebook} alt="Facebook" />
                                 </a>
-                                <img src={iconWhats} alt="Whats" />
+                                <a href={`https://api.whatsapp.com/send?text=${window.location.href}`}>
+                                    <img src={iconWhats} alt="Whats" />
+                                </a>
                             </div>
                             <div className="favoritar">
                                 <img src={iconFav} alt="Favorito" />

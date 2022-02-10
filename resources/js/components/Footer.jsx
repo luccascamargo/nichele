@@ -48,13 +48,13 @@ export const Footer = ({data}) => {
                         </div>
                     </div>
                     <div className="buttons">
-                    <a href={`https://wa.me/54981158489`} className="box" target="_blank" rel="noreferrer">
+                    <a href={`https://wa.me/55054981158489`} className="box" target="_blank" rel="noreferrer">
                             <ButtonPrimary>
                                 <img src={logoWhats} alt="Whats Nichele" />
                                 Whats vendas
                             </ButtonPrimary>
                         </a>
-                        <a href={`https://wa.me/54996583631`} className="box" target="_blank" rel="noreferrer">
+                        <a href={`https://wa.me/55054996583631`} className="box" target="_blank" rel="noreferrer">
                             <ButtonPrimary>
                                 <img src={logoWhats} alt="Whats Nichele" />
                                 Whats locação

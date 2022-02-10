@@ -53,7 +53,7 @@ export function MobileMenu() {
                             </li>
                         </ul>
                         <div className="buttons__mobile">
-                            <a href="/">
+                            <a href="https://portal.viaimob.com.br/42">
                                 <ButtonClient text="Área do cliente" />
                             </a>
                             <a href="/anuncie">
