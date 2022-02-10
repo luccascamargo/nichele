@@ -501,7 +501,7 @@ function Home() {
                                                 </div>
                                                 <div className="div__input__range">
                                                     <InputRange
-                                                        step={100000}
+                                                        step={10000}
                                                         draggableTrack={false}
                                                         allowSameValues={false}
                                                         maxValue={15000000}

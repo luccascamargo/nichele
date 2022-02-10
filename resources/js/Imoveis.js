@@ -13,6 +13,7 @@ import imageBox from "../../public/assets/images/image-imovel.png";
 import iconRegua from "../../public/assets/svg/icon-regua.svg";
 import iconQuarto from "../../public/assets/svg/icon-quarto.svg";
 import iconCar from "../../public/assets/svg/icon-car.svg";
+import imgSize from "../../public/assets/images/imovel/icon-chuveiro.png";
 import { useState } from "react";
 import {
     Checkbox,
@@ -41,11 +42,11 @@ export default function Imoveis() {
     const [characteristics, setCharacteristics] = useState([]);
 
     // JSON examplo http://?param1={"price":[{"min":89},{"max":3}]}
-    const [area, setArea] = useState({ min: 0, max: 300000 }); // passar o min e max dos valores json
+    const [area, setArea] = useState({ min: 0, max: 30000 }); // passar o min e max dos valores json
     const [buildingType, setBuildingType] = useState("");
     const [city, setCity] = useState(""); // pode ser todas as cidades do brasil ou filtrar a CIDADE da tabela imb_imovel
     const [district, setDistrict] = useState(""); // filtrar apenas os bairros da cidade selecionado, tabela imb_imovel
-    const [price, setPrice] = useState({ min: 0, max: 1500000000 }); // passar o min e max dos valores json
+    const [price, setPrice] = useState({ min: 0, max: 15000000 }); // passar o min e max dos valores json
     const [characteristic, setCharacteristic] = useState(""); // pode ser todas as cidades do brasil ou filtrar a CIDADE da tabela imb_imovel
     const [characteristicInput, setCharacteristicInput] = useState("");
 
@@ -56,7 +57,7 @@ export default function Imoveis() {
     const [toilet, setToilet] = useState("");
     const [garage, setGarage] = useState("");
 
-    const maxValue = 1500000000;
+    const maxValue = 30000;
 
     const Image = ({ src, alt, fallback }) => {
         const [error, setError] = useState(false);
@@ -1275,16 +1276,36 @@ export default function Imoveis() {
                                     color: "#5C6476",
                                 }}
                             >
-                                <div>{`R$${price.min}`}</div>
+                                <div>
+                                    {Number(
+                                        price.min
+                                    ).toLocaleString(
+                                        "pt-br",
+                                        {
+                                            style: "currency",
+                                            currency: "BRL",
+                                        }
+                                    )}
+                                </div>
                                 <div>-</div>
-                                <div>{`R$${price.max}`}</div>
+                                <div>
+                                    {Number(
+                                        price.max
+                                    ).toLocaleString(
+                                        "pt-br",
+                                        {
+                                            style: "currency",
+                                            currency: "BRL",
+                                        }
+                                    )}
+                                </div>
                             </div>
                             <div>
                                 <InputRange
                                     step={10000}
                                     draggableTrack={false}
                                     allowSameValues={false}
-                                    maxValue={maxValue}
+                                    maxValue={15000000}
                                     minValue={0}
                                     value={price}
                                     onChange={(event) => handlePrice(event)}
@@ -1555,11 +1576,13 @@ export default function Imoveis() {
                                                     </p>
                                                 </div>
                                                 <div className="desc">
-                                                    <img
-                                                        src={iconRegua}
-                                                        alt=""
-                                                    />
-                                                    <p>{item.AREATOTAL} m²</p>
+                                                <img
+                                                    src={imgSize}
+                                                    width={imgSize.width}
+                                                    height={imgSize.height}
+                                                    alt="Banheiros"
+                                                />
+                                                    <p>{item.QUANTIDADEBANHEIRO}</p>
                                                 </div>
                                             </div>
                                         </div>

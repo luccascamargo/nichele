@@ -2,9 +2,9 @@
 import "../../sass/footer.scss";
 
 import logoNichele from "../../../public/assets/svg/nichele-logo.svg";
-import logoFacebook from "../../../public/assets/svg/facebook.svg";
-import logoInstagram from "../../../public/assets/svg/instagram.svg";
-import logoLinkedin from "../../../public/assets/svg/linkedin.svg";
+import logoFacebook from "../../../public/assets/svg/Facebook.svg";
+import logoInstagram from "../../../public/assets/svg/Instagram.svg";
+import logoLinkedin from "../../../public/assets/svg/Linkedin.svg";
 import logoWhats from "../../../public/assets/svg/whats.svg";
 import iconPhone from "../../../public/assets/svg/phone.svg";
 import iconLocation from "../../../public/assets/svg/location.svg";
