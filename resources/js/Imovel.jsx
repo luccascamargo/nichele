@@ -440,7 +440,7 @@ export const Imovel = () => {
                     height="400"
                     frameBorder="0"
                     scrolling="no"
-                    src={`https://maps.google.com/maps?q=${latitude},${longitude}&hl=es&z=14&amp;output=embed`}
+                    src={`https://maps.google.com/maps?q=${latitude}${longitude}&hl=es&z=14&amp;output=embed`}
                 ></iframe>
             </div>
 

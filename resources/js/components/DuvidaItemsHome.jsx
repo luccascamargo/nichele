@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import { useState } from "react";
+import Markdown from "markdown-to-jsx";
 
 import "../../sass/duvidasHome.scss";
 
@@ -26,7 +27,7 @@ export const DuvidaItemsHome = ({ ...props }) => {
                         : "content__duvida__item"
                 }
             >
-                <div dangerouslySetInnerHTML={{ __html: props.description }} />
+                <Markdown>{props.description}</Markdown>
             </div>
         </>
     );

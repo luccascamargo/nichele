@@ -2,11 +2,11 @@
 /* eslint-disable no-irregular-whitespace */
 /* eslint-disable import/no-unresolved */
 import ReactDOM from "react-dom";
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
+import Markdown from "markdown-to-jsx";
 
 import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
-
 
 import "../sass/blog.scss";
 
@@ -17,44 +17,60 @@ import whatsShare from "../../public/assets/svg/whats-share.svg";
 
 export default function BlogInterna() {
     const [cmsInfo, setCmsInfo] = useState({});
-    const [post, setPost] = useState({id: 0, attributes: {content: '', createdAt: '', title: '', image: { data: { attributes: {url: ''}}}}});
+    const [post, setPost] = useState({
+        id: 0,
+        attributes: {
+            content: "",
+            createdAt: "",
+            title: "",
+            image: { data: { attributes: { url: "" } } },
+        },
+    });
 
     useEffect(async () => {
         const params = new URLSearchParams(window.location.search);
-        const id = (params.get("code"))
+        const id = params.get("code");
         const getBlog = async () => {
-            await fetch(`https://fathomless-chamber-79732.herokuapp.com/api/blogs/${id}?populate=*`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            })
-            .then(response => response.json())
-            .then(data => setPost(data.data));
-        }
+            await fetch(
+                `https://fathomless-chamber-79732.herokuapp.com/api/blogs/${id}?populate=*`,
+                {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                }
+            )
+                .then((response) => response.json())
+                .then((data) => setPost(data.data));
+        };
         getBlog();
-    }, [])
+    }, []);
 
     useEffect(() => {
         const getCmsInfo = async () => {
-            await fetch('https://fathomless-chamber-79732.herokuapp.com/api/info', {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            })
-            .then(response => response.json())
-            .then(data => setCmsInfo(data.data.attributes));
-        }
+            await fetch(
+                "https://fathomless-chamber-79732.herokuapp.com/api/info",
+                {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                }
+            )
+                .then((response) => response.json())
+                .then((data) => setCmsInfo(data.data.attributes));
+        };
         getCmsInfo();
-    }, [])
+    }, []);
 
     const imagePost = `${
         post?.attributes.image.data.attributes.url.startsWith(`/`)
-          ? "https://fathomless-chamber-79732.herokuapp.com/"
-          : ``
-      }${post?.attributes.image.data.attributes.url}`;
+            ? "https://fathomless-chamber-79732.herokuapp.com/"
+            : ``
+    }${post?.attributes.image.data.attributes.url}`;
 
+    let date = new Date(post?.attributes.createdAt);
+    date = date.toLocaleString();
 
     return (
         <>
@@ -66,12 +82,16 @@ export default function BlogInterna() {
             </header>
 
             <div className="bloginterna">
-                <span className="date">{post?.attributes.createdAt}</span>
+                <span className="date">{date}</span>
                 <h1>{post?.attributes.title}</h1>
-                <img className="imagem" src={imagePost} alt={post?.attributes.title} />
-                <p className="text">
-                    {post?.attributes.content}
-                </p>
+                <img
+                    className="imagem"
+                    src={imagePost}
+                    alt={post?.attributes.title}
+                />
+                <div className="text">
+                    <Markdown>{post?.attributes.content}</Markdown>
+                </div>
 
                 <div className="redes">
                     <a href="/blog" className="back">
@@ -92,7 +112,7 @@ export default function BlogInterna() {
                 </div>
             </div>
 
-            <Footer data={cmsInfo}/>
+            <Footer data={cmsInfo} />
         </>
     );
 }
