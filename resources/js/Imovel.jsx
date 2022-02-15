@@ -211,10 +211,6 @@ export const Imovel = () => {
                                     <img src={iconWhats} alt="Whats" />
                                 </a>
                             </div>
-                            <div className="favoritar">
-                                <img src={iconFav} alt="Favorito" />
-                                <span>Favoritar</span>
-                            </div>
                         </div>
                     </div>
                     <div className="line" />
@@ -425,7 +421,7 @@ export const Imovel = () => {
 
                         <div className="contact">
                             <span>Entre em contato pelo whats</span>
-                            <a href={`https://wa.me/54996583631`}>
+                            <a href={`https://wa.me/55054996583631`}>
                                 <ButtonPrimary>
                                     <img src={iconWhats} alt="" />
                                     Whats locação
@@ -442,7 +438,7 @@ export const Imovel = () => {
                     height="400"
                     frameBorder="0"
                     scrolling="no"
-                    src={`https://maps.google.com/maps?q=${latitude},${longitude}&hl=es&z=14&output=embed`}
+                    src={`https://maps.google.com/maps?q=${building?.value?.CEP}&hl=es&z=14&output=embed`}
                 ></iframe>
             </div>
 
@@ -529,31 +525,35 @@ export const Imovel = () => {
                                             </div>
                                         </div>
                                         <div className="bottom">
-                                            <div className="desc">
-                                                <img src={iconCama} alt="" />
-                                                <p>
-                                                    {imovel.QUANTIDADEDORMITORIO ||
-                                                        "0"}{" "}
-                                                    quartos
-                                                </p>
-                                            </div>
-                                            <div className="desc">
-                                                <img src={iconCar} alt="" />
-                                                <p>
-                                                    {imovel.QUANTIDADEGARAGEM ||
-                                                        "0"}{" "}
-                                                    vaga
-                                                </p>
-                                            </div>
-                                            <div className="desc">
-                                                <img
-                                                    src={iconChuveiro}
-                                                    alt=""
-                                                />
-                                                <p>
-                                                    {imovel?.QUANTIDADEBANHEIRO}
-                                                </p>
-                                            </div>
+                                            {imovel?.QUANTIDADEDORMITORIO > 0 ? (
+                                                <div className="desc">
+                                                    <img src={iconCama} alt="" />
+                                                    <p>
+                                                        {imovel.QUANTIDADEDORMITORIO}{" "}
+                                                        quartos
+                                                    </p>
+                                                </div>
+                                            ) : ''}
+                                            {imovel?.QUANTIDADEGARAGEM > 0 ? (
+                                                <div className="desc">
+                                                    <img src={iconCar} alt="" />
+                                                    <p>
+                                                        {imovel.QUANTIDADEGARAGEM}{" "}
+                                                        vaga
+                                                    </p>
+                                                </div>
+                                            ) : ''}
+                                            {imovel?.QUANTIDADEBANHEIRO > 0 ? (
+                                                <div className="desc">
+                                                    <img
+                                                        src={iconChuveiro}
+                                                        alt=""
+                                                    />
+                                                    <p>
+                                                        {imovel?.QUANTIDADEBANHEIRO}
+                                                    </p>
+                                                </div>
+                                            ) : ''}
                                         </div>
                                     </div>
                                 </a>

@@ -75,7 +75,7 @@ function Home() {
     const [offer, setOffer] = useState(false);
     const [activeButton, setActiveButton] = useState("TIPOALUGUEL"); // Tipo Aluguel ou comprar
 
-    const [area, setArea] = useState({ min: 0, max: 30000 });
+    const [area, setArea] = useState({ min: 0, max: 10000 });
     const [advanced, setAdvanced] = useState(false);
     const [codeSearch, setCodeSearch] = useState(false);
     const [buildingType, setBuildingType] = useState("");
@@ -96,7 +96,7 @@ function Home() {
     const handleAdvanced = () => setAdvanced(!advanced);
     const handleCode = () => setCodeSearch(!codeSearch);
 
-    const maxValue = 30000;
+    const maxValue = 10000;
 
     function handleSubmit() {
         const params = new URLSearchParams();
@@ -1332,42 +1332,6 @@ function Home() {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <FormGroup
-                                                sx={{
-                                                    display: "flex",
-                                                    flexDirection: "row",
-                                                    gap: "1rem",
-                                                }}
-                                            >
-                                                <FormControlLabel
-                                                    sx={{
-                                                        fontFamily: "Roboto",
-                                                        fontWeight: "normal",
-                                                        fontSize: "14px",
-                                                        lineHeight: "21px",
-                                                        color: "#8C9193",
-                                                    }}
-                                                    control={
-                                                        <Checkbox
-                                                            onChange={(event) =>
-                                                                setPlant(
-                                                                    event
-                                                                        ?.target
-                                                                        .checked
-                                                                )
-                                                            }
-                                                            checked={plant}
-                                                            sx={{
-                                                                "&.Mui-checked":
-                                                                    {
-                                                                        color: "#205CA4",
-                                                                    },
-                                                            }}
-                                                        />
-                                                    }
-                                                    label="Imóveis na planta"
-                                                />
-                                            </FormGroup>
                                         </div>
                                     </div>
                                 </div>
@@ -1485,6 +1449,8 @@ function Home() {
 
                                         <ButtonPrimary
                                             onClick={() => handleSubmit()}
+                                            autofocus
+                                            onKeyUp={(event) => event.code === 'Enter' ? alert('ok') : ''}
                                         >
                                             Encontre seu imóvel
                                         </ButtonPrimary>

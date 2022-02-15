@@ -59,7 +59,7 @@
             gap: 0.5rem;
 
             a {
-                font-family: "Roboto", sans-serif;
+                font-family: "Nunito", sans-serif;
                 font-weight: normal;
                 font-size: 1rem;
                 line-height: 25px;
@@ -100,7 +100,7 @@
                     cursor: pointer;
 
                     span {
-                        font-family: "Roboto", sans-serif;
+                        font-family: "Nunito", sans-serif;
                         font-weight: normal;
                         font-size: 1.1rem;
                         line-height: 27px;
@@ -120,8 +120,9 @@
 
                 .content__duvida__item {
                     display: none;
+                    white-space: break-spaces;
 
-                    p{
+                    p, span{
                         font-family: 'Roboto', sans-serif;
                         font-size: 18px;
                         font-style: normal;
@@ -133,6 +134,7 @@
                 }
                 .active__item {
                     display: block;
+                    white-space: break-spaces;
                 }
             }
 

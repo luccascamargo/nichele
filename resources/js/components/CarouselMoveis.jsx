@@ -144,33 +144,39 @@ const CarouselMoveis = ({data}) => {
                                     </div>
                                 </div>
                                 <div className="data">
-                                    <div>
-                                        <img
-                                            src={imgBed}
-                                            width={imgBed.width}
-                                            height={imgBed.height}
-                                            alt="Quartos"
-                                        />
-                                        <p>{item?.QUANTIDADEDORMITORIO || '0'} quartos</p>
-                                    </div>
-                                    <div>
-                                        <img
-                                            src={imgCar}
-                                            width={imgCar.width}
-                                            height={imgCar.height}
-                                            alt="Vagas"
-                                        />
-                                        <p>{item?.QUANTIDADEGARAGEM || '0'} vagas</p>
-                                    </div>
-                                    <div>
-                                        <img
-                                            src={imgSize}
-                                            width={imgSize.width}
-                                            height={imgSize.height}
-                                            alt="Metros"
-                                        />
-                                        <p>{item?.QUANTIDADEBANHEIRO || '0'}</p>
-                                    </div>
+                                    {item?.QUANTIDADEDORMITORIO > 0 ? (
+                                        <div>
+                                            <img
+                                                src={imgBed}
+                                                width={imgBed.width}
+                                                height={imgBed.height}
+                                                alt="Quartos"
+                                            />
+                                            <p>{item?.QUANTIDADEDORMITORIO} quartos</p>
+                                        </div>
+                                    ) : ''}
+                                    {item?.QUANTIDADEGARAGEM > 0 ? (
+                                        <div>
+                                            <img
+                                                src={imgCar}
+                                                width={imgCar.width}
+                                                height={imgCar.height}
+                                                alt="Vagas"
+                                            />
+                                            <p>{item?.QUANTIDADEGARAGEM} vagas</p>
+                                        </div>
+                                    ) : ''}
+                                    {item?.QUANTIDADEBANHEIRO > 0 ? (
+                                        <div>
+                                            <img
+                                                src={imgSize}
+                                                width={imgSize.width}
+                                                height={imgSize.height}
+                                                alt="Metros"
+                                            />
+                                            <p>{item?.QUANTIDADEBANHEIRO}</p>
+                                        </div>
+                                    ) : ''}
                                 </div>
                             </div>
                         </div>

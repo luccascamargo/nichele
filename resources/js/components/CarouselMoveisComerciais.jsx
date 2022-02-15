@@ -147,24 +147,28 @@ const CarouselMoveisComerciais = ({ deviceType, items = [], data }) => {
                                     </div>
                                 </div>
                                 <div className="data remove">
-                                    <div>
-                                        <img
-                                            src={imgCar}
-                                            width={imgCar.width}
-                                            height={imgCar.height}
-                                            alt="Vagas"
-                                        />
-                                        <p>{item?.QUANTIDADEGARAGEM || '0'} vaga</p>
-                                    </div>
-                                    <div>
-                                        <img
-                                            src={imgSize}
-                                            width={imgSize.width}
-                                            height={imgSize.height}
-                                            alt="Metros"
-                                        />
-                                        <p>{item?.QUANTIDADEBANHEIRO || '0'}</p>
-                                    </div>
+                                    {item?.QUANTIDADEGARAGEM > 0 ? (
+                                        <div>
+                                            <img
+                                                src={imgCar}
+                                                width={imgCar.width}
+                                                height={imgCar.height}
+                                                alt="Vagas"
+                                            />
+                                            <p>{item?.QUANTIDADEGARAGEM} vagas</p>
+                                        </div>
+                                    ) : ''}
+                                    {item?.QUANTIDADEBANHEIRO > 0 ? (
+                                        <div>
+                                            <img
+                                                src={imgSize}
+                                                width={imgSize.width}
+                                                height={imgSize.height}
+                                                alt="Metros"
+                                            />
+                                            <p>{item?.QUANTIDADEBANHEIRO}</p>
+                                        </div>
+                                    ) : ''}
                                 </div>
                             </div>
                         </div>

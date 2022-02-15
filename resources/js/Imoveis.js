@@ -42,7 +42,7 @@ export default function Imoveis() {
     const [characteristics, setCharacteristics] = useState([]);
 
     // JSON examplo http://?param1={"price":[{"min":89},{"max":3}]}
-    const [area, setArea] = useState({ min: 0, max: 30000 }); // passar o min e max dos valores json
+    const [area, setArea] = useState({ min: 0, max: 10000 }); // passar o min e max dos valores json
     const [buildingType, setBuildingType] = useState("");
     const [city, setCity] = useState(""); // pode ser todas as cidades do brasil ou filtrar a CIDADE da tabela imb_imovel
     const [district, setDistrict] = useState(""); // filtrar apenas os bairros da cidade selecionado, tabela imb_imovel
@@ -57,7 +57,7 @@ export default function Imoveis() {
     const [toilet, setToilet] = useState("");
     const [garage, setGarage] = useState("");
 
-    const maxValue = 30000;
+    const maxValue = 10000;
 
     const Image = ({ src, alt, fallback }) => {
         const [error, setError] = useState(false);
@@ -1555,35 +1555,38 @@ export default function Imoveis() {
                                                 </div>
                                             </div>
                                             <div className="bottom">
-                                                <div className="desc">
-                                                    <img
-                                                        src={iconQuarto}
-                                                        alt=""
-                                                    />
-                                                    <p>
-                                                        {
-                                                            item.QUANTIDADEDORMITORIO
-                                                        }{" "}
-                                                        quartos
-                                                    </p>
-                                                </div>
-                                                <div className="desc">
-                                                    <img src={iconCar} alt="" />
-                                                    <p>
-                                                        {item?.QUANTIDADEGARAGEM ||
-                                                            "0"}{" "}
-                                                        vaga{"(s)"}
-                                                    </p>
-                                                </div>
-                                                <div className="desc">
-                                                <img
-                                                    src={imgSize}
-                                                    width={imgSize.width}
-                                                    height={imgSize.height}
-                                                    alt="Banheiros"
-                                                />
-                                                    <p>{item.QUANTIDADEBANHEIRO}</p>
-                                                </div>
+                                                {item?.QUANTIDADEDORMITORIO > 0 ? (
+                                                    <div className="desc">
+                                                        <img
+                                                            src={iconQuarto}
+                                                            alt=""
+                                                        />
+                                                        <p>
+                                                            {item?.QUANTIDADEDORMITORIO}{" "}
+                                                            quartos
+                                                        </p>
+                                                    </div>
+                                                ) : ''}
+                                                {item?.QUANTIDADEGARAGEM > 0 ? (
+                                                    <div className="desc">
+                                                        <img src={iconCar} alt="" />
+                                                        <p>
+                                                            {item?.QUANTIDADEGARAGEM}{" "}
+                                                            vaga{"(s)"}
+                                                        </p>
+                                                    </div>
+                                                ) : ''}
+                                                {item?.QUANTIDADEBANHEIRO > 0 ? (
+                                                    <div className="desc">
+                                                        <img
+                                                            src={imgSize}
+                                                            width={imgSize.width}
+                                                            height={imgSize.height}
+                                                            alt="Banheiros"
+                                                        />
+                                                            <p>{item?.QUANTIDADEBANHEIRO}</p>
+                                                        </div>
+                                                ) : ''}
                                             </div>
                                         </div>
                                     </div>
