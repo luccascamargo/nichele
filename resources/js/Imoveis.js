@@ -40,6 +40,7 @@ export default function Imoveis() {
     const [code, setCode] = useState(""); // só passar o filtro whenWhereCode
     const [plant, setPlant] = useState(false);
     const [characteristics, setCharacteristics] = useState([]);
+    const [page, setPage] = useState(1);
 
     // JSON examplo http://?param1={"price":[{"min":89},{"max":3}]}
     const [area, setArea] = useState({ min: 0, max: 10000 }); // passar o min e max dos valores json
@@ -251,6 +252,7 @@ export default function Imoveis() {
 
     const handleSubmitSearch = async () => {
         setCharacteristic(characteristicInput);
+        setPage(1);
 
         const params = new URLSearchParams();
 
@@ -305,6 +307,29 @@ export default function Imoveis() {
         setBuildings(
             (await api.get(`api/buildings?${params.toString()}`)).data
         );
+    };
+
+    const handleNextPage = async () => {
+        console.log(buildings);
+        let nextPage = page + 1;
+        setPage(nextPage);
+        const getBuildings = async () => {
+            const url = new URL(window.location.href).searchParams;
+            let params = `?page=${nextPage}`;
+            if (url.toString() !== "") {
+                params = `?${url.toString()}`;
+                params += `&page=${nextPage}`
+            }
+            console.log(params);
+
+            console.log(await api.get(`api/buildings${params}`))
+
+            const { data } = await api.get(`api/buildings${params}`);
+            return data;
+        };
+        let newBuildings = await getBuildings();
+        newBuildings.data = buildings.data.concat(newBuildings.data)
+        setBuildings(newBuildings);
     };
 
     useEffect(async () => {
@@ -1593,6 +1618,7 @@ export default function Imoveis() {
                                 </a>
                             );
                         })}
+                    <button onClick={() => handleNextPage()}>Carregar mais</button>
                     {buildings.length === 0 && <p>Nenhum imóvel encontrado.</p>}
                 </section>
             </main>
