@@ -72,9 +72,9 @@ const CarouselMoveis = ({data}) => {
                 containerClass="carousel-container"
                 customButtonGroup={<ButtonGroup />}
                 dotListClass=""
-                draggable={false}
+                draggable
                 focusOnSelect={false}
-                infinite={true}
+                infinite={false}
                 itemClass="item"
                 keyBoardControl
                 minimumTouchDrag={80}
@@ -86,7 +86,6 @@ const CarouselMoveis = ({data}) => {
                 slidesToSlide={1}
                 customTransition={"transform 800ms ease-in-out"}
             >
-                <div />
                 {data?.map(item => {
                     return (
                     <a href={`/imovel?code=${item?.CODIGOIMOVEL}`} key={item?.CODIGOIMOVEL} className="box">
